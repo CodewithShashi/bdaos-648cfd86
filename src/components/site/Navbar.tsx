@@ -214,13 +214,6 @@ function ServicesMega() {
           ))}
         </div>
 
-        <div className="mt-8 flex items-center justify-between border-t border-border pt-4">
-          <span className="text-sm text-muted-foreground">Technology Capabilities</span>
-          <a href="#services" className="inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-            Explore all capabilities
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </div>
       </div>
 
       <div className="col-span-4 relative min-h-[360px]">
