@@ -152,23 +152,8 @@ export function About() {
                   </div>
                 </motion.button>
               );
-            })}
-
-            <div className="grid grid-cols-3 gap-4 pt-4">
-              {[
-                { n: 4000, s: "+", l: "Teams" },
-                { n: 120, s: "M", l: "API calls / day" },
-                { n: 42, s: "", l: "Countries" },
-              ].map((s) => (
-                <div key={s.l} className="rounded-2xl bg-secondary/60 p-5">
-                  <div className="text-3xl font-semibold text-gradient">
-                    <Counter to={s.n} suffix={s.s} />
-                  </div>
-                  <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-                </div>
-              ))}
-            </div>
           </motion.div>
+
         </div>
       </Container>
     </section>
