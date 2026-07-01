@@ -38,16 +38,16 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="relative py-24 md:py-32 bg-secondary/40 overflow-hidden">
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          {/* Left visual */}
+    <section className="relative py-20 md:py-28 bg-secondary/30 overflow-hidden">
+      <div className="relative w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-0">
+          {/* Left visual — full bleed */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 1.05 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-5 relative rounded-[2rem] overflow-hidden min-h-[360px] shadow-elevated"
+            transition={{ duration: 1 }}
+            className="lg:col-span-5 relative h-[380px] md:h-[520px] w-full overflow-hidden"
           >
             <img
               src={statsImg}
@@ -55,25 +55,25 @@ export function Stats() {
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-primary/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 via-transparent to-secondary/30" />
           </motion.div>
 
-          {/* Right stats card */}
+          {/* Right stats card — overlaps slightly on desktop */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-7 bg-white rounded-[2rem] shadow-elevated p-10 md:p-14 flex items-center"
+            className="lg:col-span-7 lg:-ml-16 relative z-10 mx-4 md:mx-8 lg:mr-16 -mt-16 lg:mt-0 bg-white rounded-[2rem] shadow-elevated p-10 md:p-16"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-10 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-16">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.label}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                  transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
                 >
                   <div className="text-5xl md:text-6xl font-semibold tracking-tight text-foreground leading-none">
                     <Counter to={s.value} suffix={s.suffix} />
@@ -86,7 +86,8 @@ export function Stats() {
             </div>
           </motion.div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
+
