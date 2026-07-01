@@ -62,7 +62,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-14 overflow-hidden">
+        <div className="mt-14 overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           <motion.div
             className="flex gap-5"
             animate={{ x: `calc(${-start} * (25% + 0px) - ${start} * 0px)` }}
