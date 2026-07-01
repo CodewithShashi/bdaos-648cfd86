@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -20,26 +20,73 @@ export function AnimatedButton({
   className,
   onClick,
 }: Props) {
+  const isPrimary = variant === "primary";
+
   const base =
-    "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 will-change-transform";
-  const styles =
-    variant === "primary"
-      ? "bg-primary text-primary-foreground shadow-glow hover:shadow-elevated"
-      : "bg-secondary text-foreground hover:bg-secondary/80 border border-border";
+    "group relative inline-flex items-center gap-3 rounded-full font-medium transition-colors duration-300 will-change-transform overflow-hidden";
+  const sizing = icon ? "pl-6 pr-1.5 py-1.5 text-sm" : "px-6 py-3 text-sm";
+  const styles = isPrimary
+    ? "bg-primary text-primary-foreground shadow-glow hover:shadow-elevated"
+    : "bg-secondary text-foreground hover:bg-secondary/80 border border-border";
 
   const Tag: any = href ? motion.a : motion.button;
+
   return (
     <Tag
       href={href}
       onClick={onClick}
-      whileHover={{ scale: 1.03, y: -1 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 22 }}
-      className={cn(base, styles, className)}
+      whileHover="hover"
+      initial="rest"
+      animate="rest"
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: "spring", stiffness: 400, damping: 24 }}
+      className={cn(base, sizing, styles, className)}
     >
-      <span>{children}</span>
+      {/* Scrolling text: two stacked labels, marquee upward on hover */}
+      <span className="relative block h-5 overflow-hidden leading-5">
+        <motion.span
+          variants={{
+            rest: { y: 0 },
+            hover: { y: "-100%" },
+          }}
+          transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
+          className="block"
+        >
+          <span className="block h-5">{children}</span>
+          <span className="block h-5">{children}</span>
+        </motion.span>
+      </span>
+
       {icon && (
-        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        <span
+          className={cn(
+            "relative grid h-9 w-9 place-items-center rounded-full overflow-hidden",
+            isPrimary ? "bg-white text-primary" : "bg-primary text-primary-foreground",
+          )}
+        >
+          {/* outgoing arrow */}
+          <motion.span
+            variants={{
+              rest: { x: 0, y: 0, opacity: 1 },
+              hover: { x: 18, y: -18, opacity: 0 },
+            }}
+            transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+            className="absolute inset-0 grid place-items-center"
+          >
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+          </motion.span>
+          {/* incoming arrow from bottom-left */}
+          <motion.span
+            variants={{
+              rest: { x: -18, y: 18, opacity: 0 },
+              hover: { x: 0, y: 0, opacity: 1 },
+            }}
+            transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1], delay: 0.05 }}
+            className="absolute inset-0 grid place-items-center"
+          >
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
+          </motion.span>
+        </span>
       )}
     </Tag>
   );
