@@ -42,7 +42,7 @@ export function About() {
     <section id="about" className="relative py-28 md:py-36">
       <Container>
         <SectionHeading
-          eyebrow="About Nebula"
+          eyebrow="About BDA AI"
           title="We build the intelligence layer for modern software."
           description="Since 2022, we've been engineering the infrastructure that powers the next generation of AI-native products, from ambitious startups to Fortune 500 teams."
         />
@@ -58,7 +58,7 @@ export function About() {
             <div className="relative rounded-[2rem] overflow-hidden shadow-elevated">
               <img
                 src={aboutImg}
-                alt="Nebula team collaborating in a bright studio"
+                alt="BDA AI team collaborating in a bright studio"
                 width={1024}
                 height={1024}
                 loading="lazy"

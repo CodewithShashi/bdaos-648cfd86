@@ -37,11 +37,11 @@ export function CTA() {
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <AnimatedButton href="#">Book a call</AnimatedButton>
               <a
-                href="mailto:hello@nebula.ai"
+                href="mailto:hello@bda.ai"
                 className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-background hover:bg-white/10 transition"
               >
                 <Mail className="h-4 w-4" />
-                hello@nebula.ai
+                hello@bda.ai
               </a>
             </div>
           </div>

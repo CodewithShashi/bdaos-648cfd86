@@ -18,7 +18,7 @@ const servicesItems: MegaItem[] = [
 ];
 
 const aboutLinks = [
-  { label: "About Nebula", href: "#about" },
+  { label: "About BDA AI", href: "#about" },
   { label: "Leadership", href: "#about" },
   { label: "Partners", href: "#testimonials" },
   { label: "Sustainability", href: "#about" },
@@ -36,7 +36,7 @@ const aboutFeatured = [
   },
   {
     tag: "Recognitions",
-    title: "Nebula wins Gold at the Future Skills Awards 2026.",
+    title: "BDA AI wins Gold at the Future Skills Awards 2026.",
     date: "June 30, 2026",
     img: heroImg,
   },
@@ -87,7 +87,7 @@ export function Navbar() {
             <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
               <Sparkles className="h-4 w-4" />
             </span>
-            <span className="text-lg font-semibold tracking-tight">Nebula</span>
+            <span className="text-lg font-semibold tracking-tight">BDA AI</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -273,7 +273,7 @@ function AboutMega() {
               </span>
             </div>
             <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-              <span className="text-primary font-medium">Nebula</span>
+              <span className="text-primary font-medium">BDA AI</span>
               <span>{f.date}</span>
             </div>
             <h4 className="mt-1.5 text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">

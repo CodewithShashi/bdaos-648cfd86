@@ -77,8 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Nebula — AI OS for modern teams" },
-      { name: "description", content: "Ship AI-native products faster with Nebula." },
+      { title: "BDA AI — AI OS for modern teams" },
+      { name: "description", content: "Ship AI-native products faster with BDA AI." },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

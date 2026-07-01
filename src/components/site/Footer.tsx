@@ -24,7 +24,7 @@ export function Footer() {
               <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
                 <Sparkles className="h-4 w-4" />
               </span>
-              <span className="text-lg font-semibold tracking-tight">Nebula</span>
+              <span className="text-lg font-semibold tracking-tight">BDA AI</span>
             </a>
             <p className="mt-5 max-w-sm text-muted-foreground leading-relaxed">
               The AI operating system for modern teams. Ship intelligent products with
@@ -80,7 +80,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-border pt-8">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Nebula Labs, Inc. All rights reserved.
+            © {new Date().getFullYear()} BDA AI, Inc. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground">Privacy</a>

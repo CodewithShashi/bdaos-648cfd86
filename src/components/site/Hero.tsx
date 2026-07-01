@@ -46,7 +46,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-border bg-white/70 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-soft"
           >
             <Sparkles className="h-3.5 w-3.5 text-primary" />
-            Introducing Nebula AI 3.0 — Now with autonomous agents
+            Introducing BDA AI 3.0 — Now with autonomous agents
           </motion.div>
 
           <motion.h1
@@ -101,7 +101,7 @@ export function Hero() {
                 <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-                <span className="ml-3 text-xs text-muted-foreground">nebula.ai / workspace</span>
+                <span className="ml-3 text-xs text-muted-foreground">bda.ai / workspace</span>
               </div>
               <div className="grid grid-cols-12 gap-4 p-6 md:p-8">
                 <div className="col-span-12 md:col-span-4 space-y-3">
