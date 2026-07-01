@@ -40,14 +40,14 @@ export function Stats() {
   return (
     <section className="relative py-20 md:py-28 bg-secondary/30 overflow-hidden">
       <div className="relative w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-0">
-          {/* Left visual — full bleed */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch gap-0">
+          {/* Left visual — full bleed, matches card height */}
           <motion.div
             initial={{ opacity: 0, scale: 1.05 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1 }}
-            className="lg:col-span-5 relative h-[380px] md:h-[520px] w-full overflow-hidden"
+            className="lg:col-span-5 relative h-[320px] lg:h-auto w-full overflow-hidden"
           >
             <img
               src={statsImg}
@@ -55,7 +55,7 @@ export function Stats() {
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary/40 via-transparent to-secondary/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/30 via-transparent to-secondary/20" />
           </motion.div>
 
           {/* Right stats card — overlaps slightly on desktop */}
@@ -64,7 +64,7 @@ export function Stats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-7 lg:-ml-16 relative z-10 mx-4 md:mx-8 lg:mr-16 -mt-16 lg:mt-0 bg-white rounded-[2rem] shadow-elevated p-10 md:p-16"
+            className="lg:col-span-7 lg:-ml-16 relative z-10 mx-4 md:mx-8 lg:mr-16 -mt-16 lg:mt-0 bg-white rounded-[2rem] shadow-elevated p-10 md:p-16 self-center"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-16">
               {stats.map((s, i) => (
@@ -88,6 +88,7 @@ export function Stats() {
         </div>
       </div>
     </section>
+
   );
 }
 
