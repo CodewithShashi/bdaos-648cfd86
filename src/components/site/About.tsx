@@ -152,7 +152,9 @@ export function About() {
                   </div>
                 </motion.button>
               );
+            })}
           </motion.div>
+
 
         </div>
       </Container>
