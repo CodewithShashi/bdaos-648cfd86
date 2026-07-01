@@ -10,24 +10,50 @@ const projects = [
   {
     img: p1,
     category: "Analytics",
-    title: "Orbit — Predictive analytics platform",
-    desc: "A real-time analytics workspace built for growth teams at Series-B startups.",
-    tags: ["Next.js", "OpenAI", "Postgres"],
-    span: "lg:col-span-2",
+    title: "Orbit — Predictive analytics",
+    desc: "Real-time analytics workspace for growth teams.",
+    tags: ["Next.js", "OpenAI"],
+    ratio: "aspect-[4/5]",
   },
   {
     img: p2,
     category: "Conversational AI",
-    title: "Halo — Enterprise support copilot",
-    desc: "Handles 70% of tier-1 support autonomously for a global fintech.",
-    tags: ["Claude", "RAG", "Slack"],
+    title: "Halo — Support copilot",
+    desc: "Handles 70% of tier-1 support autonomously.",
+    tags: ["Claude", "RAG"],
+    ratio: "aspect-[4/3]",
   },
   {
     img: p3,
     category: "Commerce",
-    title: "Meridian — AI shopping app",
-    desc: "Personalized shopping journeys across web, mobile, and messaging.",
-    tags: ["React Native", "Vector DB"],
+    title: "Meridian — Shopping app",
+    desc: "Personalized journeys across web and mobile.",
+    tags: ["React Native"],
+    ratio: "aspect-[3/4]",
+  },
+  {
+    img: p2,
+    category: "Fintech",
+    title: "Ledger — Autonomous accounting",
+    desc: "Books that close themselves, every month.",
+    tags: ["LangChain", "Postgres"],
+    ratio: "aspect-square",
+  },
+  {
+    img: p1,
+    category: "DevTools",
+    title: "Forge — AI code review",
+    desc: "Ships production-grade PR reviews in seconds.",
+    tags: ["GPT-5", "GitHub"],
+    ratio: "aspect-[4/3]",
+  },
+  {
+    img: p3,
+    category: "Media",
+    title: "Cadence — Content studio",
+    desc: "Generative campaigns from brief to launch.",
+    tags: ["Vector DB", "Runway"],
+    ratio: "aspect-[3/4]",
   },
 ];
 
@@ -41,28 +67,32 @@ export function Portfolio() {
           description="A glimpse into the intelligent products we've shipped alongside our partners."
         />
 
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+          className="mt-16 columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]"
+        >
           {projects.map((p, i) => (
             <motion.article
-              key={p.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`group relative overflow-hidden rounded-3xl bg-white border border-border shadow-soft ${p.span ?? ""}`}
+              key={i}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
+              className="group relative mb-6 break-inside-avoid overflow-hidden rounded-3xl bg-white border border-border shadow-soft"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className={`relative overflow-hidden ${p.ratio}`}>
                 <motion.img
                   src={p.img}
                   alt={p.title}
                   loading="lazy"
-                  width={1024}
-                  height={640}
                   className="h-full w-full object-cover"
                   whileHover={{ scale: 1.06 }}
                   transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
                 <div className="absolute top-4 left-4 rounded-full bg-white/90 backdrop-blur px-3 py-1 text-xs font-medium">
                   {p.category}
                 </div>
@@ -71,8 +101,8 @@ export function Portfolio() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold tracking-tight">{p.title}</h3>
-                <p className="mt-2 text-muted-foreground">{p.desc}</p>
+                <h3 className="text-lg font-semibold tracking-tight">{p.title}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{p.desc}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
                     <span key={t} className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
@@ -83,7 +113,7 @@ export function Portfolio() {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
