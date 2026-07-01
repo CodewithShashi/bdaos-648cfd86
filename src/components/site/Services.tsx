@@ -53,9 +53,10 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-8">
             <p className="text-sm font-medium text-muted-foreground mb-4">What we offer</p>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-foreground leading-[1.05]">
               Explore our services
             </h2>
+
           </div>
           <p className="lg:col-span-4 text-muted-foreground leading-relaxed">
             Unlock the power of data, design, and engineering to fuel innovation and drive meaningful outcomes for your business.
