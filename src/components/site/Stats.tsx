@@ -39,6 +39,42 @@ const stats = [
 export function Stats() {
   return (
     <section className="relative py-20 md:py-28 bg-secondary/30 overflow-hidden">
+      {/* Dark animated background on the left */}
+      <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-full lg:w-1/2 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_#0b0f0d_0%,_#0b0f0d_45%,_transparent_75%)]" />
+        <motion.div
+          className="absolute -left-24 top-10 h-72 w-72 rounded-full blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(0,148,50,0.45), transparent 60%)" }}
+          animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute left-20 bottom-0 h-96 w-96 rounded-full blur-3xl"
+          style={{ background: "radial-gradient(circle, rgba(0,148,50,0.25), transparent 60%)" }}
+          animate={{ x: [0, -30, 0], y: [0, -40, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.15]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+            maskImage: "radial-gradient(ellipse at left, black 30%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(ellipse at left, black 30%, transparent 70%)",
+          }}
+        />
+        {[...Array(6)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute h-1 w-1 rounded-full bg-primary/70"
+            style={{ left: `${8 + i * 9}%`, top: `${20 + (i % 3) * 20}%` }}
+            animate={{ y: [0, -20, 0], opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
+          />
+        ))}
+      </div>
+
       <div className="relative w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-0">
           {/* Left visual — full bleed */}
