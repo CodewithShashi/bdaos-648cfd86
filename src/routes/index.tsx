@@ -1,24 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { Services } from "@/components/site/Services";
+import { Process } from "@/components/site/Process";
+import { Portfolio } from "@/components/site/Portfolio";
+import { Testimonials } from "@/components/site/Testimonials";
+import { CTA } from "@/components/site/CTA";
+import { Footer } from "@/components/site/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Nebula — The AI operating system for modern teams" },
+      {
+        name: "description",
+        content:
+          "Nebula is the AI operating system for modern teams. Ship intelligent products with autonomous agents, workflow automation, and enterprise-grade infrastructure.",
+      },
+      { property: "og:title", content: "Nebula — The AI operating system for modern teams" },
+      {
+        property: "og:description",
+        content: "Ship AI-native products faster with Nebula's platform, agents, and services.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Nebula — AI OS for modern teams" },
+      { name: "twitter:description", content: "Ship AI-native products faster with Nebula." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      <Hero />
+      <About />
+      <Services />
+      <Process />
+      <Portfolio />
+      <Testimonials />
+      <CTA />
+      <Footer />
+    </main>
   );
 }
