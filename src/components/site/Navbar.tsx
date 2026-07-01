@@ -145,7 +145,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu(menu)}
               className="hidden md:block mt-3"
             >
-              <div className="glass rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
+              <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
                 {menu === "services" ? (
                   <ServicesMega />
                 ) : (
