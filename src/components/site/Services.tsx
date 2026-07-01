@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "./Container";
+
 
 const services = [
   { title: "AI Strategy", desc: "Map AI to business outcomes with strategy sprints, opportunity audits, and roadmap design." },
@@ -14,6 +15,7 @@ const services = [
 
 export function Services() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const visible = 4;
   const maxStart = Math.max(0, services.length - visible);
   const [start, setStart] = useState(0);
@@ -28,6 +30,20 @@ export function Services() {
     setStart(n);
     setActive(n);
   };
+
+  // Autoplay: advance active card; wrap around
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      const nextActive = (activeRef.current + 1) % services.length;
+      setActive(nextActive);
+      setStart(Math.min(nextActive, maxStart));
+    }, 3200);
+    return () => clearInterval(id);
+  }, [paused, maxStart]);
+
 
   const progress = ((active + 1) / services.length) * 100;
 
@@ -46,7 +62,7 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-14 overflow-hidden">
+        <div className="mt-14 overflow-hidden" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           <motion.div
             className="flex gap-5"
             animate={{ x: `calc(${-start} * (25% + 0px) - ${start} * 0px)` }}
