@@ -15,6 +15,7 @@ const services = [
 
 export function Services() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const visible = 4;
   const maxStart = Math.max(0, services.length - visible);
   const [start, setStart] = useState(0);
@@ -29,6 +30,20 @@ export function Services() {
     setStart(n);
     setActive(n);
   };
+
+  // Autoplay: advance active card; wrap around
+  const activeRef = useRef(active);
+  activeRef.current = active;
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      const nextActive = (activeRef.current + 1) % services.length;
+      setActive(nextActive);
+      setStart(Math.min(nextActive, maxStart));
+    }, 3200);
+    return () => clearInterval(id);
+  }, [paused, maxStart]);
+
 
   const progress = ((active + 1) / services.length) * 100;
 
