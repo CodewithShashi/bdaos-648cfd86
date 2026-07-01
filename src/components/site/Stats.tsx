@@ -125,13 +125,13 @@ export function Stats() {
     <section className="relative py-24 md:py-32 overflow-hidden">
       <AnimatedBackdrop />
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
+      <div className="relative z-10 w-full pl-6 md:pl-12 lg:pl-[42%] pr-6 md:pr-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8 }}
-          className="bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-elevated p-10 md:p-16 border border-white/60"
+          className="bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-elevated p-10 md:p-14 border border-white/60"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 gap-x-16">
             {stats.map((s, i) => (
@@ -153,6 +153,7 @@ export function Stats() {
           </div>
         </motion.div>
       </div>
+
     </section>
   );
 }
