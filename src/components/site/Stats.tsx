@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Container } from "./Container";
+
 import statsImg from "@/assets/hero-ai.jpg";
 
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
