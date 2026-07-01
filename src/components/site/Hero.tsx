@@ -5,7 +5,17 @@ import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import { AnimatedHeroBackground } from "./AnimatedHeroBackground";
 
+const ROTATING_WORDS = ["modern teams", "SaaS platforms", "marketing", "automation"];
+
 export function Hero() {
+  const [wordIndex, setWordIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
+    }, 2200);
+    return () => clearInterval(id);
+  }, []);
+  const currentWord = ROTATING_WORDS[wordIndex];
   return (
     <section className="relative overflow-hidden pt-36 pb-24 md:pt-44 md:pb-32 bg-mesh">
       <AnimatedHeroBackground />
