@@ -43,17 +43,17 @@ export function AnimatedButton({
       className={cn(base, sizing, styles, className)}
     >
       {/* Scrolling text: two stacked labels, marquee upward on hover */}
-      <span className="relative block h-5 overflow-hidden leading-5">
+      <span className="relative inline-block h-6 overflow-hidden align-middle">
         <motion.span
           variants={{
-            rest: { y: 0 },
-            hover: { y: "-100%" },
+            rest: { y: "0%" },
+            hover: { y: "-50%" },
           }}
           transition={{ duration: 0.45, ease: [0.65, 0, 0.35, 1] }}
-          className="block"
+          className="flex flex-col"
         >
-          <span className="block h-5">{children}</span>
-          <span className="block h-5">{children}</span>
+          <span className="flex h-6 items-center whitespace-nowrap">{children}</span>
+          <span className="flex h-6 items-center whitespace-nowrap">{children}</span>
         </motion.span>
       </span>
 
