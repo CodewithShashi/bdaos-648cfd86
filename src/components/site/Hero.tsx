@@ -40,7 +40,27 @@ export function Hero() {
             className="mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal leading-[1.02] tracking-tight text-foreground"
           >
             The AI operating system{" "}
-            <span className="text-gradient italic">for modern teams.</span>
+            <span className="text-gradient italic inline-flex items-baseline">
+              for&nbsp;
+              <span className="relative inline-flex overflow-hidden align-baseline">
+                {/* invisible sizer keeps layout width stable */}
+                <span aria-hidden className="invisible whitespace-nowrap">
+                  {ROTATING_WORDS.reduce((a, b) => (a.length > b.length ? a : b))}.
+                </span>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={currentWord}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: "0%", opacity: 1 }}
+                    exit={{ y: "-100%", opacity: 0 }}
+                    transition={{ duration: 0.55, ease: [0.65, 0, 0.35, 1] }}
+                    className="absolute left-0 top-0 whitespace-nowrap"
+                  >
+                    {currentWord}.
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+            </span>
           </motion.h1>
 
           <motion.p
