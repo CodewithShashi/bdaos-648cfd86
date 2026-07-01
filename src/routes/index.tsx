@@ -40,6 +40,8 @@ function Index() {
       <Navbar />
       <Hero />
       <About />
+      <Stats />
+
       <Services />
       <Process />
       <Portfolio />
