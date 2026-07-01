@@ -37,10 +37,61 @@ const stats = [
 function AnimatedBackdrop() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Base wash */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/50 via-background to-secondary/30" />
+      {/* Deep green mesh base */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(135deg, hsl(var(--primary) / 0.18) 0%, hsl(var(--primary) / 0.06) 45%, hsl(var(--background)) 100%)",
+        }}
+      />
 
-      {/* Animated flowing ribbons (paper-fold feel) */}
+      {/* Drifting green blobs */}
+      <motion.div
+        className="absolute -top-32 -left-32 h-[620px] w-[620px] rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, hsl(var(--primary) / 0.55), transparent 65%)",
+        }}
+        animate={{ x: [0, 100, -40, 0], y: [0, 80, -30, 0], scale: [1, 1.15, 0.95, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-1/3 left-[10%] h-[420px] w-[420px] rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, hsl(var(--primary) / 0.4), transparent 65%)",
+        }}
+        animate={{ x: [0, -60, 60, 0], y: [0, 40, -50, 0], scale: [1, 0.9, 1.1, 1] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-[-120px] left-[25%] h-[500px] w-[500px] rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, hsl(var(--primary) / 0.35), transparent 65%)",
+        }}
+        animate={{ x: [0, 60, -60, 0], y: [0, -40, 30, 0], scale: [1, 1.1, 0.95, 1] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Orbiting rings */}
+      <motion.div
+        className="absolute top-[20%] left-[8%] h-[320px] w-[320px] rounded-full border border-primary/30"
+        animate={{ rotate: 360, scale: [1, 1.08, 1] }}
+        transition={{
+          rotate: { duration: 40, repeat: Infinity, ease: "linear" },
+          scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+        }}
+        style={{ boxShadow: "0 0 60px hsl(var(--primary) / 0.15) inset" }}
+      />
+      <motion.div
+        className="absolute top-[10%] left-[2%] h-[480px] w-[480px] rounded-full border border-primary/20"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* Flowing green ribbons */}
       <svg
         className="absolute inset-0 h-full w-full"
         viewBox="0 0 1200 800"
@@ -48,102 +99,73 @@ function AnimatedBackdrop() {
         fill="none"
       >
         <defs>
-          <linearGradient id="ribbonA" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.05" />
-          </linearGradient>
-          <linearGradient id="ribbonB" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.35" />
+          <linearGradient id="statsRibbon" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+            <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.9" />
             <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="ribbonC" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.6" />
-          </linearGradient>
-          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="18" />
-          </filter>
         </defs>
-
-        {/* Layered folded ribbons */}
         <motion.path
-          d="M -100 620 C 150 500, 300 720, 520 560 S 900 380, 1300 500 L 1300 900 L -100 900 Z"
-          fill="url(#ribbonA)"
-          filter="url(#soft)"
-          animate={{
-            d: [
-              "M -100 620 C 150 500, 300 720, 520 560 S 900 380, 1300 500 L 1300 900 L -100 900 Z",
-              "M -100 580 C 180 640, 340 480, 560 600 S 920 500, 1300 440 L 1300 900 L -100 900 Z",
-              "M -100 620 C 150 500, 300 720, 520 560 S 900 380, 1300 500 L 1300 900 L -100 900 Z",
-            ],
-          }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        <motion.path
-          d="M -100 380 C 200 260, 380 460, 620 320 S 980 220, 1300 300 L 1300 900 L -100 900 Z"
-          fill="url(#ribbonB)"
-          filter="url(#soft)"
-          animate={{
-            d: [
-              "M -100 380 C 200 260, 380 460, 620 320 S 980 220, 1300 300 L 1300 900 L -100 900 Z",
-              "M -100 420 C 220 360, 420 300, 640 400 S 1000 340, 1300 260 L 1300 900 L -100 900 Z",
-              "M -100 380 C 200 260, 380 460, 620 320 S 980 220, 1300 300 L 1300 900 L -100 900 Z",
-            ],
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Thin flowing outline ribbons */}
-        <motion.path
-          d="M -50 500 Q 300 340 600 460 T 1250 380"
-          stroke="url(#ribbonC)"
-          strokeWidth="1.4"
-          strokeOpacity="0.6"
+          stroke="url(#statsRibbon)"
+          strokeWidth="1.5"
           animate={{
             d: [
               "M -50 500 Q 300 340 600 460 T 1250 380",
-              "M -50 460 Q 320 500 600 400 T 1250 460",
+              "M -50 460 Q 320 520 600 380 T 1250 460",
               "M -50 500 Q 300 340 600 460 T 1250 380",
             ],
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.path
-          d="M -50 260 Q 280 200 560 280 T 1250 220"
-          stroke="url(#ribbonC)"
+          stroke="url(#statsRibbon)"
           strokeWidth="1"
-          strokeOpacity="0.45"
           animate={{
             d: [
-              "M -50 260 Q 280 200 560 280 T 1250 220",
-              "M -50 300 Q 300 260 580 220 T 1250 280",
-              "M -50 260 Q 280 200 560 280 T 1250 220",
+              "M -50 280 Q 280 200 560 300 T 1250 240",
+              "M -50 320 Q 300 280 580 220 T 1250 300",
+              "M -50 280 Q 280 200 560 300 T 1250 240",
             ],
           }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
+        <motion.path
+          stroke="url(#statsRibbon)"
+          strokeWidth="1"
+          animate={{
+            d: [
+              "M -50 660 Q 260 580 540 640 T 1250 600",
+              "M -50 620 Q 280 680 560 580 T 1250 660",
+              "M -50 660 Q 260 580 540 640 T 1250 600",
+            ],
+          }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
       </svg>
 
-      {/* Slow drifting glow orb */}
-      <motion.div
-        className="absolute -top-32 -left-20 h-[560px] w-[560px] rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.22), transparent 65%)" }}
-        animate={{ x: [0, 80, -20, 0], y: [0, 60, -20, 0] }}
-        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Subtle grain / vignette */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 20% 40%, transparent 40%, hsl(var(--background) / 0.6) 100%)",
-        }}
-      />
+      {/* Floating green dots */}
+      {[...Array(10)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute h-2 w-2 rounded-full bg-primary"
+          style={{
+            left: `${5 + (i * 4.5) % 45}%`,
+            top: `${15 + (i * 9) % 70}%`,
+            boxShadow: "0 0 12px hsl(var(--primary) / 0.7)",
+          }}
+          animate={{ y: [0, -22, 0], opacity: [0.3, 1, 0.3] }}
+          transition={{
+            duration: 4 + (i % 3),
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.35,
+          }}
+        />
+      ))}
     </div>
   );
 }
+
 
 
 export function Stats() {
