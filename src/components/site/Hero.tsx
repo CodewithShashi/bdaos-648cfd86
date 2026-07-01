@@ -9,13 +9,29 @@ const ROTATING_WORDS = ["modern teams", "SaaS platforms", "marketing", "automati
 
 export function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
+  const [typed, setTyped] = useState("");
+  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">("typing");
+
   useEffect(() => {
-    const id = setInterval(() => {
-      setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
-    }, 2200);
-    return () => clearInterval(id);
-  }, []);
-  const currentWord = ROTATING_WORDS[wordIndex];
+    const full = ROTATING_WORDS[wordIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (phase === "typing") {
+      if (typed.length < full.length) {
+        timeout = setTimeout(() => setTyped(full.slice(0, typed.length + 1)), 70);
+      } else {
+        timeout = setTimeout(() => setPhase("deleting"), 1400);
+      }
+    } else if (phase === "deleting") {
+      if (typed.length > 0) {
+        timeout = setTimeout(() => setTyped(full.slice(0, typed.length - 1)), 35);
+      } else {
+        setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
+        setPhase("typing");
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [typed, phase, wordIndex]);
   return (
     <section className="relative overflow-hidden pt-36 pb-24 md:pt-44 md:pb-32 bg-mesh">
       <AnimatedHeroBackground />
