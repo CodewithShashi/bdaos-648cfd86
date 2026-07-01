@@ -55,9 +55,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal leading-[1.02] tracking-tight text-foreground"
           >
-            The AI operating system{" "}
+            The AI operating system for{" "}
             <span className="text-gradient italic whitespace-nowrap">
-              for {typed}
+              {typed}
               <span
                 aria-hidden
                 className="inline-block w-[0.08em] h-[0.9em] align-[-0.05em] ml-1 bg-primary animate-pulse not-italic"
