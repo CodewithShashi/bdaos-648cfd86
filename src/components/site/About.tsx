@@ -1,9 +1,11 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Target, Eye, Award } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
 import aboutImg from "@/assets/about.jpg";
+import heroImg from "@/assets/hero-ai.jpg";
+import whyImg from "@/assets/project-1.jpg";
 
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -32,9 +34,9 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 const pillars = [
-  { icon: Target, title: "Mission", text: "Empower every team to build with AI — safely, quickly, and beautifully." },
-  { icon: Eye, title: "Vision", text: "A world where software builds itself in collaboration with human intent." },
-  { icon: Award, title: "Why us", text: "Trusted by 4,000+ teams. Enterprise-grade security. Human-centered design." },
+  { icon: Target, title: "Mission", text: "Empower every team to build with AI — safely, quickly, and beautifully.", image: aboutImg, caption: "Our Mission", stat: { value: 99, suffix: "%", label: "Customer satisfaction" } },
+  { icon: Eye, title: "Vision", text: "A world where software builds itself in collaboration with human intent.", image: heroImg, caption: "Our Vision", stat: { value: 2030, suffix: "", label: "AI-native by" } },
+  { icon: Award, title: "Why us", text: "Trusted by 4,000+ teams. Enterprise-grade security. Human-centered design.", image: whyImg, caption: "Why choose us", stat: { value: 4000, suffix: "+", label: "Teams onboard" } },
 ];
 
 export function About() {
