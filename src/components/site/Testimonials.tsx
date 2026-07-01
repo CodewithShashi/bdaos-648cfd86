@@ -5,7 +5,7 @@ import { SectionHeading } from "./SectionHeading";
 
 const reviews = [
   {
-    quote: "Nebula shipped in six weeks what our internal team had struggled with for a year. The quality is unmatched.",
+    quote: "BDA AI shipped in six weeks what our internal team had struggled with for a year. The quality is unmatched.",
     name: "Amelia Chen",
     role: "VP Product, Northwind",
   },
@@ -35,7 +35,7 @@ export function Testimonials() {
         <SectionHeading
           eyebrow="Loved by teams"
           title="Trusted by ambitious builders."
-          description="From Series-A startups to Fortune 100 enterprises — teams choose Nebula for craft, speed, and reliability."
+          description="From Series-A startups to Fortune 100 enterprises — teams choose BDA AI for craft, speed, and reliability."
         />
 
         {/* logos marquee */}
