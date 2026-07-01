@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "./Container";
+
 
 const services = [
   { title: "AI Strategy", desc: "Map AI to business outcomes with strategy sprints, opportunity audits, and roadmap design." },
