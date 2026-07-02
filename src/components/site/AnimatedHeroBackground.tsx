@@ -53,25 +53,24 @@ export function AnimatedHeroBackground() {
         })}
       </div>
 
-      {/* Very soft central highlight so hero text stays readable */}
+      {/* Very soft central highlight for text readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 55% 45% at 50% 45%, ${BG}88, transparent 75%)`,
+          background: `radial-gradient(ellipse 45% 40% at 50% 42%, ${BG}66, transparent 80%)`,
         }}
       />
 
-
-      {/* Slow shimmering vertical light sweep across the stripes */}
+      {/* Slim shimmering vertical light sweep */}
       <motion.div
         className="absolute inset-y-0"
         style={{
-          width: "35%",
-          background: `linear-gradient(90deg, transparent, #ffffff00 40%, #ffffffcc 50%, #ffffff00 60%, transparent)`,
-          filter: "blur(30px)",
+          width: "14%",
+          background: `linear-gradient(90deg, transparent, #ffffffaa 50%, transparent)`,
+          filter: "blur(12px)",
         }}
-        animate={{ x: ["-40%", "260%"] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ x: ["-20%", "800%"] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
       />
 
       {/* Bottom fade so it blends into the next section */}
