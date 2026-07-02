@@ -1,14 +1,18 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Hero background — horizontally-scrolling "curtain" of gradient stripes,
  * matching the aithor.framer.website hero. Each stripe fades from olive
  * #556b2f to the page background #f0f0f0; two tracks scroll in opposite
  * directions to create a soft shimmering effect.
+ *
+ * Respects `prefers-reduced-motion`: when enabled, the tracks render as a
+ * static curtain (no animation) instead of scrolling.
  */
 export function AnimatedHeroBackground() {
   const OLIVE = "#556b2f";
   const BG = "#f0f0f0";
+  const prefersReducedMotion = useReducedMotion();
 
   // One stripe = a 70px-wide gradient block, placed every 58px so they overlap.
   const STRIPE_W = 70;
@@ -30,8 +34,16 @@ export function AnimatedHeroBackground() {
         width: STRIPE_GAP * COUNT * 2,
         opacity,
       }}
-      animate={{ x: direction === 1 ? [0, -STRIPE_GAP * COUNT] : [-STRIPE_GAP * COUNT, 0] }}
-      transition={{ duration, repeat: Infinity, ease: "linear" }}
+      animate={
+        prefersReducedMotion
+          ? { x: -STRIPE_GAP * (COUNT / 2) }
+          : { x: direction === 1 ? [0, -STRIPE_GAP * COUNT] : [-STRIPE_GAP * COUNT, 0] }
+      }
+      transition={
+        prefersReducedMotion
+          ? { duration: 0 }
+          : { duration, repeat: Infinity, ease: "linear" }
+      }
     >
       {Array.from({ length: COUNT * 2 }).map((_, i) => (
         <li
