@@ -1,111 +1,127 @@
 import { motion } from "framer-motion";
 
+/**
+ * Hero background — flowing olive mesh on soft #f0f0f0.
+ * Pure framer-motion (SVG paths + blobs). No images.
+ */
 export function AnimatedHeroBackground() {
+  const OLIVE = "#556b2f";
+  const OLIVE_SOFT = "#7d8f5a";
+  const BG = "#f0f0f0";
+
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute -top-32 -left-32 h-[36rem] w-[36rem] rounded-full bg-primary/25 blur-[120px]"
-        animate={{ x: [0, 80, -40, 0], y: [0, 60, -30, 0], scale: [1, 1.15, 0.95, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ backgroundColor: BG }}>
+      {/* Soft base wash */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(1200px 700px at 15% 10%, ${OLIVE}22, transparent 60%), radial-gradient(1000px 600px at 85% 90%, ${OLIVE}1a, transparent 65%)`,
+        }}
       />
+
+      {/* Drifting olive blobs */}
       <motion.div
-        className="absolute top-40 -right-32 h-[40rem] w-[40rem] rounded-full bg-primary-glow/25 blur-[130px]"
-        animate={{ x: [0, -70, 40, 0], y: [0, 40, -50, 0], scale: [1, 0.9, 1.1, 1] }}
+        className="absolute -top-40 -left-32 h-[36rem] w-[36rem] rounded-full blur-[120px]"
+        style={{ background: `radial-gradient(circle, ${OLIVE}80, transparent 65%)` }}
+        animate={{ x: [0, 120, -40, 0], y: [0, 80, -30, 0], scale: [1, 1.15, 0.95, 1] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-0 left-1/3 h-[28rem] w-[28rem] rounded-full bg-primary/15 blur-[100px]"
-        animate={{ x: [0, -60, 30, 0], y: [0, -30, 20, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/3 -right-40 h-[40rem] w-[40rem] rounded-full blur-[130px]"
+        style={{ background: `radial-gradient(circle, ${OLIVE_SOFT}70, transparent 65%)` }}
+        animate={{ x: [0, -100, 40, 0], y: [0, 60, -40, 0], scale: [1, 0.9, 1.1, 1] }}
+        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-[-8rem] left-1/3 h-[28rem] w-[28rem] rounded-full blur-[110px]"
+        style={{ background: `radial-gradient(circle, ${OLIVE}55, transparent 65%)` }}
+        animate={{ x: [0, -60, 30, 0], y: [0, -30, 20, 0], scale: [1, 1.08, 0.94, 1] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Animated grid/mesh */}
-      <svg className="absolute inset-0 h-full w-full opacity-[0.18]" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="hero-grid" width="56" height="56" patternUnits="userSpaceOnUse">
-            <path d="M 56 0 L 0 0 0 56" fill="none" stroke="oklch(0.58 0.18 145)" strokeWidth="0.6" />
-          </pattern>
-          <radialGradient id="grid-fade" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stopColor="white" stopOpacity="1" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
-          </radialGradient>
-          <mask id="grid-mask">
-            <rect width="100%" height="100%" fill="url(#grid-fade)" />
-          </mask>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#hero-grid)" mask="url(#grid-mask)" />
-      </svg>
-
-      {/* Flowing SVG waves */}
+      {/* Flowing ribbon paths */}
       <svg
-        className="absolute inset-x-0 top-1/2 -translate-y-1/2 w-full h-[70%] opacity-70"
-        viewBox="0 0 1440 600"
-        preserveAspectRatio="none"
+        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 1440 800"
+        preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="wave-a" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="oklch(0.58 0.18 145)" stopOpacity="0" />
-            <stop offset="50%" stopColor="oklch(0.58 0.18 145)" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="oklch(0.72 0.19 150)" stopOpacity="0" />
+          <linearGradient id="hero-ribbon-a" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor={OLIVE} stopOpacity="0" />
+            <stop offset="50%" stopColor={OLIVE} stopOpacity="0.9" />
+            <stop offset="100%" stopColor={OLIVE} stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="wave-b" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="oklch(0.72 0.19 150)" stopOpacity="0" />
-            <stop offset="50%" stopColor="oklch(0.72 0.19 150)" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="oklch(0.58 0.18 145)" stopOpacity="0" />
+          <linearGradient id="hero-ribbon-b" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor={OLIVE_SOFT} stopOpacity="0" />
+            <stop offset="50%" stopColor={OLIVE_SOFT} stopOpacity="0.8" />
+            <stop offset="100%" stopColor={OLIVE_SOFT} stopOpacity="0" />
           </linearGradient>
         </defs>
 
         <motion.path
           fill="none"
-          stroke="url(#wave-a)"
-          strokeWidth="1.4"
-          initial={{ d: "M0,320 C240,240 480,400 720,320 C960,240 1200,400 1440,320" }}
+          stroke="url(#hero-ribbon-a)"
+          strokeWidth="1.6"
           animate={{
             d: [
-              "M0,320 C240,240 480,400 720,320 C960,240 1200,400 1440,320",
-              "M0,340 C240,420 480,220 720,340 C960,460 1200,240 1440,340",
-              "M0,300 C240,260 480,380 720,300 C960,220 1200,360 1440,300",
-              "M0,320 C240,240 480,400 720,320 C960,240 1200,400 1440,320",
+              "M -50 420 Q 300 260 720 420 T 1500 380",
+              "M -50 400 Q 320 500 720 360 T 1500 440",
+              "M -50 460 Q 280 300 720 460 T 1500 360",
+              "M -50 420 Q 300 260 720 420 T 1500 380",
             ],
           }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.path
           fill="none"
-          stroke="url(#wave-b)"
+          stroke="url(#hero-ribbon-b)"
           strokeWidth="1.2"
-          initial={{ d: "M0,360 C240,300 480,440 720,360 C960,280 1200,420 1440,360" }}
           animate={{
             d: [
-              "M0,360 C240,300 480,440 720,360 C960,280 1200,420 1440,360",
-              "M0,380 C240,460 480,260 720,380 C960,500 1200,280 1440,380",
-              "M0,340 C240,300 480,420 720,340 C960,260 1200,400 1440,340",
-              "M0,360 C240,300 480,440 720,360 C960,280 1200,420 1440,360",
+              "M -50 520 Q 300 400 720 520 T 1500 480",
+              "M -50 500 Q 320 600 720 460 T 1500 540",
+              "M -50 560 Q 280 420 720 560 T 1500 460",
+              "M -50 520 Q 300 400 720 520 T 1500 480",
             ],
           }}
-          transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.path
           fill="none"
-          stroke="url(#wave-a)"
+          stroke="url(#hero-ribbon-a)"
           strokeWidth="1"
-          initial={{ d: "M0,280 C240,200 480,360 720,280 C960,200 1200,360 1440,280" }}
           animate={{
             d: [
-              "M0,280 C240,200 480,360 720,280 C960,200 1200,360 1440,280",
-              "M0,260 C240,340 480,180 720,260 C960,340 1200,180 1440,260",
-              "M0,300 C240,220 480,340 720,300 C960,220 1200,340 1440,300",
-              "M0,280 C240,200 480,360 720,280 C960,200 1200,360 1440,280",
+              "M -50 300 Q 300 180 720 300 T 1500 260",
+              "M -50 280 Q 320 380 720 240 T 1500 320",
+              "M -50 340 Q 280 200 720 340 T 1500 240",
+              "M -50 300 Q 300 180 720 300 T 1500 260",
             ],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 21, repeat: Infinity, ease: "easeInOut" }}
         />
       </svg>
 
+      {/* Orbiting rings */}
+      <motion.div
+        className="absolute top-[15%] left-[6%] h-[360px] w-[360px] rounded-full border"
+        style={{ borderColor: `${OLIVE}55` }}
+        animate={{ rotate: 360, scale: [1, 1.08, 1] }}
+        transition={{
+          rotate: { duration: 45, repeat: Infinity, ease: "linear" },
+          scale: { duration: 9, repeat: Infinity, ease: "easeInOut" },
+        }}
+      />
+      <motion.div
+        className="absolute bottom-[10%] right-[8%] h-[440px] w-[440px] rounded-full border"
+        style={{ borderColor: `${OLIVE}33` }}
+        animate={{ rotate: -360 }}
+        transition={{ duration: 65, repeat: Infinity, ease: "linear" }}
+      />
+
       {/* Floating particles */}
-      {Array.from({ length: 14 }).map((_, i) => {
+      {Array.from({ length: 16 }).map((_, i) => {
         const size = 4 + (i % 4) * 3;
         const left = (i * 73) % 100;
         const top = (i * 37) % 90;
@@ -113,8 +129,15 @@ export function AnimatedHeroBackground() {
         return (
           <motion.span
             key={i}
-            className="absolute rounded-full bg-primary/40 shadow-[0_0_18px_oklch(0.58_0.18_145/0.6)]"
-            style={{ left: `${left}%`, top: `${top}%`, width: size, height: size }}
+            className="absolute rounded-full"
+            style={{
+              left: `${left}%`,
+              top: `${top}%`,
+              width: size,
+              height: size,
+              backgroundColor: OLIVE,
+              boxShadow: `0 0 18px ${OLIVE}99`,
+            }}
             animate={{
               y: [0, -40, 0, 30, 0],
               x: [0, 20, -10, 15, 0],
@@ -125,8 +148,13 @@ export function AnimatedHeroBackground() {
         );
       })}
 
-      {/* Vignette softener so content stays legible */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/70" />
+      {/* Vignette softener */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(to bottom, ${BG}66 0%, transparent 30%, transparent 70%, ${BG}cc 100%)`,
+        }}
+      />
     </div>
   );
 }
