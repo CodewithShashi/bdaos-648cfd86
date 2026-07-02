@@ -1,15 +1,19 @@
 import { motion } from "framer-motion";
 
 /**
- * Hero background — concentric horizontal ripple waves pulsing outward from
- * the center, inspired by the reference clip. Olive #556b2f on soft #f0f0f0.
+ * Hero background — vertical "curtain" of shifting light/dark stripes,
+ * inspired by aithor.framer.website. Olive #556b2f accents on #f0f0f0.
  */
 export function AnimatedHeroBackground() {
   const OLIVE = "#556b2f";
   const BG = "#f0f0f0";
 
-  // Mirrored ring positions (offsets from vertical center in px).
-  const offsets = [0, 80, 160, 240, 320, 400];
+  // Randomised but deterministic stripe widths.
+  const stripes = [
+    3, 1.6, 2.2, 4, 1.2, 2.8, 1.8, 3.4, 1.5, 2.5, 3.2, 1.4, 2, 3.6, 1.7, 2.6,
+    1.3, 3.1, 2.1, 1.9, 2.9, 1.6, 3.3, 1.5, 2.4, 1.8, 3, 1.4,
+  ];
+  const total = stripes.reduce((a, b) => a + b, 0);
 
   return (
     <div
@@ -17,80 +21,62 @@ export function AnimatedHeroBackground() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       style={{ backgroundColor: BG }}
     >
-      {/* Radial base wash so the center feels warmer */}
+      {/* Vertical curtain of stripes */}
+      <div className="absolute inset-0 flex">
+        {stripes.map((w, i) => {
+          // Alternating light and darker olive-tinted bands, full height.
+          const isDark = i % 2 === 0;
+          const base = isDark
+            ? `linear-gradient(180deg, ${OLIVE}55 0%, ${OLIVE}80 50%, ${OLIVE}55 100%)`
+            : `linear-gradient(180deg, #ffffff 0%, #f8f8f5 50%, #ffffff 100%)`;
+          const delay = (i % 6) * 0.35;
+          return (
+            <motion.div
+              key={i}
+              className="h-full"
+              style={{
+                width: `${(w / total) * 100}%`,
+                background: base,
+                borderRight: `1px solid ${OLIVE}22`,
+              }}
+              animate={{
+                opacity: isDark ? [0.6, 1, 0.6] : [0.75, 1, 0.75],
+              }}
+              transition={{
+                duration: 4 + (i % 5) * 0.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Very soft central highlight for text readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 60% 55% at 50% 50%, ${OLIVE}33, transparent 75%)`,
+          background: `radial-gradient(ellipse 45% 40% at 50% 42%, ${BG}66, transparent 80%)`,
         }}
       />
 
-      {/* Concentric ripple rings mirrored above & below the middle */}
-      {offsets.map((off, i) => {
-        const widthBase = 1400 - i * 120;
-        const heightBase = 70 - i * 4;
-        const delay = i * 0.28;
-        return (
-          <div key={i} className="absolute inset-0">
-            {[-1, 1].map((dir) => (
-              <motion.div
-                key={dir}
-                className="absolute left-1/2 top-1/2 rounded-[50%]"
-                style={{
-                  width: widthBase,
-                  height: heightBase,
-                  x: "-50%",
-                  y: `calc(-50% + ${off * dir}px)`,
-                  background: `radial-gradient(ellipse, ${OLIVE} 0%, ${OLIVE}cc 30%, ${OLIVE}66 55%, transparent 75%)`,
-                  filter: "blur(14px)",
-                  mixBlendMode: "multiply",
-                }}
-                animate={{
-                  opacity: off === 0 ? [0.7, 1, 0.7] : [0.45, 0.95, 0.45],
-                  scaleX: [0.94, 1.06, 0.94],
-                  scaleY: [0.85, 1.15, 0.85],
-                }}
-                transition={{
-                  duration: 3.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay,
-                }}
-              />
-            ))}
-          </div>
-        );
-      })}
-
-      {/* Sharp bright horizontal accent lines through the ring centers */}
-      {[-3, -2, -1, 0, 1, 2, 3].map((k) => (
-        <motion.div
-          key={`line-${k}`}
-          className="absolute left-1/2"
-          style={{
-            top: `calc(50% + ${k * 80}px)`,
-            width: "80%",
-            height: 2,
-            x: "-50%",
-            background: `linear-gradient(90deg, transparent, ${OLIVE}, transparent)`,
-            mixBlendMode: "multiply",
-          }}
-          animate={{ opacity: [0.5, 0.95, 0.5], scaleX: [0.75, 1, 0.75] }}
-          transition={{
-            duration: 3.2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: Math.abs(k) * 0.28,
-          }}
-        />
-      ))}
-
-      {/* Soft edge vignette that keeps the light bg outside the ripples */}
-      <div
-        className="absolute inset-0"
+      {/* Slim shimmering vertical light sweep */}
+      <motion.div
+        className="absolute inset-y-0"
         style={{
-          background: `radial-gradient(ellipse 85% 90% at 50% 50%, transparent 55%, ${BG} 100%)`,
+          width: "14%",
+          background: `linear-gradient(90deg, transparent, #ffffffaa 50%, transparent)`,
+          filter: "blur(12px)",
         }}
+        animate={{ x: ["-20%", "800%"] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* Bottom fade so it blends into the next section */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-40"
+        style={{ background: `linear-gradient(to bottom, transparent, ${BG})` }}
       />
     </div>
   );
