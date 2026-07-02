@@ -27,8 +27,8 @@ export function AnimatedHeroBackground() {
           // Alternating light and darker olive-tinted bands, full height.
           const isDark = i % 2 === 0;
           const base = isDark
-            ? `linear-gradient(180deg, ${OLIVE}22 0%, ${OLIVE}3a 50%, ${OLIVE}22 100%)`
-            : `linear-gradient(180deg, #ffffff 0%, #fafafa 50%, #ffffff 100%)`;
+            ? `linear-gradient(180deg, ${OLIVE}55 0%, ${OLIVE}80 50%, ${OLIVE}55 100%)`
+            : `linear-gradient(180deg, #ffffff 0%, #f8f8f5 50%, #ffffff 100%)`;
           const delay = (i % 6) * 0.35;
           return (
             <motion.div
