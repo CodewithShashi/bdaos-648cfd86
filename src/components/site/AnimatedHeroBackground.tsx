@@ -1,68 +1,92 @@
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
- * Hero background — horizontally-scrolling "curtain" of gradient stripes,
- * matching the aithor.framer.website hero. Each stripe fades from olive
- * #556b2f to the page background #f0f0f0; two tracks scroll in opposite
- * directions to create a soft shimmering effect.
+ * Hero background — two curtains of olive gradient stripes that emerge from
+ * the left and right edges and drift inward, meeting at the center. The
+ * stripe gradient fades from olive #556b2f to the page background #f0f0f0.
  *
- * Respects `prefers-reduced-motion`: when enabled, the tracks render as a
- * static curtain (no animation) instead of scrolling.
+ * Respects `prefers-reduced-motion`: when enabled, the curtains render in
+ * their converged position without animating.
  */
 export function AnimatedHeroBackground() {
   const OLIVE = "#556b2f";
   const BG = "#f0f0f0";
   const prefersReducedMotion = useReducedMotion();
 
-  // One stripe = a 70px-wide gradient block, placed every 58px so they overlap.
   const STRIPE_W = 70;
   const STRIPE_GAP = 58;
-  const COUNT = 40; // enough to fill 2x viewport for a seamless loop
+  const COUNT = 22; // stripes per half
 
-  const Track = ({
+  // Each half is COUNT * STRIPE_GAP wide.
+  const HALF_W = STRIPE_GAP * COUNT;
+
+  const Curtain = ({
+    side,
     duration,
-    direction,
+    delay,
     opacity,
   }: {
+    side: "left" | "right";
     duration: number;
-    direction: 1 | -1;
+    delay: number;
     opacity: number;
-  }) => (
-    <motion.ul
-      className="absolute inset-y-0 left-0 flex list-none m-0 p-0"
-      style={{
-        width: STRIPE_GAP * COUNT * 2,
-        opacity,
-      }}
-      animate={
-        prefersReducedMotion
-          ? { x: -STRIPE_GAP * (COUNT / 2) }
-          : { x: direction === 1 ? [0, -STRIPE_GAP * COUNT] : [-STRIPE_GAP * COUNT, 0] }
-      }
-      transition={
-        prefersReducedMotion
-          ? { duration: 0 }
-          : { duration, repeat: Infinity, ease: "linear" }
-      }
-    >
-      {Array.from({ length: COUNT * 2 }).map((_, i) => (
-        <li
-          key={i}
-          className="relative shrink-0 h-full"
-          style={{ width: STRIPE_GAP }}
-        >
-          <div
-            className="absolute inset-y-0"
-            style={{
-              left: 0,
-              width: STRIPE_W,
-              background: `linear-gradient(90deg, ${OLIVE}55 0%, ${BG} 100%)`,
-            }}
-          />
-        </li>
-      ))}
-    </motion.ul>
-  );
+  }) => {
+    // Left curtain starts fully offscreen to the left (-HALF_W) and slides
+    // to x=0 so its right edge lands at the center. Right curtain starts
+    // offscreen to the right and slides to x=0 so its left edge lands at
+    // the center. It then loops back out.
+    const from = side === "left" ? -HALF_W : HALF_W;
+
+    return (
+      <motion.ul
+        className="absolute inset-y-0 flex list-none m-0 p-0"
+        style={{
+          width: HALF_W,
+          opacity,
+          [side]: "50%",
+          justifyContent: side === "left" ? "flex-end" : "flex-start",
+          transformOrigin: side === "left" ? "right center" : "left center",
+        }}
+        initial={{ x: from }}
+        animate={
+          prefersReducedMotion
+            ? { x: 0 }
+            : { x: [from, 0, 0, from] }
+        }
+        transition={
+          prefersReducedMotion
+            ? { duration: 0 }
+            : {
+                duration,
+                delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+                times: [0, 0.45, 0.75, 1],
+              }
+        }
+      >
+        {Array.from({ length: COUNT }).map((_, i) => (
+          <li
+            key={i}
+            className="relative shrink-0 h-full"
+            style={{ width: STRIPE_GAP }}
+          >
+            <div
+              className="absolute inset-y-0"
+              style={{
+                left: 0,
+                width: STRIPE_W,
+                background:
+                  side === "left"
+                    ? `linear-gradient(90deg, ${BG} 0%, ${OLIVE}55 100%)`
+                    : `linear-gradient(90deg, ${OLIVE}55 0%, ${BG} 100%)`,
+              }}
+            />
+          </li>
+        ))}
+      </motion.ul>
+    );
+  };
 
   return (
     <div
@@ -70,15 +94,14 @@ export function AnimatedHeroBackground() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       style={{ backgroundColor: BG }}
     >
-      {/* Two overlapping marquee tracks, opposite directions */}
-      <Track duration={90} direction={1} opacity={0.9} />
-      <Track duration={140} direction={-1} opacity={0.55} />
+      <Curtain side="left" duration={14} delay={0} opacity={0.9} />
+      <Curtain side="right" duration={14} delay={0} opacity={0.9} />
 
       {/* Central soft highlight for hero-text readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 55% 45% at 50% 42%, ${BG}aa, transparent 80%)`,
+          background: `radial-gradient(ellipse 55% 45% at 50% 42%, ${BG}cc, transparent 80%)`,
         }}
       />
 
