@@ -75,7 +75,7 @@ export function AnimatedHeroBackground() {
             background: `linear-gradient(90deg, transparent, ${OLIVE}, transparent)`,
             mixBlendMode: "multiply",
           }}
-          animate={{ opacity: [0.2, 0.95, 0.2], scaleX: [0.55, 1, 0.55] }}
+          animate={{ opacity: [0.5, 0.95, 0.5], scaleX: [0.75, 1, 0.75] }}
           transition={{
             duration: 3.2,
             repeat: Infinity,
