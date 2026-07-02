@@ -46,9 +46,9 @@ export function AnimatedHeroBackground() {
                   mixBlendMode: "multiply",
                 }}
                 animate={{
-                  opacity: off === 0 ? [0.55, 1, 0.55] : [0.15, 0.9, 0.15],
-                  scaleX: [0.92, 1.08, 0.92],
-                  scaleY: [0.7, 1.25, 0.7],
+                  opacity: off === 0 ? [0.7, 1, 0.7] : [0.45, 0.95, 0.45],
+                  scaleX: [0.94, 1.06, 0.94],
+                  scaleY: [0.85, 1.15, 0.85],
                 }}
                 transition={{
                   duration: 3.2,
