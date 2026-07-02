@@ -71,8 +71,8 @@ export function AnimatedHeroBackground() {
       style={{ backgroundColor: BG }}
     >
       {/* Two overlapping marquee tracks, opposite directions */}
-      <Track duration={40} direction={1} opacity={0.9} />
-      <Track duration={68} direction={-1} opacity={0.55} />
+      <Track duration={90} direction={1} opacity={0.9} />
+      <Track duration={140} direction={-1} opacity={0.55} />
 
       {/* Central soft highlight for hero-text readability */}
       <div
