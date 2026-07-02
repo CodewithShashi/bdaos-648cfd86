@@ -1,19 +1,56 @@
 import { motion } from "framer-motion";
 
 /**
- * Hero background — vertical "curtain" of shifting light/dark stripes,
- * inspired by aithor.framer.website. Olive #556b2f accents on #f0f0f0.
+ * Hero background — horizontally-scrolling "curtain" of gradient stripes,
+ * matching the aithor.framer.website hero. Each stripe fades from olive
+ * #556b2f to the page background #f0f0f0; two tracks scroll in opposite
+ * directions to create a soft shimmering effect.
  */
 export function AnimatedHeroBackground() {
   const OLIVE = "#556b2f";
   const BG = "#f0f0f0";
 
-  // Randomised but deterministic stripe widths.
-  const stripes = [
-    3, 1.6, 2.2, 4, 1.2, 2.8, 1.8, 3.4, 1.5, 2.5, 3.2, 1.4, 2, 3.6, 1.7, 2.6,
-    1.3, 3.1, 2.1, 1.9, 2.9, 1.6, 3.3, 1.5, 2.4, 1.8, 3, 1.4,
-  ];
-  const total = stripes.reduce((a, b) => a + b, 0);
+  // One stripe = a 70px-wide gradient block, placed every 58px so they overlap.
+  const STRIPE_W = 70;
+  const STRIPE_GAP = 58;
+  const COUNT = 40; // enough to fill 2x viewport for a seamless loop
+
+  const Track = ({
+    duration,
+    direction,
+    opacity,
+  }: {
+    duration: number;
+    direction: 1 | -1;
+    opacity: number;
+  }) => (
+    <motion.ul
+      className="absolute inset-y-0 left-0 flex list-none m-0 p-0"
+      style={{
+        width: STRIPE_GAP * COUNT * 2,
+        opacity,
+      }}
+      animate={{ x: direction === 1 ? [0, -STRIPE_GAP * COUNT] : [-STRIPE_GAP * COUNT, 0] }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      {Array.from({ length: COUNT * 2 }).map((_, i) => (
+        <li
+          key={i}
+          className="relative shrink-0 h-full"
+          style={{ width: STRIPE_GAP }}
+        >
+          <div
+            className="absolute inset-y-0"
+            style={{
+              left: 0,
+              width: STRIPE_W,
+              background: `linear-gradient(90deg, ${OLIVE}55 0%, ${BG} 100%)`,
+            }}
+          />
+        </li>
+      ))}
+    </motion.ul>
+  );
 
   return (
     <div
@@ -21,59 +58,19 @@ export function AnimatedHeroBackground() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       style={{ backgroundColor: BG }}
     >
-      {/* Vertical curtain of stripes */}
-      <div className="absolute inset-0 flex">
-        {stripes.map((w, i) => {
-          // Alternating light and darker olive-tinted bands, full height.
-          const isDark = i % 2 === 0;
-          const base = isDark
-            ? `linear-gradient(180deg, ${OLIVE}55 0%, ${OLIVE}80 50%, ${OLIVE}55 100%)`
-            : `linear-gradient(180deg, #ffffff 0%, #f8f8f5 50%, #ffffff 100%)`;
-          const delay = (i % 6) * 0.35;
-          return (
-            <motion.div
-              key={i}
-              className="h-full"
-              style={{
-                width: `${(w / total) * 100}%`,
-                background: base,
-                borderRight: `1px solid ${OLIVE}22`,
-              }}
-              animate={{
-                opacity: isDark ? [0.6, 1, 0.6] : [0.75, 1, 0.75],
-              }}
-              transition={{
-                duration: 4 + (i % 5) * 0.6,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay,
-              }}
-            />
-          );
-        })}
-      </div>
+      {/* Two overlapping marquee tracks, opposite directions */}
+      <Track duration={40} direction={1} opacity={0.9} />
+      <Track duration={68} direction={-1} opacity={0.55} />
 
-      {/* Very soft central highlight for text readability */}
+      {/* Central soft highlight for hero-text readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 45% 40% at 50% 42%, ${BG}66, transparent 80%)`,
+          background: `radial-gradient(ellipse 55% 45% at 50% 42%, ${BG}aa, transparent 80%)`,
         }}
       />
 
-      {/* Slim shimmering vertical light sweep */}
-      <motion.div
-        className="absolute inset-y-0"
-        style={{
-          width: "14%",
-          background: `linear-gradient(90deg, transparent, #ffffffaa 50%, transparent)`,
-          filter: "blur(12px)",
-        }}
-        animate={{ x: ["-20%", "800%"] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      />
-
-      {/* Bottom fade so it blends into the next section */}
+      {/* Bottom fade blends into the next section */}
       <div
         className="absolute inset-x-0 bottom-0 h-40"
         style={{ background: `linear-gradient(to bottom, transparent, ${BG})` }}
