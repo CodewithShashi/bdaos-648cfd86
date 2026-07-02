@@ -24,11 +24,11 @@ export function AnimatedHeroBackground() {
       {/* Vertical curtain of stripes */}
       <div className="absolute inset-0 flex">
         {stripes.map((w, i) => {
-          // Alternating light and darker olive-tinted bands.
+          // Alternating light and darker olive-tinted bands, full height.
           const isDark = i % 2 === 0;
           const base = isDark
-            ? `linear-gradient(180deg, ${OLIVE}00 0%, ${OLIVE}55 45%, ${OLIVE}66 55%, ${OLIVE}00 100%)`
-            : `linear-gradient(180deg, #ffffff00 0%, #ffffff 50%, #ffffff00 100%)`;
+            ? `linear-gradient(180deg, ${OLIVE}22 0%, ${OLIVE}3a 50%, ${OLIVE}22 100%)`
+            : `linear-gradient(180deg, #ffffff 0%, #fafafa 50%, #ffffff 100%)`;
           const delay = (i % 6) * 0.35;
           return (
             <motion.div
