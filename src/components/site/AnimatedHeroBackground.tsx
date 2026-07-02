@@ -53,13 +53,14 @@ export function AnimatedHeroBackground() {
         })}
       </div>
 
-      {/* Soft central highlight so hero text sits on brighter ground */}
+      {/* Very soft central highlight so hero text stays readable */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 65% 55% at 50% 45%, ${BG}dd, transparent 75%)`,
+          background: `radial-gradient(ellipse 55% 45% at 50% 45%, ${BG}88, transparent 75%)`,
         }}
       />
+
 
       {/* Slow shimmering vertical light sweep across the stripes */}
       <motion.div
