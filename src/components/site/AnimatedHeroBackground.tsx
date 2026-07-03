@@ -78,8 +78,8 @@ export function AnimatedHeroBackground() {
                 width: STRIPE_W,
                 background:
                   side === "left"
-                    ? `linear-gradient(90deg, ${BG} 0%, ${OLIVE}55 100%)`
-                    : `linear-gradient(90deg, ${OLIVE}55 0%, ${BG} 100%)`,
+                    ? `linear-gradient(90deg, ${BG} 0%, ${OLIVE} 100%)`
+                    : `linear-gradient(90deg, ${OLIVE} 0%, ${BG} 100%)`,
               }}
             />
           </li>
@@ -94,8 +94,18 @@ export function AnimatedHeroBackground() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       style={{ backgroundColor: BG }}
     >
-      <Curtain side="left" duration={14} delay={0} opacity={0.9} />
-      <Curtain side="right" duration={14} delay={0} opacity={0.9} />
+      <Curtain side="left" duration={14} delay={0} opacity={1} />
+      <Curtain side="right" duration={14} delay={0} opacity={1} />
+
+      {/* Edge fades — soften stripes as they approach the outer edges */}
+      <div
+        className="absolute inset-y-0 left-0 w-40 pointer-events-none"
+        style={{ background: `linear-gradient(to right, ${BG}, transparent)` }}
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-40 pointer-events-none"
+        style={{ background: `linear-gradient(to left, ${BG}, transparent)` }}
+      />
 
       {/* Central soft highlight for hero-text readability */}
       <div
