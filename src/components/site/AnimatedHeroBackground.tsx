@@ -78,8 +78,8 @@ export function AnimatedHeroBackground() {
                 width: STRIPE_W,
                 background:
                   side === "left"
-                    ? `linear-gradient(90deg, ${BG} 0%, ${OLIVE}55 100%)`
-                    : `linear-gradient(90deg, ${OLIVE}55 0%, ${BG} 100%)`,
+                    ? `linear-gradient(90deg, ${BG} 0%, ${OLIVE} 100%)`
+                    : `linear-gradient(90deg, ${OLIVE} 0%, ${BG} 100%)`,
               }}
             />
           </li>
