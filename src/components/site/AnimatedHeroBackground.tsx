@@ -31,11 +31,10 @@ export function AnimatedHeroBackground() {
     delay: number;
     opacity: number;
   }) => {
-    // Left curtain starts fully offscreen to the left (-HALF_W) and slides
-    // to x=0 so its right edge lands at the center. Right curtain starts
-    // offscreen to the right and slides to x=0 so its left edge lands at
-    // the center. It then loops back out.
-    const from = side === "left" ? -HALF_W : HALF_W;
+    // Each curtain stays entirely within its own half so the two never
+    // cross or overlap at the center. Stripes flow continuously by
+    // translating one STRIPE_GAP per loop for a seamless marquee.
+    const shift = side === "left" ? -STRIPE_GAP : STRIPE_GAP;
 
     return (
       <motion.ul
@@ -43,16 +42,11 @@ export function AnimatedHeroBackground() {
         style={{
           width: HALF_W,
           opacity,
-          [side]: "50%",
+          [side]: 0,
           justifyContent: side === "left" ? "flex-end" : "flex-start",
-          transformOrigin: side === "left" ? "right center" : "left center",
         }}
-        initial={{ x: from }}
-        animate={
-          prefersReducedMotion
-            ? { x: 0 }
-            : { x: [from, -from] }
-        }
+        initial={{ x: 0 }}
+        animate={prefersReducedMotion ? { x: 0 } : { x: [0, shift] }}
         transition={
           prefersReducedMotion
             ? { duration: 0 }
@@ -64,6 +58,7 @@ export function AnimatedHeroBackground() {
                 ease: "linear",
               }
         }
+      >
       >
         {Array.from({ length: COUNT }).map((_, i) => (
           <li
