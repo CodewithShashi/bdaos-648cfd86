@@ -59,7 +59,6 @@ export function AnimatedHeroBackground() {
               }
         }
       >
-      >
         {Array.from({ length: COUNT }).map((_, i) => (
           <li
             key={i}
