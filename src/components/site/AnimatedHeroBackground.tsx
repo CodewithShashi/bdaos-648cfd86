@@ -107,11 +107,11 @@ export function AnimatedHeroBackground() {
         style={{ background: `linear-gradient(to left, ${BG}, transparent)` }}
       />
 
-      {/* Central soft highlight for hero-text readability */}
+      {/* Central fade for hero-text readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 55% 45% at 50% 42%, ${BG}cc, transparent 80%)`,
+          background: `radial-gradient(ellipse 60% 55% at 50% 45%, ${BG} 0%, ${BG}f2 35%, ${BG}99 60%, transparent 85%)`,
         }}
       />
 
