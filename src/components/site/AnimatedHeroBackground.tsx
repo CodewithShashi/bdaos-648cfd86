@@ -51,7 +51,7 @@ export function AnimatedHeroBackground() {
         animate={
           prefersReducedMotion
             ? { x: 0 }
-            : { x: [from, 0, 0, from] }
+            : { x: [from, -from] }
         }
         transition={
           prefersReducedMotion
@@ -60,8 +60,8 @@ export function AnimatedHeroBackground() {
                 duration,
                 delay,
                 repeat: Infinity,
-                ease: "easeInOut",
-                times: [0, 0.45, 0.75, 1],
+                repeatType: "loop",
+                ease: "linear",
               }
         }
       >
