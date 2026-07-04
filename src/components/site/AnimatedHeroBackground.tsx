@@ -35,13 +35,13 @@ export function AnimatedHeroBackground() {
                   ? `linear-gradient(90deg, ${BAR} 0%, ${BG} 100%)`
                   : `linear-gradient(90deg, ${BG} 0%, ${BAR} 100%)`,
             }}
-            initial={{ x: 0, opacity: 0 }}
+            initial={false}
             animate={
               prefersReducedMotion
                 ? { x: `${(TRAVEL_VW / 2) * dir}vw`, opacity: 0.5 }
                 : {
                     x: [`0vw`, `${TRAVEL_VW * dir}vw`],
-                    opacity: [0, 0.85, 0.85, 0],
+                    opacity: [0, 0.7, 0.85, 0.7, 0],
                   }
             }
             transition={
@@ -49,10 +49,10 @@ export function AnimatedHeroBackground() {
                 ? { duration: 0 }
                 : {
                     duration: DURATION,
-                    delay: -(i * DURATION) / COUNT, // negative delay = pre-seeded stagger
+                    delay: -(i * DURATION) / COUNT,
                     repeat: Infinity,
                     ease: "linear",
-                    times: [0, 0.2, 0.7, 1],
+                    times: [0, 0.25, 0.5, 0.75, 1],
                   }
             }
           />
