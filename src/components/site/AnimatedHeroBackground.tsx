@@ -1,19 +1,19 @@
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
- * Hero background — soft vertical bars spawn at the left and right edges,
+ * Hero background — soft vertical bars spawn near the left and right edges,
  * travel inward, and fade out as they approach the center where hero
  * content sits.
  */
 export function AnimatedHeroBackground() {
   const BG = "#f0f0f0";
-  const BAR = "#b9bdb2";
+  const BAR = "#a8ada0";
   const prefersReducedMotion = useReducedMotion();
 
   const BAR_W = 90;
-  const COUNT = 8;         // bars per side
-  const DURATION = 14;     // seconds for one bar's full travel
-  const TRAVEL = "42vw";   // how far inward a bar travels before fading
+  const COUNT = 6;         // bars per side, staggered
+  const DURATION = 12;     // seconds for one bar's full travel
+  const TRAVEL_VW = 40;    // how far inward each bar travels
 
   const Curtain = ({ side }: { side: "left" | "right" }) => {
     const dir = side === "left" ? 1 : -1;
@@ -35,13 +35,13 @@ export function AnimatedHeroBackground() {
                   ? `linear-gradient(90deg, ${BAR} 0%, ${BG} 100%)`
                   : `linear-gradient(90deg, ${BG} 0%, ${BAR} 100%)`,
             }}
-            initial={false}
+            initial={{ x: 0, opacity: 0 }}
             animate={
               prefersReducedMotion
-                ? { x: 0, opacity: 0.4 }
+                ? { x: `${(TRAVEL_VW / 2) * dir}vw`, opacity: 0.5 }
                 : {
-                    x: [0, `calc(${TRAVEL} * ${dir})`],
-                    opacity: [0, 0.9, 0.9, 0],
+                    x: [`0vw`, `${TRAVEL_VW * dir}vw`],
+                    opacity: [0, 0.85, 0.85, 0],
                   }
             }
             transition={
@@ -49,10 +49,10 @@ export function AnimatedHeroBackground() {
                 ? { duration: 0 }
                 : {
                     duration: DURATION,
-                    delay: (i * DURATION) / COUNT,
+                    delay: -(i * DURATION) / COUNT, // negative delay = pre-seeded stagger
                     repeat: Infinity,
                     ease: "linear",
-                    times: [0, 0.15, 0.7, 1],
+                    times: [0, 0.2, 0.7, 1],
                   }
             }
           />
