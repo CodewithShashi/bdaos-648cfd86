@@ -1,47 +1,31 @@
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
- * Hero background — two curtains of olive gradient stripes that emerge from
- * the left and right edges and drift inward, meeting at the center. The
- * stripe gradient fades from olive #556b2f to the page background #f0f0f0.
+ * Hero background — soft vertical "curtain" bars that emerge from the left
+ * and right edges and drift slowly inward, fading out before they reach the
+ * center where hero content sits. Inspired by the Aithor hero treatment.
  *
- * Respects `prefers-reduced-motion`: when enabled, the curtains render in
- * their converged position without animating.
+ * Respects `prefers-reduced-motion`.
  */
 export function AnimatedHeroBackground() {
-  const OLIVE = "#556b2f";
   const BG = "#f0f0f0";
+  const BAR = "#c9ccc4"; // soft warm gray that reads on #f0f0f0
   const prefersReducedMotion = useReducedMotion();
 
-  const STRIPE_W = 70;
-  const STRIPE_GAP = 58;
-  const COUNT = 22; // stripes per half
+  const BAR_W = 90;      // width of a single bar
+  const BAR_GAP = 110;   // distance between bars
+  const COUNT = 10;      // bars per side
 
-  // Each half is COUNT * STRIPE_GAP wide.
-  const HALF_W = STRIPE_GAP * COUNT;
+  const HALF_W = BAR_GAP * COUNT;
 
-  const Curtain = ({
-    side,
-    duration,
-    delay,
-    opacity,
-  }: {
-    side: "left" | "right";
-    duration: number;
-    delay: number;
-    opacity: number;
-  }) => {
-    // Each curtain stays entirely within its own half so the two never
-    // cross or overlap at the center. Stripes flow continuously by
-    // translating one STRIPE_GAP per loop for a seamless marquee.
-    const shift = side === "left" ? -STRIPE_GAP : STRIPE_GAP;
+  const Curtain = ({ side }: { side: "left" | "right" }) => {
+    const shift = side === "left" ? -BAR_GAP : BAR_GAP;
 
     return (
       <motion.ul
         className="absolute inset-y-0 flex list-none m-0 p-0"
         style={{
           width: HALF_W,
-          opacity,
           [side]: 0,
           justifyContent: side === "left" ? "flex-end" : "flex-start",
         }}
@@ -51,8 +35,7 @@ export function AnimatedHeroBackground() {
           prefersReducedMotion
             ? { duration: 0 }
             : {
-                duration,
-                delay,
+                duration: 22,
                 repeat: Infinity,
                 repeatType: "loop",
                 ease: "linear",
@@ -63,17 +46,17 @@ export function AnimatedHeroBackground() {
           <li
             key={i}
             className="relative shrink-0 h-full"
-            style={{ width: STRIPE_GAP }}
+            style={{ width: BAR_GAP }}
           >
             <div
               className="absolute inset-y-0"
               style={{
                 left: 0,
-                width: STRIPE_W,
+                width: BAR_W,
                 background:
                   side === "left"
-                    ? `linear-gradient(90deg, ${BG} 0%, ${OLIVE} 100%)`
-                    : `linear-gradient(90deg, ${OLIVE} 0%, ${BG} 100%)`,
+                    ? `linear-gradient(90deg, ${BAR} 0%, ${BG} 100%)`
+                    : `linear-gradient(90deg, ${BG} 0%, ${BAR} 100%)`,
               }}
             />
           </li>
@@ -88,25 +71,25 @@ export function AnimatedHeroBackground() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       style={{ backgroundColor: BG }}
     >
-      <Curtain side="left" duration={14} delay={0} opacity={1} />
-      <Curtain side="right" duration={14} delay={0} opacity={1} />
+      <Curtain side="left" />
+      <Curtain side="right" />
 
-      {/* Edge fades — soften stripes as they approach the outer edges */}
-      <div
-        className="absolute inset-y-0 left-0 w-40 pointer-events-none"
-        style={{ background: `linear-gradient(to right, ${BG}, transparent)` }}
-      />
-      <div
-        className="absolute inset-y-0 right-0 w-40 pointer-events-none"
-        style={{ background: `linear-gradient(to left, ${BG}, transparent)` }}
-      />
-
-      {/* Central fade for hero-text readability */}
+      {/* Center fade — hides bars behind the hero copy */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 60% 55% at 50% 45%, ${BG} 0%, ${BG}f2 35%, ${BG}99 60%, transparent 85%)`,
+          background: `radial-gradient(ellipse 55% 70% at 50% 50%, ${BG} 0%, ${BG} 30%, ${BG}e6 55%, transparent 85%)`,
         }}
+      />
+
+      {/* Outer edge fades — soften the entry of bars */}
+      <div
+        className="absolute inset-y-0 left-0 w-24 pointer-events-none"
+        style={{ background: `linear-gradient(to right, ${BG}, transparent)` }}
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-24 pointer-events-none"
+        style={{ background: `linear-gradient(to left, ${BG}, transparent)` }}
       />
 
       {/* Bottom fade blends into the next section */}
