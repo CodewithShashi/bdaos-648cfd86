@@ -1,41 +1,13 @@
 import { motion } from "framer-motion";
 import { Sparkles, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import { AnimatedHeroBackground } from "./AnimatedHeroBackground";
 
-const ROTATING_WORDS = ["modern teams", "SaaS platforms", "marketing", "automation"];
-
 export function Hero() {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [typed, setTyped] = useState("");
-  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting">("typing");
-
-  useEffect(() => {
-    const full = ROTATING_WORDS[wordIndex];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (phase === "typing") {
-      if (typed.length < full.length) {
-        timeout = setTimeout(() => setTyped(full.slice(0, typed.length + 1)), 70);
-      } else {
-        timeout = setTimeout(() => setPhase("deleting"), 1400);
-      }
-    } else if (phase === "deleting") {
-      if (typed.length > 0) {
-        timeout = setTimeout(() => setTyped(full.slice(0, typed.length - 1)), 35);
-      } else {
-        setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
-        setPhase("typing");
-      }
-    }
-    return () => clearTimeout(timeout);
-  }, [typed, phase, wordIndex]);
   return (
     <section className="relative overflow-hidden pt-36 pb-24 md:pt-44 md:pb-32 bg-mesh">
       <AnimatedHeroBackground />
-
 
       <Container className="relative">
         <div className="mx-auto max-w-4xl text-center">
@@ -55,14 +27,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal leading-[1.02] tracking-tight text-foreground"
           >
-            The AI operating system for{" "}
-            <span className="text-gradient italic whitespace-nowrap">
-              {typed}
-              <span
-                aria-hidden
-                className="inline-block w-[0.08em] h-[0.9em] align-[-0.05em] ml-1 bg-primary animate-pulse not-italic"
-              />
-            </span>
+            We build the{" "}
+            <span className="text-gradient italic">OS</span>{" "}
+            that runs your business.
           </motion.h1>
 
           <motion.p
@@ -87,9 +54,6 @@ export function Hero() {
             </AnimatedButton>
           </motion.div>
         </div>
-
-
-
 
         <motion.div
           initial={{ opacity: 0 }}
