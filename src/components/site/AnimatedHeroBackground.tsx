@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
 /**
  * Hero background — soft vertical bars spawn near the left and right edges,
@@ -24,7 +24,7 @@ export function AnimatedHeroBackground() {
         style={{ [side]: 0, width: "50%" }}
       >
         {Array.from({ length: COUNT }).map((_, i) => (
-          <motion.div
+          <div
             key={i}
             className="absolute top-0 h-full"
             style={{
@@ -34,27 +34,17 @@ export function AnimatedHeroBackground() {
                 side === "left"
                   ? `linear-gradient(90deg, ${BAR} 0%, ${BG} 100%)`
                   : `linear-gradient(90deg, ${BG} 0%, ${BAR} 100%)`,
+              opacity: prefersReducedMotion ? 0.45 : undefined,
+              transform: prefersReducedMotion
+                ? `translateX(${(TRAVEL_VW / 2) * dir}vw)`
+                : undefined,
+              animation: prefersReducedMotion
+                ? "none"
+                : `hero-bar-${side} ${DURATION}s linear infinite`,
+              animationDelay: prefersReducedMotion
+                ? undefined
+                : `${-(i * DURATION) / COUNT}s`,
             }}
-            initial={false}
-            animate={
-              prefersReducedMotion
-                ? { x: `${(TRAVEL_VW / 2) * dir}vw`, opacity: 0.5 }
-                : {
-                    x: [`0vw`, `${TRAVEL_VW * dir}vw`],
-                    opacity: [0, 0.7, 0.85, 0.7, 0],
-                  }
-            }
-            transition={
-              prefersReducedMotion
-                ? { duration: 0 }
-                : {
-                    duration: DURATION,
-                    delay: -(i * DURATION) / COUNT,
-                    repeat: Infinity,
-                    ease: "linear",
-                    times: [0, 0.25, 0.5, 0.75, 1],
-                  }
-            }
           />
         ))}
       </div>
@@ -67,6 +57,26 @@ export function AnimatedHeroBackground() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       style={{ backgroundColor: BG }}
     >
+      <style>
+        {`
+          @keyframes hero-bar-left {
+            0% { transform: translateX(0vw); opacity: 0; }
+            20% { opacity: 0.68; }
+            50% { opacity: 0.86; }
+            78% { opacity: 0.48; }
+            100% { transform: translateX(${TRAVEL_VW}vw); opacity: 0; }
+          }
+
+          @keyframes hero-bar-right {
+            0% { transform: translateX(0vw); opacity: 0; }
+            20% { opacity: 0.68; }
+            50% { opacity: 0.86; }
+            78% { opacity: 0.48; }
+            100% { transform: translateX(-${TRAVEL_VW}vw); opacity: 0; }
+          }
+        `}
+      </style>
+
       <Curtain side="left" />
       <Curtain side="right" />
 
