@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles, ChevronDown, Wand2, Brain, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { Sparkles, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
