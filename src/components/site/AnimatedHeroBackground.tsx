@@ -40,7 +40,13 @@ export function AnimatedHeroBackground() {
               prefersReducedMotion
                 ? { x: `${(TRAVEL_VW / 2) * dir}vw`, opacity: 0.5 }
                 : {
-                    x: [`0vw`, `${TRAVEL_VW * dir}vw`],
+                    x: [
+                      `0vw`,
+                      `${TRAVEL_VW * 0.25 * dir}vw`,
+                      `${TRAVEL_VW * 0.5 * dir}vw`,
+                      `${TRAVEL_VW * 0.75 * dir}vw`,
+                      `${TRAVEL_VW * dir}vw`,
+                    ],
                     opacity: [0, 0.7, 0.85, 0.7, 0],
                   }
             }
