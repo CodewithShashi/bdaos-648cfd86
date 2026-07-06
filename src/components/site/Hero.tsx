@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Sparkles, ChevronDown } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import { AnimatedHeroBackground } from "./AnimatedHeroBackground";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-24 md:pt-44 md:pb-32 bg-mesh">
+    <section className="relative overflow-hidden pt-40 pb-28 md:pt-52 md:pb-36">
       <AnimatedHeroBackground />
 
       <Container className="relative">
@@ -15,31 +14,29 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-white/70 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-soft"
+            className="inline-flex items-center rounded-full border border-foreground/15 bg-background/60 backdrop-blur px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/80"
           >
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
-            Introducing BDA AI 3.0 — Now with autonomous agents
+            2 Slots Available This Month
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-6 text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-normal leading-[1.02] tracking-tight text-foreground"
+            className="mt-8 font-display font-medium text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.02] tracking-[-0.02em] text-foreground"
           >
-            We build the{" "}
-            <span className="text-gradient italic">OS</span>{" "}
-            that runs your business.
+            We Build The AI That
+            <br />
+            Runs Your Business.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="mx-auto mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+            className="mx-auto mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed"
           >
-            Ship products faster with intelligent workflows, autonomous agents,
-            and enterprise-grade infrastructure — all in one elegant platform.
+            Strategy, automations, custom agents, and the support to keep them running, all from one team.
           </motion.p>
 
           <motion.div
@@ -48,25 +45,14 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <AnimatedButton href="#cta">Start building free</AnimatedButton>
-            <AnimatedButton href="#work" variant="ghost" icon={false}>
-              Watch demo
+            <AnimatedButton href="#cta">Book A Call</AnimatedButton>
+            <AnimatedButton href="#pricing" variant="ghost">
+              Our Pricing
             </AnimatedButton>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 0.6 }}
-          className="mt-16 flex justify-center"
-        >
-          <div className="flex flex-col items-center gap-1 text-muted-foreground">
-            <span className="text-xs">Scroll</span>
-            <ChevronDown className="h-4 w-4 animate-bounce" />
-          </div>
-        </motion.div>
       </Container>
     </section>
   );
 }
+
