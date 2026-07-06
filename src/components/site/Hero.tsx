@@ -35,7 +35,7 @@ export function Hero() {
             className="mt-8 font-display font-medium text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.02] tracking-[-0.02em] text-foreground"
           >
             We Build The{" "}
-            <span className="relative inline-grid align-baseline">
+            <span className="relative inline-grid overflow-hidden align-baseline pb-[0.12em]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={ROTATING_WORDS[idx]}
