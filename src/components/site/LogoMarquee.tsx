@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Container } from "./Container";
 
 const logos = [
@@ -13,25 +14,26 @@ const logos = [
 
 export function LogoMarquee() {
   return (
-    <section className="relative border-y border-border bg-white py-10">
+    <section className="relative bg-background">
       <Container>
-        <p className="text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Trusted by teams at leading companies
-        </p>
-        <div className="mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
-          <div className="flex w-max animate-marquee gap-4">
-            {[...logos, ...logos].map((l, i) => (
-              <div
-                key={i}
-                className="flex h-16 min-w-[220px] items-center justify-center rounded-xl border border-border/70 bg-white px-8"
-              >
-                <span className="text-2xl font-semibold tracking-tight text-muted-foreground/70">
-                  {l}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 border-t border-b border-border"
+        >
+          {logos.map((l, i) => (
+            <div
+              key={i}
+              className="group relative flex h-24 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(4)]:border-r-0 sm:[&:nth-child(4)]:border-r lg:[&:nth-child(4)]:border-r [&:nth-child(2n)]:border-r-0 sm:[&:nth-child(2n)]:border-r [&:nth-child(4n)]:sm:border-r-0 lg:[&:nth-child(4n)]:border-r lg:[&:nth-child(8n)]:border-r-0 [&:nth-child(n+5)]:border-t sm:[&:nth-child(n+5)]:border-t-0"
+            >
+              <span className="text-xl font-semibold tracking-tight text-muted-foreground/70 transition-colors duration-300 group-hover:text-foreground">
+                {l}
+              </span>
+            </div>
+          ))}
+        </motion.div>
       </Container>
     </section>
   );
