@@ -1,9 +1,18 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import { AnimatedHeroBackground } from "./AnimatedHeroBackground";
 
+const ROTATING_WORDS = ["AI", "Agents", "Systems", "Software"];
+
 export function Hero() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % ROTATING_WORDS.length), 2200);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-40 pb-28 md:pt-52 md:pb-36">
       <AnimatedHeroBackground />
@@ -25,7 +34,25 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-8 font-display font-medium text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.02] tracking-[-0.02em] text-foreground"
           >
-            We Build The AI That
+            We Build The{" "}
+            <span className="relative inline-grid overflow-hidden align-baseline pb-[0.12em]">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={ROTATING_WORDS[idx]}
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-100%", opacity: 0 }}
+                  transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
+                  className="italic text-gradient col-start-1 row-start-1"
+                >
+                  {ROTATING_WORDS[idx]}
+                </motion.span>
+                <span aria-hidden className="invisible col-start-1 row-start-1 italic">
+                  {ROTATING_WORDS.reduce((a, b) => (a.length >= b.length ? a : b))}
+                </span>
+              </AnimatePresence>
+            </span>
+            {" "}That
             <br />
             Runs Your Business.
           </motion.h1>
