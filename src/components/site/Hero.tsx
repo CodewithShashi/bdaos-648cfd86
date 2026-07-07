@@ -25,7 +25,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 font-display font-bold text-[10vw] sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.02] tracking-[-0.02em] text-foreground whitespace-nowrap"
+            className="mt-8 font-display font-bold text-[4rem] leading-[1.02] tracking-[-0.02em] text-foreground whitespace-nowrap"
           >
             We Build The AI
             <br />
