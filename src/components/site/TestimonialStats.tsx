@@ -2,11 +2,9 @@ import { motion } from "framer-motion";
 import { Container } from "./Container";
 
 const cardBase =
-  "relative overflow-hidden rounded-3xl bg-[#0a0a0a] text-white p-8 md:p-10";
+  "relative overflow-hidden rounded-3xl bg-foreground text-background p-8 md:p-10 shadow-elevated";
 const pill =
-  "inline-flex items-center rounded-full bg-[#dcff6b] px-3 py-1 text-xs font-medium text-black";
-const pillSoft =
-  "inline-flex items-center rounded-full bg-[#e8f7d4] px-3 py-1 text-xs font-medium text-black";
+  "inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground";
 
 export function TestimonialStats() {
   return (
@@ -23,11 +21,11 @@ export function TestimonialStats() {
           >
             <span
               aria-hidden
-              className="absolute left-6 top-6 h-1.5 w-1.5 rounded-full bg-[#dcff6b] shadow-[0_0_16px_4px_rgba(220,255,107,0.7)]"
+              className="absolute left-6 top-6 h-1.5 w-1.5 rounded-full bg-primary-glow shadow-glow"
             />
             <div>
               <span className={pill}>CEO's Words</span>
-              <p className="mt-8 font-display text-2xl md:text-3xl lg:text-[2.1rem] leading-[1.25] tracking-[-0.01em] text-white">
+              <p className="mt-8 font-display text-2xl md:text-3xl lg:text-[2.1rem] leading-[1.25] tracking-[-0.015em] text-background">
                 "Working with you was seamless from start to finish. The final
                 design exceeded our expectations. Your attention to detail and
                 ability to adapt was outstanding throughout the entire process."
@@ -37,13 +35,17 @@ export function TestimonialStats() {
             <div className="mt-10 flex items-end justify-between">
               <div>
                 <div className="text-lg font-medium">Timofey Gr</div>
-                <div className="text-sm text-white/60">Co Founder of Metrilo</div>
+                <div className="text-sm text-background/60">
+                  Co Founder of Metrilo
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <span className="grid h-6 w-6 place-items-center rounded-md bg-[#dcff6b] text-black text-[11px] font-bold">
+              <div className="flex items-center gap-2">
+                <span className="grid h-6 w-6 place-items-center rounded-md bg-primary text-primary-foreground text-[11px] font-bold">
                   ◆
                 </span>
-                <span className="text-lg font-semibold tracking-tight">Setrex.</span>
+                <span className="text-lg font-semibold tracking-tight">
+                  Setrex.
+                </span>
               </div>
             </div>
           </motion.article>
@@ -61,11 +63,11 @@ export function TestimonialStats() {
                 <div className="font-display text-5xl md:text-6xl leading-none tracking-[-0.02em]">
                   15 <span className="align-top">+</span>
                 </div>
-                <span className={pillSoft}>Years of experience</span>
+                <span className={pill}>Years of experience</span>
               </div>
-              <p className="mt-8 text-sm md:text-base text-white/70 leading-relaxed">
-                Delivering functional, timeless spaces with innovation, precision,
-                and great design.
+              <p className="mt-8 text-sm md:text-base text-background/70 leading-relaxed">
+                Delivering functional, timeless spaces with innovation,
+                precision, and great design.
               </p>
             </motion.article>
 
@@ -80,9 +82,9 @@ export function TestimonialStats() {
                 <div className="font-display text-5xl md:text-6xl leading-none tracking-[-0.02em]">
                   98 <span className="align-top">%</span>
                 </div>
-                <span className={pillSoft}>Client satisfaction rate</span>
+                <span className={pill}>Client satisfaction rate</span>
               </div>
-              <p className="mt-8 text-sm md:text-base text-white/70 leading-relaxed">
+              <p className="mt-8 text-sm md:text-base text-background/70 leading-relaxed">
                 We pride ourselves on delivering excellence, reflected in the
                 high satisfaction of every client.
               </p>
