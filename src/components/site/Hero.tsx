@@ -11,7 +11,7 @@ export function Hero() {
       <AnimatedHeroBackground />
 
       <Container className="relative">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-6xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
