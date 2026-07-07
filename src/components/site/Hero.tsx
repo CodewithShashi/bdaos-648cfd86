@@ -11,7 +11,7 @@ export function Hero() {
       <AnimatedHeroBackground />
 
       <Container className="relative">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-6xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -25,12 +25,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.02] tracking-[-0.02em] text-foreground"
+            className="mt-8 font-display font-bold text-[10vw] sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.02] tracking-[-0.02em] text-foreground whitespace-nowrap"
           >
             We Build The AI
             <br />
             That Runs Your Business.
           </motion.h1>
+
 
 
           <motion.p
