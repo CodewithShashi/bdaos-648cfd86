@@ -11,7 +11,7 @@ const rows = [
 
 function WorkflowVisual() {
   return (
-    <div className="rounded-2xl border border-dashed border-border bg-secondary/50 p-4">
+    <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-border bg-secondary/50 p-4">
       <div className="space-y-3">
         {rows.map((r, i) => (
           <motion.div
@@ -57,54 +57,53 @@ function IntegrationsVisual() {
   const row1 = icons;
   const row2 = [...icons].reverse();
   return (
-    <div className="rounded-2xl border border-dashed border-border bg-secondary/50 p-4 overflow-hidden">
-      <div className="space-y-3">
-        {[row1, row2].map((row, ri) => (
-          <div key={ri} className="relative overflow-hidden">
-            <motion.div
-              animate={{ x: ri === 0 ? ["0%", "-50%"] : ["-50%", "0%"] }}
-              transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-              className="flex gap-3 w-max"
-            >
-              {[...row, ...row].map((Icon, i) => (
-                <div
-                  key={i}
-                  className="grid h-16 w-16 shrink-0 place-items-center rounded-xl border border-dashed border-border bg-background"
-                >
-                  <Icon className="h-6 w-6 text-foreground" strokeWidth={1.75} />
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        ))}
-      </div>
+    <div className="flex h-full flex-col justify-center gap-3 overflow-hidden rounded-2xl border border-dashed border-border bg-secondary/50 p-4">
+      {[row1, row2].map((row, ri) => (
+        <div key={ri} className="relative overflow-hidden">
+          <motion.div
+            animate={{ x: ri === 0 ? ["0%", "-50%"] : ["-50%", "0%"] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+            className="flex w-max gap-3"
+          >
+            {[...row, ...row].map((Icon, i) => (
+              <div
+                key={i}
+                className="grid h-14 w-14 shrink-0 place-items-center rounded-xl border border-dashed border-border bg-background"
+              >
+                <Icon className="h-5 w-5 text-foreground" strokeWidth={1.75} />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      ))}
     </div>
   );
 }
 
 function ConsultingVisual() {
   const bars = [
-    { h: 30, label: "+20%", month: "JAN" },
-    { h: 50, label: "+31%", month: "FEB" },
-    { h: 75, label: "+42%", month: "MAR" },
-    { h: 22, label: "APR", month: "APR", muted: true },
+    { h: 40, label: "+20%", month: "JAN" },
+    { h: 62, label: "+31%", month: "FEB" },
+    { h: 88, label: "+42%", month: "MAR" },
+    { h: 28, label: "APR", month: "APR", muted: true },
   ];
   return (
-    <div className="rounded-2xl border border-dashed border-border bg-secondary/50 p-4">
+    <div className="flex h-full flex-col rounded-2xl border border-dashed border-border bg-secondary/50 p-4">
       <div className="flex items-center justify-between text-[9px] font-semibold tracking-wider text-muted-foreground">
         <span>WORK AUTOMATED</span>
         <span>0–50%</span>
       </div>
-      <div className="mt-3 flex h-44 items-end gap-3">
+      <div className="mt-3 flex flex-1 items-end gap-3">
         <div className="flex h-full flex-col justify-between py-1 text-[9px] font-medium text-muted-foreground">
           {["50%", "40%", "30%", "20%", "10%", "0"].map((t) => (
             <span key={t}>{t}</span>
           ))}
         </div>
-        <div className="relative flex flex-1 items-end gap-2 border-l border-dashed border-border pl-2">
-          {bars.map((b, i) => (
-            <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
+        <div className="relative flex h-full flex-1 flex-col">
+          <div className="flex flex-1 items-end gap-2 border-l border-dashed border-border pl-2">
+            {bars.map((b, i) => (
               <motion.div
+                key={i}
                 animate={{ height: [`0%`, `${b.h}%`, `${b.h}%`] }}
                 transition={{
                   duration: 3,
@@ -114,19 +113,26 @@ function ConsultingVisual() {
                   times: [0, 0.4, 1],
                   ease: "easeOut",
                 }}
-                className={`w-full rounded-lg border border-border ${
-                  b.muted ? "bg-background" : "bg-background shadow-soft"
+                className={`flex-1 rounded-lg border ${
+                  b.muted
+                    ? "border-border bg-background"
+                    : "border-primary/30 bg-primary/80 shadow-soft"
                 }`}
               />
+            ))}
+          </div>
+          <div className="mt-1.5 flex gap-2 pl-2">
+            {bars.map((b, i) => (
               <span
-                className={`text-[9px] font-semibold ${
+                key={i}
+                className={`flex-1 text-center text-[9px] font-semibold ${
                   b.muted ? "text-muted-foreground" : "text-primary"
                 }`}
               >
                 {b.label}
               </span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
