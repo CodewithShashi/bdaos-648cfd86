@@ -156,7 +156,10 @@ const services = [
 
 export function ServiceShowcase() {
   return (
-    <section id="services-showcase" className="relative py-24 md:py-32">
+    <section
+      id="services-showcase"
+      className="relative scroll-mt-32 pt-32 pb-24 md:pt-40 md:pb-32"
+    >
       <Container>
         <SectionHeading
           eyebrow="002/ OUR SERVICES"
@@ -169,7 +172,7 @@ export function ServiceShowcase() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch"
         >
           {services.map((s) => (
             <motion.article
@@ -179,12 +182,12 @@ export function ServiceShowcase() {
                 show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
               }}
               whileHover={{ y: -4 }}
-              className="flex flex-col rounded-3xl border border-border bg-card p-5 shadow-soft transition"
+              className="flex h-full flex-col rounded-3xl border border-border bg-card p-5 shadow-soft transition"
             >
-              <div className="h-72">{s.visual}</div>
-              <div className="mt-6 border-t border-border pt-5">
-                <div className="text-xs font-semibold text-primary">{s.num}</div>
-                <h3 className="mt-2 font-display text-2xl font-semibold text-foreground">
+              <div className="h-72 shrink-0">{s.visual}</div>
+              <div className="mt-6 flex flex-1 flex-col border-t border-border pt-5">
+                <div className="text-xs font-semibold tracking-wider text-primary">{s.num}</div>
+                <h3 className="mt-2 font-display text-2xl font-semibold leading-tight text-foreground">
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
