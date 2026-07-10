@@ -102,8 +102,6 @@ export function Process() {
                   <div
                     className={`flex items-center justify-between rounded-2xl px-6 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-500 ${
                       isActive
-                    className={`flex items-center justify-between rounded-2xl px-6 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-500 ${
-                      isActive
                         ? "bg-primary text-primary-foreground"
                         : "bg-background text-foreground border border-border"
                     }`}
