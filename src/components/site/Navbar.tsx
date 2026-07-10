@@ -6,17 +6,6 @@ import { AnimatedButton } from "./AnimatedButton";
 import heroImg from "@/assets/hero-ai.jpg";
 import aboutImg from "@/assets/about.jpg";
 
-type MegaItem = { title: string; desc: string; href: string };
-
-const servicesItems: MegaItem[] = [
-  { title: "Product Strategy & Experience", desc: "Define AI-driven value chains and craft purposeful product experiences.", href: "#services" },
-  { title: "Digital Business Transformation", desc: "Advance your digital transformation journey end-to-end.", href: "#services" },
-  { title: "Intelligence Engineering", desc: "Leverage data and AI to transform products, operations, and outcomes.", href: "#services" },
-  { title: "Software Product Engineering", desc: "Ship high-value products faster with AI-powered engineering.", href: "#services" },
-  { title: "Technology Modernization", desc: "Modernize legacy stacks with approaches that reduce risk.", href: "#services" },
-  { title: "Embedded & IoT Engineering", desc: "Build embedded software, hardware, and connected IoT solutions.", href: "#services" },
-];
-
 const aboutLinks = [
   { label: "About BDA AI", href: "#about" },
   { label: "Leadership", href: "#about" },
@@ -43,6 +32,7 @@ const aboutFeatured = [
 ];
 
 const simpleLinks = [
+  { href: "#services-showcase", label: "Services" },
   { href: "#process", label: "Process" },
   { href: "#work", label: "Work" },
   { href: "#testimonials", label: "Clients" },
@@ -51,7 +41,7 @@ const simpleLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<null | "services" | "about">(null);
+  const [menu, setMenu] = useState<null | "about">(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -60,7 +50,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // close mega on escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenu(null);
     window.addEventListener("keydown", onKey);
@@ -91,23 +80,20 @@ export function Navbar() {
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
-            {(["about", "services"] as const).map((key) => (
-              <button
-                key={key}
-                onMouseEnter={() => setMenu(key)}
-                onFocus={() => setMenu(key)}
-                onClick={() => setMenu(menu === key ? null : key)}
-                className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
-                  menu === key ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-                aria-expanded={menu === key}
-              >
-                {key === "about" ? "About" : "Services"}
-                <ChevronDown
-                  className={`h-3.5 w-3.5 transition-transform ${menu === key ? "rotate-180" : ""}`}
-                />
-              </button>
-            ))}
+            <button
+              onMouseEnter={() => setMenu("about")}
+              onFocus={() => setMenu("about")}
+              onClick={() => setMenu(menu === "about" ? null : "about")}
+              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+                menu === "about" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-expanded={menu === "about"}
+            >
+              About
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${menu === "about" ? "rotate-180" : ""}`}
+              />
+            </button>
             {simpleLinks.map((l) => (
               <a
                 key={l.href}
@@ -146,11 +132,7 @@ export function Navbar() {
               className="hidden md:block mt-3"
             >
               <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
-                {menu === "services" ? (
-                  <ServicesMega />
-                ) : (
-                  <AboutMega />
-                )}
+                <AboutMega />
               </div>
             </motion.div>
           )}
@@ -164,7 +146,6 @@ export function Navbar() {
             className="md:hidden mt-3 glass rounded-3xl p-4 shadow-soft"
           >
             <div className="flex flex-col">
-              <MobileGroup label="Services" items={servicesItems.map((s) => ({ label: s.title, href: s.href }))} onNavigate={() => setOpen(false)} />
               <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
               {simpleLinks.map((l) => (
                 <a
@@ -186,48 +167,6 @@ export function Navbar() {
         )}
       </Container>
     </motion.header>
-  );
-}
-
-function ServicesMega() {
-  return (
-    <div className="grid grid-cols-12 gap-0">
-      <div className="col-span-8 p-8">
-        <div className="grid grid-cols-2 gap-x-10 gap-y-6">
-          {servicesItems.map((s, i) => (
-            <motion.a
-              key={s.title}
-              href={s.href}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.03 }}
-              className="group block border-t border-border pt-4"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <h4 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {s.title}
-                </h4>
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-              </div>
-              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-            </motion.a>
-          ))}
-        </div>
-
-      </div>
-
-      <div className="col-span-4 relative min-h-[360px]">
-        <img src={heroImg} alt="Physical AI" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6 text-white">
-          <span className="inline-block rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-medium">
-            Featured
-          </span>
-          <h4 className="mt-3 text-2xl font-semibold">Physical AI</h4>
-          <p className="mt-1 text-sm text-white/80">Where intelligent software meets the real world.</p>
-        </div>
-      </div>
-    </div>
   );
 }
 
