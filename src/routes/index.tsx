@@ -8,7 +8,6 @@ import { ServiceShowcase } from "@/components/site/ServiceShowcase";
 import { About } from "@/components/site/About";
 import { Stats } from "@/components/site/Stats";
 
-import { Services } from "@/components/site/Services";
 import { Process } from "@/components/site/Process";
 import { Portfolio } from "@/components/site/Portfolio";
 import { Testimonials } from "@/components/site/Testimonials";
@@ -50,8 +49,8 @@ function Index() {
       <About />
       <Stats />
 
-      <Services />
       <Process />
+
       <Portfolio />
       <Testimonials />
       <CTA />
