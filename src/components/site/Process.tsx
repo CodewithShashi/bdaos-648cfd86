@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
+import { AnimatedButton } from "./AnimatedButton";
 
 const steps = [
   {
