@@ -36,7 +36,7 @@ function Tick({ active }: { active: boolean }) {
       {Array.from({ length: 4 }).map((_, i) => (
         <span
           key={i}
-          className={`h-3 w-[2px] rounded-full ${active ? "bg-[#e85d3a]" : "bg-[#e85d3a]/70"}`}
+          className={`h-3 w-[2px] rounded-full ${active ? "bg-primary" : "bg-primary/60"}`}
         />
       ))}
     </div>
@@ -69,14 +69,14 @@ export function Process() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background shadow-soft transition hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-soft transition hover:-translate-y-0.5 hover:shadow-glow"
               >
                 Book A Call
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <a
                 href="#pricing"
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3.5 text-sm font-medium text-foreground transition hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3.5 text-sm font-medium text-foreground transition hover:-translate-y-0.5 hover:border-primary/40"
               >
                 Our Pricing
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -102,7 +102,7 @@ export function Process() {
                   <div
                     className={`flex items-center justify-between rounded-2xl px-6 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-500 ${
                       isActive
-                        ? "bg-foreground text-background"
+                        ? "bg-primary text-primary-foreground"
                         : "bg-background text-foreground border border-border"
                     }`}
                   >
@@ -114,13 +114,13 @@ export function Process() {
                   <motion.div
                     animate={{
                       backgroundColor: isActive
-                        ? "hsl(0 0% 6%)"
-                        : "hsl(0 0% 100%)",
-                      color: isActive ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
+                        ? "oklch(0.47 0.09 122)"
+                        : "oklch(1 0 0)",
+                      color: isActive ? "oklch(1 0 0)" : "oklch(0.15 0.01 60)",
                     }}
                     transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
                     className={`mt-2 rounded-3xl p-8 md:p-10 border ${
-                      isActive ? "border-transparent shadow-elevated" : "border-border shadow-soft"
+                      isActive ? "border-transparent shadow-glow" : "border-border shadow-soft"
                     }`}
                   >
                     <p
