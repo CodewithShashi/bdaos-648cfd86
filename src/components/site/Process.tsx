@@ -36,7 +36,7 @@ function Tick({ active }: { active: boolean }) {
       {Array.from({ length: 4 }).map((_, i) => (
         <span
           key={i}
-          className={`h-3 w-[2px] rounded-full ${active ? "bg-[#e85d3a]" : "bg-[#e85d3a]/70"}`}
+          className={`h-3 w-[2px] rounded-full ${active ? "bg-primary" : "bg-primary/60"}`}
         />
       ))}
     </div>
