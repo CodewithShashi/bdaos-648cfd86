@@ -49,8 +49,8 @@ function Index() {
       <About />
       <Stats />
 
-      <Services />
       <Process />
+
       <Portfolio />
       <Testimonials />
       <CTA />
