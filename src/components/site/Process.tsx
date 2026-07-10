@@ -102,7 +102,9 @@ export function Process() {
                   <div
                     className={`flex items-center justify-between rounded-2xl px-6 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-500 ${
                       isActive
-                        ? "bg-foreground text-background"
+                    className={`flex items-center justify-between rounded-2xl px-6 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-500 ${
+                      isActive
+                        ? "bg-primary text-primary-foreground"
                         : "bg-background text-foreground border border-border"
                     }`}
                   >
@@ -114,13 +116,13 @@ export function Process() {
                   <motion.div
                     animate={{
                       backgroundColor: isActive
-                        ? "hsl(0 0% 6%)"
-                        : "hsl(0 0% 100%)",
-                      color: isActive ? "hsl(0 0% 100%)" : "hsl(0 0% 10%)",
+                        ? "oklch(0.47 0.09 122)"
+                        : "oklch(1 0 0)",
+                      color: isActive ? "oklch(1 0 0)" : "oklch(0.15 0.01 60)",
                     }}
                     transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
                     className={`mt-2 rounded-3xl p-8 md:p-10 border ${
-                      isActive ? "border-transparent shadow-elevated" : "border-border shadow-soft"
+                      isActive ? "border-transparent shadow-glow" : "border-border shadow-soft"
                     }`}
                   >
                     <p
