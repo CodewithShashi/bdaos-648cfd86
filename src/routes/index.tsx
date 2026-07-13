@@ -9,7 +9,7 @@ import { About } from "@/components/site/About";
 import { Stats } from "@/components/site/Stats";
 
 import { Process } from "@/components/site/Process";
-import { Portfolio } from "@/components/site/Portfolio";
+import { Insights } from "@/components/site/Insights";
 import { Testimonials } from "@/components/site/Testimonials";
 import { CTA } from "@/components/site/CTA";
 import { Footer } from "@/components/site/Footer";
