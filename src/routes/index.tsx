@@ -51,7 +51,7 @@ function Index() {
 
       <Process />
 
-      <Portfolio />
+      <Insights />
       <Testimonials />
       <CTA />
       <Footer />
