@@ -55,6 +55,7 @@ function Index() {
       <Insights />
       <Testimonials />
       <CTA />
+      <FAQ />
       <Footer />
     </main>
   );
