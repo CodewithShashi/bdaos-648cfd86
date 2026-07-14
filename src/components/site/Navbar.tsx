@@ -59,6 +59,11 @@ const simpleLinks = [
   { href: "/#cta", label: "Contact" },
 ];
 
+const regions = [
+  { code: "IN", label: "India", flag: "🇮🇳" },
+  { code: "US", label: "USA", flag: "🇺🇸" },
+];
+
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
