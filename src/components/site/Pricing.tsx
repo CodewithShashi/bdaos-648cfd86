@@ -147,7 +147,12 @@ export function Pricing() {
                     href="#contact"
                     className="group relative mt-3 flex w-full items-center justify-center rounded-2xl bg-foreground text-background py-4 text-sm font-medium overflow-hidden hover:bg-foreground/90 transition-colors"
                   >
-                    <span className="relative z-10">Book A Call</span>
+                    <span className="relative z-10 h-5 overflow-hidden">
+                      <span className="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
+                        <span className="block h-5 leading-5">Book A Call</span>
+                        <span className="block h-5 leading-5">Book A Call</span>
+                      </span>
+                    </span>
                     <span className="absolute left-6 right-6 bottom-3 h-px bg-primary/70" />
                   </a>
 
