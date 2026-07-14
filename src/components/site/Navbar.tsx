@@ -50,9 +50,8 @@ const industriesLinks = [
 ];
 
 const insightsLinks = [
-  { label: "Blog", href: "#insights" },
+  { label: "Blogs", href: "#insights" },
   { label: "Case Studies", href: "#work" },
-  { label: "Insights", href: "#insights" },
 ];
 
 const simpleLinks = [
