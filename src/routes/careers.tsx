@@ -17,7 +17,7 @@ import {
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
-import { SectionHeading } from "@/components/site/SectionHeading";
+
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 import { LogoMarquee } from "@/components/site/LogoMarquee";
 import heroImg from "@/assets/hero-ai.jpg";
