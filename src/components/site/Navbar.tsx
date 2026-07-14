@@ -195,7 +195,7 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-2">
-                <AnimatedButton href="#cta" className="w-full">
+                <AnimatedButton href="#cta" className="w-full justify-between">
                   Get started
                 </AnimatedButton>
               </div>
