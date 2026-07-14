@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
 
+type Billing = "monthly" | "yearly";
+
 const plans = [
   {
     name: "Pilot",
     tagline: "Start with one high-impact win.",
-    price: "$1.995",
-    period: "/MONTHLY",
+    price: { monthly: "$1.995", yearly: "$1.596" },
     badge: "PER PROJECT",
     included: [
       "AI readiness audit",
@@ -21,8 +23,7 @@ const plans = [
   {
     name: "Partner",
     tagline: "Your AI team, always building.",
-    price: "$2.995",
-    period: "/MONTHLY",
+    price: { monthly: "$2.995", yearly: "$2.396" },
     badge: "PER PROJECT",
     included: [
       "Everything in Pilot",
@@ -36,8 +37,7 @@ const plans = [
   {
     name: "Scale",
     tagline: "Org-wide AI across teams.",
-    price: "$5.995",
-    period: "/MONTHLY",
+    price: { monthly: "$5.995", yearly: "$4.796" },
     badge: "PER PROJECT",
     included: [
       "Everything in Partner",
@@ -50,6 +50,9 @@ const plans = [
 ];
 
 export function Pricing() {
+  const [billing, setBilling] = useState<Billing>("monthly");
+  const isYearly = billing === "yearly";
+
   return (
     <section id="pricing" className="relative py-24 md:py-32 bg-background">
       <Container>
@@ -59,7 +62,30 @@ export function Pricing() {
           description="Start with a focused pilot, grow into an embedded partnership."
         />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Billing toggle */}
+        <div className="mt-10 flex justify-center">
+          <div className="inline-flex items-center gap-1 rounded-full border border-border bg-secondary/50 p-1">
+            {(["monthly", "yearly"] as Billing[]).map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => setBilling(opt)}
+                className={`px-5 py-2 text-xs font-medium tracking-wider uppercase rounded-full transition-colors ${
+                  billing === opt
+                    ? "bg-foreground text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {opt}
+                {opt === "yearly" && (
+                  <span className="ml-2 text-[10px] text-primary">-20%</span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -69,9 +95,9 @@ export function Pricing() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               className="flex flex-col"
             >
-              {/* Outer dashed frame */}
+              {/* Outer solid frame */}
               <div
-                className={`rounded-3xl border border-dashed border-border p-3 ${
+                className={`rounded-3xl border border-border p-3 ${
                   plan.highlighted ? "bg-secondary" : "bg-secondary/40"
                 }`}
               >
@@ -84,32 +110,35 @@ export function Pricing() {
                       </h3>
                       <p className="mt-1 text-sm text-background/70">{plan.tagline}</p>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-[10px] font-medium tracking-wider text-background/70">
-                        {plan.badge}
-                      </span>
-                      <span className="relative h-5 w-9 rounded-full bg-background/20 flex items-center">
-                        <span className="h-4 w-4 rounded-full bg-background ml-0.5" />
-                      </span>
-                    </div>
+                    <span className="text-[10px] font-medium tracking-wider text-background/70 shrink-0">
+                      {plan.badge}
+                    </span>
                   </div>
 
                   <div className="mt-14 flex items-end gap-1">
-                    <span className="font-display text-4xl md:text-5xl tracking-tight">
-                      {plan.price}
+                    <motion.span
+                      key={plan.price[billing]}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="font-display text-4xl md:text-5xl tracking-tight"
+                    >
+                      {plan.price[billing]}
+                    </motion.span>
+                    <span className="text-xs text-background/60 mb-2">
+                      {isYearly ? "/YEARLY" : "/MONTHLY"}
                     </span>
-                    <span className="text-xs text-background/60 mb-2">{plan.period}</span>
                   </div>
                 </div>
 
                 {/* CTA */}
-                <button
-                  type="button"
-                  className="group relative mt-3 w-full rounded-2xl bg-foreground text-background py-4 text-sm font-medium overflow-hidden"
+                <a
+                  href="#contact"
+                  className="group relative mt-3 flex w-full items-center justify-center rounded-2xl bg-foreground text-background py-4 text-sm font-medium overflow-hidden hover:bg-foreground/90 transition-colors"
                 >
                   <span className="relative z-10">Book A Call</span>
                   <span className="absolute left-6 right-6 bottom-3 h-px bg-primary/70" />
-                </button>
+                </a>
               </div>
 
               {/* Included list */}
