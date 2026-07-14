@@ -101,7 +101,7 @@ export function WhyUs() {
                     ? "rounded-2xl bg-foreground text-background shadow-elevated"
                     : col.grey
                       ? "bg-muted border border-border"
-                      : "bg-background/60 border border-border",
+                      : "bg-background/60",
                   col.noRound ? "" : "rounded-2xl",
                 ].join(" ")}
               >
