@@ -54,9 +54,8 @@ const insightsLinks = [
 ];
 
 const simpleLinks = [
-  { href: "#process", label: "Process" },
-  { href: "#work", label: "Work" },
   { href: "#testimonials", label: "Clients" },
+  { href: "#cta", label: "Careers" },
 ];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
