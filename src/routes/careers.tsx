@@ -187,7 +187,7 @@ function CareersPage() {
         <Container className="relative z-10">
           <div className="flex flex-col gap-8 max-w-5xl">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              004 / Careers
+              Careers
             </span>
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
