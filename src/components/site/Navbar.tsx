@@ -104,6 +104,13 @@ export function Navbar() {
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
+            <Link
+              to="/"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+            >
+              Home
+            </Link>
             <button
               onMouseEnter={() => setMenu("about")}
               onFocus={() => setMenu("about")}
