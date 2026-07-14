@@ -10,10 +10,8 @@ const aboutLinks = [
   { label: "About BDA AI", href: "#about" },
   { label: "Leadership", href: "#about" },
   { label: "Partners", href: "#testimonials" },
-  { label: "Sustainability", href: "#about" },
   { label: "Locations", href: "#cta" },
   { label: "Press Room", href: "#work" },
-  { label: "Events", href: "#work" },
 ];
 
 const aboutFeatured = [
