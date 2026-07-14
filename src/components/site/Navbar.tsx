@@ -180,7 +180,8 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-2">
+            <RegionSelector region={region} setRegion={setRegion} />
             <AnimatedButton href="#cta">Get started</AnimatedButton>
           </div>
 
