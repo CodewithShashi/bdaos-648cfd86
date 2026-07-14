@@ -460,16 +460,27 @@ function MobileGroup({
             className="overflow-hidden"
           >
             <div className="pl-4 pb-2 flex flex-col">
-              {items.map((i) => (
-                <a
-                  key={i.label}
-                  href={i.href}
-                  onClick={onNavigate}
-                  className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
-                >
-                  {i.label}
-                </a>
-              ))}
+              {items.map((i) =>
+                i.href.startsWith("#") ? (
+                  <a
+                    key={i.label}
+                    href={i.href}
+                    onClick={onNavigate}
+                    className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  >
+                    {i.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={i.label}
+                    to={i.href}
+                    onClick={onNavigate}
+                    className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  >
+                    {i.label}
+                  </Link>
+                )
+              )}
             </div>
           </motion.div>
         )}
