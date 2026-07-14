@@ -55,7 +55,10 @@ const insightsLinks = [
   { label: "Case Studies", href: "#work" },
 ];
 
-const simpleLinks = [{ href: "#testimonials", label: "Clients" }];
+const simpleLinks = [
+  { href: "#testimonials", label: "Clients" },
+  { href: "/#cta", label: "Contact" },
+];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
@@ -101,6 +104,13 @@ export function Navbar() {
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
+            <Link
+              to="/"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+            >
+              Home
+            </Link>
             <button
               onMouseEnter={() => setMenu("about")}
               onFocus={() => setMenu("about")}
@@ -143,16 +153,27 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
             </button>
-            {simpleLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onMouseEnter={() => setMenu(null)}
-                className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ))}
+            {simpleLinks.map((l) =>
+              l.href.startsWith("#") ? (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onMouseEnter={() => setMenu(null)}
+                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onMouseEnter={() => setMenu(null)}
+                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+                >
+                  {l.label}
+                </Link>
+              )
+            )}
           </nav>
 
           <div className="hidden md:block">
@@ -197,20 +218,38 @@ export function Navbar() {
             className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
+              <Link
+                to="/"
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+              >
+                Home
+              </Link>
               <MobileGroup label="Who we are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
-              {simpleLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {simpleLinks.map((l) =>
+                l.href.startsWith("#") ? (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={l.href}
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </Link>
+                )
+              )}
               <div className="pt-2">
                 <AnimatedButton href="#cta" className="w-full justify-between">
                   Get started
