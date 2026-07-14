@@ -347,6 +347,21 @@ function AboutMega() {
   );
 }
 
+const insightsFeatured = [
+  {
+    tag: "Media Coverage",
+    title: "AI-infused engineering makes us a true One team.",
+    date: "June 30, 2026",
+    img: aboutImg,
+  },
+  {
+    tag: "Recognitions",
+    title: "BDA AI wins Gold at the Future Skills Awards 2026.",
+    date: "June 30, 2026",
+    img: heroImg,
+  },
+];
+
 function InsightsMega() {
   return (
     <div className="grid grid-cols-12 gap-0">
@@ -371,25 +386,35 @@ function InsightsMega() {
         </div>
       </div>
 
-      <div className="col-span-8 p-8 bg-secondary/40 flex flex-col justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
-            Featured
-          </p>
-          <h4 className="text-lg font-semibold text-foreground leading-snug max-w-md">
-            Buy, Build, or Wait: A Simpler Way to Decide
-          </h4>
-          <p className="mt-2 text-sm text-muted-foreground max-w-md">
-            A practical framework for choosing when to adopt AI, build in-house, or stay on the sidelines.
-          </p>
-        </div>
-        <a
-          href="#insights"
-          className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-glow transition-colors"
-        >
-          Read the playbook
-          <ArrowUpRight className="h-4 w-4" />
-        </a>
+      <div className="col-span-8 p-8 grid grid-cols-2 gap-6 bg-secondary/40">
+        {insightsFeatured.map((f, i) => (
+          <motion.a
+            key={f.title}
+            href="#work"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}
+            className="group block"
+          >
+            <div className="relative overflow-hidden rounded-2xl aspect-[16/10] bg-muted">
+              <img
+                src={f.img}
+                alt={f.title}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <span className="absolute top-3 left-3 rounded-md bg-white px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
+                {f.tag}
+              </span>
+            </div>
+            <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
+              <span className="text-primary font-medium">BDA AI</span>
+              <span>{f.date}</span>
+            </div>
+            <h4 className="mt-1.5 text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+              {f.title}
+            </h4>
+          </motion.a>
+        ))}
       </div>
     </div>
   );
