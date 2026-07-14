@@ -10,6 +10,9 @@ import {
   Zap,
   Handshake,
   Plus,
+  Minus,
+  Linkedin,
+  Twitter,
 } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
