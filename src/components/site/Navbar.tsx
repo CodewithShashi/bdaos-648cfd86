@@ -55,7 +55,10 @@ const insightsLinks = [
   { label: "Case Studies", href: "#work" },
 ];
 
-const simpleLinks = [{ href: "#testimonials", label: "Clients" }];
+const simpleLinks = [
+  { href: "#testimonials", label: "Clients" },
+  { href: "/#cta", label: "Contact" },
+];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
