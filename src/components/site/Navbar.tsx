@@ -176,7 +176,7 @@ export function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-3 glass rounded-3xl p-4 shadow-soft"
+            className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
               <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
