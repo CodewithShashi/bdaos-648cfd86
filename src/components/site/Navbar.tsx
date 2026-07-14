@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import heroImg from "@/assets/hero-ai.jpg";
@@ -59,6 +59,11 @@ const simpleLinks = [
   { href: "/#cta", label: "Contact" },
 ];
 
+const regions = [
+  { code: "IN", label: "India", flag: "🇮🇳" },
+  { code: "US", label: "USA", flag: "🇺🇸" },
+];
+
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
@@ -66,6 +71,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<MenuKey>(null);
+  const [region, setRegion] = useState(regions[0]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -174,7 +180,8 @@ export function Navbar() {
             )}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-2">
+            <RegionSelector region={region} setRegion={setRegion} />
             <AnimatedButton href="#cta">Get started</AnimatedButton>
           </div>
 
@@ -227,6 +234,25 @@ export function Navbar() {
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
+              <div className="px-4 py-3 border-b border-border/60">
+                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">Region</p>
+                <div className="flex gap-2">
+                  {regions.map((r) => (
+                    <button
+                      key={r.code}
+                      onClick={() => setRegion(r)}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition ${
+                        r.code === region.code
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <span>{r.flag}</span>
+                      <span>{r.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
               {simpleLinks.map((l) =>
                 l.href.startsWith("#") ? (
                   <a
@@ -258,6 +284,68 @@ export function Navbar() {
         )}
       </Container>
     </motion.header>
+  );
+}
+
+function RegionSelector({
+  region,
+  setRegion,
+}: {
+  region: (typeof regions)[number];
+  setRegion: (r: (typeof regions)[number]) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground hover:bg-secondary"
+        aria-expanded={open}
+        aria-label="Select region"
+      >
+        <Globe className="h-4 w-4" />
+        <span className="hidden lg:inline">{region.label}</span>
+        <span className="lg:hidden">{region.code}</span>
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+            className="absolute right-0 mt-2 min-w-[140px] rounded-2xl bg-card shadow-soft border border-border p-1.5 z-50"
+          >
+            {regions.map((r) => (
+              <button
+                key={r.code}
+                onClick={() => {
+                  setRegion(r);
+                  setOpen(false);
+                }}
+                className={`w-full flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-left transition ${
+                  r.code === region.code ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                }`}
+              >
+                <span>{r.flag}</span>
+                <span>{r.label}</span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
