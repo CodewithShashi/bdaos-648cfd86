@@ -268,6 +268,68 @@ export function Navbar() {
   );
 }
 
+function RegionSelector({
+  region,
+  setRegion,
+}: {
+  region: (typeof regions)[number];
+  setRegion: (r: (typeof regions)[number]) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground hover:bg-secondary"
+        aria-expanded={open}
+        aria-label="Select region"
+      >
+        <Globe className="h-4 w-4" />
+        <span className="hidden lg:inline">{region.label}</span>
+        <span className="lg:hidden">{region.code}</span>
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+            className="absolute right-0 mt-2 min-w-[140px] rounded-2xl bg-card shadow-soft border border-border p-1.5 z-50"
+          >
+            {regions.map((r) => (
+              <button
+                key={r.code}
+                onClick={() => {
+                  setRegion(r);
+                  setOpen(false);
+                }}
+                className={`w-full flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-left transition ${
+                  r.code === region.code ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                }`}
+              >
+                <span>{r.flag}</span>
+                <span>{r.label}</span>
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function WhatWeDoMega() {
   const categories = [
     { key: "services", label: "Services", items: servicesLinks },
