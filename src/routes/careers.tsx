@@ -199,7 +199,7 @@ function CareersPage() {
               <br />
               Behind Your <span className="italic text-primary">AI.</span>
             </motion.h1>
-            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end">
+            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end justify-items-start">
               <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
                 A small, senior team that designs, builds, and ships AI systems for
                 companies that want results, not slideware.
