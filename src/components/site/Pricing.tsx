@@ -96,9 +96,9 @@ export function Pricing() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="flex flex-col"
               >
-                {/* Outer dashed card frame */}
+                {/* Outer card frame */}
                 <div
-                  className={`rounded-[28px] border border-dashed border-border/70 p-3 ${
+                  className={`rounded-[28px] border border-solid border-foreground/10 p-3 ${
                     plan.highlighted ? "bg-secondary/70" : "bg-secondary/40"
                   }`}
                 >
