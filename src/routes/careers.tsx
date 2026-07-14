@@ -208,7 +208,7 @@ function CareersPage() {
             {openings.map((job, i) => (
               <motion.a
                 key={job.title}
-                href="mailto:careers@bda.ai?subject=Application for " + job.title}
+                href={`mailto:careers@bda.ai?subject=Application for ${job.title}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
