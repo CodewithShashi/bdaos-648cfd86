@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
@@ -11,6 +12,7 @@ const aboutLinks = [
   { label: "Leadership", href: "#about" },
   { label: "Partners", href: "#testimonials" },
   { label: "Locations", href: "#cta" },
+  { label: "Careers", href: "/careers" },
 ];
 
 const aboutFeatured = [
@@ -53,10 +55,7 @@ const insightsLinks = [
   { label: "Case Studies", href: "#work" },
 ];
 
-const simpleLinks = [
-  { href: "#testimonials", label: "Clients" },
-  { href: "#cta", label: "Careers" },
-];
+const simpleLinks = [{ href: "#testimonials", label: "Clients" }];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
@@ -111,7 +110,7 @@ export function Navbar() {
               }`}
               aria-expanded={menu === "about"}
             >
-              About
+              Who we are
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform ${menu === "about" ? "rotate-180" : ""}`}
               />
@@ -198,7 +197,7 @@ export function Navbar() {
             className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
-              <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Who we are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
@@ -296,19 +295,33 @@ function AboutMega() {
     <div className="grid grid-cols-12 gap-0">
       <div className="col-span-4 p-8">
         <div className="flex flex-col">
-          {aboutLinks.map((l, i) => (
-            <motion.a
-              key={l.label}
-              href={l.href}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.25, delay: i * 0.03 }}
-              className="group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors"
-            >
-              <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </motion.a>
-          ))}
+          {aboutLinks.map((l, i) => {
+            const isRoute = !l.href.startsWith("#");
+            const className =
+              "group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors";
+            const children = (
+              <>
+                <span>{l.label}</span>
+                <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </>
+            );
+            return isRoute ? (
+              <Link key={l.label} to={l.href} className={className}>
+                {children}
+              </Link>
+            ) : (
+              <motion.a
+                key={l.label}
+                href={l.href}
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.03 }}
+                className={className}
+              >
+                {children}
+              </motion.a>
+            );
+          })}
         </div>
       </div>
 
@@ -447,16 +460,27 @@ function MobileGroup({
             className="overflow-hidden"
           >
             <div className="pl-4 pb-2 flex flex-col">
-              {items.map((i) => (
-                <a
-                  key={i.label}
-                  href={i.href}
-                  onClick={onNavigate}
-                  className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
-                >
-                  {i.label}
-                </a>
-              ))}
+              {items.map((i) =>
+                i.href.startsWith("#") ? (
+                  <a
+                    key={i.label}
+                    href={i.href}
+                    onClick={onNavigate}
+                    className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  >
+                    {i.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={i.label}
+                    to={i.href}
+                    onClick={onNavigate}
+                    className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  >
+                    {i.label}
+                  </Link>
+                )
+              )}
             </div>
           </motion.div>
         )}
