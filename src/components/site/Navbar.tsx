@@ -295,19 +295,33 @@ function AboutMega() {
     <div className="grid grid-cols-12 gap-0">
       <div className="col-span-4 p-8">
         <div className="flex flex-col">
-          {aboutLinks.map((l, i) => (
-            <motion.a
-              key={l.label}
-              href={l.href}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.25, delay: i * 0.03 }}
-              className="group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors"
-            >
-              <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </motion.a>
-          ))}
+          {aboutLinks.map((l, i) => {
+            const isRoute = !l.href.startsWith("#");
+            const className =
+              "group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors";
+            const children = (
+              <>
+                <span>{l.label}</span>
+                <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </>
+            );
+            return isRoute ? (
+              <Link key={l.label} to={l.href} className={className}>
+                {children}
+              </Link>
+            ) : (
+              <motion.a
+                key={l.label}
+                href={l.href}
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.03 }}
+                className={className}
+              >
+                {children}
+              </motion.a>
+            );
+          })}
         </div>
       </div>
 
