@@ -100,7 +100,7 @@ export function Process() {
     <section
       ref={containerRef}
       id="process"
-      className="relative bg-secondary/40"
+      className="relative bg-secondary/40 lg:min-h-[200vh]"
     >
       <div className="py-28 md:py-36 lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
         <Container className="h-full">
