@@ -182,7 +182,7 @@ function CareersPage() {
 
       {/* Hero */}
       <section className="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
-        <div aria-hidden className="absolute inset-0 -z-10 bg-mesh opacity-60" />
+        <AnimatedHeroBackground />
         <Container>
           <div className="flex flex-col gap-8 max-w-5xl">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
