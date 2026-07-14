@@ -50,9 +50,8 @@ const industriesLinks = [
 ];
 
 const insightsLinks = [
-  { label: "Blog", href: "#insights" },
+  { label: "Blogs", href: "#insights" },
   { label: "Case Studies", href: "#work" },
-  { label: "Insights", href: "#insights" },
 ];
 
 const simpleLinks = [
@@ -142,7 +141,7 @@ export function Navbar() {
               }`}
               aria-expanded={menu === "insights"}
             >
-              Blogs and Case Studies
+              Insight
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
@@ -204,7 +203,7 @@ export function Navbar() {
               <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
-              <MobileGroup label="Blogs and Case Studies" items={insightsLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Insight" items={insightsLinks} onNavigate={() => setOpen(false)} />
               {simpleLinks.map((l) => (
                 <a
                   key={l.href}
