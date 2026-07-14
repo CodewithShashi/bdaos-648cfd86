@@ -204,6 +204,7 @@ export function Navbar() {
               <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Blogs and Case Studies" items={insightsLinks} onNavigate={() => setOpen(false)} />
               {simpleLinks.map((l) => (
                 <a
                   key={l.href}
