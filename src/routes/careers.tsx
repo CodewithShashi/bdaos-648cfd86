@@ -423,54 +423,74 @@ function CareersPage() {
       {/* FAQ */}
       <section className="py-24 md:py-32 bg-secondary/40">
         <Container>
-          <SectionHeading
-            eyebrow="FAQs"
-            title="Need Answers?"
-            description="Everything you need to know before we talk."
-          />
-          <div className="mt-14 max-w-3xl mx-auto flex flex-col divide-y divide-border border-y border-border">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase text-muted-foreground">
+              FAQs
+            </span>
+            <h2 className="mt-6 font-display text-5xl md:text-7xl tracking-tight leading-[1.02] text-foreground">
+              Need Answers?
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground">
+              Everything you need to know before we talk.
+            </p>
+          </div>
+
+          <div className="mt-14 max-w-4xl mx-auto flex flex-col gap-4">
             {faqs.map((f, i) => {
               const open = openFaq === i;
+              const num = String(i + 1).padStart(2, "0");
               return (
-                <div key={f.q}>
+                <motion.div
+                  key={f.q}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.4, delay: i * 0.04 }}
+                  className={`rounded-3xl border border-dashed border-border transition-colors ${
+                    open ? "bg-background" : "bg-background/60 hover:bg-background"
+                  }`}
+                >
                   <button
                     type="button"
                     onClick={() => setOpenFaq(open ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                    aria-expanded={open}
+                    className="flex w-full items-center justify-between gap-6 px-6 md:px-8 py-6 md:py-7 text-left"
                   >
-                    <span className="text-base md:text-lg font-medium">
-                      <span className="text-muted-foreground mr-3">
-                        0{i + 1}/
-                      </span>
+                    <span className="font-display text-xl md:text-2xl tracking-tight text-foreground">
+                      <span className="mr-3 text-foreground">{num}/</span>
                       {f.q}
                     </span>
                     <span
-                      className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border transition-all ${
-                        open
-                          ? "bg-primary text-primary-foreground border-primary rotate-45"
-                          : "bg-background text-foreground"
+                      className={`grid h-10 w-10 shrink-0 place-items-center rounded-full bg-foreground text-background transition-all ${
+                        open ? "ring-2 ring-primary/60" : ""
                       }`}
                     >
-                      <Plus className="h-4 w-4" />
+                      {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                     </span>
                   </button>
                   {open && (
-                    <motion.p
+                    <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="pb-6 pr-16 text-muted-foreground leading-relaxed"
+                      className="overflow-hidden"
                     >
-                      {f.a}
-                    </motion.p>
+                      <div className="px-6 md:px-8 pb-7 -mt-1">
+                        <div className="h-px w-full bg-border/70 mb-5" />
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                          {f.a}
+                        </p>
+                      </div>
+                    </motion.div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </Container>
       </section>
+
 
       {/* CTA */}
       <section className="py-24 md:py-32">
