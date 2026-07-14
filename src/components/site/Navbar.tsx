@@ -71,6 +71,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<MenuKey>(null);
+  const [region, setRegion] = useState(regions[0]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
