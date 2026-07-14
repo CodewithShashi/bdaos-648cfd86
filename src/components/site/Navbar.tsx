@@ -133,6 +133,20 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "whatWeDo" ? "rotate-180" : ""}`}
               />
             </button>
+            <button
+              onMouseEnter={() => setMenu("insights")}
+              onFocus={() => setMenu("insights")}
+              onClick={() => setMenu(menu === "insights" ? null : "insights")}
+              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+                menu === "insights" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-expanded={menu === "insights"}
+            >
+              Blogs and Case Studies
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
+              />
+            </button>
             {simpleLinks.map((l) => (
               <a
                 key={l.href}
