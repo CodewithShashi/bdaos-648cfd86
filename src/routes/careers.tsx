@@ -204,7 +204,7 @@ function CareersPage() {
                 A small, senior team that designs, builds, and ships AI systems for
                 companies that want results, not slideware.
               </p>
-              <AnimatedButton href="#openings" className="w-fit">Book A Call</AnimatedButton>
+              <AnimatedButton href="#openings" className="justify-self-start">Book A Call</AnimatedButton>
             </div>
           </div>
         </Container>
