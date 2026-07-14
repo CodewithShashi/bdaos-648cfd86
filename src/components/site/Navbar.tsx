@@ -153,16 +153,27 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
             </button>
-            {simpleLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onMouseEnter={() => setMenu(null)}
-                className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ))}
+            {simpleLinks.map((l) =>
+              l.href.startsWith("#") ? (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onMouseEnter={() => setMenu(null)}
+                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onMouseEnter={() => setMenu(null)}
+                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+                >
+                  {l.label}
+                </Link>
+              )
+            )}
           </nav>
 
           <div className="hidden md:block">
