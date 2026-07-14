@@ -45,6 +45,7 @@ function Tick({ active }: { active: boolean }) {
 
 export function Process() {
   const containerRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -58,13 +59,20 @@ export function Process() {
   const [activeIndex, setActiveIndex] = useState(0);
   useMotionValueEvent(activeIndexMotion, "change", setActiveIndex);
 
+  const scrollToCard = (i: number) => {
+    const el = cardRefs.current[i];
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <section
       ref={containerRef}
       id="process"
-      className="relative min-h-[200vh] bg-secondary/40"
+      className="relative min-h-[200vh] lg:min-h-[200vh] bg-secondary/40"
     >
-      <div className="sticky top-0 h-screen py-28 md:py-36">
+      <div className="sticky top-0 h-auto min-h-screen lg:h-screen py-28 md:py-36">
         <Container className="h-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-start h-full">
             {/* Left */}
@@ -83,7 +91,7 @@ export function Process() {
                 A simple, proven path from your first call to a team that runs on AI — in weeks, not quarters.
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-4">
+              <div className="mt-10 hidden lg:flex flex-wrap items-center gap-4">
                 <AnimatedButton href="#contact">Book A Call</AnimatedButton>
                 <AnimatedButton href="#pricing" variant="ghost">
                   Our Pricing
@@ -98,9 +106,10 @@ export function Process() {
                 {steps.map((s, i) => {
                   const isActive = i === activeIndex;
                   return (
-                    <div
+                    <button
                       key={s.num}
-                      className={`flex items-center justify-between rounded-2xl px-4 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-300 border ${
+                      onClick={() => scrollToCard(i)}
+                      className={`flex items-center justify-between rounded-2xl px-4 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-300 border text-left ${
                         isActive
                           ? "bg-primary text-primary-foreground border-transparent"
                           : "bg-background text-foreground border-border"
@@ -108,18 +117,19 @@ export function Process() {
                     >
                       <span>{s.weeks}</span>
                       <Tick active={isActive} />
-                    </div>
+                    </button>
                   );
                 })}
               </div>
 
             {/* Card stack */}
-              <div className="relative mt-4 min-h-[360px] md:min-h-[420px]">
+              <div className="relative mt-4 min-h-[360px] md:min-h-[420px] lg:min-h-[420px]">
                 {steps.map((s, i) => {
                   const isVisible = i <= activeIndex;
                   const isActive = i === activeIndex;
                   return (
                     <motion.div
+                      ref={(el) => { cardRefs.current[i] = el; }}
                       key={s.num}
                       initial={{ y: 60, opacity: 0, scale: 0.96 }}
                       animate={
@@ -128,7 +138,7 @@ export function Process() {
                           : { y: 60, opacity: 0, scale: 0.96 }
                       }
                       transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
-                      className={`absolute inset-0 rounded-3xl p-8 md:p-10 ${
+                      className={`lg:absolute lg:inset-0 relative mb-4 lg:mb-0 rounded-3xl p-8 md:p-10 ${
                         isActive
                           ? "bg-primary shadow-glow"
                           : "bg-card border border-border shadow-soft"
@@ -159,6 +169,13 @@ export function Process() {
                     </motion.div>
                   );
                 })}
+              </div>
+
+              <div className="mt-8 flex lg:hidden flex-wrap items-center gap-4">
+                <AnimatedButton href="#contact">Book A Call</AnimatedButton>
+                <AnimatedButton href="#pricing" variant="ghost">
+                  Our Pricing
+                </AnimatedButton>
               </div>
             </div>
           </div>
