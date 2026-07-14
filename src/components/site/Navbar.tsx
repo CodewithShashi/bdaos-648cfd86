@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import heroImg from "@/assets/hero-ai.jpg";
