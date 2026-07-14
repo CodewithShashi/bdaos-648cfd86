@@ -64,26 +64,26 @@ export function Process() {
       id="process"
       className="relative min-h-[150vh] md:min-h-[200vh] bg-secondary/40"
     >
-      <div className="py-28 md:py-36 lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
+      <div className="sticky top-0 h-auto min-h-screen md:h-screen py-20 md:py-36">
         <Container className="h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-start h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start h-full">
             {/* Left */}
             <div className="lg:col-span-5">
               <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
                 OUR PROCESS
               </span>
 
-              <h2 className="mt-8 font-display text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-foreground">
+              <h2 className="mt-6 md:mt-8 font-display text-4xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-foreground">
                 From Friction
                 <br />
                 To Fully Live.
               </h2>
 
-              <p className="mt-6 max-w-md text-lg text-muted-foreground leading-relaxed">
+              <p className="mt-4 md:mt-6 max-w-md text-base md:text-lg text-muted-foreground leading-relaxed">
                 A simple, proven path from your first call to a team that runs on AI — in weeks, not quarters.
               </p>
 
-              <div className="mt-10 hidden lg:flex flex-wrap items-center gap-4">
+              <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
                 <AnimatedButton href="#contact">Book A Call</AnimatedButton>
                 <AnimatedButton href="#pricing" variant="ghost">
                   Our Pricing
@@ -98,10 +98,9 @@ export function Process() {
                 {steps.map((s, i) => {
                   const isActive = i === activeIndex;
                   return (
-                    <button
+                    <div
                       key={s.num}
-                      onClick={() => scrollToCard(i)}
-                      className={`flex items-center justify-between rounded-2xl px-4 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-300 border text-left ${
+                      className={`flex items-center justify-between rounded-2xl px-4 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-300 border ${
                         isActive
                           ? "bg-primary text-primary-foreground border-transparent"
                           : "bg-background text-foreground border-border"
@@ -109,19 +108,18 @@ export function Process() {
                     >
                       <span>{s.weeks}</span>
                       <Tick active={isActive} />
-                    </button>
+                    </div>
                   );
                 })}
               </div>
 
             {/* Card stack */}
-              <div className="relative mt-4 lg:min-h-[420px]">
+              <div className="relative mt-4 min-h-[280px] md:min-h-[360px] lg:min-h-[420px]">
                 {steps.map((s, i) => {
-                  const isVisible = isMobile || i <= activeIndex;
+                  const isVisible = i <= activeIndex;
                   const isActive = i === activeIndex;
                   return (
                     <motion.div
-                      ref={(el) => { cardRefs.current[i] = el; }}
                       key={s.num}
                       initial={{ y: 60, opacity: 0, scale: 0.96 }}
                       animate={
@@ -130,7 +128,7 @@ export function Process() {
                           : { y: 60, opacity: 0, scale: 0.96 }
                       }
                       transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
-                      className={`lg:absolute lg:inset-0 relative mb-4 lg:mb-0 rounded-3xl p-8 md:p-10 ${
+                      className={`absolute inset-0 rounded-3xl p-6 md:p-8 lg:p-10 ${
                         isActive
                           ? "bg-primary shadow-glow"
                           : "bg-card border border-border shadow-soft"
