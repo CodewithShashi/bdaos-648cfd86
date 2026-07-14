@@ -145,13 +145,16 @@ export function Navbar() {
             <AnimatedButton href="#cta">Get started</AnimatedButton>
           </div>
 
-          <button
-            className="md:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <AnimatedButton href="#cta">Get started</AnimatedButton>
+            <button
+              className="grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
+              onClick={() => setOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {/* Desktop mega menu */}
