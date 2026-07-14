@@ -11,6 +11,7 @@ const aboutLinks = [
   { label: "Leadership", href: "#about" },
   { label: "Partners", href: "#testimonials" },
   { label: "Locations", href: "#cta" },
+  { label: "Careers", href: "/careers" },
 ];
 
 const aboutFeatured = [
@@ -53,10 +54,7 @@ const insightsLinks = [
   { label: "Case Studies", href: "#work" },
 ];
 
-const simpleLinks = [
-  { href: "#testimonials", label: "Clients" },
-  { href: "#cta", label: "Careers" },
-];
+const simpleLinks = [{ href: "#testimonials", label: "Clients" }];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
@@ -111,7 +109,7 @@ export function Navbar() {
               }`}
               aria-expanded={menu === "about"}
             >
-              About
+              Who we are
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform ${menu === "about" ? "rotate-180" : ""}`}
               />
@@ -198,7 +196,7 @@ export function Navbar() {
             className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
-              <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Who we are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
