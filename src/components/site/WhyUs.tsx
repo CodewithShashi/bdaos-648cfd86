@@ -14,6 +14,7 @@ const columns = [
     ],
     positive: false,
     highlighted: false,
+    noRound: true,
   },
   {
     title: "Other Agencies",
