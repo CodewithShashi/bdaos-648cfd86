@@ -20,6 +20,7 @@ import { Container } from "@/components/site/Container";
 
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 import { LogoMarquee } from "@/components/site/LogoMarquee";
+import { AnimatedHeroBackground } from "@/components/site/AnimatedHeroBackground";
 import heroImg from "@/assets/hero-ai.jpg";
 import aboutImg from "@/assets/about.jpg";
 import p1 from "@/assets/project-1.jpg";
