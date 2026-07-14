@@ -61,11 +61,13 @@ function BillingToggle({
         yearly ? "bg-primary" : "bg-background/25"
       }`}
     >
-      <span
-        className={`absolute top-0.5 h-4 w-4 rounded-full bg-background shadow-sm transition-transform ${
-          yearly ? "translate-x-[18px]" : "translate-x-0.5"
-        }`}
-      />
+      <div className="absolute inset-0.5 flex items-center">
+        <motion.div
+          className="h-4 w-4 rounded-full bg-background shadow-sm"
+          animate={{ x: yearly ? 16 : 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        />
+      </div>
     </button>
   );
 }
