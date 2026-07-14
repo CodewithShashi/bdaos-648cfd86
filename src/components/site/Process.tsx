@@ -113,8 +113,8 @@ export function Process() {
                 })}
               </div>
 
-              {/* Card stack */}
-              <div className="relative flex-1 mt-4 min-h-[360px] md:min-h-[420px]">
+            {/* Card stack */}
+              <div className="relative mt-4 min-h-[360px] md:min-h-[420px]">
                 {steps.map((s, i) => {
                   const isVisible = i <= activeIndex;
                   const isActive = i === activeIndex;
