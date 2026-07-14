@@ -92,9 +92,7 @@ export function Navbar() {
     >
       <Container>
         <div
-          className={`flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300 ${
-            scrolled || menu ? "glass shadow-soft" : "bg-transparent"
-          }`}
+          className="flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300 bg-card shadow-soft"
         >
           <a href="#" className="flex items-center gap-2">
             <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
