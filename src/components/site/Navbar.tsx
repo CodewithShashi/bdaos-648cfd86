@@ -140,7 +140,7 @@ export function Navbar() {
               }`}
               aria-expanded={menu === "insights"}
             >
-              Insight
+              Insights
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
