@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles, ChevronDown, ArrowUpRight } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import heroImg from "@/assets/hero-ai.jpg";
@@ -31,17 +31,38 @@ const aboutFeatured = [
   },
 ];
 
+const servicesLinks = [
+  { label: "AI Strategy", href: "#services-showcase" },
+  { label: "Autonomous Agents", href: "#services-showcase" },
+  { label: "Workflow Automation", href: "#services-showcase" },
+  { label: "Data & Analytics", href: "#services-showcase" },
+  { label: "AI Security", href: "#services-showcase" },
+  { label: "Integrations", href: "#services-showcase" },
+];
+
+const industriesLinks = [
+  { label: "Banking", href: "#work" },
+  { label: "Capital Markets", href: "#work" },
+  { label: "Healthcare", href: "#work" },
+  { label: "High Tech", href: "#work" },
+  { label: "Retail", href: "#work" },
+  { label: "Manufacturing", href: "#work" },
+  { label: "Insurance", href: "#work" },
+  { label: "Public Sector", href: "#work" },
+];
+
 const simpleLinks = [
-  { href: "#services-showcase", label: "Services" },
   { href: "#process", label: "Process" },
   { href: "#work", label: "Work" },
   { href: "#testimonials", label: "Clients" },
 ];
 
+type MenuKey = null | "about" | "whatWeDo";
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<null | "about">(null);
+  const [menu, setMenu] = useState<MenuKey>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -94,6 +115,20 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "about" ? "rotate-180" : ""}`}
               />
             </button>
+            <button
+              onMouseEnter={() => setMenu("whatWeDo")}
+              onFocus={() => setMenu("whatWeDo")}
+              onClick={() => setMenu(menu === "whatWeDo" ? null : "whatWeDo")}
+              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+                menu === "whatWeDo" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-expanded={menu === "whatWeDo"}
+            >
+              What we do
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${menu === "whatWeDo" ? "rotate-180" : ""}`}
+              />
+            </button>
             {simpleLinks.map((l) => (
               <a
                 key={l.href}
@@ -132,7 +167,7 @@ export function Navbar() {
               className="hidden md:block mt-3"
             >
               <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
-                <AboutMega />
+                {menu === "about" ? <AboutMega /> : <WhatWeDoMega />}
               </div>
             </motion.div>
           )}
@@ -147,6 +182,8 @@ export function Navbar() {
           >
             <div className="flex flex-col">
               <MobileGroup label="About" items={aboutLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               {simpleLinks.map((l) => (
                 <a
                   key={l.href}
@@ -167,6 +204,72 @@ export function Navbar() {
         )}
       </Container>
     </motion.header>
+  );
+}
+
+function WhatWeDoMega() {
+  const categories = [
+    { key: "services", label: "Services", items: servicesLinks },
+    { key: "industries", label: "Industries", items: industriesLinks },
+  ] as const;
+  const [activeKey, setActiveKey] = useState<(typeof categories)[number]["key"]>("services");
+  const active = categories.find((c) => c.key === activeKey)!;
+
+  return (
+    <div className="grid grid-cols-12 gap-0">
+      <div className="col-span-5 p-8 border-r border-border/60">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
+          Intelligence, delivered.
+        </p>
+        <div className="flex flex-col">
+          {categories.map((c) => {
+            const isActive = c.key === activeKey;
+            return (
+              <button
+                key={c.key}
+                onMouseEnter={() => setActiveKey(c.key)}
+                onFocus={() => setActiveKey(c.key)}
+                className={`group flex items-center justify-between rounded-2xl px-4 py-4 text-left transition-colors ${
+                  isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <span className="text-base font-medium">{c.label}</span>
+                <ChevronRight
+                  className={`h-4 w-4 transition-transform ${isActive ? "translate-x-1 text-primary" : ""}`}
+                />
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="col-span-7 p-8 bg-secondary/40">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active.key}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className="grid grid-cols-2 gap-x-8 gap-y-1"
+          >
+            {active.items.map((l, i) => (
+              <motion.a
+                key={l.label}
+                href={l.href}
+                initial={{ opacity: 0, x: -4 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, delay: i * 0.02 }}
+                className="group flex items-center justify-between border-b border-border/60 py-3 text-sm text-foreground hover:text-primary transition-colors"
+              >
+                <span>{l.label}</span>
+                <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </motion.a>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
   );
 }
 
