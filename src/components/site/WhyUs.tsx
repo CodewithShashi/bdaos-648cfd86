@@ -95,13 +95,15 @@ export function WhyUs() {
                   hidden: { opacity: 0, y: 30 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                 }}
-                className={
+                className={[
+                  "p-6 md:p-8",
                   col.highlighted
-                    ? "rounded-2xl bg-foreground text-background p-6 md:p-8 shadow-elevated"
+                    ? "rounded-2xl bg-foreground text-background shadow-elevated"
                     : col.grey
-                      ? "rounded-2xl bg-muted border border-border p-6 md:p-8"
-                      : "rounded-2xl bg-background/60 border border-border p-6 md:p-8"
-                }
+                      ? "bg-muted border border-border"
+                      : "bg-background/60 border border-border",
+                  col.noRound ? "" : "rounded-2xl",
+                ].join(" ")}
               >
                 <h3
                   className={
