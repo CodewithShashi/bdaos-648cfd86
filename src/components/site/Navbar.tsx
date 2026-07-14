@@ -11,7 +11,6 @@ const aboutLinks = [
   { label: "Leadership", href: "#about" },
   { label: "Partners", href: "#testimonials" },
   { label: "Locations", href: "#cta" },
-  { label: "Press Room", href: "#work" },
 ];
 
 const aboutFeatured = [
