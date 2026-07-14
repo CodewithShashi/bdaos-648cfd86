@@ -168,7 +168,7 @@ export function ServiceShowcase() {
     >
       <Container>
         <SectionHeading
-          eyebrow="002/ OUR SERVICES"
+          eyebrow="OUR SERVICES"
           title="Everything you need to put AI to work."
           description="Strategy, automation, custom builds, and the team to run them, all in one place."
         />

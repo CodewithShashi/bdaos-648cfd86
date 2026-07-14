@@ -150,7 +150,7 @@ export function Testimonials() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground"
         >
-          007/ OUR CLIENTS
+          OUR CLIENTS
         </motion.span>
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
