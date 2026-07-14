@@ -349,6 +349,54 @@ function AboutMega() {
   );
 }
 
+function InsightsMega() {
+  return (
+    <div className="grid grid-cols-12 gap-0">
+      <div className="col-span-4 p-8">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
+          Perspectives & proof
+        </p>
+        <div className="flex flex-col">
+          {insightsLinks.map((l, i) => (
+            <motion.a
+              key={l.label}
+              href={l.href}
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.25, delay: i * 0.03 }}
+              className="group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors"
+            >
+              <span>{l.label}</span>
+              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </motion.a>
+          ))}
+        </div>
+      </div>
+
+      <div className="col-span-8 p-8 bg-secondary/40 flex flex-col justify-between">
+        <div>
+          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
+            Featured
+          </p>
+          <h4 className="text-lg font-semibold text-foreground leading-snug max-w-md">
+            Buy, Build, or Wait: A Simpler Way to Decide
+          </h4>
+          <p className="mt-2 text-sm text-muted-foreground max-w-md">
+            A practical framework for choosing when to adopt AI, build in-house, or stay on the sidelines.
+          </p>
+        </div>
+        <a
+          href="#insights"
+          className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-glow transition-colors"
+        >
+          Read the playbook
+          <ArrowUpRight className="h-4 w-4" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function MobileGroup({
   label,
   items,
