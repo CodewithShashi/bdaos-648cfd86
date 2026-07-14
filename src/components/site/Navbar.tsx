@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
