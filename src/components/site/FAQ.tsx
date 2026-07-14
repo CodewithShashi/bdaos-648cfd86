@@ -61,7 +61,6 @@ function FaqItem({
         aria-expanded={open}
       >
         <span className="font-display text-xl md:text-2xl tracking-tight text-foreground">
-          <span className="text-foreground/90">{num}/ </span>
           {q}
         </span>
         <span
@@ -106,7 +105,7 @@ export function FAQ() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div className="lg:sticky lg:top-28">
             <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">
-              009/ FAQS
+              FAQs
             </span>
             <h2 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.02] text-foreground">
               Need Answers?

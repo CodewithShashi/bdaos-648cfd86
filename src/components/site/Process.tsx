@@ -53,7 +53,7 @@ export function Process() {
           {/* Left */}
           <div className="lg:col-span-5 lg:sticky lg:top-28">
             <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
-              004/ OUR PROCESS
+              OUR PROCESS
             </span>
 
             <h2 className="mt-8 font-display text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-foreground">
