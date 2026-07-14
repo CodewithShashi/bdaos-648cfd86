@@ -39,7 +39,7 @@ export function Insights() {
             className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-            Blog
+            Insights
           </motion.span>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
