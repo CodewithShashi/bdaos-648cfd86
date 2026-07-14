@@ -10,11 +10,14 @@ import {
   Zap,
   Handshake,
   Plus,
+  Minus,
+  Linkedin,
+  Twitter,
 } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
-import { SectionHeading } from "@/components/site/SectionHeading";
+
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 import { LogoMarquee } from "@/components/site/LogoMarquee";
 import heroImg from "@/assets/hero-ai.jpg";
@@ -88,10 +91,10 @@ const values = [
 ];
 
 const team = [
-  { name: "Lena Hoffmann", role: "Automation Architect", img: aboutImg },
-  { name: "Marcus Elliot", role: "AI Strategy Lead", img: p1 },
-  { name: "Sara Vance", role: "Client Success Lead", img: p2 },
-  { name: "James Okafor", role: "ML Engineering Lead", img: p3 },
+  { name: "Lena Hoffmann", role: "Automation Architect", img: aboutImg, social: "twitter" as const, href: "https://twitter.com" },
+  { name: "Marcus Elliot", role: "AI Strategy Lead", img: p1, social: "twitter" as const, href: "https://twitter.com" },
+  { name: "Sara Vance", role: "Client Success Lead", img: p2, social: "linkedin" as const, href: "https://linkedin.com" },
+  { name: "James Okafor", role: "Implementation Engineer", img: p3, social: "linkedin" as const, href: "https://linkedin.com" },
 ];
 
 const openings = [
@@ -302,54 +305,61 @@ function CareersPage() {
       {/* Team */}
       <section className="py-24 md:py-32 bg-secondary/40">
         <Container>
-          <div className="mb-14">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              Our Team
-            </span>
-            <div className="mt-5 grid md:grid-cols-[1fr_auto] gap-6 items-end">
-              <h2 className="text-4xl md:text-6xl font-normal tracking-tight leading-[1.05]">
-                Our Expert <span className="italic text-primary">Team.</span>
-              </h2>
-              <p className="text-muted-foreground max-w-md md:text-right">
-                The specialists behind every system — strategists and automation
-                engineers working as one.
-              </p>
-            </div>
+          <div className="mb-12 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-end">
+            <h2 className="font-display text-5xl md:text-7xl tracking-tight leading-[1.02] text-foreground">
+              Our Expert Team.
+            </h2>
+            <p className="text-muted-foreground max-w-sm md:text-right leading-relaxed">
+              The specialists behind every system — strategists and automation
+              engineers working as one.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {team.map((person, i) => (
-              <motion.div
-                key={person.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.55, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-soft"
-              >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={person.img}
-                    alt={person.name}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-center justify-between gap-3 p-5">
-                  <div>
-                    <div className="font-semibold">{person.name}</div>
-                    <div className="text-[11px] tracking-wider uppercase text-muted-foreground mt-0.5">
-                      {person.role}
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {team.map((person, i) => {
+              const Icon = person.social === "linkedin" ? Linkedin : Twitter;
+              return (
+                <motion.div
+                  key={person.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.55, delay: i * 0.08 }}
+                  className="group rounded-3xl border border-dashed border-border bg-secondary/60 p-2 transition-colors hover:bg-secondary"
+                >
+                  <div className="aspect-[4/5] overflow-hidden rounded-2xl">
+                    <img
+                      src={person.img}
+                      alt={person.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
                   </div>
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="flex items-center justify-between gap-3 px-3 py-4">
+                    <div className="min-w-0">
+                      <div className="font-display text-xl tracking-tight text-foreground truncate">
+                        {person.name}
+                      </div>
+                      <div className="mt-1 text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
+                        {person.role}
+                      </div>
+                    </div>
+                    <a
+                      href={person.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${person.name} on ${person.social}`}
+                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border bg-background text-foreground transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                    >
+                      <Icon className="h-4 w-4" strokeWidth={2} />
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </Container>
       </section>
+
 
       {/* Openings */}
       <section id="openings" className="py-24 md:py-32">
@@ -413,54 +423,74 @@ function CareersPage() {
       {/* FAQ */}
       <section className="py-24 md:py-32 bg-secondary/40">
         <Container>
-          <SectionHeading
-            eyebrow="FAQs"
-            title="Need Answers?"
-            description="Everything you need to know before we talk."
-          />
-          <div className="mt-14 max-w-3xl mx-auto flex flex-col divide-y divide-border border-y border-border">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase text-muted-foreground">
+              FAQs
+            </span>
+            <h2 className="mt-6 font-display text-5xl md:text-7xl tracking-tight leading-[1.02] text-foreground">
+              Need Answers?
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground">
+              Everything you need to know before we talk.
+            </p>
+          </div>
+
+          <div className="mt-14 max-w-4xl mx-auto flex flex-col gap-4">
             {faqs.map((f, i) => {
               const open = openFaq === i;
+              const num = String(i + 1).padStart(2, "0");
               return (
-                <div key={f.q}>
+                <motion.div
+                  key={f.q}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.4, delay: i * 0.04 }}
+                  className={`rounded-3xl border border-dashed border-border transition-colors ${
+                    open ? "bg-background" : "bg-background/60 hover:bg-background"
+                  }`}
+                >
                   <button
                     type="button"
                     onClick={() => setOpenFaq(open ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                    aria-expanded={open}
+                    className="flex w-full items-center justify-between gap-6 px-6 md:px-8 py-6 md:py-7 text-left"
                   >
-                    <span className="text-base md:text-lg font-medium">
-                      <span className="text-muted-foreground mr-3">
-                        0{i + 1}/
-                      </span>
+                    <span className="font-display text-xl md:text-2xl tracking-tight text-foreground">
+                      <span className="mr-3 text-foreground">{num}/</span>
                       {f.q}
                     </span>
                     <span
-                      className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border transition-all ${
-                        open
-                          ? "bg-primary text-primary-foreground border-primary rotate-45"
-                          : "bg-background text-foreground"
+                      className={`grid h-10 w-10 shrink-0 place-items-center rounded-full bg-foreground text-background transition-all ${
+                        open ? "ring-2 ring-primary/60" : ""
                       }`}
                     >
-                      <Plus className="h-4 w-4" />
+                      {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                     </span>
                   </button>
                   {open && (
-                    <motion.p
+                    <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="pb-6 pr-16 text-muted-foreground leading-relaxed"
+                      className="overflow-hidden"
                     >
-                      {f.a}
-                    </motion.p>
+                      <div className="px-6 md:px-8 pb-7 -mt-1">
+                        <div className="h-px w-full bg-border/70 mb-5" />
+                        <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                          {f.a}
+                        </p>
+                      </div>
+                    </motion.div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </Container>
       </section>
+
 
       {/* CTA */}
       <section className="py-24 md:py-32">
