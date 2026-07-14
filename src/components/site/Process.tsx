@@ -45,8 +45,6 @@ function Tick({ active }: { active: boolean }) {
 
 export function Process() {
   const containerRef = useRef<HTMLElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -60,35 +58,11 @@ export function Process() {
   const [activeIndex, setActiveIndex] = useState(0);
   useMotionValueEvent(activeIndexMotion, "change", setActiveIndex);
 
-  useEffect(() => {
-    if (!isMobile) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = cardRefs.current.findIndex((el) => el === entry.target);
-            if (idx !== -1) setActiveIndex(idx);
-          }
-        });
-      },
-      { threshold: 0.5, rootMargin: "-40% 0px -40% 0px" }
-    );
-    cardRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, [isMobile]);
-
-  const scrollToCard = (i: number) => {
-    const el = cardRefs.current[i];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
     <section
       ref={containerRef}
       id="process"
-      className="relative bg-secondary/40 lg:min-h-[200vh]"
+      className="relative min-h-[150vh] md:min-h-[200vh] bg-secondary/40"
     >
       <div className="py-28 md:py-36 lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
         <Container className="h-full">
