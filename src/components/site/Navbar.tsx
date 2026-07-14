@@ -218,20 +218,38 @@ export function Navbar() {
             className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
+              <Link
+                to="/"
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+              >
+                Home
+              </Link>
               <MobileGroup label="Who we are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
-              {simpleLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {simpleLinks.map((l) =>
+                l.href.startsWith("#") ? (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={l.href}
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </Link>
+                )
+              )}
               <div className="pt-2">
                 <AnimatedButton href="#cta" className="w-full justify-between">
                   Get started
