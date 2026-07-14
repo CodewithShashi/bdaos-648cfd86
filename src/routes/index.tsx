@@ -4,6 +4,7 @@ import { Hero } from "@/components/site/Hero";
 import { LogoMarquee } from "@/components/site/LogoMarquee";
 import { TestimonialStats } from "@/components/site/TestimonialStats";
 import { ServiceShowcase } from "@/components/site/ServiceShowcase";
+import { Pricing } from "@/components/site/Pricing";
 
 import { Process } from "@/components/site/Process";
 import { Insights } from "@/components/site/Insights";
@@ -51,6 +52,7 @@ function Index() {
       <WhyUs />
       <Testimonials />
       <CTA />
+      <Pricing />
       <FAQ />
       <Footer />
     </main>
