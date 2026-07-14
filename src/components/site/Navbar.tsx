@@ -49,13 +49,19 @@ const industriesLinks = [
   { label: "Public Sector", href: "#work" },
 ];
 
+const insightsLinks = [
+  { label: "Blog", href: "#insights" },
+  { label: "Case Studies", href: "#work" },
+  { label: "Insights", href: "#insights" },
+];
+
 const simpleLinks = [
   { href: "#process", label: "Process" },
   { href: "#work", label: "Work" },
   { href: "#testimonials", label: "Clients" },
 ];
 
-type MenuKey = null | "about" | "whatWeDo";
+type MenuKey = null | "about" | "whatWeDo" | "insights";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
