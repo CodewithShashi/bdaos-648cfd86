@@ -234,6 +234,25 @@ export function Navbar() {
               <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
+              <div className="px-4 py-3 border-b border-border/60">
+                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">Region</p>
+                <div className="flex gap-2">
+                  {regions.map((r) => (
+                    <button
+                      key={r.code}
+                      onClick={() => setRegion(r)}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition ${
+                        r.code === region.code
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <span>{r.flag}</span>
+                      <span>{r.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
               {simpleLinks.map((l) =>
                 l.href.startsWith("#") ? (
                   <a
