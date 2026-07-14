@@ -161,12 +161,6 @@ export function Process() {
                 })}
               </div>
 
-              <div className="mt-8 flex lg:hidden flex-wrap items-center gap-4">
-                <AnimatedButton href="#contact">Book A Call</AnimatedButton>
-                <AnimatedButton href="#pricing" variant="ghost">
-                  Our Pricing
-                </AnimatedButton>
-              </div>
             </div>
           </div>
         </Container>
