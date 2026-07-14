@@ -58,6 +58,7 @@ function Tick({ active }: { active: boolean }) {
 export function Process() {
   const containerRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -71,6 +72,23 @@ export function Process() {
   const [activeIndex, setActiveIndex] = useState(0);
   useMotionValueEvent(activeIndexMotion, "change", setActiveIndex);
 
+  useEffect(() => {
+    if (!isMobile) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = cardRefs.current.findIndex((el) => el === entry.target);
+            if (idx !== -1) setActiveIndex(idx);
+          }
+        });
+      },
+      { threshold: 0.5, rootMargin: "-40% 0px -40% 0px" }
+    );
+    cardRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, [isMobile]);
+
   const scrollToCard = (i: number) => {
     const el = cardRefs.current[i];
     if (el) {
@@ -82,9 +100,9 @@ export function Process() {
     <section
       ref={containerRef}
       id="process"
-      className="relative min-h-[200vh] lg:min-h-[200vh] bg-secondary/40"
+      className="relative bg-secondary/40"
     >
-      <div className="sticky top-0 h-auto min-h-screen lg:h-screen py-28 md:py-36">
+      <div className="py-28 md:py-36 lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
         <Container className="h-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-start h-full">
             {/* Left */}
@@ -135,9 +153,9 @@ export function Process() {
               </div>
 
             {/* Card stack */}
-              <div className="relative mt-4 min-h-[360px] md:min-h-[420px] lg:min-h-[420px]">
+              <div className="relative mt-4 lg:min-h-[420px]">
                 {steps.map((s, i) => {
-                  const isVisible = i <= activeIndex;
+                  const isVisible = isMobile || i <= activeIndex;
                   const isActive = i === activeIndex;
                   return (
                     <motion.div
