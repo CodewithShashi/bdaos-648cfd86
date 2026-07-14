@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const logosA = [
   "logoipsum",
@@ -27,11 +27,16 @@ export function LogoMarquee() {
   const [set, setSet] = useState(0);
   const logos = set === 0 ? logosA : logosB;
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSet((s) => (s + 1) % 2);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section
       className="relative w-full bg-background"
-      onMouseEnter={() => setSet((s) => s)}
-      onMouseLeave={() => setSet((s) => (s + 1) % 2)}
     >
       <div className="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 border-t border-b border-border">
         {logos.map((l, i) => (
