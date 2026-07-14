@@ -79,6 +79,7 @@ export function Pricing() {
     <section id="pricing" className="relative py-24 md:py-32 bg-background">
       <Container>
         <SectionHeading
+          eyebrow="OUR PRICING"
           title="Pricing That Scales With You."
           description="Start with a focused pilot, grow into an embedded partnership."
         />
