@@ -235,7 +235,10 @@ export function Navbar() {
               <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
               <div className="px-4 py-3 border-b border-border/60">
-                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">Region</p>
+                <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
+                  <Globe className="h-4 w-4" />
+                  Region
+                </p>
                 <div className="flex gap-2">
                   {regions.map((r) => (
                     <button
