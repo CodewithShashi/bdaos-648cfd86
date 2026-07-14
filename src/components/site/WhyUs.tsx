@@ -26,6 +26,7 @@ const columns = [
     ],
     positive: false,
     highlighted: false,
+    grey: true,
   },
   {
     title: "Working with Us",
