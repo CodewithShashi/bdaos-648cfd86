@@ -26,6 +26,7 @@ const columns = [
     ],
     positive: false,
     highlighted: false,
+    grey: true,
   },
   {
     title: "Working with Us",
@@ -96,7 +97,9 @@ export function WhyUs() {
                 className={
                   col.highlighted
                     ? "rounded-2xl bg-foreground text-background p-6 md:p-8 shadow-elevated"
-                    : "rounded-2xl bg-background/60 border border-border p-6 md:p-8"
+                    : col.grey
+                      ? "rounded-2xl bg-muted border border-border p-6 md:p-8"
+                      : "rounded-2xl bg-background/60 border border-border p-6 md:p-8"
                 }
               >
                 <h3
