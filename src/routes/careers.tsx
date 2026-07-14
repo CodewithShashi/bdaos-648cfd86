@@ -305,54 +305,61 @@ function CareersPage() {
       {/* Team */}
       <section className="py-24 md:py-32 bg-secondary/40">
         <Container>
-          <div className="mb-14">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              Our Team
-            </span>
-            <div className="mt-5 grid md:grid-cols-[1fr_auto] gap-6 items-end">
-              <h2 className="text-4xl md:text-6xl font-normal tracking-tight leading-[1.05]">
-                Our Expert <span className="italic text-primary">Team.</span>
-              </h2>
-              <p className="text-muted-foreground max-w-md md:text-right">
-                The specialists behind every system — strategists and automation
-                engineers working as one.
-              </p>
-            </div>
+          <div className="mb-12 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-end">
+            <h2 className="font-display text-5xl md:text-7xl tracking-tight leading-[1.02] text-foreground">
+              Our Expert Team.
+            </h2>
+            <p className="text-muted-foreground max-w-sm md:text-right leading-relaxed">
+              The specialists behind every system — strategists and automation
+              engineers working as one.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {team.map((person, i) => (
-              <motion.div
-                key={person.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.55, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-soft"
-              >
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={person.img}
-                    alt={person.name}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex items-center justify-between gap-3 p-5">
-                  <div>
-                    <div className="font-semibold">{person.name}</div>
-                    <div className="text-[11px] tracking-wider uppercase text-muted-foreground mt-0.5">
-                      {person.role}
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {team.map((person, i) => {
+              const Icon = person.social === "linkedin" ? Linkedin : Twitter;
+              return (
+                <motion.div
+                  key={person.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.55, delay: i * 0.08 }}
+                  className="group rounded-3xl border border-dashed border-border bg-secondary/60 p-2 transition-colors hover:bg-secondary"
+                >
+                  <div className="aspect-[4/5] overflow-hidden rounded-2xl">
+                    <img
+                      src={person.img}
+                      alt={person.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
                   </div>
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-foreground text-background group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="flex items-center justify-between gap-3 px-3 py-4">
+                    <div className="min-w-0">
+                      <div className="font-display text-xl tracking-tight text-foreground truncate">
+                        {person.name}
+                      </div>
+                      <div className="mt-1 text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
+                        {person.role}
+                      </div>
+                    </div>
+                    <a
+                      href={person.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${person.name} on ${person.social}`}
+                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border bg-background text-foreground transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                    >
+                      <Icon className="h-4 w-4" strokeWidth={2} />
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </Container>
       </section>
+
 
       {/* Openings */}
       <section id="openings" className="py-24 md:py-32">
