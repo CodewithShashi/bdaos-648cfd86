@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Container } from "./Container";
 import thriveGlobal from "@/assets/thrive-global.png.asset.json";
 import nbt from "@/assets/nbt.png.asset.json";
@@ -16,8 +17,16 @@ const logos = [
   { src: dailyhunt.url, alt: "Dailyhunt" },
 ];
 
+const SLOTS = 6;
+const INTERVAL_MS = 500;
+
 export function LogoMarquee() {
-  const loop = [...logos, ...logos];
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section className="relative w-full bg-background">
@@ -35,25 +44,30 @@ export function LogoMarquee() {
         </motion.div>
       </Container>
 
-      <div className="relative w-full overflow-hidden border-t border-b border-border py-8">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-
-        <div className="flex w-max animate-marquee gap-16 px-8">
-          {loop.map((l, i) => (
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
+        {Array.from({ length: SLOTS }).map((_, slot) => {
+          const logo = logos[(slot + tick) % logos.length];
+          return (
             <div
-              key={i}
-              className="flex h-16 shrink-0 items-center justify-center"
+              key={slot}
+              className="group relative flex h-28 items-center justify-center overflow-hidden border-r border-border last:border-r-0 [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+4)]:border-t sm:[&:nth-child(n+3)]:border-t-0 lg:[&:nth-child(n+4)]:border-t-0 px-6"
             >
-              <img
-                src={l.src}
-                alt={l.alt}
-                className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
-                loading="lazy"
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={logo.src}
+                  src={logo.src}
+                  alt={logo.alt}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 0.75, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  className="max-h-12 w-auto object-contain hover:opacity-100"
+                  loading="lazy"
+                />
+              </AnimatePresence>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );
