@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Sparkles, Twitter, Github, Linkedin, Instagram } from "lucide-react";
+import { Twitter, Github, Linkedin, Instagram } from "lucide-react";
 import { Container } from "./Container";
+import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 
 const cols = [
   { title: "Product", links: ["Platform", "Agents", "Integrations", "Pricing", "Changelog"] },
