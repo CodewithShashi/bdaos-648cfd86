@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "./Container";
 import thriveGlobal from "@/assets/thrive-global.png.asset.json";
 import nbt from "@/assets/nbt.png.asset.json";
@@ -18,13 +18,23 @@ const logos = [
 ];
 
 const SLOTS = 6;
-const INTERVAL_MS = 500;
+const INTERVAL_MS = 8000;
 
 export function LogoMarquee() {
   const [tick, setTick] = useState(0);
+  const indicesRef = useRef([0, 1, 2, 3, 4, 5]);
 
   useEffect(() => {
-    const id = setInterval(() => setTick((t) => t + 1), INTERVAL_MS);
+    const id = setInterval(() => {
+      setTick((prev) => {
+        const nextTick = prev + 1;
+        const slot = nextTick % SLOTS;
+        indicesRef.current = indicesRef.current.map((idx, i) =>
+          i === slot ? (idx + 1) % logos.length : idx
+        );
+        return nextTick;
+      });
+    }, INTERVAL_MS);
     return () => clearInterval(id);
   }, []);
 
@@ -46,7 +56,8 @@ export function LogoMarquee() {
 
       <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
         {Array.from({ length: SLOTS }).map((_, slot) => {
-          const logo = logos[(slot + tick) % logos.length];
+          const index = indicesRef.current[slot];
+          const logo = logos[index];
           return (
             <div
               key={slot}
@@ -54,7 +65,7 @@ export function LogoMarquee() {
             >
               <AnimatePresence mode="wait">
                 <motion.img
-                  key={logo.src}
+                  key={`${logo.src}-${index}`}
                   src={logo.src}
                   alt={logo.alt}
                   initial={{ opacity: 0, y: 12 }}
