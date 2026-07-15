@@ -1,44 +1,24 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Container } from "./Container";
+import thriveGlobal from "@/assets/thrive-global.png.asset.json";
+import nbt from "@/assets/nbt.png.asset.json";
+import newstrack from "@/assets/newstrack.png.asset.json";
+import disrupt from "@/assets/disrupt.png.asset.json";
+import midday from "@/assets/midday.png.asset.json";
+import dailyhunt from "@/assets/dailyhunt.png.asset.json";
 
-const logosA = [
-  "logoipsum",
-  "LOGOIPSUM",
-  "logoipsum°",
-  "Logoipsum",
-  "logoipsum",
-  "logoipsum°",
-  "logoipsum",
-  "Logoipsum",
-];
-
-const logosB = [
-  "Northwind",
-  "LUMEN",
-  "Cadence°",
-  "Fieldnote",
-  "Orbit",
-  "Meridian°",
-  "Halo",
-  "Atlas",
+const logos = [
+  { src: thriveGlobal.url, alt: "Thrive Global" },
+  { src: nbt.url, alt: "Navbharat Times" },
+  { src: newstrack.url, alt: "Newstrack" },
+  { src: disrupt.url, alt: "Disrupt" },
+  { src: midday.url, alt: "Mid-Day" },
+  { src: dailyhunt.url, alt: "Dailyhunt" },
 ];
 
 export function LogoMarquee() {
-  const [set, setSet] = useState(0);
-  const logos = set === 0 ? logosA : logosB;
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setSet((s) => (s + 1) % 2);
-    }, 5000);
-    return () => clearInterval(id);
-  }, []);
-
   return (
-    <section
-      className="relative w-full bg-background"
-    >
+    <section className="relative w-full bg-background">
       <Container className="pt-20 pb-10">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -53,24 +33,18 @@ export function LogoMarquee() {
         </motion.div>
       </Container>
 
-      <div className="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 border-t border-b border-border">
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
         {logos.map((l, i) => (
           <div
             key={i}
-            className="group relative flex h-24 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(n+5)]:border-t sm:[&:nth-child(n+5)]:border-t-0"
+            className="group relative flex h-28 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+4)]:border-t sm:[&:nth-child(n+3)]:border-t-0 lg:[&:nth-child(n+4)]:border-t-0 px-6"
           >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={`${set}-${l}-${i}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, delay: i * 0.04 }}
-                className="text-xl font-semibold tracking-tight text-muted-foreground/70 transition-colors duration-300 group-hover:text-foreground"
-              >
-                {l}
-              </motion.span>
-            </AnimatePresence>
+            <img
+              src={l.src}
+              alt={l.alt}
+              className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+              loading="lazy"
+            />
           </div>
         ))}
       </div>
