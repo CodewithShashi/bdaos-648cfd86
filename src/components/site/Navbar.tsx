@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
+import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import heroImg from "@/assets/hero-ai.jpg";
 import aboutImg from "@/assets/about.jpg";
 import productsFeaturedImg from "@/assets/products-featured.jpg";
