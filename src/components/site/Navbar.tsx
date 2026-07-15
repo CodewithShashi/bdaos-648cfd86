@@ -240,6 +240,27 @@ export function Navbar() {
               <MobileGroup label="Products" items={productsLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
+              {simpleLinks.map((l) =>
+                l.href.startsWith("#") ? (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={l.href}
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </Link>
+                )
+              )}
               <a
                 href="#business-audit"
                 onClick={() => setOpen(false)}
@@ -269,27 +290,6 @@ export function Navbar() {
                   ))}
                 </div>
               </div>
-              {simpleLinks.map((l) =>
-                l.href.startsWith("#") ? (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-                  >
-                    {l.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={l.href}
-                    to={l.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-                  >
-                    {l.label}
-                  </Link>
-                )
-              )}
               <div className="pt-2">
                 <AnimatedButton href="#cta" className="w-full justify-between">
                   Get started
