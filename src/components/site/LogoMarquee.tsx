@@ -17,9 +17,6 @@ const logos = [
 ];
 
 export function LogoMarquee() {
-  // Duplicate the list so the translateX loop is seamless.
-  const track = [...logos, ...logos];
-
   return (
     <section className="relative w-full bg-background">
       <Container className="pt-20 pb-10">
@@ -36,38 +33,20 @@ export function LogoMarquee() {
         </motion.div>
       </Container>
 
-      <div
-        className="relative w-full overflow-hidden border-t border-b border-border"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-        }}
-      >
-        <motion.div
-          className="flex w-max items-center"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            duration: 30,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-        >
-          {track.map((logo, i) => (
-            <div
-              key={i}
-              className="flex h-28 w-[220px] shrink-0 items-center justify-center px-8"
-            >
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                className="max-h-12 w-auto object-contain"
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </motion.div>
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
+        {logos.map((l, i) => (
+          <div
+            key={i}
+            className="group relative flex h-28 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+4)]:border-t sm:[&:nth-child(n+3)]:border-t-0 lg:[&:nth-child(n+4)]:border-t-0 px-6"
+          >
+            <img
+              src={l.src}
+              alt={l.alt}
+              className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
