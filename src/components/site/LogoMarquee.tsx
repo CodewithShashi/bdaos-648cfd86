@@ -17,6 +17,8 @@ const logos = [
 ];
 
 export function LogoMarquee() {
+  const loop = [...logos, ...logos];
+
   return (
     <section className="relative w-full bg-background">
       <Container className="pt-20 pb-10">
@@ -33,20 +35,25 @@ export function LogoMarquee() {
         </motion.div>
       </Container>
 
-      <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
-        {logos.map((l, i) => (
-          <div
-            key={i}
-            className="group relative flex h-28 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+4)]:border-t sm:[&:nth-child(n+3)]:border-t-0 lg:[&:nth-child(n+4)]:border-t-0 px-6"
-          >
-            <img
-              src={l.src}
-              alt={l.alt}
-              className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-              loading="lazy"
-            />
-          </div>
-        ))}
+      <div className="relative w-full overflow-hidden border-t border-b border-border py-8">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+
+        <div className="flex w-max animate-marquee gap-16 px-8">
+          {loop.map((l, i) => (
+            <div
+              key={i}
+              className="flex h-16 shrink-0 items-center justify-center"
+            >
+              <img
+                src={l.src}
+                alt={l.alt}
+                className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
