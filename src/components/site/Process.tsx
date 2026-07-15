@@ -70,17 +70,15 @@ export function Process() {
             {/* Left */}
             <div className="lg:col-span-5">
               <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
-                OUR PROCESS
+                PRODUCTS BUILT BY BDA
               </span>
 
               <h2 className="mt-6 md:mt-8 font-display text-4xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-foreground">
-                From Friction
-                <br />
-                To Fully Live.
+                We build products when a repeated business problem needs a better system.
               </h2>
 
               <p className="mt-4 md:mt-6 max-w-md text-base md:text-lg text-muted-foreground leading-relaxed">
-                A simple, proven path from your first call to a team that runs on AI — in weeks, not quarters.
+                Our product portfolio shows how we turn real operating problems into practical software. Some products are available to the public. Others are used inside client systems.
               </p>
 
               <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
