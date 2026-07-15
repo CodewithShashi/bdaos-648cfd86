@@ -23,7 +23,7 @@ export function LogoMarquee() {
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % logos.length);
-    }, 400);
+    }, 500);
     return () => clearInterval(timer);
   }, []);
 
