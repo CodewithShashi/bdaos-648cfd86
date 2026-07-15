@@ -191,7 +191,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="md:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
+            className="xl:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
