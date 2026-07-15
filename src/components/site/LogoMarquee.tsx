@@ -57,7 +57,8 @@ export function LogoMarquee() {
 
       <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
         {Array.from({ length: SLOTS }).map((_, slot) => {
-          const logo = logos[(slot + tick) % logos.length];
+          const index = indicesRef.current[slot];
+          const logo = logos[index];
           return (
             <div
               key={slot}
@@ -65,7 +66,7 @@ export function LogoMarquee() {
             >
               <AnimatePresence mode="wait">
                 <motion.img
-                  key={logo.src}
+                  key={`${logo.src}-${index}`}
                   src={logo.src}
                   alt={logo.alt}
                   initial={{ opacity: 0, y: 12 }}
