@@ -98,11 +98,11 @@ export function Navbar() {
         <div
           className="flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300 bg-card shadow-soft"
         >
-          <a href="#" className="flex items-center gap-2">
+          <a href="#" className="flex items-center gap-2 shrink-0">
             <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
               <Sparkles className="h-4 w-4" />
             </span>
-            <span className="text-lg font-semibold tracking-tight">BDA AI</span>
+            <span className="text-lg font-semibold tracking-tight whitespace-nowrap">BDA AI</span>
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
