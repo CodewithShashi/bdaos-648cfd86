@@ -18,21 +18,17 @@ export function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center rounded-full border border-foreground/15 bg-background/60 backdrop-blur px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/80"
           >
-            2 Slots Available This Month
+            BUSINESS OPERATING SYSTEMS
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-8 font-display font-bold text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] leading-[1.05] tracking-[-0.02em] text-foreground sm:whitespace-nowrap"
+            className="mt-8 font-display font-bold text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] leading-[1.05] tracking-[-0.02em] text-foreground"
           >
-            We Build The AI
-            <br />
-            That Runs Your Business.
+            Build a more efficient business with one operating system.
           </motion.h1>
-
-
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -40,7 +36,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mx-auto mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed"
           >
-            Strategy, automations, custom agents, and the support to keep them running, all from one team.
+            BDA Technologies builds custom business operating systems for founder-led service businesses. We connect tasks, dashboards, reports, follow-ups, and team accountability so fewer things get missed and work moves faster.
           </motion.p>
 
           <motion.div
@@ -49,9 +45,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <AnimatedButton href="#cta">Book A Call</AnimatedButton>
-            <AnimatedButton href="#pricing" variant="ghost">
-              Our Pricing
+            <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
+            <AnimatedButton href="#services-showcase" variant="ghost">
+              Explore BDA OS
             </AnimatedButton>
           </motion.div>
         </div>
