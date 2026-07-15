@@ -38,7 +38,6 @@ export function LogoMarquee() {
     return () => clearInterval(id);
   }, []);
 
-
   return (
     <section className="relative w-full bg-background">
       <Container className="pt-20 pb-10">
