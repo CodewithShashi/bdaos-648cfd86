@@ -8,11 +8,12 @@ import heroImg from "@/assets/hero-ai.jpg";
 import aboutImg from "@/assets/about.jpg";
 
 const aboutLinks = [
-  { label: "About BDA AI", href: "#about" },
+  { label: "About BDA Technologies", href: "#about" },
   { label: "Leadership", href: "#about" },
+  { label: "Our Team", href: "#about" },
   { label: "Partners", href: "#testimonials" },
-  { label: "Locations", href: "#cta" },
   { label: "Careers", href: "/careers" },
+  { label: "Media and Recognition", href: "#cta" },
 ];
 
 const aboutFeatured = [
@@ -30,42 +31,39 @@ const aboutFeatured = [
   },
 ];
 
-const servicesLinks = [
-  { label: "AI Strategy", href: "#services-showcase" },
-  { label: "Autonomous Agents", href: "#services-showcase" },
-  { label: "Workflow Automation", href: "#services-showcase" },
-  { label: "Data & Analytics", href: "#services-showcase" },
-  { label: "AI Security", href: "#services-showcase" },
-  { label: "Integrations", href: "#services-showcase" },
+const whatWeDoLinks = [
+  { label: "BDA OS Implementation", href: "#services-showcase" },
+  { label: "Business Audit", href: "#services-showcase" },
+  { label: "AI Training and Team Adoption", href: "#services-showcase" },
 ];
 
-const industriesLinks = [
-  { label: "Banking", href: "#work" },
-  { label: "Capital Markets", href: "#work" },
-  { label: "Healthcare", href: "#work" },
-  { label: "High Tech", href: "#work" },
-  { label: "Retail", href: "#work" },
-  { label: "Manufacturing", href: "#work" },
-  { label: "Insurance", href: "#work" },
-  { label: "Public Sector", href: "#work" },
+const productsLinks = [
+  { label: "Products Overview", href: "#products" },
+  { label: "LinkAssist", href: "#products" },
+  { label: "HireAssist", href: "#products" },
+  { label: "QAAssist", href: "#products" },
+  { label: "TaskAssist", href: "#products" },
+  { label: "Attribution", href: "#products" },
+  { label: "CoachAssist", href: "#products" },
 ];
 
 const insightsLinks = [
-  { label: "Blogs", href: "#insights" },
+  { label: "Articles", href: "#insights" },
   { label: "Case Studies", href: "#work" },
+  { label: "Guides and Playbooks", href: "#insights" },
 ];
 
 const simpleLinks = [
-  { href: "/#cta", label: "Contact" },
+  { href: "#cta", label: "Contact" },
 ];
 
 const regions = [
   { code: "IN", label: "India", flag: "🇮🇳" },
-  { code: "US", label: "USA", flag: "🇺🇸" },
+  { code: "GL", label: "Global", flag: "🌐" },
+  { code: "AE", label: "UAE", flag: "🇦🇪" },
 ];
 
-
-type MenuKey = null | "about" | "whatWeDo" | "insights";
+type MenuKey = null | "about" | "whatWeDo" | "products" | "insights";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -100,54 +98,68 @@ export function Navbar() {
         <div
           className="flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300 bg-card shadow-soft"
         >
-          <a href="#" className="flex items-center gap-2">
+          <a href="#" className="flex items-center gap-2 shrink-0">
             <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
               <Sparkles className="h-4 w-4" />
             </span>
-            <span className="text-lg font-semibold tracking-tight">BDA AI</span>
+            <span className="text-lg font-semibold tracking-tight whitespace-nowrap">BDA AI</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             <Link
               to="/"
               onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
             >
               Home
             </Link>
             <button
-              onMouseEnter={() => setMenu("about")}
-              onFocus={() => setMenu("about")}
-              onClick={() => setMenu(menu === "about" ? null : "about")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
-                menu === "about" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-              }`}
-              aria-expanded={menu === "about"}
-            >
-              Who we are
-              <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform ${menu === "about" ? "rotate-180" : ""}`}
-              />
-            </button>
-            <button
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
               onClick={() => setMenu(menu === "whatWeDo" ? null : "whatWeDo")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
                 menu === "whatWeDo" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-expanded={menu === "whatWeDo"}
             >
-              What we do
+              What We Do
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform ${menu === "whatWeDo" ? "rotate-180" : ""}`}
+              />
+            </button>
+            <button
+              onMouseEnter={() => setMenu("products")}
+              onFocus={() => setMenu("products")}
+              onClick={() => setMenu(menu === "products" ? null : "products")}
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
+                menu === "products" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-expanded={menu === "products"}
+            >
+              Products
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${menu === "products" ? "rotate-180" : ""}`}
+              />
+            </button>
+            <button
+              onMouseEnter={() => setMenu("about")}
+              onFocus={() => setMenu("about")}
+              onClick={() => setMenu(menu === "about" ? null : "about")}
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
+                menu === "about" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-expanded={menu === "about"}
+            >
+              Who We Are
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${menu === "about" ? "rotate-180" : ""}`}
               />
             </button>
             <button
               onMouseEnter={() => setMenu("insights")}
               onFocus={() => setMenu("insights")}
               onClick={() => setMenu(menu === "insights" ? null : "insights")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
                 menu === "insights" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-expanded={menu === "insights"}
@@ -157,27 +169,20 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
             </button>
-            {simpleLinks.map((l) =>
-              l.href.startsWith("#") ? (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onMouseEnter={() => setMenu(null)}
-                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-                >
-                  {l.label}
-                </a>
-              ) : (
-                <Link
-                  key={l.href}
-                  to={l.href}
-                  onMouseEnter={() => setMenu(null)}
-                  className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-                >
-                  {l.label}
-                </Link>
-              )
-            )}
+            <a
+              href="#cta"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
+            >
+              Contact
+            </a>
+            <a
+              href="#business-audit"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
+            >
+              Business Audit Application
+            </a>
           </nav>
 
           <div className="hidden md:flex items-center gap-2">
@@ -186,7 +191,7 @@ export function Navbar() {
           </div>
 
           <button
-            className="md:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
+            className="xl:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -204,11 +209,12 @@ export function Navbar() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: [0.65, 0, 0.35, 1] }}
               onMouseEnter={() => setMenu(menu)}
-              className="hidden md:block mt-3"
+              className="hidden xl:block mt-3"
             >
               <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
                 {menu === "about" && <AboutMega />}
                 {menu === "whatWeDo" && <WhatWeDoMega />}
+                {menu === "products" && <ProductsMega />}
                 {menu === "insights" && <InsightsMega />}
               </div>
             </motion.div>
@@ -230,32 +236,10 @@ export function Navbar() {
               >
                 Home
               </Link>
-              <MobileGroup label="Who we are" items={aboutLinks} onNavigate={() => setOpen(false)} />
-              <MobileGroup label="Services" items={servicesLinks} onNavigate={() => setOpen(false)} />
-              <MobileGroup label="Industries" items={industriesLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="What We Do" items={whatWeDoLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Products" items={productsLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
-              <div className="px-4 py-3 border-b border-border/60">
-                <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
-                  <Globe className="h-4 w-4" />
-                  Region
-                </p>
-                <div className="flex gap-2">
-                  {regions.map((r) => (
-                    <button
-                      key={r.code}
-                      onClick={() => setRegion(r)}
-                      className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition ${
-                        r.code === region.code
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-secondary text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      <span>{r.flag}</span>
-                      <span>{r.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
               {simpleLinks.map((l) =>
                 l.href.startsWith("#") ? (
                   <a
@@ -277,6 +261,35 @@ export function Navbar() {
                   </Link>
                 )
               )}
+              <a
+                href="#business-audit"
+                onClick={() => setOpen(false)}
+                className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+              >
+                Business Audit Application
+              </a>
+              <div className="px-4 py-3 border-b border-border/60">
+                <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
+                  <Globe className="h-4 w-4" />
+                  Region
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {regions.map((r) => (
+                    <button
+                      key={r.code}
+                      onClick={() => setRegion(r)}
+                      className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition ${
+                        r.code === region.code
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <span>{r.flag}</span>
+                      <span>{r.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
               <div className="pt-2">
                 <AnimatedButton href="#cta" className="w-full justify-between">
                   Get started
@@ -353,13 +366,6 @@ function RegionSelector({
 }
 
 function WhatWeDoMega() {
-  const categories = [
-    { key: "services", label: "Services", items: servicesLinks },
-    { key: "industries", label: "Industries", items: industriesLinks },
-  ] as const;
-  const [activeKey, setActiveKey] = useState<(typeof categories)[number]["key"]>("services");
-  const active = categories.find((c) => c.key === activeKey)!;
-
   return (
     <div className="grid grid-cols-12 gap-0">
       <div className="col-span-5 p-8 border-r border-border/60">
@@ -367,52 +373,73 @@ function WhatWeDoMega() {
           Intelligence, delivered.
         </p>
         <div className="flex flex-col">
-          {categories.map((c) => {
-            const isActive = c.key === activeKey;
-            return (
-              <button
-                key={c.key}
-                onMouseEnter={() => setActiveKey(c.key)}
-                onFocus={() => setActiveKey(c.key)}
-                className={`group flex items-center justify-between rounded-2xl px-4 py-4 text-left transition-colors ${
-                  isActive ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <span className="text-base font-medium">{c.label}</span>
-                <ChevronRight
-                  className={`h-4 w-4 transition-transform ${isActive ? "translate-x-1 text-primary" : ""}`}
-                />
-              </button>
-            );
-          })}
+          {whatWeDoLinks.map((l, i) => (
+            <motion.a
+              key={l.label}
+              href={l.href}
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.25, delay: i * 0.03 }}
+              className="group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors"
+            >
+              <span>{l.label}</span>
+              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </motion.a>
+          ))}
         </div>
       </div>
 
       <div className="col-span-7 p-8 bg-secondary/40">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active.key}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-2 gap-x-8 gap-y-1"
-          >
-            {active.items.map((l, i) => (
-              <motion.a
-                key={l.label}
-                href={l.href}
-                initial={{ opacity: 0, x: -4 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.2, delay: i * 0.02 }}
-                className="group flex items-center justify-between border-b border-border/60 py-3 text-sm text-foreground hover:text-primary transition-colors"
-              >
-                <span>{l.label}</span>
-                <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-              </motion.a>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        <div className="max-w-md">
+          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
+            BDA OS Implementation
+          </p>
+          <h4 className="text-xl font-semibold text-foreground leading-snug">
+            The AI operating system for modern teams
+          </h4>
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+            We deploy agents, automate workflows, and train your teams to run AI at scale — with enterprise-grade security and governance.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProductsMega() {
+  return (
+    <div className="grid grid-cols-12 gap-0">
+      <div className="col-span-8 p-8 border-r border-border/60">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
+          AI Assistants
+        </p>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-1">
+          {productsLinks.map((l, i) => (
+            <motion.a
+              key={l.label}
+              href={l.href}
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.25, delay: i * 0.03 }}
+              className="group flex items-center justify-between border-b border-border/60 py-3.5 text-sm text-foreground hover:text-primary transition-colors"
+            >
+              <span>{l.label}</span>
+              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </motion.a>
+          ))}
+        </div>
+      </div>
+
+      <div className="col-span-4 p-8 bg-secondary/40">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
+          Featured
+        </p>
+        <h4 className="text-lg font-semibold text-foreground leading-snug">
+          LinkAssist
+        </h4>
+        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+          AI-powered link building and digital PR assistant.
+        </p>
       </div>
     </div>
   );
