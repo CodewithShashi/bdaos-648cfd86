@@ -52,14 +52,14 @@ export function Services() {
       <Container className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-8">
-            <p className="text-sm font-medium text-muted-foreground mb-4">What we offer</p>
+            <p className="text-sm font-medium text-muted-foreground mb-4">WHAT WE DO</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-foreground leading-[1.05]">
-              Explore our services
+              Advice is useful. Implementation creates change.
             </h2>
 
           </div>
           <p className="lg:col-span-4 text-muted-foreground leading-relaxed">
-            Unlock the power of data, design, and engineering to fuel innovation and drive meaningful outcomes for your business.
+            BDA Technologies works from diagnosis to launch, training, and adoption.
           </p>
         </div>
 
