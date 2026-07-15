@@ -170,6 +170,13 @@ export function Navbar() {
               />
             </button>
             <a
+              href="#cta"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+            >
+              Contact
+            </a>
+            <a
               href="#business-audit"
               onMouseEnter={() => setMenu(null)}
               className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
