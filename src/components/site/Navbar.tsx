@@ -209,7 +209,7 @@ export function Navbar() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: [0.65, 0, 0.35, 1] }}
               onMouseEnter={() => setMenu(menu)}
-              className="hidden lg:block mt-3"
+              className="hidden xl:block mt-3"
             >
               <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
                 {menu === "about" && <AboutMega />}
