@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, GripVertical, Zap, Package, Circle, Sparkles, Loader2 } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
+import { AnimatedButton } from "./AnimatedButton";
 
 const rows = [
   { title: "New lead captured", meta: "TRIGGER · FORM + EMAIL", done: true },
@@ -167,11 +168,17 @@ export function ServiceShowcase() {
       className="relative scroll-mt-32 pt-32 pb-24 md:pt-40 md:pb-32"
     >
       <Container>
-        <SectionHeading
-          eyebrow="WHAT WE DO"
-          title="Advice is useful. Implementation creates change."
-          description="BDA Technologies works from diagnosis to launch, training, and adoption."
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <SectionHeading
+            align="left"
+            eyebrow="WHAT WE DO"
+            title="Advice is useful. Implementation creates change."
+            description="BDA Technologies works from diagnosis to launch, training, and adoption."
+          />
+          <div className="shrink-0">
+            <AnimatedButton href="/services">View All Services</AnimatedButton>
+          </div>
+        </div>
 
         <motion.div
           initial="hidden"
