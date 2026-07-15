@@ -168,9 +168,9 @@ export function ServiceShowcase() {
     >
       <Container>
         <SectionHeading
-          eyebrow="OUR SERVICES"
-          title="Everything you need to put AI to work."
-          description="Strategy, automation, custom builds, and the team to run them, all in one place."
+          eyebrow="WHAT WE DO"
+          title="Advice is useful. Implementation creates change."
+          description="BDA Technologies works from diagnosis to launch, training, and adoption."
         />
 
         <motion.div
