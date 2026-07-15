@@ -82,7 +82,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-border pt-8">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} BDA AI, Inc. All rights reserved.
+            © {new Date().getFullYear()} BDA Technologies. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground">Privacy</a>
