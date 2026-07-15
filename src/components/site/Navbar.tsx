@@ -176,18 +176,11 @@ export function Navbar() {
             >
               Contact
             </a>
-            <a
-              href="#business-audit"
-              onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
-            >
-              Business Audit Application
-            </a>
           </nav>
 
           <div className="hidden md:flex items-center gap-2">
             <RegionSelector region={region} setRegion={setRegion} />
-            <AnimatedButton href="#cta">Get started</AnimatedButton>
+            <AnimatedButton href="#business-audit">Business Audit Application</AnimatedButton>
           </div>
 
           <button
@@ -261,13 +254,6 @@ export function Navbar() {
                   </Link>
                 )
               )}
-              <a
-                href="#business-audit"
-                onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-              >
-                Business Audit Application
-              </a>
               <div className="px-4 py-3 border-b border-border/60">
                 <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
                   <Globe className="h-4 w-4" />
@@ -291,8 +277,8 @@ export function Navbar() {
                 </div>
               </div>
               <div className="pt-2">
-                <AnimatedButton href="#cta" className="w-full justify-between">
-                  Get started
+                <AnimatedButton href="#business-audit" className="w-full justify-between">
+                  Business Audit Application
                 </AnimatedButton>
               </div>
             </div>
@@ -330,8 +316,7 @@ function RegionSelector({
         aria-label="Select region"
       >
         <Globe className="h-4 w-4" />
-        <span className="hidden lg:inline">{region.label}</span>
-        <span className="lg:hidden">{region.code}</span>
+        <span>Region</span>
         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       <AnimatePresence>
