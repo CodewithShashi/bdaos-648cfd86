@@ -62,9 +62,9 @@ export function Portfolio() {
     <section id="work" className="relative py-28 md:py-36 bg-secondary/50">
       <Container>
         <SectionHeading
-          eyebrow="Selected work"
-          title="Products we're proud of."
-          description="A glimpse into the intelligent products we've shipped alongside our partners."
+          eyebrow="PRODUCTS BUILT BY BDA"
+          title="We build products when a repeated business problem needs a better system."
+          description="Our product portfolio shows how we turn real operating problems into practical software. Some products are available to the public. Others are used inside client systems."
         />
 
         <motion.div
