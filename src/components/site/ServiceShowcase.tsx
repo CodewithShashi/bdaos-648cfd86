@@ -142,20 +142,20 @@ function ConsultingVisual() {
 const services = [
   {
     num: "01",
-    title: "Workflow Automations",
-    desc: "We connect your tools and let the repetitive work run itself.",
+    title: "BDA OS Implementation",
+    desc: "Design and build a company-wide operating system.",
     visual: <WorkflowVisual />,
   },
   {
     num: "02",
-    title: "Data & Integrations",
-    desc: "We get your data AI-ready and wired into the tools you already use.",
+    title: "Business Audit",
+    desc: "Find process gaps, reporting issues, and founder dependency.",
     visual: <IntegrationsVisual />,
   },
   {
     num: "03",
-    title: "Business Consulting",
-    desc: "We find where AI creates real value, then map the plan to capture it.",
+    title: "AI Training and Team Adoption",
+    desc: "Help teams use AI and new systems in daily work.",
     visual: <ConsultingVisual />,
   },
 ];
