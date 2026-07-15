@@ -169,13 +169,13 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
             </button>
-            <Link
-              to="/business-audit"
+            <a
+              href="#business-audit"
               onMouseEnter={() => setMenu(null)}
               className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
             >
               Business Audit Application
-            </Link>
+            </a>
           </nav>
 
           <div className="hidden md:flex items-center gap-2">
