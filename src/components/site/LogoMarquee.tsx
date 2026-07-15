@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "./Container";
 import thriveGlobal from "@/assets/thrive-global.png.asset.json";
 import nbt from "@/assets/nbt.png.asset.json";
@@ -16,26 +17,16 @@ const logos = [
   { src: dailyhunt.url, alt: "Dailyhunt" },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.5,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.9, y: 10 },
-  visible: {
-    opacity: 0.7,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as const },
-  },
-};
-
 export function LogoMarquee() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % logos.length);
+    }, 400);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative w-full bg-background">
       <Container className="pt-20 pb-10">
@@ -52,28 +43,31 @@ export function LogoMarquee() {
         </motion.div>
       </Container>
 
-      <motion.div
-        className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-40px" }}
-      >
-        {logos.map((l, i) => (
-          <motion.div
-            key={i}
-            variants={itemVariants}
-            className="group relative flex h-28 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+4)]:border-t sm:[&:nth-child(n+3)]:border-t-0 lg:[&:nth-child(n+4)]:border-t-0 lg:[&:nth-child(n+3)]:border-t-0 px-6"
-          >
-            <img
-              src={l.src}
-              alt={l.alt}
-              className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-              loading="lazy"
-            />
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
+        {[0, 1, 2, 3, 4, 5].map((slot) => {
+          const logo = logos[(index + slot) % logos.length];
+          return (
+            <div
+              key={slot}
+              className="group relative flex h-28 items-center justify-center border-r border-border last:border-r-0 [&:nth-child(n+3)]:border-t sm:[&:nth-child(n+4)]:border-t sm:[&:nth-child(n+3)]:border-t-0 lg:[&:nth-child(n+4)]:border-t-0 lg:[&:nth-child(n+3)]:border-t-0 px-6"
+            >
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={logo.src + slot}
+                  src={logo.src}
+                  alt={logo.alt}
+                  initial={{ opacity: 0, scale: 0.92, y: 6 }}
+                  animate={{ opacity: 0.7, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.92, y: -6 }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  className="max-h-12 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                  loading="lazy"
+                />
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
