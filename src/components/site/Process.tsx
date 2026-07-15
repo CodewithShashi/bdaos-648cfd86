@@ -73,7 +73,7 @@ export function Process() {
                 PRODUCTS BUILT BY BDA
               </span>
 
-              <h2 className="mt-6 md:mt-8 font-display text-4xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-foreground">
+              <h2 className="mt-6 md:mt-8 font-display text-5xl leading-[1.02] tracking-tight text-foreground">
                 We build products when a repeated business problem needs a better system.
               </h2>
 
