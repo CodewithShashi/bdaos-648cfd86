@@ -22,10 +22,11 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
             <a href="#" className="flex items-center gap-2">
-              <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
-                <Sparkles className="h-4 w-4" />
-              </span>
-              <span className="text-lg font-semibold tracking-tight">BDA AI</span>
+              <img
+                src={logoAsset.url}
+                alt="BDA Technologies"
+                className="h-8 w-auto object-contain"
+              />
             </a>
             <p className="mt-5 max-w-sm text-muted-foreground leading-relaxed">
               The AI operating system for modern teams. Ship intelligent products with
