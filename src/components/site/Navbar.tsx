@@ -6,6 +6,7 @@ import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import heroImg from "@/assets/hero-ai.jpg";
 import aboutImg from "@/assets/about.jpg";
+import productsFeaturedImg from "@/assets/products-featured.jpg";
 
 const aboutLinks = [
   { label: "About BDA Technologies", href: "#about" },
