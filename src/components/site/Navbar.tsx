@@ -420,12 +420,22 @@ function ProductsMega() {
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
           Featured
         </p>
-        <h4 className="text-lg font-semibold text-foreground leading-snug">
-          LinkAssist
-        </h4>
-        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-          AI-powered link building and digital PR assistant.
-        </p>
+        <a href="#products" className="group block">
+          <div className="relative overflow-hidden rounded-2xl aspect-[4/5] bg-muted">
+            <img
+              src={productsFeaturedImg}
+              alt="LinkAssist featured"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4">
+              <h4 className="text-lg font-semibold text-white leading-snug">LinkAssist</h4>
+              <p className="mt-1 text-sm text-white/85 leading-relaxed">
+                AI-powered link building and digital PR assistant.
+              </p>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   );
