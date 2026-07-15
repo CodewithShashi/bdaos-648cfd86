@@ -105,11 +105,11 @@ export function Navbar() {
             <span className="text-lg font-semibold tracking-tight whitespace-nowrap">BDA AI</span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             <Link
               to="/"
               onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
             >
               Home
             </Link>
@@ -117,7 +117,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
               onClick={() => setMenu(menu === "whatWeDo" ? null : "whatWeDo")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
                 menu === "whatWeDo" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-expanded={menu === "whatWeDo"}
@@ -131,7 +131,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu("products")}
               onFocus={() => setMenu("products")}
               onClick={() => setMenu(menu === "products" ? null : "products")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
                 menu === "products" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-expanded={menu === "products"}
@@ -145,7 +145,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu("about")}
               onFocus={() => setMenu("about")}
               onClick={() => setMenu(menu === "about" ? null : "about")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
                 menu === "about" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-expanded={menu === "about"}
@@ -159,7 +159,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu("insights")}
               onFocus={() => setMenu("insights")}
               onClick={() => setMenu(menu === "insights" ? null : "insights")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm transition ${
+              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
                 menu === "insights" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-expanded={menu === "insights"}
@@ -172,14 +172,14 @@ export function Navbar() {
             <a
               href="#cta"
               onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
             >
               Contact
             </a>
             <a
               href="#business-audit"
               onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
             >
               Business Audit Application
             </a>
