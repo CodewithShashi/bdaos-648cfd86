@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Sparkles, Twitter, Github, Linkedin, Instagram } from "lucide-react";
+import { Twitter, Github, Linkedin, Instagram } from "lucide-react";
 import { Container } from "./Container";
+import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 
 const cols = [
   { title: "Product", links: ["Platform", "Agents", "Integrations", "Pricing", "Changelog"] },
@@ -21,10 +22,11 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
             <a href="#" className="flex items-center gap-2">
-              <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
-                <Sparkles className="h-4 w-4" />
-              </span>
-              <span className="text-lg font-semibold tracking-tight">BDA AI</span>
+              <img
+                src={logoAsset.url}
+                alt="BDA Technologies"
+                className="h-8 w-auto object-contain"
+              />
             </a>
             <p className="mt-5 max-w-sm text-muted-foreground leading-relaxed">
               The AI operating system for modern teams. Ship intelligent products with
@@ -80,7 +82,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-border pt-8">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} BDA AI, Inc. All rights reserved.
+            © {new Date().getFullYear()} BDA Technologies. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground">Privacy</a>
