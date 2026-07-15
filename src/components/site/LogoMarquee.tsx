@@ -38,7 +38,7 @@ export function LogoMarquee() {
           transition={{ duration: 0.6 }}
           className="flex justify-center"
         >
-          <div className="inline-flex items-center rounded-full border border-foreground/15 bg-secondary/60 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/80">
+          <div className="inline-flex items-center rounded-full border border-foreground/15 bg-secondary/60 px-4 py-2 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-foreground/80">
             TRUSTED BY TEAMS THAT VALUE BETTER SYSTEMS
           </div>
         </motion.div>
