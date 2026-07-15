@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, GripVertical, Zap, Package, Circle, Sparkles, Loader2 } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
+import { AnimatedButton } from "./AnimatedButton";
 
 const rows = [
   { title: "New lead captured", meta: "TRIGGER · FORM + EMAIL", done: true },
