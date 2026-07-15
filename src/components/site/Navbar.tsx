@@ -233,13 +233,13 @@ export function Navbar() {
               <MobileGroup label="Products" items={productsLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
-              <Link
-                to="/business-audit"
+              <a
+                href="#business-audit"
                 onClick={() => setOpen(false)}
                 className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
               >
                 Business Audit Application
-              </Link>
+              </a>
               <div className="px-4 py-3 border-b border-border/60">
                 <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
                   <Globe className="h-4 w-4" />
