@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
+import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import heroImg from "@/assets/hero-ai.jpg";
 import aboutImg from "@/assets/about.jpg";
 import productsFeaturedImg from "@/assets/products-featured.jpg";
@@ -100,10 +101,11 @@ export function Navbar() {
           className="flex items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300 bg-card shadow-soft"
         >
           <a href="#" className="flex items-center gap-2 shrink-0">
-            <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground shadow-glow">
-              <Sparkles className="h-4 w-4" />
-            </span>
-            <span className="text-lg font-semibold tracking-tight whitespace-nowrap">BDA AI</span>
+            <img
+              src={logoAsset.url}
+              alt="BDA Technologies"
+              className="h-8 w-auto object-contain"
+            />
           </a>
 
           <nav className="hidden xl:flex items-center gap-1">
