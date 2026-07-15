@@ -27,7 +27,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-8 font-display font-bold text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] leading-[1.05] tracking-[-0.02em] text-foreground"
           >
-            Build a more efficient business with one operating system.
+            Build a more efficient business with
+            <br />
+            one operating system.
           </motion.h1>
 
           <motion.p
