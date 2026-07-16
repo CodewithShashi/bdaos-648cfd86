@@ -401,7 +401,7 @@ function ProductsMega() {
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
           AI Assistants
         </p>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-1">
+        <div className="grid grid-cols-7 gap-x-4">
           {productsLinks.map((l, i) => (
             <motion.a
               key={l.label}
@@ -412,7 +412,7 @@ function ProductsMega() {
               className="group flex items-center justify-between border-b border-border/60 py-3.5 text-sm text-foreground hover:text-primary transition-colors"
             >
               <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0" />
             </motion.a>
           ))}
         </div>
