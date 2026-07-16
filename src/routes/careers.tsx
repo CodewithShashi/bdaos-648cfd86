@@ -92,10 +92,10 @@ const values = [
 ];
 
 const team = [
-  { name: "Lena Hoffmann", role: "Automation Architect", img: aboutImg, social: "twitter" as const, href: "https://twitter.com" },
-  { name: "Marcus Elliot", role: "AI Strategy Lead", img: p1, social: "twitter" as const, href: "https://twitter.com" },
-  { name: "Sara Vance", role: "Client Success Lead", img: p2, social: "linkedin" as const, href: "https://linkedin.com" },
-  { name: "James Okafor", role: "Implementation Engineer", img: p3, social: "linkedin" as const, href: "https://linkedin.com" },
+  { name: "Lena Hoffmann", role: "Automation Architect", img: aboutImg, href: "https://linkedin.com" },
+  { name: "Marcus Elliot", role: "AI Strategy Lead", img: p1, href: "https://linkedin.com" },
+  { name: "Sara Vance", role: "Client Success Lead", img: p2, href: "https://linkedin.com" },
+  { name: "James Okafor", role: "Implementation Engineer", img: p3, href: "https://linkedin.com" },
 ];
 
 const openings = [
