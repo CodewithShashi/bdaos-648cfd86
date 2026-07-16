@@ -317,46 +317,43 @@ function CareersPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {team.map((person, i) => {
-              const Icon = person.social === "linkedin" ? Linkedin : Twitter;
-              return (
-                <motion.div
-                  key={person.name}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.55, delay: i * 0.08 }}
-                  className="group rounded-3xl border border-dashed border-border bg-secondary/60 p-2 transition-colors hover:bg-secondary"
-                >
-                  <div className="aspect-[4/5] overflow-hidden rounded-2xl">
-                    <img
-                      src={person.img}
-                      alt={person.name}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between gap-3 px-3 py-4">
-                    <div className="min-w-0">
-                      <div className="font-display text-xl tracking-tight text-foreground truncate">
-                        {person.name}
-                      </div>
-                      <div className="mt-1 text-[11px] tracking-[0.14em] uppercase text-muted-foreground">
-                        {person.role}
-                      </div>
+            {team.map((person, i) => (
+              <motion.div
+                key={person.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.55, delay: i * 0.08 }}
+                className="group relative overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all hover:shadow-elevated"
+              >
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img
+                    src={person.img}
+                    alt={person.name}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-2xl border border-border/60 bg-background/85 backdrop-blur-md px-4 py-3">
+                  <div className="min-w-0">
+                    <div className="font-display text-lg tracking-tight text-foreground truncate">
+                      {person.name}
                     </div>
-                    <a
-                      href={person.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${person.name} on ${person.social}`}
-                      className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border bg-background text-foreground transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
-                    >
-                      <Icon className="h-4 w-4" strokeWidth={2} />
-                    </a>
+                    <div className="mt-1 text-[10px] tracking-[0.18em] uppercase text-muted-foreground truncate">
+                      {person.role}
+                    </div>
                   </div>
-                </motion.div>
-              );
-            })}
+                  <a
+                    href={person.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${person.name} on LinkedIn`}
+                    className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-border bg-secondary text-foreground transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
+                  >
+                    <Linkedin className="h-4 w-4" strokeWidth={2} />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </Container>
       </section>
