@@ -97,13 +97,8 @@ export function Navbar() {
       onMouseLeave={() => setMenu(null)}
     >
       <Container>
-        <div
-          className="flex items-center justify-between px-8 py-2.5 transition-all duration-300 bg-card shadow-soft"
-          style={{
-            clipPath:
-              "polygon(24px 0, calc(100% - 24px) 0, 100% 24px, 100% calc(100% - 24px), calc(100% - 24px) 100%, 24px 100%, 0 calc(100% - 24px), 0 24px)",
-          }}
-        >
+        <div className="flex items-center justify-between px-8 py-2.5 rounded-full transition-all duration-300 bg-card shadow-soft">
+          
           <a href="#" className="flex items-center gap-2 shrink-0">
             <img
               src={logoAsset.url}
