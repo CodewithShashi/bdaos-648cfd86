@@ -401,7 +401,7 @@ function ProductsMega() {
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
           AI Assistants
         </p>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-1">
+        <div className="flex flex-col">
           {productsLinks.map((l, i) => (
             <motion.a
               key={l.label}
