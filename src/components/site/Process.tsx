@@ -1,168 +1,100 @@
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 
-const steps = [
+const products = [
   {
-    weeks: "WEEKS 1–2",
-    num: "01",
-    title: "Find the friction",
-    desc: "We map your workflows and pinpoint where your team loses time — and where AI will pay off.",
+    title: "LinkAssist",
+    desc: "LinkedIn content and relationship workflow",
   },
   {
-    weeks: "WEEKS 3–4",
-    num: "02",
-    title: "Shape the plan",
-    desc: "We rank the opportunities by ROI and turn the strongest into a clear, sequenced plan.",
+    title: "HireAssist",
+    desc: "Hiring workflow and candidate management",
   },
   {
-    weeks: "WEEKS 5–6",
-    num: "03",
-    title: "Build & integrate",
-    desc: "We build the agents and automations, wire them into your stack, and validate every step.",
+    title: "QAAssist",
+    desc: "Quality assurance and release tracking",
   },
   {
-    weeks: "WEEKS 7+",
-    num: "04",
-    title: "Launch & evolve",
-    desc: "We roll it out to your team, monitor performance, and keep sharpening the system.",
+    title: "TaskAssist",
+    desc: "Task ownership, escalation, and reporting",
+  },
+  {
+    title: "Attribution",
+    desc: "Marketing-to-business outcome tracking",
+  },
+  {
+    title: "CoachAssist",
+    desc: "Event and delivery operations for training businesses",
   },
 ];
 
-function Tick({ active }: { active: boolean }) {
-  return (
-    <div className="flex items-center gap-[3px]">
-      {Array.from({ length: 4 }).map((_, i) => (
-        <span
-          key={i}
-          className={`h-3 w-[2px] rounded-full ${active ? "bg-primary" : "bg-primary/60"}`}
-        />
-      ))}
-    </div>
-  );
-}
-
 export function Process() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const activeIndexMotion = useTransform(
-    scrollYProgress,
-    (v) => Math.min(steps.length - 1, Math.floor(v * (steps.length - 1) + 0.15))
-  );
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  useMotionValueEvent(activeIndexMotion, "change", setActiveIndex);
-
   return (
-    <section
-      ref={containerRef}
-      id="process"
-      className="relative min-h-[150vh] md:min-h-[200vh] bg-secondary/40"
-    >
-      <div className="sticky top-0 h-auto min-h-screen md:h-screen py-20 md:py-36">
-        <Container className="h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start h-full">
-            {/* Left */}
-            <div className="lg:col-span-5">
-              <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
-                PRODUCTS BUILT BY BDA
-              </span>
+    <section id="products" className="relative py-28 md:py-36 bg-secondary/40">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+          {/* Left */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28">
+            <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
+              PRODUCTS BUILT BY BDA
+            </span>
 
-              <h2 className="mt-6 md:mt-8 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight text-foreground">
-                We build products when a repeated business problem needs a better system.
-              </h2>
+            <h2 className="mt-6 md:mt-8 font-display text-4xl md:text-5xl leading-[1.02] tracking-tight text-foreground">
+              We build products when a repeated business problem needs a better system.
+            </h2>
 
-              <p className="mt-4 md:mt-6 max-w-md text-base md:text-lg text-muted-foreground leading-relaxed">
-                Our product portfolio shows how we turn real operating problems into practical software. Some products are available to the public. Others are used inside client systems.
-              </p>
+            <p className="mt-4 md:mt-6 max-w-md text-base md:text-lg text-muted-foreground leading-relaxed">
+              Our product portfolio shows how we turn real operating problems into practical software. Some products are available to the public. Others are used inside client systems.
+            </p>
 
-              <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
-                <AnimatedButton href="#contact">Book A Call</AnimatedButton>
-                <AnimatedButton href="#pricing" variant="ghost">
-                  Our Pricing
-                </AnimatedButton>
-              </div>
-            </div>
-
-            {/* Right stacked cards */}
-            <div className="lg:col-span-7 h-full flex flex-col">
-              {/* Week tabs */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {steps.map((s, i) => {
-                  const isActive = i === activeIndex;
-                  return (
-                    <div
-                      key={s.num}
-                      className={`flex items-center justify-between rounded-2xl px-4 py-3.5 text-xs font-semibold tracking-wider transition-colors duration-300 border ${
-                        isActive
-                          ? "bg-primary text-primary-foreground border-transparent"
-                          : "bg-background text-foreground border-border"
-                      }`}
-                    >
-                      <span>{s.weeks}</span>
-                      <Tick active={isActive} />
-                    </div>
-                  );
-                })}
-              </div>
-
-            {/* Card stack */}
-              <div className="relative mt-4 min-h-[280px] md:min-h-[360px] lg:min-h-[420px]">
-                {steps.map((s, i) => {
-                  const isVisible = i <= activeIndex;
-                  const isActive = i === activeIndex;
-                  return (
-                    <motion.div
-                      key={s.num}
-                      initial={{ y: 60, opacity: 0, scale: 0.96 }}
-                      animate={
-                        isVisible
-                          ? { y: 0, opacity: 1, scale: 1 }
-                          : { y: 60, opacity: 0, scale: 0.96 }
-                      }
-                      transition={{ duration: 0.5, ease: [0.65, 0, 0.35, 1] }}
-                      className={`absolute inset-0 rounded-3xl p-6 md:p-8 lg:p-10 ${
-                        isActive
-                          ? "bg-primary shadow-glow"
-                          : "bg-card border border-border shadow-soft"
-                      }`}
-                      style={{ zIndex: i }}
-                    >
-                      <p
-                        className={`font-display text-2xl md:text-3xl ${
-                          isActive ? "text-background/80" : "text-foreground/80"
-                        }`}
-                      >
-                        {s.num}
-                      </p>
-                      <h3
-                        className={`mt-4 font-display text-3xl md:text-4xl tracking-tight leading-tight ${
-                          isActive ? "text-background" : "text-foreground"
-                        }`}
-                      >
-                        {s.title}
-                      </h3>
-                      <p
-                        className={`mt-5 max-w-xl text-base md:text-lg leading-relaxed ${
-                          isActive ? "text-background/70" : "text-muted-foreground"
-                        }`}
-                      >
-                        {s.desc}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
+            <div className="mt-8 md:mt-10">
+              <AnimatedButton href="#products">Explore Our Products</AnimatedButton>
             </div>
           </div>
-        </Container>
-      </div>
+
+          {/* Right product cards */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
+              {products.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                  }}
+                  className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-shadow duration-300 hover:shadow-elevated"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-display text-xl md:text-2xl tracking-tight text-foreground">
+                        {p.title}
+                      </h3>
+                      <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                        {p.desc}
+                      </p>
+                    </div>
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-secondary text-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </div>
+                  <span className="absolute -bottom-4 -right-4 font-display text-7xl text-foreground/[0.03] transition-colors duration-300 group-hover:text-primary/10">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </Container>
     </section>
   );
 }
+
