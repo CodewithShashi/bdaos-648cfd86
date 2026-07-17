@@ -3,45 +3,32 @@ import { useRef, useState } from "react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 
-const products = [
+const steps = [
   {
-    label: "LinkAssist",
+    weeks: "WEEKS 1–2",
     num: "01",
-    title: "LinkAssist",
-    desc: "LinkedIn content and relationship workflow.",
+    title: "Find the friction",
+    desc: "We map your workflows and pinpoint where your team loses time — and where AI will pay off.",
   },
   {
-    label: "HireAssist",
+    weeks: "WEEKS 3–4",
     num: "02",
-    title: "HireAssist",
-    desc: "Hiring workflow and candidate management.",
+    title: "Shape the plan",
+    desc: "We rank the opportunities by ROI and turn the strongest into a clear, sequenced plan.",
   },
   {
-    label: "QAAssist",
+    weeks: "WEEKS 5–6",
     num: "03",
-    title: "QAAssist",
-    desc: "Quality assurance and release tracking.",
+    title: "Build & integrate",
+    desc: "We build the agents and automations, wire them into your stack, and validate every step.",
   },
   {
-    label: "TaskAssist",
+    weeks: "WEEKS 7+",
     num: "04",
-    title: "TaskAssist",
-    desc: "Task ownership, escalation, and reporting.",
-  },
-  {
-    label: "Attribution",
-    num: "05",
-    title: "Attribution",
-    desc: "Marketing-to-business outcome tracking.",
-  },
-  {
-    label: "CoachAssist",
-    num: "06",
-    title: "CoachAssist",
-    desc: "Event and delivery operations for training businesses.",
+    title: "Launch & evolve",
+    desc: "We roll it out to your team, monitor performance, and keep sharpening the system.",
   },
 ];
-
 
 function Tick({ active }: { active: boolean }) {
   return (
