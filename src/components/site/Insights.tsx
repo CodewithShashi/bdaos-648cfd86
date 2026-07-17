@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
+import { AnimatedButton } from "./AnimatedButton";
 import img1 from "@/assets/project-1.jpg";
 import img2 from "@/assets/hero-ai.jpg";
 import img3 from "@/assets/about.jpg";
