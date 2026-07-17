@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
+import { AnimatedButton } from "./AnimatedButton";
 import img1 from "@/assets/project-1.jpg";
 import img2 from "@/assets/hero-ai.jpg";
 import img3 from "@/assets/about.jpg";
@@ -39,7 +40,7 @@ export function Insights() {
             className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-            Insights
+            REAL SYSTEMS. REAL BUSINESS PROBLEMS.
           </motion.span>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
@@ -50,7 +51,7 @@ export function Insights() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-8 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-foreground"
             >
-              Guides And Playbooks.
+              See how we improve visibility, execution, and control.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -59,9 +60,18 @@ export function Insights() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-4 text-base text-muted-foreground leading-relaxed"
             >
-              Everything you need to know about building, managing, and scaling intelligent AI workflows.
+              Each case study should show the problem, the system built, and the change created.
             </motion.p>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <AnimatedButton href="#insights">View Case Studies</AnimatedButton>
+          </motion.div>
         </div>
 
         <motion.div
