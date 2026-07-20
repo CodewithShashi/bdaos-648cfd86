@@ -10,9 +10,9 @@ import aboutImg from "@/assets/about.jpg";
 import productsFeaturedImg from "@/assets/products-featured.jpg";
 
 const aboutLinks = [
-  { label: "About BDA Technologies", href: "#about" },
-  { label: "Leadership", href: "#about" },
-  { label: "Our Team", href: "#about" },
+  { label: "About BDA Technologies", href: "/about" },
+  { label: "Leadership", href: "/about" },
+  { label: "Our Team", href: "/about" },
   { label: "Partners", href: "#testimonials" },
   { label: "Careers", href: "/careers" },
   { label: "Media and Recognition", href: "#cta" },
