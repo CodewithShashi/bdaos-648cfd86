@@ -1,12 +1,40 @@
 import { motion } from "framer-motion";
-import { Twitter, Github, Linkedin, Instagram } from "lucide-react";
+import { Linkedin, Instagram, Youtube, Twitter } from "lucide-react";
 import { Container } from "./Container";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 
-const cols = [
-  { title: "Product", links: ["Platform", "Agents", "Integrations", "Pricing", "Changelog"] },
-  { title: "Company", links: ["About", "Careers", "Press", "Contact"] },
-  { title: "Resources", links: ["Docs", "Guides", "Blog", "Community"] },
+const linkGroups = [
+  {
+    title: "Company",
+    links: ["About", "Leadership", "Team", "Partners", "Careers", "Contact"],
+  },
+  {
+    title: "Services",
+    links: ["BDA OS", "Business Audit", "AI Training"],
+  },
+  {
+    title: "Products",
+    links: ["Product Overview", "LinkAssist", "HireAssist", "QAAssist", "TaskAssist", "Attribution", "CoachAssist"],
+  },
+  {
+    title: "Insights",
+    links: ["Articles", "Case Studies", "Guides"],
+  },
+  {
+    title: "Regions",
+    links: ["India", "Global", "UAE"],
+  },
+  {
+    title: "Legal",
+    links: ["Privacy Policy", "Terms", "Refund and Cancellation", "Security"],
+  },
+];
+
+const socials = [
+  { icon: Linkedin, label: "LinkedIn" },
+  { icon: Youtube, label: "YouTube" },
+  { icon: Instagram, label: "Instagram" },
+  { icon: Twitter, label: "X" },
 ];
 
 export function Footer() {
@@ -28,10 +56,18 @@ export function Footer() {
                 className="h-8 w-auto object-contain"
               />
             </a>
-            <p className="mt-5 max-w-sm text-muted-foreground leading-relaxed">
-              The AI operating system for modern teams. Ship intelligent products with
-              craft, speed, and confidence.
-            </p>
+
+            <div className="mt-6 space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                BDA Technologies
+              </p>
+              <h3 className="text-2xl font-medium tracking-tight text-foreground">
+                Business operating systems for growing service businesses.
+              </h3>
+              <p className="max-w-sm text-muted-foreground leading-relaxed">
+                We design and implement dashboards, workflows, automation, custom software, and team adoption systems.
+              </p>
+            </div>
 
             <form
               onSubmit={(e) => e.preventDefault()}
@@ -49,12 +85,12 @@ export function Footer() {
             </form>
 
             <div className="mt-8 flex items-center gap-2">
-              {[Twitter, Github, Linkedin, Instagram].map((Icon, i) => (
+              {socials.map(({ icon: Icon, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href="#"
                   className="grid h-10 w-10 place-items-center rounded-full bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/70 transition"
-                  aria-label="Social link"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -62,8 +98,8 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
-            {cols.map((c) => (
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+            {linkGroups.map((c) => (
               <div key={c.title}>
                 <div className="text-sm font-semibold">{c.title}</div>
                 <ul className="mt-4 space-y-3">
@@ -82,10 +118,10 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-border pt-8">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} BDA Technologies. All rights reserved.
+            © {new Date().getFullYear()} BDA Technologies Private Limited. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground">Privacy</a>
+            <a href="#" className="hover:text-foreground">Privacy Policy</a>
             <a href="#" className="hover:text-foreground">Terms</a>
             <a href="#" className="hover:text-foreground">Security</a>
           </div>
