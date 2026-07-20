@@ -318,7 +318,8 @@ function RegionSelector({
         aria-label="Select region"
       >
         <Globe className="h-4 w-4" />
-        <span>Region</span>
+        <span>{region.label}</span>
+        <span aria-hidden>{region.flag}</span>
         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       <AnimatePresence>
