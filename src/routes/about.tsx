@@ -47,19 +47,47 @@ const stats = [
 
 const values = [
   {
-    icon: Target,
-    title: "Our Mission",
-    text: "Help founder-led service businesses run on one clear operating system — so fewer things get missed and work moves faster.",
+    icon: Lightbulb,
+    eyebrow: "WHAT WE BELIEVE",
+    title: "Your team does not need more tools. It needs an operating system.",
+    description: "Software alone does not create efficiency. The process, ownership, data, and team habits must work together.",
+    bullets: [
+      "Start with the business problem",
+      "Make ownership visible",
+      "Keep reporting simple and useful",
+      "Automate repeated work carefully",
+      "Train the team for real adoption",
+      "Improve the system through use",
+    ],
   },
   {
-    icon: Sparkles,
-    title: "Operational Excellence",
-    text: "We build dashboards, workflows, and automation that survive scale — not slideware. Every system is measured, adopted, and owned by the team.",
+    icon: Layers,
+    eyebrow: "WHAT WE BUILD",
+    title: "Business systems that connect people, work, and information.",
+    description: "",
+    bullets: [
+      "BDA OS implementations",
+      "Founder and department dashboards",
+      "Task and reporting workflows",
+      "Sales and follow-up automation",
+      "Custom business software",
+      "AI training and team adoption",
+      "Focused software products",
+    ],
   },
   {
-    icon: Compass,
-    title: "Our Vision",
-    text: "A future where every growing business operates with the clarity, accountability, and speed of a much larger company.",
+    icon: Wrench,
+    eyebrow: "OUR ROLE",
+    title: "We diagnose, design, implement, and train.",
+    description: "We are not a consulting company that stops at advice. We work with the client team to build and launch the system.",
+    bullets: [
+      "Understand the current way of working",
+      "Design the right operating model",
+      "Build the required system",
+      "Test and document the workflow",
+      "Train users by role",
+      "Support adoption and improvement",
+    ],
   },
 ];
 
