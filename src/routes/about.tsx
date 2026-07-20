@@ -324,7 +324,7 @@ function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group rounded-3xl border border-border bg-card p-4 shadow-soft hover:shadow-elevated transition-all"
+                className="group flex flex-col h-full rounded-3xl border border-border bg-card p-4 shadow-soft hover:shadow-elevated transition-all"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-secondary via-background to-secondary/70">
                   <div
