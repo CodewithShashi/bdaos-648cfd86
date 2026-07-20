@@ -314,11 +314,14 @@ function AboutPage() {
       {/* Values */}
       <section className="py-24 md:py-32 bg-secondary/50">
         <Container>
-          <div className="text-sm tracking-wide text-muted-foreground">
-            How we work together
+          <div className="text-center mb-10 md:mb-14">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+              How we work together
+            </span>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {values.map((v, i) => (
               <motion.article
                 key={v.title}
@@ -326,26 +329,26 @@ function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="relative flex flex-col h-full bg-background p-8 md:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-shadow duration-300 hover:shadow-[0_2px_4px_rgba(15,23,42,0.06),0_20px_40px_-16px_rgba(15,23,42,0.18)]"
+                className="relative flex flex-col h-full bg-card p-8 md:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-shadow duration-300 hover:shadow-[0_2px_4px_rgba(15,23,42,0.06),0_20px_40px_-16px_rgba(15,23,42,0.18)]"
                 style={{
                   clipPath:
-                    "polygon(32px 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%, 0 32px)",
+                    "polygon(32px 0, calc(100% - 32px) 0, 100% 32px, 100% calc(100% - 32px), calc(100% - 32px) 100%, 32px 100%, 0 calc(100% - 32px), 0 32px)",
                 }}
               >
-                <div className="text-primary text-xl md:text-2xl font-semibold tracking-tight">
+                <div className="text-primary text-xl md:text-2xl font-bold tracking-tight">
                   {v.eyebrow
                     .toLowerCase()
                     .replace(/\b\w/g, (c) => c.toUpperCase())}
                 </div>
-                <h3 className="mt-1 text-2xl md:text-[28px] font-semibold tracking-tight leading-[1.15] text-foreground">
+                <h3 className="mt-1 text-2xl md:text-[28px] font-bold tracking-tight leading-[1.15] text-foreground">
                   {v.title}
                 </h3>
                 {v.description && (
-                  <p className="mt-6 text-[15px] md:text-base text-muted-foreground leading-relaxed">
+                  <p className="mt-6 text-[15px] md:text-base text-foreground/90 leading-relaxed">
                     {v.description}
                   </p>
                 )}
-                <ul className="mt-6 space-y-3 text-[15px] md:text-base text-foreground/80">
+                <ul className="mt-6 space-y-3 text-[15px] md:text-base text-foreground">
                   {v.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-3">
                       <CircleCheck
