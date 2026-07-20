@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 
@@ -23,26 +22,17 @@ export function CTA() {
           <div className="relative max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium">
               <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse-glow" />
-              Now onboarding Q1 partners
+              START WITH CLARITY
             </span>
             <h2 className="mt-6 text-4xl md:text-6xl font-normal tracking-tight leading-[1.05]">
-              Let's build something{" "}
-              <span className="italic text-primary-glow">unforgettable.</span>
+              Find what is slowing your business down.
             </h2>
             <p className="mt-5 text-lg text-background/70 max-w-xl leading-relaxed">
-              Book a 30-minute strategy call. We'll audit your AI opportunity and share
-              exactly how we'd approach it — no pitch, just craft.
+              Apply for a Business Audit Call. We will review your business, your current systems, and the main operational issue before inviting you to a call.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <AnimatedButton href="#">Book a call</AnimatedButton>
-              <a
-                href="mailto:hello@bda.ai"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-background hover:bg-white/10 transition"
-              >
-                <Mail className="h-4 w-4" />
-                hello@bda.ai
-              </a>
+              <AnimatedButton href="#">Apply for a Business Audit Call</AnimatedButton>
             </div>
           </div>
         </motion.div>
