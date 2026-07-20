@@ -312,74 +312,48 @@ function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-24 md:py-32">
+      <section className="py-24 md:py-32 bg-secondary/40">
         <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              Our Values
-            </span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-normal tracking-tight leading-[1.05]">
-              Values that power our{" "}
-              <span className="italic text-primary">work.</span>
-            </h2>
+          <div className="text-sm tracking-wider uppercase text-muted-foreground">
+            Our Values
           </div>
 
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {values.map((v, i) => (
-              <motion.div
+              <motion.article
                 key={v.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group flex flex-col h-full rounded-3xl border border-border bg-card p-4 shadow-soft hover:shadow-elevated transition-all"
+                className="flex flex-col h-full bg-background p-8 md:p-10"
+                style={{
+                  clipPath:
+                    "polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px)",
+                }}
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-secondary via-background to-secondary/70">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(60% 60% at 50% 55%, color-mix(in oklab, hsl(var(--primary)) 22%, transparent), transparent 70%)",
-                    }}
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-40"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
-                      backgroundSize: "28px 28px",
-                      maskImage:
-                        "radial-gradient(circle at 50% 50%, black 30%, transparent 75%)",
-                    }}
-                  />
-                  <div className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-2xl border border-border bg-background/70 backdrop-blur-md text-primary shadow-elevated transition-transform duration-500 group-hover:scale-110">
-                      <v.icon className="h-7 w-7" strokeWidth={1.5} />
-                    </span>
-                  </div>
+                <div className="text-primary text-lg md:text-xl font-medium tracking-tight">
+                  {v.eyebrow
+                    .toLowerCase()
+                    .replace(/\b\w/g, (c) => c.toUpperCase())}
                 </div>
-                <div className="px-3 pt-6 pb-4 flex flex-col flex-1">
-                  <span className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground font-medium">
-                    {v.eyebrow}
-                  </span>
-                  <h3 className="mt-2 text-xl font-semibold leading-snug">{v.title}</h3>
-                  {v.description && (
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {v.description}
-                    </p>
-                  )}
-                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                    {v.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
+                <h3 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight leading-[1.15] text-foreground">
+                  {v.title}
+                </h3>
+                {v.description && (
+                  <p className="mt-5 text-base text-muted-foreground leading-relaxed">
+                    {v.description}
+                  </p>
+                )}
+                <ul className="mt-5 space-y-2.5 text-base text-muted-foreground">
+                  {v.bullets.map((bullet) => (
+                    <li key={bullet} className="flex items-start gap-3">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                      <span className="leading-relaxed">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
             ))}
           </div>
         </Container>
