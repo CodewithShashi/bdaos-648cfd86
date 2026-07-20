@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Lightbulb, Layers, Wrench, Linkedin, Check } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
@@ -88,6 +88,24 @@ const values = [
       "Train users by role",
       "Support adoption and improvement",
     ],
+  },
+];
+
+const timeline = [
+  {
+    year: "2023",
+    text: "Founded BDA Technologies with a focus on operating systems for founder-led service businesses. Shipped the first BDA OS pilots across India.",
+    img: aboutImg,
+  },
+  {
+    year: "2024",
+    text: "Launched internal products — LinkAssist, HireAssist, and TaskAssist — after seeing the same operational problems repeat across clients.",
+    img: p2,
+  },
+  {
+    year: "2025",
+    text: "Expanded to Global and UAE regions, onboarded 200+ implementations, and released QAAssist, Attribution, and CoachAssist to public and private clients.",
+    img: p1,
   },
 ];
 
