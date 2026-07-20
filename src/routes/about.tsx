@@ -344,11 +344,11 @@ function AboutPage() {
                   {v.title}
                 </h3>
                 {v.description && (
-                  <p className="mt-6 text-[15px] md:text-base text-muted-foreground leading-relaxed">
+                  <p className="mt-6 text-[15px] md:text-base text-foreground/80 leading-relaxed">
                     {v.description}
                   </p>
                 )}
-                <ul className="mt-6 space-y-3 text-[15px] md:text-base text-foreground/80">
+                <ul className="mt-6 space-y-3 text-[15px] md:text-base text-foreground">
                   {v.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-3">
                       <CircleCheck
