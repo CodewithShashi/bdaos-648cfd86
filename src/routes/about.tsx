@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Target, Compass, Sparkles, Linkedin } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
@@ -86,6 +86,82 @@ const team = [
   { name: "Rohan Kapoor", role: "Product Lead", img: p2, href: "https://linkedin.com" },
   { name: "Ananya Iyer", role: "Client Success Lead", img: p3, href: "https://linkedin.com" },
 ];
+
+/* ---------------- Journey Timeline ---------------- */
+
+function JourneyTimeline() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 70%", "end 40%"],
+  });
+  const smooth = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.4 });
+  const lineHeight = useTransform(smooth, (v) => `${v * 100}%`);
+  const dotTop = useTransform(smooth, (v) => `${v * 100}%`);
+  const dotOpacity = useTransform(smooth, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
+
+  return (
+    <div ref={containerRef} className="relative mx-auto max-w-5xl">
+      {/* dashed vertical line (background) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-4 md:left-1/2 top-0 bottom-0 md:-translate-x-1/2 border-l border-dashed border-border"
+      />
+      {/* animated solid fill line */}
+      <motion.div
+        aria-hidden
+        style={{ height: lineHeight }}
+        className="pointer-events-none absolute left-4 md:left-1/2 top-0 md:-translate-x-1/2 w-px bg-primary origin-top"
+      />
+      {/* moving dot */}
+      <motion.span
+        aria-hidden
+        style={{ top: dotTop, opacity: dotOpacity }}
+        className="pointer-events-none absolute left-4 md:left-1/2 -translate-x-1/2 -translate-y-1/2 grid h-5 w-5 place-items-center rounded-full bg-background ring-2 ring-primary shadow-[0_0_0_6px_hsl(var(--primary)/0.12)]"
+      >
+        <span className="h-2 w-2 rounded-full bg-primary" />
+      </motion.span>
+
+      <div className="flex flex-col gap-16 md:gap-24">
+        {timeline.map((t, i) => {
+          const isLeft = i % 2 === 0;
+          return (
+            <motion.div
+              key={t.year}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              className="relative grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+            >
+              <div className={`pl-12 md:pl-0 ${isLeft ? "md:pr-16" : "md:order-2 md:pl-16"}`}>
+                <div className="overflow-hidden rounded-3xl border border-border shadow-elevated aspect-[4/3]">
+                  <img src={t.img} alt={`BDA milestone ${t.year}`} className="h-full w-full object-cover" />
+                </div>
+              </div>
+              <div
+                className={`pl-12 md:pl-0 ${
+                  isLeft ? "md:pl-16" : "md:order-1 md:pr-16 md:text-right"
+                }`}
+              >
+                <div className="font-display text-5xl md:text-6xl tracking-tight text-foreground">
+                  {t.year}
+                </div>
+                <p
+                  className={`mt-4 text-muted-foreground leading-relaxed max-w-md ${
+                    isLeft ? "" : "md:ml-auto"
+                  }`}
+                >
+                  {t.text}
+                </p>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 /* ---------------- Counter ---------------- */
 
@@ -257,67 +333,8 @@ function AboutPage() {
             </h2>
           </div>
 
-          <div className="relative mx-auto max-w-5xl">
-            {/* dashed vertical line */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute left-4 md:left-1/2 top-0 bottom-0 md:-translate-x-1/2 border-l border-dashed border-border"
-            />
-            <div className="flex flex-col gap-16 md:gap-24">
-              {timeline.map((t, i) => {
-                const isLeft = i % 2 === 0;
-                return (
-                  <motion.div
-                    key={t.year}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.55, delay: i * 0.08 }}
-                    className="relative grid md:grid-cols-2 gap-8 md:gap-16 items-center"
-                  >
-                    {/* Image side */}
-                    <div
-                      className={`pl-12 md:pl-0 ${
-                        isLeft ? "md:pr-16" : "md:order-2 md:pl-16"
-                      }`}
-                    >
-                      <div className="overflow-hidden rounded-3xl border border-border shadow-elevated aspect-[4/3]">
-                        <img
-                          src={t.img}
-                          alt={`BDA milestone ${t.year}`}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    </div>
-                    {/* Text side */}
-                    <div
-                      className={`pl-12 md:pl-0 ${
-                        isLeft ? "md:pl-16" : "md:order-1 md:pr-16 md:text-right"
-                      }`}
-                    >
-                      <div className="font-display text-5xl md:text-6xl tracking-tight text-foreground">
-                        {t.year}
-                      </div>
-                      <p
-                        className={`mt-4 text-muted-foreground leading-relaxed max-w-md ${
-                          isLeft ? "" : "md:ml-auto"
-                        }`}
-                      >
-                        {t.text}
-                      </p>
-                    </div>
-                    {/* center marker */}
-                    <span
-                      aria-hidden
-                      className="absolute left-4 md:left-1/2 top-4 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 grid h-5 w-5 place-items-center rounded-full bg-background ring-1 ring-border"
-                    >
-                      <span className="h-2 w-2 rounded-full bg-primary" />
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+          <JourneyTimeline />
+
         </Container>
       </section>
 
