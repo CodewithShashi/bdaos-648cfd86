@@ -196,7 +196,7 @@ function AboutPage() {
             </h2>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
             {values.map((v, i) => (
               <motion.div
                 key={v.title}
@@ -204,15 +204,40 @@ function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="rounded-3xl border border-border bg-card p-7 shadow-soft hover:shadow-elevated hover:-translate-y-0.5 transition-all"
+                className="group rounded-3xl border border-border bg-card p-4 shadow-soft hover:shadow-elevated transition-all"
               >
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <v.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 text-xl font-semibold">{v.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  {v.text}
-                </p>
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-secondary via-background to-secondary/70">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(60% 60% at 50% 55%, color-mix(in oklab, hsl(var(--primary)) 22%, transparent), transparent 70%)",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-40"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
+                      backgroundSize: "28px 28px",
+                      maskImage:
+                        "radial-gradient(circle at 50% 50%, black 30%, transparent 75%)",
+                    }}
+                  />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-16 w-16 place-items-center rounded-2xl border border-border bg-background/70 backdrop-blur-md text-primary shadow-elevated transition-transform duration-500 group-hover:scale-110">
+                      <v.icon className="h-7 w-7" strokeWidth={1.5} />
+                    </span>
+                  </div>
+                </div>
+                <div className="px-3 pt-6 pb-4">
+                  <h3 className="text-xl font-semibold">{v.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    {v.text}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
