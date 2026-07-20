@@ -352,11 +352,24 @@ function AboutPage() {
                     </span>
                   </div>
                 </div>
-                <div className="px-3 pt-6 pb-4">
-                  <h3 className="text-xl font-semibold">{v.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {v.text}
-                  </p>
+                <div className="px-3 pt-6 pb-4 flex flex-col flex-1">
+                  <span className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground font-medium">
+                    {v.eyebrow}
+                  </span>
+                  <h3 className="mt-2 text-xl font-semibold leading-snug">{v.title}</h3>
+                  {v.description && (
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {v.description}
+                    </p>
+                  )}
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    {v.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-start gap-2">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             ))}
