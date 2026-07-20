@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 
