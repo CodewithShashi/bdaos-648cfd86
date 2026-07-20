@@ -492,10 +492,28 @@ function AboutPage() {
         </Container>
       </section>
 
+      {/* Milestones Timeline */}
+      <section className="py-24 md:py-32">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center mb-16 md:mb-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+              Milestones
+            </span>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.05]">
+              Our journey so far,{" "}
+              <span className="italic text-primary">year by year.</span>
+            </h2>
+          </div>
+          <JourneyTimeline />
+        </Container>
+      </section>
+
       {/* Partners / logos */}
       <section className="py-20 md:py-24">
         <LogoMarquee />
       </section>
+
 
       {/* Team */}
       <section className="py-24 md:py-32 bg-secondary/40">
