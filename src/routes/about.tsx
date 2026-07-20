@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Target, Compass, Sparkles, Linkedin } from "lucide-react";
+import { Lightbulb, Layers, Wrench, Linkedin } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
+import { AnimatedButton } from "@/components/site/AnimatedButton";
 
 import { LogoMarquee } from "@/components/site/LogoMarquee";
 import { AnimatedHeroBackground } from "@/components/site/AnimatedHeroBackground";
@@ -46,19 +47,47 @@ const stats = [
 
 const values = [
   {
-    icon: Target,
-    title: "Our Mission",
-    text: "Help founder-led service businesses run on one clear operating system — so fewer things get missed and work moves faster.",
+    icon: Lightbulb,
+    eyebrow: "WHAT WE BELIEVE",
+    title: "Your team does not need more tools. It needs an operating system.",
+    description: "Software alone does not create efficiency. The process, ownership, data, and team habits must work together.",
+    bullets: [
+      "Start with the business problem",
+      "Make ownership visible",
+      "Keep reporting simple and useful",
+      "Automate repeated work carefully",
+      "Train the team for real adoption",
+      "Improve the system through use",
+    ],
   },
   {
-    icon: Sparkles,
-    title: "Operational Excellence",
-    text: "We build dashboards, workflows, and automation that survive scale — not slideware. Every system is measured, adopted, and owned by the team.",
+    icon: Layers,
+    eyebrow: "WHAT WE BUILD",
+    title: "Business systems that connect people, work, and information.",
+    description: "",
+    bullets: [
+      "BDA OS implementations",
+      "Founder and department dashboards",
+      "Task and reporting workflows",
+      "Sales and follow-up automation",
+      "Custom business software",
+      "AI training and team adoption",
+      "Focused software products",
+    ],
   },
   {
-    icon: Compass,
-    title: "Our Vision",
-    text: "A future where every growing business operates with the clarity, accountability, and speed of a much larger company.",
+    icon: Wrench,
+    eyebrow: "OUR ROLE",
+    title: "We diagnose, design, implement, and train.",
+    description: "We are not a consulting company that stops at advice. We work with the client team to build and launch the system.",
+    bullets: [
+      "Understand the current way of working",
+      "Design the right operating model",
+      "Build the required system",
+      "Test and document the workflow",
+      "Train users by role",
+      "Support adoption and improvement",
+    ],
   },
 ];
 
@@ -205,7 +234,7 @@ function AboutPage() {
           <div className="flex flex-col gap-8 max-w-5xl">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-              About Us
+              About BDA Technologies
             </span>
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -213,9 +242,24 @@ function AboutPage() {
               transition={{ duration: 0.7 }}
               className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight leading-[1.02]"
             >
-              Building the operating system{" "}
-              <span className="italic text-primary">growing businesses run on.</span>
+              We build the systems behind better execution.
             </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+            >
+              BDA Technologies helps growing service businesses improve how work is managed. We combine process design, dashboards, automation, custom software, and team training.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-2"
+            >
+              <AnimatedButton href="/#cta">Apply for a Business Audit Call</AnimatedButton>
+            </motion.div>
           </div>
 
           {/* Hero image */}
@@ -280,7 +324,7 @@ function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group rounded-3xl border border-border bg-card p-4 shadow-soft hover:shadow-elevated transition-all"
+                className="group flex flex-col h-full rounded-3xl border border-border bg-card p-4 shadow-soft hover:shadow-elevated transition-all"
               >
                 <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-secondary via-background to-secondary/70">
                   <div
@@ -308,11 +352,24 @@ function AboutPage() {
                     </span>
                   </div>
                 </div>
-                <div className="px-3 pt-6 pb-4">
-                  <h3 className="text-xl font-semibold">{v.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {v.text}
-                  </p>
+                <div className="px-3 pt-6 pb-4 flex flex-col flex-1">
+                  <span className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground font-medium">
+                    {v.eyebrow}
+                  </span>
+                  <h3 className="mt-2 text-xl font-semibold leading-snug">{v.title}</h3>
+                  {v.description && (
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {v.description}
+                    </p>
+                  )}
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    {v.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-start gap-2">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             ))}
