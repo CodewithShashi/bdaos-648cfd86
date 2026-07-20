@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Target, Compass, Sparkles, Linkedin } from "lucide-react";
+import { Lightbulb, Layers, Wrench, Linkedin } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
+import { AnimatedButton } from "@/components/site/AnimatedButton";
 
 import { LogoMarquee } from "@/components/site/LogoMarquee";
 import { AnimatedHeroBackground } from "@/components/site/AnimatedHeroBackground";
