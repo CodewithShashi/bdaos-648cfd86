@@ -234,7 +234,7 @@ function AboutPage() {
           <div className="flex flex-col gap-8 max-w-5xl">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-              About Us
+              About BDA Technologies
             </span>
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -242,9 +242,24 @@ function AboutPage() {
               transition={{ duration: 0.7 }}
               className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight leading-[1.02]"
             >
-              Building the operating system{" "}
-              <span className="italic text-primary">growing businesses run on.</span>
+              We build the systems behind better execution.
             </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+            >
+              BDA Technologies helps growing service businesses improve how work is managed. We combine process design, dashboards, automation, custom software, and team training.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-2"
+            >
+              <AnimatedButton href="/#cta">Apply for a Business Audit Call</AnimatedButton>
+            </motion.div>
           </div>
 
           {/* Hero image */}
