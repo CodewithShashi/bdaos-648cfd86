@@ -107,7 +107,13 @@ const timeline = [
     text: "Expanded to Global and UAE regions, onboarded 200+ implementations, and released QAAssist, Attribution, and CoachAssist to public and private clients.",
     img: p1,
   },
+  {
+    year: "2026",
+    text: "Scaling BDA OS across new industries with deeper AI training programs, partner-led implementations, and a growing product suite for service businesses.",
+    img: p3,
+  },
 ];
+
 
 
 const team = [
@@ -486,10 +492,28 @@ function AboutPage() {
         </Container>
       </section>
 
+      {/* Milestones Timeline */}
+      <section className="py-24 md:py-32">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center mb-16 md:mb-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+              Milestones
+            </span>
+            <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.05]">
+              Our journey so far,{" "}
+              <span className="italic text-primary">year by year.</span>
+            </h2>
+          </div>
+          <JourneyTimeline />
+        </Container>
+      </section>
+
       {/* Partners / logos */}
       <section className="py-20 md:py-24">
         <LogoMarquee />
       </section>
+
 
       {/* Team */}
       <section className="py-24 md:py-32 bg-secondary/40">
@@ -552,7 +576,42 @@ function AboutPage() {
         </Container>
       </section>
 
+      {/* CTA */}
+      <section className="py-24 md:py-32">
+        <Container>
+          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-10 md:p-16 shadow-elevated">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-70"
+              style={{
+                backgroundImage:
+                  "radial-gradient(60% 60% at 20% 20%, color-mix(in oklab, hsl(var(--primary)) 18%, transparent), transparent 70%), radial-gradient(50% 50% at 90% 80%, color-mix(in oklab, hsl(var(--primary)) 12%, transparent), transparent 70%)",
+              }}
+            />
+            <div className="relative grid gap-8 md:grid-cols-[1fr_auto] items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+                  Start with clarity
+                </span>
+                <h2 className="mt-5 text-3xl md:text-5xl font-normal tracking-tight leading-[1.05]">
+                  Ready to build your{" "}
+                  <span className="italic text-primary">operating system?</span>
+                </h2>
+                <p className="mt-5 max-w-xl text-muted-foreground leading-relaxed">
+                  Apply for a Business Audit Call. We will review how your business runs today and share where a better system can create the biggest change.
+                </p>
+              </div>
+              <div className="md:justify-self-end">
+                <AnimatedButton href="/#cta">Apply for a Business Audit Call</AnimatedButton>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <Footer />
     </main>
   );
 }
+
