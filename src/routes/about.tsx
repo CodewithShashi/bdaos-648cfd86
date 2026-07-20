@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Lightbulb, Layers, Wrench, Linkedin, Check } from "lucide-react";
+import { Lightbulb, Layers, Wrench, Linkedin, Check, CircleCheck } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
@@ -312,10 +312,10 @@ function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-24 md:py-32 bg-secondary/40">
+      <section className="py-24 md:py-32 bg-secondary/50">
         <Container>
-          <div className="text-sm tracking-wider uppercase text-muted-foreground">
-            Our Values
+          <div className="text-sm tracking-wide text-muted-foreground">
+            How we work together
           </div>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
@@ -326,29 +326,32 @@ function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex flex-col h-full bg-background p-8 md:p-10"
+                className="relative flex flex-col h-full bg-background p-8 md:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-shadow duration-300 hover:shadow-[0_2px_4px_rgba(15,23,42,0.06),0_20px_40px_-16px_rgba(15,23,42,0.18)]"
                 style={{
                   clipPath:
-                    "polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px)",
+                    "polygon(32px 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%, 0 32px)",
                 }}
               >
-                <div className="text-primary text-lg md:text-xl font-medium tracking-tight">
+                <div className="text-primary text-xl md:text-2xl font-semibold tracking-tight">
                   {v.eyebrow
                     .toLowerCase()
                     .replace(/\b\w/g, (c) => c.toUpperCase())}
                 </div>
-                <h3 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight leading-[1.15] text-foreground">
+                <h3 className="mt-1 text-2xl md:text-[28px] font-semibold tracking-tight leading-[1.15] text-foreground">
                   {v.title}
                 </h3>
                 {v.description && (
-                  <p className="mt-5 text-base text-muted-foreground leading-relaxed">
+                  <p className="mt-6 text-[15px] md:text-base text-muted-foreground leading-relaxed">
                     {v.description}
                   </p>
                 )}
-                <ul className="mt-5 space-y-2.5 text-base text-muted-foreground">
+                <ul className="mt-6 space-y-3 text-[15px] md:text-base text-foreground/80">
                   {v.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-3">
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-primary" strokeWidth={2.5} />
+                      <CircleCheck
+                        className="mt-0.5 h-5 w-5 shrink-0 fill-primary text-background"
+                        strokeWidth={2.25}
+                      />
                       <span className="leading-relaxed">{bullet}</span>
                     </li>
                   ))}
