@@ -335,12 +335,12 @@ function AboutPage() {
                     "polygon(32px 0, calc(100% - 32px) 0, 100% 32px, 100% calc(100% - 32px), calc(100% - 32px) 100%, 32px 100%, 0 calc(100% - 32px), 0 32px)",
                 }}
               >
-                <div className="text-primary text-xl md:text-2xl font-semibold tracking-tight">
+                <div className="text-primary text-xl md:text-2xl font-bold tracking-tight">
                   {v.eyebrow
                     .toLowerCase()
                     .replace(/\b\w/g, (c) => c.toUpperCase())}
                 </div>
-                <h3 className="mt-1 text-2xl md:text-[28px] font-semibold tracking-tight leading-[1.15] text-foreground">
+                <h3 className="mt-1 text-2xl md:text-[28px] font-bold tracking-tight leading-[1.15] text-foreground">
                   {v.title}
                 </h3>
                 {v.description && (
