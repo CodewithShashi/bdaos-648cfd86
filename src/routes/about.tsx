@@ -377,21 +377,110 @@ function AboutPage() {
         </Container>
       </section>
 
-      {/* Timeline / Journey */}
-      <section className="py-20 md:py-28 bg-secondary/40">
+      {/* Journey & How We Work */}
+      <section className="py-24 md:py-32 bg-secondary/40">
         <Container>
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              Our Journey
-            </span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-normal tracking-tight leading-[1.05]">
-              From first pilot to{" "}
-              <span className="italic text-primary">global systems.</span>
-            </h2>
+          <div className="flex flex-col gap-24 md:gap-32">
+            {/* OUR JOURNEY */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7 }}
+                className="order-2 lg:order-1"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+                  Our Journey
+                </span>
+                <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.05]">
+                  From digital work to{" "}
+                  <span className="italic text-primary">business operating systems.</span>
+                </h2>
+                <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-xl">
+                  BDA Technologies has worked across marketing, software, automation, training, and business operations. That experience shaped a clear direction: help growing companies build the systems needed for better execution.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="order-1 lg:order-2"
+              >
+                <div className="overflow-hidden rounded-[2rem] border border-border shadow-elevated aspect-[4/3]">
+                  <img
+                    src={aboutImg}
+                    alt="BDA Technologies journey across operations and technology"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* HOW WE WORK */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7 }}
+                className="order-1"
+              >
+                <div className="overflow-hidden rounded-[2rem] border border-border shadow-elevated aspect-[4/3]">
+                  <img
+                    src={p2}
+                    alt="BDA Technologies team working with clear ownership"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="order-2"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+                  How We Work
+                </span>
+                <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.05]">
+                  Practical thinking. Clear ownership. Honest delivery.
+                </h2>
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    "Clarity before complexity",
+                    "Implementation before presentation",
+                    "Proof before claims",
+                    "Useful systems before more features",
+                    "Clear scope and responsibility",
+                    "Long-term improvement over quick fixes",
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ duration: 0.4, delay: i * 0.06 }}
+                      className="flex items-start gap-3 rounded-2xl border border-border bg-background p-4 shadow-soft"
+                    >
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                        <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+                      </span>
+                      <span className="text-sm font-medium text-foreground leading-snug">
+                        {item}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
-
-          <JourneyTimeline />
-
         </Container>
       </section>
 
