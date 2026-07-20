@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Target, Compass, Sparkles, Linkedin } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
