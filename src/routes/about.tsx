@@ -107,7 +107,13 @@ const timeline = [
     text: "Expanded to Global and UAE regions, onboarded 200+ implementations, and released QAAssist, Attribution, and CoachAssist to public and private clients.",
     img: p1,
   },
+  {
+    year: "2026",
+    text: "Scaling BDA OS across new industries with deeper AI training programs, partner-led implementations, and a growing product suite for service businesses.",
+    img: p3,
+  },
 ];
+
 
 
 const team = [
