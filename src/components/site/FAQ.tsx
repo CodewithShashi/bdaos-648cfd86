@@ -113,9 +113,6 @@ export function FAQ() {
             <p className="mt-5 text-lg text-muted-foreground">
               Everything you need to know before we talk.
             </p>
-            <div className="mt-10 hidden lg:flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-foreground" />
-            </div>
           </div>
 
           <div className="flex flex-col gap-4">
