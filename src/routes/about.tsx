@@ -257,13 +257,13 @@ function AboutPage() {
             </h2>
           </div>
 
-          <div className="relative mx-auto max-w-4xl">
-            {/* vertical line */}
+          <div className="relative mx-auto max-w-5xl">
+            {/* dashed vertical line */}
             <div
               aria-hidden
-              className="pointer-events-none absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2"
+              className="pointer-events-none absolute left-4 md:left-1/2 top-0 bottom-0 md:-translate-x-1/2 border-l border-dashed border-border"
             />
-            <div className="flex flex-col gap-10 md:gap-14">
+            <div className="flex flex-col gap-16 md:gap-24">
               {timeline.map((t, i) => {
                 const isLeft = i % 2 === 0;
                 return (
@@ -273,16 +273,15 @@ function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.55, delay: i * 0.08 }}
-                    className={`relative grid md:grid-cols-2 gap-6 md:gap-10 items-center ${
-                      isLeft ? "" : "md:[&>*:first-child]:order-2"
-                    }`}
+                    className="relative grid md:grid-cols-2 gap-8 md:gap-16 items-center"
                   >
+                    {/* Image side */}
                     <div
                       className={`pl-12 md:pl-0 ${
-                        isLeft ? "md:pr-10 md:text-right" : "md:pl-10"
+                        isLeft ? "md:pr-16" : "md:order-2 md:pl-16"
                       }`}
                     >
-                      <div className="overflow-hidden rounded-2xl border border-border shadow-soft aspect-[16/10]">
+                      <div className="overflow-hidden rounded-3xl border border-border shadow-elevated aspect-[4/3]">
                         <img
                           src={t.img}
                           alt={`BDA milestone ${t.year}`}
@@ -290,23 +289,30 @@ function AboutPage() {
                         />
                       </div>
                     </div>
+                    {/* Text side */}
                     <div
                       className={`pl-12 md:pl-0 ${
-                        isLeft ? "md:pl-10" : "md:pr-10 md:text-right"
+                        isLeft ? "md:pl-16" : "md:order-1 md:pr-16 md:text-right"
                       }`}
                     >
-                      <div className="font-display text-3xl md:text-4xl tracking-tight text-foreground">
+                      <div className="font-display text-5xl md:text-6xl tracking-tight text-foreground">
                         {t.year}
                       </div>
-                      <p className="mt-3 text-muted-foreground leading-relaxed max-w-md md:inline-block">
+                      <p
+                        className={`mt-4 text-muted-foreground leading-relaxed max-w-md ${
+                          isLeft ? "" : "md:ml-auto"
+                        }`}
+                      >
                         {t.text}
                       </p>
                     </div>
-                    {/* dot */}
+                    {/* center marker */}
                     <span
                       aria-hidden
-                      className="absolute left-4 md:left-1/2 top-4 md:top-1/2 h-3 w-3 -translate-x-1/2 md:-translate-y-1/2 rounded-full bg-primary ring-4 ring-background"
-                    />
+                      className="absolute left-4 md:left-1/2 top-4 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 grid h-5 w-5 place-items-center rounded-full bg-background ring-1 ring-border"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-primary" />
+                    </span>
                   </motion.div>
                 );
               })}
