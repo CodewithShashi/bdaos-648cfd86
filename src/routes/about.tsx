@@ -579,34 +579,36 @@ function AboutPage() {
       {/* CTA */}
       <section className="py-24 md:py-32">
         <Container>
-          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-10 md:p-16 shadow-elevated">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-70"
-              style={{
-                backgroundImage:
-                  "radial-gradient(60% 60% at 20% 20%, color-mix(in oklab, hsl(var(--primary)) 18%, transparent), transparent 70%), radial-gradient(50% 50% at 90% 80%, color-mix(in oklab, hsl(var(--primary)) 12%, transparent), transparent 70%)",
-              }}
-            />
-            <div className="relative grid gap-8 md:grid-cols-[1fr_auto] items-center">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-                  Start with clarity
-                </span>
-                <h2 className="mt-5 text-3xl md:text-5xl font-normal tracking-tight leading-[1.05]">
-                  Ready to build your{" "}
-                  <span className="italic text-primary">operating system?</span>
-                </h2>
-                <p className="mt-5 max-w-xl text-muted-foreground leading-relaxed">
-                  Apply for a Business Audit Call. We will review how your business runs today and share where a better system can create the biggest change.
-                </p>
-              </div>
-              <div className="md:justify-self-end">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative overflow-hidden rounded-[2.5rem] bg-foreground text-background p-10 md:p-20 shadow-elevated"
+          >
+            {/* animated gradient background */}
+            <div aria-hidden className="absolute inset-0 opacity-70">
+              <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/60 blur-3xl animate-float-slow" />
+              <div className="absolute -bottom-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-primary-glow/50 blur-3xl animate-float" />
+            </div>
+
+            <div className="relative max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse-glow" />
+                BUILD A BUSINESS THAT RUNS BETTER
+              </span>
+              <h2 className="mt-6 text-4xl md:text-6xl font-normal tracking-tight leading-[1.05]">
+                Start with the operational problem that matters most.
+              </h2>
+              <p className="mt-5 text-lg text-background/70 max-w-xl leading-relaxed">
+                Apply for a Business Audit Call. We will review your business, your current systems, and the main operational issue before inviting you to a call.
+              </p>
+
+              <div className="mt-10 flex flex-wrap items-center gap-3">
                 <AnimatedButton href="/#cta">Apply for a Business Audit Call</AnimatedButton>
               </div>
             </div>
-          </div>
+          </motion.div>
         </Container>
       </section>
 
