@@ -140,17 +140,6 @@ function AboutPage() {
               Building the operating system{" "}
               <span className="italic text-primary">growing businesses run on.</span>
             </motion.h1>
-            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end">
-              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                BDA Technologies designs and implements custom business operating
-                systems for founder-led service businesses — connecting tasks,
-                dashboards, reports, follow-ups, and team accountability into one
-                system that actually gets used.
-              </p>
-              <AnimatedButton href="#cta" className="justify-self-start">
-                Apply for a Business Audit
-              </AnimatedButton>
-            </div>
           </div>
 
           {/* Hero image */}
