@@ -344,7 +344,7 @@ function AboutPage() {
                   {v.title}
                 </h3>
                 {v.description && (
-                  <p className="mt-6 text-[15px] md:text-base text-foreground/80 leading-relaxed">
+                  <p className="mt-6 text-[15px] md:text-base text-foreground/90 leading-relaxed">
                     {v.description}
                   </p>
                 )}
