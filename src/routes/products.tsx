@@ -124,7 +124,7 @@ const products: Product[] = [
   },
 ];
 
-const categories = ["All", "AI & Automation", "Digital Solutions", "Business Solutions"] as const;
+
 
 function ProductsPage() {
   return (
