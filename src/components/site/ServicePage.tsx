@@ -305,9 +305,10 @@ function FinalCTA(p: ServicePageProps) {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
-              <AnimatedButton href="/services" variant="ghost">
-                Explore Services
+              <AnimatedButton href="/" variant="ghost">
+                Back to Home
               </AnimatedButton>
+
             </div>
           </div>
         </motion.div>
