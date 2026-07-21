@@ -11,10 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ProductsRouteImport } from './routes/products'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as ProductsTaskassistRouteImport } from './routes/products.taskassist'
+import { Route as ProductsQaassistRouteImport } from './routes/products.qaassist'
+import { Route as ProductsLinkassistRouteImport } from './routes/products.linkassist'
+import { Route as ProductsHireassistRouteImport } from './routes/products.hireassist'
+import { Route as ProductsCoachassistRouteImport } from './routes/products.coachassist'
+import { Route as ProductsAttributionRouteImport } from './routes/products.attribution'
 
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
@@ -24,11 +30,6 @@ const TeamRoute = TeamRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsRoute = ProductsRouteImport.update({
-  id: '/products',
-  path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -46,54 +47,143 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsTaskassistRoute = ProductsTaskassistRouteImport.update({
+  id: '/products/taskassist',
+  path: '/products/taskassist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsQaassistRoute = ProductsQaassistRouteImport.update({
+  id: '/products/qaassist',
+  path: '/products/qaassist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsLinkassistRoute = ProductsLinkassistRouteImport.update({
+  id: '/products/linkassist',
+  path: '/products/linkassist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsHireassistRoute = ProductsHireassistRouteImport.update({
+  id: '/products/hireassist',
+  path: '/products/hireassist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsCoachassistRoute = ProductsCoachassistRouteImport.update({
+  id: '/products/coachassist',
+  path: '/products/coachassist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsAttributionRoute = ProductsAttributionRouteImport.update({
+  id: '/products/attribution',
+  path: '/products/attribution',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/products/attribution': typeof ProductsAttributionRoute
+  '/products/coachassist': typeof ProductsCoachassistRoute
+  '/products/hireassist': typeof ProductsHireassistRoute
+  '/products/linkassist': typeof ProductsLinkassistRoute
+  '/products/qaassist': typeof ProductsQaassistRoute
+  '/products/taskassist': typeof ProductsTaskassistRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/products/attribution': typeof ProductsAttributionRoute
+  '/products/coachassist': typeof ProductsCoachassistRoute
+  '/products/hireassist': typeof ProductsHireassistRoute
+  '/products/linkassist': typeof ProductsLinkassistRoute
+  '/products/qaassist': typeof ProductsQaassistRoute
+  '/products/taskassist': typeof ProductsTaskassistRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/products/attribution': typeof ProductsAttributionRoute
+  '/products/coachassist': typeof ProductsCoachassistRoute
+  '/products/hireassist': typeof ProductsHireassistRoute
+  '/products/linkassist': typeof ProductsLinkassistRoute
+  '/products/qaassist': typeof ProductsQaassistRoute
+  '/products/taskassist': typeof ProductsTaskassistRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/careers' | '/products' | '/services' | '/team'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/careers'
+    | '/services'
+    | '/team'
+    | '/products/attribution'
+    | '/products/coachassist'
+    | '/products/hireassist'
+    | '/products/linkassist'
+    | '/products/qaassist'
+    | '/products/taskassist'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/careers' | '/products' | '/services' | '/team'
+  to:
+    | '/'
+    | '/about'
+    | '/careers'
+    | '/services'
+    | '/team'
+    | '/products/attribution'
+    | '/products/coachassist'
+    | '/products/hireassist'
+    | '/products/linkassist'
+    | '/products/qaassist'
+    | '/products/taskassist'
+    | '/products'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/careers'
-    | '/products'
     | '/services'
     | '/team'
+    | '/products/attribution'
+    | '/products/coachassist'
+    | '/products/hireassist'
+    | '/products/linkassist'
+    | '/products/qaassist'
+    | '/products/taskassist'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
-  ProductsRoute: typeof ProductsRoute
   ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
+  ProductsAttributionRoute: typeof ProductsAttributionRoute
+  ProductsCoachassistRoute: typeof ProductsCoachassistRoute
+  ProductsHireassistRoute: typeof ProductsHireassistRoute
+  ProductsLinkassistRoute: typeof ProductsLinkassistRoute
+  ProductsQaassistRoute: typeof ProductsQaassistRoute
+  ProductsTaskassistRoute: typeof ProductsTaskassistRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -110,13 +200,6 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products': {
-      id: '/products'
-      path: '/products'
-      fullPath: '/products'
-      preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -140,6 +223,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/taskassist': {
+      id: '/products/taskassist'
+      path: '/products/taskassist'
+      fullPath: '/products/taskassist'
+      preLoaderRoute: typeof ProductsTaskassistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/qaassist': {
+      id: '/products/qaassist'
+      path: '/products/qaassist'
+      fullPath: '/products/qaassist'
+      preLoaderRoute: typeof ProductsQaassistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/linkassist': {
+      id: '/products/linkassist'
+      path: '/products/linkassist'
+      fullPath: '/products/linkassist'
+      preLoaderRoute: typeof ProductsLinkassistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/hireassist': {
+      id: '/products/hireassist'
+      path: '/products/hireassist'
+      fullPath: '/products/hireassist'
+      preLoaderRoute: typeof ProductsHireassistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/coachassist': {
+      id: '/products/coachassist'
+      path: '/products/coachassist'
+      fullPath: '/products/coachassist'
+      preLoaderRoute: typeof ProductsCoachassistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/attribution': {
+      id: '/products/attribution'
+      path: '/products/attribution'
+      fullPath: '/products/attribution'
+      preLoaderRoute: typeof ProductsAttributionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -147,20 +279,16 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
-  ProductsRoute: ProductsRoute,
   ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,
+  ProductsAttributionRoute: ProductsAttributionRoute,
+  ProductsCoachassistRoute: ProductsCoachassistRoute,
+  ProductsHireassistRoute: ProductsHireassistRoute,
+  ProductsLinkassistRoute: ProductsLinkassistRoute,
+  ProductsQaassistRoute: ProductsQaassistRoute,
+  ProductsTaskassistRoute: ProductsTaskassistRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

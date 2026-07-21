@@ -39,12 +39,12 @@ const whatWeDoLinks = [
 
 const productsLinks = [
   { label: "Products Overview", href: "/products" },
-  { label: "LinkAssist", href: "#products" },
-  { label: "HireAssist", href: "#products" },
-  { label: "QAAssist", href: "#products" },
-  { label: "TaskAssist", href: "#products" },
-  { label: "Attribution", href: "#products" },
-  { label: "CoachAssist", href: "#products" },
+  { label: "LinkAssist", href: "/products/linkassist" },
+  { label: "HireAssist", href: "/products/hireassist" },
+  { label: "QAAssist", href: "/products/qaassist" },
+  { label: "TaskAssist", href: "/products/taskassist" },
+  { label: "Attribution", href: "/products/attribution" },
+  { label: "CoachAssist", href: "/products/coachassist" },
 ];
 
 const insightsLinks = [

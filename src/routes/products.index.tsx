@@ -21,7 +21,7 @@ import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 import productsFeaturedImg from "@/assets/products-featured.jpg";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Products — BDA Technologies" },
