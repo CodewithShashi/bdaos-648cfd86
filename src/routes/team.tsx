@@ -104,21 +104,23 @@ function TeamPage() {
       <section className="relative pb-20 md:pb-28">
         <Container>
           {/* filter nav */}
-          <div className="flex flex-wrap items-center justify-center gap-2 rounded-full border border-border bg-secondary/40 p-1.5 mx-auto w-fit max-w-full">
-            {filters.map((f) => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                  filter === f
-                    ? "bg-background text-foreground shadow-soft border border-border"
-                    : "text-muted-foreground hover:text-foreground",
-                )}
-              >
-                {f === "All" ? "View all" : f}
-              </button>
-            ))}
+          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:overflow-visible sm:px-0">
+            <div className="flex sm:flex-wrap items-center sm:justify-center gap-2 rounded-full border border-border bg-secondary/40 p-1.5 mx-auto w-max sm:w-fit max-w-full whitespace-nowrap">
+              {filters.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={cn(
+                    "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    filter === f
+                      ? "bg-background text-foreground shadow-soft border border-border"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {f === "All" ? "View all" : f}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
