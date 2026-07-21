@@ -8,7 +8,7 @@ import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 
 import { LogoMarquee } from "@/components/site/LogoMarquee";
-import { AnimatedHeroBackground } from "@/components/site/AnimatedHeroBackground";
+
 
 import aboutImg from "@/assets/about.jpg";
 import p1 from "@/assets/project-1.jpg";
@@ -237,7 +237,6 @@ function AboutPage() {
 
       {/* Hero */}
       <section className="relative pt-36 pb-14 md:pt-44 md:pb-20 overflow-hidden">
-        <AnimatedHeroBackground />
         <Container className="relative z-10">
           <div className="flex flex-col gap-8 max-w-5xl">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
