@@ -134,7 +134,6 @@ function ProductsPage() {
       <Overview />
       <FeaturedShowcase />
       <WhyOurProducts />
-      <FindRight />
       <FinalCTA />
       <Footer />
     </main>
