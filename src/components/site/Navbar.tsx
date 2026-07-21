@@ -38,7 +38,7 @@ const whatWeDoLinks = [
 ];
 
 const productsLinks = [
-  { label: "Products Overview", href: "#products" },
+  { label: "Products Overview", href: "/products" },
   { label: "LinkAssist", href: "#products" },
   { label: "HireAssist", href: "#products" },
   { label: "QAAssist", href: "#products" },

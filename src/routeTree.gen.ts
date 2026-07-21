@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const TeamRoute = TeamRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
+  '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
+  '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
 }
@@ -60,21 +68,30 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
+  '/products': typeof ProductsRoute
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/careers' | '/services' | '/team'
+  fullPaths: '/' | '/about' | '/careers' | '/products' | '/services' | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/careers' | '/services' | '/team'
-  id: '__root__' | '/' | '/about' | '/careers' | '/services' | '/team'
+  to: '/' | '/about' | '/careers' | '/products' | '/services' | '/team'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/careers'
+    | '/products'
+    | '/services'
+    | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
+  ProductsRoute: typeof ProductsRoute
   ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
 }
@@ -93,6 +110,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -123,6 +147,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
+  ProductsRoute: ProductsRoute,
   ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,
 }
