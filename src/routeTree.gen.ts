@@ -10,10 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsTaskassistRouteImport } from './routes/products.taskassist'
 import { Route as ProductsQaassistRouteImport } from './routes/products.qaassist'
@@ -25,11 +25,6 @@ import { Route as ProductsAttributionRouteImport } from './routes/products.attri
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -45,6 +40,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
@@ -87,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -96,12 +95,12 @@ export interface FileRoutesByFullPath {
   '/products/qaassist': typeof ProductsQaassistRoute
   '/products/taskassist': typeof ProductsTaskassistRoute
   '/products/': typeof ProductsIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -110,13 +109,13 @@ export interface FileRoutesByTo {
   '/products/qaassist': typeof ProductsQaassistRoute
   '/products/taskassist': typeof ProductsTaskassistRoute
   '/products': typeof ProductsIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -125,6 +124,7 @@ export interface FileRoutesById {
   '/products/qaassist': typeof ProductsQaassistRoute
   '/products/taskassist': typeof ProductsTaskassistRoute
   '/products/': typeof ProductsIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -132,7 +132,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
-    | '/services'
     | '/team'
     | '/products/attribution'
     | '/products/coachassist'
@@ -141,12 +140,12 @@ export interface FileRouteTypes {
     | '/products/qaassist'
     | '/products/taskassist'
     | '/products/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/careers'
-    | '/services'
     | '/team'
     | '/products/attribution'
     | '/products/coachassist'
@@ -155,12 +154,12 @@ export interface FileRouteTypes {
     | '/products/qaassist'
     | '/products/taskassist'
     | '/products'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/careers'
-    | '/services'
     | '/team'
     | '/products/attribution'
     | '/products/coachassist'
@@ -169,13 +168,13 @@ export interface FileRouteTypes {
     | '/products/qaassist'
     | '/products/taskassist'
     | '/products/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
-  ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
   ProductsAttributionRoute: typeof ProductsAttributionRoute
   ProductsCoachassistRoute: typeof ProductsCoachassistRoute
@@ -184,6 +183,7 @@ export interface RootRouteChildren {
   ProductsQaassistRoute: typeof ProductsQaassistRoute
   ProductsTaskassistRoute: typeof ProductsTaskassistRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -193,13 +193,6 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -221,6 +214,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/': {
@@ -279,7 +279,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
-  ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,
   ProductsAttributionRoute: ProductsAttributionRoute,
   ProductsCoachassistRoute: ProductsCoachassistRoute,
@@ -288,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsQaassistRoute: ProductsQaassistRoute,
   ProductsTaskassistRoute: ProductsTaskassistRoute,
   ProductsIndexRoute: ProductsIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
