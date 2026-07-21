@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Linkedin, Instagram, Youtube, Twitter } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Container } from "./Container";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 
