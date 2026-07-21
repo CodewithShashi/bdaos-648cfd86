@@ -11,9 +11,7 @@ import productsFeaturedImg from "@/assets/products-featured.jpg";
 
 const aboutLinks = [
   { label: "About BDA Technologies", href: "/about" },
-  { label: "Leadership", href: "/leadership" },
-  { label: "Our Team", href: "/about" },
-  { label: "Partners", href: "#testimonials" },
+  { label: "Team & Partners", href: "/team" },
   { label: "Careers", href: "/careers" },
   { label: "Media and Recognition", href: "#cta" },
 ];
