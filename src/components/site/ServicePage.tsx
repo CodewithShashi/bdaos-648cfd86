@@ -53,11 +53,12 @@ function Hero(p: ServicePageProps) {
             className="lg:col-span-6"
           >
             <Link
-              to="/services"
+              to="/"
               className="flex w-fit items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase hover:text-foreground transition-colors"
             >
-              <ArrowRight className="h-3.5 w-3.5 rotate-180" /> Back to Services
+              <ArrowRight className="h-3.5 w-3.5 rotate-180" /> Back to Home
             </Link>
+
             <div className="mt-4 flex">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
@@ -75,9 +76,10 @@ function Hero(p: ServicePageProps) {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
-              <AnimatedButton href="/services" variant="ghost">
-                Explore Services
+              <AnimatedButton href="/" variant="ghost">
+                Back to Home
               </AnimatedButton>
+
             </div>
           </motion.div>
 
@@ -303,9 +305,10 @@ function FinalCTA(p: ServicePageProps) {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
-              <AnimatedButton href="/services" variant="ghost">
-                Explore Services
+              <AnimatedButton href="/" variant="ghost">
+                Back to Home
               </AnimatedButton>
+
             </div>
           </div>
         </motion.div>
