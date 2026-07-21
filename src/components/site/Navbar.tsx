@@ -32,9 +32,9 @@ const aboutFeatured = [
 ];
 
 const whatWeDoLinks = [
-  { label: "BDA OS Implementation", href: "#services-showcase" },
-  { label: "Business Audit", href: "#services-showcase" },
-  { label: "AI Training and Team Adoption", href: "#services-showcase" },
+  { label: "BDA OS Implementation", href: "/services/bda-os-implementation" },
+  { label: "Business Audit", href: "/services/business-audit" },
+  { label: "AI Training and Team Adoption", href: "/services/ai-training" },
 ];
 
 const productsLinks = [
