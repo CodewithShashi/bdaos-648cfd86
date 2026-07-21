@@ -450,13 +450,6 @@ const bento = [
     span: "",
     tone: "default",
   },
-  {
-    title: "Secure & Reliable",
-    body: "Built with modern standards for security, uptime, and access control.",
-    icon: Lock,
-    span: "md:col-span-2",
-    tone: "default",
-  },
 ];
 
 function WhyOurProducts() {
