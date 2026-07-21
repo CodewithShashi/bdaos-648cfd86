@@ -15,6 +15,12 @@ import { Route as ProductsRouteImport } from './routes/products'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsTaskassistRouteImport } from './routes/products.taskassist'
+import { Route as ProductsQaassistRouteImport } from './routes/products.qaassist'
+import { Route as ProductsLinkassistRouteImport } from './routes/products.linkassist'
+import { Route as ProductsHireassistRouteImport } from './routes/products.hireassist'
+import { Route as ProductsCoachassistRouteImport } from './routes/products.coachassist'
+import { Route as ProductsAttributionRouteImport } from './routes/products.attribution'
 
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
@@ -46,37 +52,109 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsTaskassistRoute = ProductsTaskassistRouteImport.update({
+  id: '/taskassist',
+  path: '/taskassist',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const ProductsQaassistRoute = ProductsQaassistRouteImport.update({
+  id: '/qaassist',
+  path: '/qaassist',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const ProductsLinkassistRoute = ProductsLinkassistRouteImport.update({
+  id: '/linkassist',
+  path: '/linkassist',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const ProductsHireassistRoute = ProductsHireassistRouteImport.update({
+  id: '/hireassist',
+  path: '/hireassist',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const ProductsCoachassistRoute = ProductsCoachassistRouteImport.update({
+  id: '/coachassist',
+  path: '/coachassist',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const ProductsAttributionRoute = ProductsAttributionRouteImport.update({
+  id: '/attribution',
+  path: '/attribution',
+  getParentRoute: () => ProductsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/products': typeof ProductsRoute
+  '/products': typeof ProductsRouteWithChildren
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/products/attribution': typeof ProductsAttributionRoute
+  '/products/coachassist': typeof ProductsCoachassistRoute
+  '/products/hireassist': typeof ProductsHireassistRoute
+  '/products/linkassist': typeof ProductsLinkassistRoute
+  '/products/qaassist': typeof ProductsQaassistRoute
+  '/products/taskassist': typeof ProductsTaskassistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/products': typeof ProductsRoute
+  '/products': typeof ProductsRouteWithChildren
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/products/attribution': typeof ProductsAttributionRoute
+  '/products/coachassist': typeof ProductsCoachassistRoute
+  '/products/hireassist': typeof ProductsHireassistRoute
+  '/products/linkassist': typeof ProductsLinkassistRoute
+  '/products/qaassist': typeof ProductsQaassistRoute
+  '/products/taskassist': typeof ProductsTaskassistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
-  '/products': typeof ProductsRoute
+  '/products': typeof ProductsRouteWithChildren
   '/services': typeof ServicesRoute
   '/team': typeof TeamRoute
+  '/products/attribution': typeof ProductsAttributionRoute
+  '/products/coachassist': typeof ProductsCoachassistRoute
+  '/products/hireassist': typeof ProductsHireassistRoute
+  '/products/linkassist': typeof ProductsLinkassistRoute
+  '/products/qaassist': typeof ProductsQaassistRoute
+  '/products/taskassist': typeof ProductsTaskassistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/careers' | '/products' | '/services' | '/team'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/careers'
+    | '/products'
+    | '/services'
+    | '/team'
+    | '/products/attribution'
+    | '/products/coachassist'
+    | '/products/hireassist'
+    | '/products/linkassist'
+    | '/products/qaassist'
+    | '/products/taskassist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/careers' | '/products' | '/services' | '/team'
+  to:
+    | '/'
+    | '/about'
+    | '/careers'
+    | '/products'
+    | '/services'
+    | '/team'
+    | '/products/attribution'
+    | '/products/coachassist'
+    | '/products/hireassist'
+    | '/products/linkassist'
+    | '/products/qaassist'
+    | '/products/taskassist'
   id:
     | '__root__'
     | '/'
@@ -85,13 +163,19 @@ export interface FileRouteTypes {
     | '/products'
     | '/services'
     | '/team'
+    | '/products/attribution'
+    | '/products/coachassist'
+    | '/products/hireassist'
+    | '/products/linkassist'
+    | '/products/qaassist'
+    | '/products/taskassist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
-  ProductsRoute: typeof ProductsRoute
+  ProductsRoute: typeof ProductsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
   TeamRoute: typeof TeamRoute
 }
@@ -140,14 +224,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/taskassist': {
+      id: '/products/taskassist'
+      path: '/taskassist'
+      fullPath: '/products/taskassist'
+      preLoaderRoute: typeof ProductsTaskassistRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/products/qaassist': {
+      id: '/products/qaassist'
+      path: '/qaassist'
+      fullPath: '/products/qaassist'
+      preLoaderRoute: typeof ProductsQaassistRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/products/linkassist': {
+      id: '/products/linkassist'
+      path: '/linkassist'
+      fullPath: '/products/linkassist'
+      preLoaderRoute: typeof ProductsLinkassistRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/products/hireassist': {
+      id: '/products/hireassist'
+      path: '/hireassist'
+      fullPath: '/products/hireassist'
+      preLoaderRoute: typeof ProductsHireassistRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/products/coachassist': {
+      id: '/products/coachassist'
+      path: '/coachassist'
+      fullPath: '/products/coachassist'
+      preLoaderRoute: typeof ProductsCoachassistRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/products/attribution': {
+      id: '/products/attribution'
+      path: '/attribution'
+      fullPath: '/products/attribution'
+      preLoaderRoute: typeof ProductsAttributionRouteImport
+      parentRoute: typeof ProductsRoute
+    }
   }
 }
+
+interface ProductsRouteChildren {
+  ProductsAttributionRoute: typeof ProductsAttributionRoute
+  ProductsCoachassistRoute: typeof ProductsCoachassistRoute
+  ProductsHireassistRoute: typeof ProductsHireassistRoute
+  ProductsLinkassistRoute: typeof ProductsLinkassistRoute
+  ProductsQaassistRoute: typeof ProductsQaassistRoute
+  ProductsTaskassistRoute: typeof ProductsTaskassistRoute
+}
+
+const ProductsRouteChildren: ProductsRouteChildren = {
+  ProductsAttributionRoute: ProductsAttributionRoute,
+  ProductsCoachassistRoute: ProductsCoachassistRoute,
+  ProductsHireassistRoute: ProductsHireassistRoute,
+  ProductsLinkassistRoute: ProductsLinkassistRoute,
+  ProductsQaassistRoute: ProductsQaassistRoute,
+  ProductsTaskassistRoute: ProductsTaskassistRoute,
+}
+
+const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
+  ProductsRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
-  ProductsRoute: ProductsRoute,
+  ProductsRoute: ProductsRouteWithChildren,
   ServicesRoute: ServicesRoute,
   TeamRoute: TeamRoute,
 }
