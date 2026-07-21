@@ -60,7 +60,7 @@ const products: Product[] = [
     name: "LinkAssist",
     tag: "LinkedIn Growth",
     icon: Linkedin,
-    value: "LinkedIn content and relationship workflow, without the guesswork.",
+    value: "Build LinkedIn content and relationship habits with a guided workflow.",
     features: ["Content pipeline", "Outreach tracking", "Relationship CRM"],
     category: "Digital Solutions",
     bestFor: "Founders and sales teams",
@@ -71,7 +71,7 @@ const products: Product[] = [
     name: "HireAssist",
     tag: "Hiring Ops",
     icon: UserRound,
-    value: "A hiring workflow that keeps candidates, roles, and decisions in one place.",
+    value: "Manage hiring stages, candidate information, and team feedback.",
     features: ["Role pipelines", "Interview scorecards", "Offer tracking"],
     category: "Business Solutions",
     bestFor: "Growing teams hiring 3+ roles",
@@ -82,7 +82,7 @@ const products: Product[] = [
     name: "QAAssist",
     tag: "Quality & Release",
     icon: ShieldCheck,
-    value: "Quality assurance and release tracking for teams that ship weekly.",
+    value: "Track test cases, issues, fixes, and release readiness.",
     features: ["Release checklists", "Bug triage", "Regression tracking"],
     category: "Digital Solutions",
     bestFor: "Product and engineering teams",
@@ -93,7 +93,7 @@ const products: Product[] = [
     name: "TaskAssist",
     tag: "Execution",
     icon: ListTodo,
-    value: "Task ownership, escalation, and reporting across the whole team.",
+    value: "Manage task ownership, deadlines, proof, escalation, and reporting.",
     features: ["Owner-based tasks", "Escalation rules", "Weekly reporting"],
     category: "Business Solutions",
     bestFor: "Operations and delivery teams",
@@ -104,7 +104,7 @@ const products: Product[] = [
     name: "Attribution",
     tag: "Marketing Analytics",
     icon: BarChart3,
-    value: "Marketing-to-business outcome tracking, in one connected view.",
+    value: "Connect marketing activity with leads and business outcomes.",
     features: ["Source tracking", "Pipeline attribution", "Outcome reporting"],
     category: "AI & Automation",
     bestFor: "Marketing and revenue leaders",
@@ -115,7 +115,7 @@ const products: Product[] = [
     name: "CoachAssist",
     tag: "Delivery Ops",
     icon: GraduationCap,
-    value: "Event and delivery operations built for training businesses.",
+    value: "Manage event readiness, registrations, reminders, and delivery operations.",
     features: ["Cohort workflows", "Delivery tracking", "Attendee ops"],
     category: "Business Solutions",
     bestFor: "Coaches and training businesses",
@@ -159,18 +159,18 @@ function Hero() {
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-              Our Products
+              PRODUCTS BUILT BY BDA
             </span>
             <h1 className="mt-6 font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
-              A product ecosystem built to run better businesses.
+              Software built around real business problems.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
-              BDA Technologies builds practical software for growing service businesses. Each product solves a repeated operational problem — from LinkedIn workflows to hiring, QA, task ownership, attribution, and delivery.
+              We build products when a repeated workflow needs a clearer, faster, and more reliable system.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <AnimatedButton href="#overview">Explore Products</AnimatedButton>
               <AnimatedButton href="#final-cta" variant="ghost">
-                Talk to an Expert
+                Discuss a Custom System
               </AnimatedButton>
             </div>
           </motion.div>
@@ -284,10 +284,10 @@ function Overview() {
       <Container>
         <div className="max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-            Product Overview
+            OUR PRODUCT PORTFOLIO
           </span>
           <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
-            Solutions built to move your business forward.
+            Focused systems for focused problems.
           </h2>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             Six focused products. One connected way of working. Each product solves a specific operating problem while fitting into a broader business operating system.
@@ -304,7 +304,7 @@ function Overview() {
           {products.map((p) => (
             <motion.a
               key={p.name}
-              href="#find"
+              href="#final-cta"
               variants={{
                 hidden: { opacity: 0, y: 24 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -555,18 +555,18 @@ function FinalCTA() {
           <div className="relative max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold tracking-widest uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse-glow" />
-              Get Started
+              NEED A SYSTEM THAT DOES NOT EXIST YET?
             </span>
             <h2 className="mt-6 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">
-              Ready to find the right solution?
+              We also build custom software inside BDA OS projects.
             </h2>
             <p className="mt-5 text-lg text-background/70 max-w-xl leading-relaxed">
-              Let’s explore how our products can help transform your ideas into scalable digital experiences.
+              When standard software cannot support the workflow, we can design a focused system around the business.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <AnimatedButton href="#cta">Talk to an Expert</AnimatedButton>
-              <AnimatedButton href="#cta" variant="ghost">
-                Get in Touch
+              <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
+              <AnimatedButton href="#overview" variant="ghost">
+                Explore Products
               </AnimatedButton>
             </div>
           </div>
