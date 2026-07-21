@@ -1,32 +1,65 @@
 import { motion } from "framer-motion";
 import { Linkedin, Instagram, Youtube, Twitter } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Container } from "./Container";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 
 const linkGroups = [
   {
     title: "Company",
-    links: ["About", "Leadership", "Team", "Partners", "Careers", "Contact"],
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Leadership", href: "#" },
+      { label: "Team", href: "/team" },
+      { label: "Partners", href: "#" },
+      { label: "Careers", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     title: "Services",
-    links: ["BDA OS", "Business Audit", "AI Training"],
+    links: [
+      { label: "BDA OS", href: "/services/bda-os-implementation" },
+      { label: "Business Audit", href: "/services/business-audit" },
+      { label: "AI Training", href: "/services/ai-training" },
+    ],
   },
   {
     title: "Products",
-    links: ["Product Overview", "LinkAssist", "HireAssist", "QAAssist", "TaskAssist", "Attribution", "CoachAssist"],
+    links: [
+      { label: "Product Overview", href: "/products" },
+      { label: "LinkAssist", href: "/products/linkassist" },
+      { label: "HireAssist", href: "/products/hireassist" },
+      { label: "QAAssist", href: "/products/qaassist" },
+      { label: "TaskAssist", href: "/products/taskassist" },
+      { label: "Attribution", href: "/products/attribution" },
+      { label: "CoachAssist", href: "/products/coachassist" },
+    ],
   },
   {
     title: "Insights",
-    links: ["Articles", "Case Studies", "Guides"],
+    links: [
+      { label: "Articles", href: "#" },
+      { label: "Case Studies", href: "#" },
+      { label: "Guides", href: "#" },
+    ],
   },
   {
     title: "Regions",
-    links: ["India", "Global", "UAE"],
+    links: [
+      { label: "India", href: "#" },
+      { label: "Global", href: "#" },
+      { label: "UAE", href: "#" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacy Policy", "Terms", "Refund and Cancellation", "Security"],
+    links: [
+      { label: "Privacy Policy", href: "#" },
+      { label: "Terms", href: "#" },
+      { label: "Refund and Cancellation", href: "#" },
+      { label: "Security", href: "#" },
+    ],
   },
 ];
 
@@ -104,10 +137,22 @@ export function Footer() {
                 <div className="text-sm font-semibold">{c.title}</div>
                 <ul className="mt-4 space-y-3">
                   {c.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition">
-                        {l}
-                      </a>
+                    <li key={l.label}>
+                      {l.href.startsWith("/") ? (
+                        <Link
+                          to={l.href}
+                          className="text-sm text-muted-foreground hover:text-foreground transition"
+                        >
+                          {l.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={l.href}
+                          className="text-sm text-muted-foreground hover:text-foreground transition"
+                        >
+                          {l.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

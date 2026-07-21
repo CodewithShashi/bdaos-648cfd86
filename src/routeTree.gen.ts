@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -27,6 +28,11 @@ import { Route as ProductsAttributionRouteImport } from './routes/products.attri
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CareersRoute = CareersRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
   '/team': typeof TeamRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
   '/team': typeof TeamRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
   '/team': typeof TeamRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
+    | '/contact'
     | '/team'
     | '/products/attribution'
     | '/products/coachassist'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
+    | '/contact'
     | '/team'
     | '/products/attribution'
     | '/products/coachassist'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/careers'
+    | '/contact'
     | '/team'
     | '/products/attribution'
     | '/products/coachassist'
@@ -200,6 +212,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
+  ContactRoute: typeof ContactRoute
   TeamRoute: typeof TeamRoute
   ProductsAttributionRoute: typeof ProductsAttributionRoute
   ProductsCoachassistRoute: typeof ProductsCoachassistRoute
@@ -220,6 +233,13 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/careers': {
@@ -320,6 +340,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
+  ContactRoute: ContactRoute,
   TeamRoute: TeamRoute,
   ProductsAttributionRoute: ProductsAttributionRoute,
   ProductsCoachassistRoute: ProductsCoachassistRoute,

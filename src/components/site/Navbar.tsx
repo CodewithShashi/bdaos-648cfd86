@@ -54,7 +54,7 @@ const insightsLinks = [
 ];
 
 const simpleLinks = [
-  { href: "#cta", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const regions = [
