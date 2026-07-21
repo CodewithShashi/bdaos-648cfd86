@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
-  ArrowUpRight,
   Linkedin,
   UserRound,
   ShieldCheck,
@@ -13,7 +12,6 @@ import {
   Layers,
   Plug,
   LineChart,
-  Lock,
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
@@ -22,8 +20,6 @@ import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 import productsFeaturedImg from "@/assets/products-featured.jpg";
-import heroImg from "@/assets/hero-ai.jpg";
-import aboutImg from "@/assets/about.jpg";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -128,7 +124,7 @@ const products: Product[] = [
   },
 ];
 
-const categories = ["All", "AI & Automation", "Digital Solutions", "Business Solutions"] as const;
+
 
 function ProductsPage() {
   return (
@@ -138,7 +134,6 @@ function ProductsPage() {
       <Overview />
       <FeaturedShowcase />
       <WhyOurProducts />
-      <FindRight />
       <FinalCTA />
       <Footer />
     </main>
@@ -354,143 +349,74 @@ function Overview() {
   );
 }
 
-/* ============ 3. FEATURED SHOWCASE ============ */
-const featured = [
-  {
-    ...products[0],
-    description:
-      "LinkAssist gives founders and sales teams a structured way to build presence on LinkedIn — from content planning to relationship follow-ups — without living in the platform.",
-    image: heroImg,
-  },
-  {
-    ...products[3],
-    description:
-      "TaskAssist puts owners, deadlines, and escalation rules around every task, so work moves through the team without slipping between people or getting stuck in chat.",
-    image: aboutImg,
-  },
-  {
-    ...products[4],
-    description:
-      "Attribution connects marketing activity to real business outcomes, so leaders can see which channels, campaigns, and content actually create pipeline and revenue.",
-    image: productsFeaturedImg,
-  },
+/* ============ 3. WHY WE BUILD PRODUCTS ============ */
+const whyBuildBullets = [
+  "Start with a clear business problem",
+  "Design around the user's daily work",
+  "Keep ownership and reporting visible",
+  "Automate only where it improves the process",
+  "Improve the system through real usage",
 ];
 
 function FeaturedShowcase() {
   return (
     <section className="relative py-24 md:py-32">
       <Container>
-        <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-            Featured Products
-          </span>
-          <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
-            See our products in action.
-          </h2>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-6"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+              Why We Build Products
+            </span>
+            <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
+              A good product removes repeated friction.
+            </h2>
+            <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
+              Our products come from real work inside service businesses. Some are public software. Some support client operations. Each one shows how we think about process, data, and adoption.
+            </p>
 
-        <div className="mt-16 space-y-24 md:space-y-32">
-          {featured.map((p, i) => {
-            const reverse = i % 2 === 1;
-            return (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7 }}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${
-                  reverse ? "lg:[&>div:first-child]:order-2" : ""
-                }`}
-              >
-                <div className="lg:col-span-6">
-                  <span className="text-xs font-semibold tracking-widest text-primary uppercase">
-                    {String(i + 1).padStart(2, "0")} · {p.tag}
+            <ul className="mt-8 space-y-4">
+              {whyBuildBullets.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
                   </span>
-                  <h3 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl tracking-tight text-foreground leading-[1.05]">
-                    {p.name}
-                  </h3>
-                  <p className="mt-4 text-lg text-foreground/80 leading-relaxed">{p.value}</p>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">{p.description}</p>
+                  <span className="text-foreground/90 leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
-                  <ul className="mt-8 space-y-3">
-                    {p.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <span className="mt-1 grid h-5 w-5 place-items-center rounded-full bg-primary/10 text-primary">
-                          <CheckCircle2 className="h-3.5 w-3.5" />
-                        </span>
-                        <span className="text-foreground/90">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-10">
-                    <AnimatedButton href="#find">Explore Product</AnimatedButton>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-6">
-                  <FeaturedMockup image={p.image} name={p.name} icon={p.icon} />
-                </div>
-              </motion.div>
-            );
-          })}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="lg:col-span-6"
+          >
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/20 via-transparent to-primary-glow/20 blur-2xl"
+              />
+              <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-elevated aspect-[16/10]">
+                <img
+                  src={productsFeaturedImg}
+                  alt="BDA products in action"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </Container>
     </section>
-  );
-}
-
-function FeaturedMockup({
-  image,
-  name,
-  icon: Icon,
-}: {
-  image: string;
-  name: string;
-  icon: typeof Linkedin;
-}) {
-  return (
-    <div className="relative">
-      <div
-        aria-hidden
-        className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/20 via-transparent to-primary-glow/20 blur-2xl"
-      />
-      <div className="relative rounded-[2rem] border border-border bg-card shadow-elevated overflow-hidden">
-        <div className="flex items-center justify-between border-b border-border px-5 py-3">
-          <div className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-destructive/50" />
-            <span className="h-2.5 w-2.5 rounded-full bg-primary/50" />
-            <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-          </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Icon className="h-3.5 w-3.5" />
-            {name.toLowerCase()}.bda.os
-          </div>
-          <span className="w-10" />
-        </div>
-        <div className="relative aspect-[16/10] w-full">
-          <img src={image} alt={`${name} interface preview`} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent" />
-        </div>
-      </div>
-
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="absolute -bottom-6 -right-4 sm:-right-6 rounded-2xl border border-border bg-card shadow-elevated px-4 py-3 flex items-center gap-3"
-      >
-        <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary">
-          <Icon className="h-4 w-4" />
-        </span>
-        <div>
-          <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Live</div>
-          <div className="text-sm font-medium text-foreground">{name} workflow</div>
-        </div>
-      </motion.div>
-    </div>
   );
 }
 
@@ -522,13 +448,6 @@ const bento = [
     body: "Turn business data into clear insight and better decisions.",
     icon: LineChart,
     span: "",
-    tone: "default",
-  },
-  {
-    title: "Secure & Reliable",
-    body: "Built with modern standards for security, uptime, and access control.",
-    icon: Lock,
-    span: "md:col-span-2",
     tone: "default",
   },
 ];
@@ -605,132 +524,6 @@ function WhyOurProducts() {
   );
 }
 
-/* ============ 5. FIND THE RIGHT PRODUCT ============ */
-function FindRight() {
-  const [cat, setCat] = useState<(typeof categories)[number]>("All");
-  const filtered = cat === "All" ? products : products.filter((p) => p.category === cat);
-
-  return (
-    <section id="find" className="relative py-24 md:py-32">
-      <Container>
-        <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-            Product Finder
-          </span>
-          <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
-            Find the right solution for your business.
-          </h2>
-          <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            Explore solutions designed around your goals, challenges, and growth opportunities.
-          </p>
-        </div>
-
-        {/* filters */}
-        <div className="mt-10 flex flex-wrap gap-2">
-          {categories.map((c) => {
-            const active = c === cat;
-            return (
-              <button
-                key={c}
-                onClick={() => setCat(c)}
-                className={`rounded-full px-4 py-2 text-sm font-medium border transition-all ${
-                  active
-                    ? "bg-foreground text-background border-foreground shadow-soft"
-                    : "bg-card text-muted-foreground border-border hover:text-foreground hover:border-foreground/30"
-                }`}
-              >
-                {c}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* desktop table */}
-        <div className="mt-8 hidden md:block overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
-          <div className="grid grid-cols-12 border-b border-border bg-secondary/60 px-6 py-4 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-            <div className="col-span-3">Product</div>
-            <div className="col-span-3">Best suited for</div>
-            <div className="col-span-3">Main use case</div>
-            <div className="col-span-2">Key capability</div>
-            <div className="col-span-1 text-right">Explore</div>
-          </div>
-          {filtered.map((p) => (
-            <div
-              key={p.name}
-              className="grid grid-cols-12 items-center border-b border-border last:border-0 px-6 py-5 group hover:bg-secondary/40 transition-colors"
-            >
-              <div className="col-span-3 flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <p.icon className="h-4 w-4" />
-                </span>
-                <div>
-                  <div className="font-display text-lg tracking-tight text-foreground">
-                    {p.name}
-                  </div>
-                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                    {p.category}
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-3 text-sm text-foreground/80">{p.bestFor}</div>
-              <div className="col-span-3 text-sm text-muted-foreground">{p.useCase}</div>
-              <div className="col-span-2 text-sm text-foreground/80">{p.keyCap}</div>
-              <div className="col-span-1 flex justify-end">
-                <a
-                  href="#final-cta"
-                  className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                >
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* mobile cards */}
-        <div className="mt-8 md:hidden grid grid-cols-1 gap-4">
-          {filtered.map((p) => (
-            <div key={p.name} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <p.icon className="h-4 w-4" />
-                </span>
-                <div>
-                  <div className="font-display text-lg text-foreground">{p.name}</div>
-                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                    {p.category}
-                  </div>
-                </div>
-              </div>
-              <dl className="mt-4 space-y-2 text-sm">
-                <Row label="Best for" value={p.bestFor} />
-                <Row label="Use case" value={p.useCase} />
-                <Row label="Key capability" value={p.keyCap} />
-              </dl>
-              <a
-                href="#final-cta"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-foreground"
-              >
-                Explore <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex gap-3">
-      <dt className="w-28 shrink-0 text-[10px] uppercase tracking-widest text-muted-foreground pt-0.5">
-        {label}
-      </dt>
-      <dd className="text-foreground/85">{value}</dd>
-    </div>
-  );
-}
 
 /* ============ 6. FINAL CTA ============ */
 function FinalCTA() {
