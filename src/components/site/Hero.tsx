@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
+import { AnimatedHeroBackground } from "./AnimatedHeroBackground";
 
 export function Hero() {
 
 
   return (
     <section className="relative overflow-hidden pt-40 pb-28 md:pt-52 md:pb-36">
+      <AnimatedHeroBackground />
+
       <Container className="relative">
         <div className="mx-auto max-w-6xl text-center">
           <motion.div
