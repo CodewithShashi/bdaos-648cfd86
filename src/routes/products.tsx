@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
-  ArrowUpRight,
   Linkedin,
   UserRound,
   ShieldCheck,
@@ -13,7 +12,6 @@ import {
   Layers,
   Plug,
   LineChart,
-  Lock,
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
@@ -22,8 +20,6 @@ import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 import productsFeaturedImg from "@/assets/products-featured.jpg";
-import heroImg from "@/assets/hero-ai.jpg";
-import aboutImg from "@/assets/about.jpg";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
