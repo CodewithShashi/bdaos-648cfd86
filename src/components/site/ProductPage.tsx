@@ -54,14 +54,16 @@ function Hero(p: ProductPageProps) {
           >
             <Link
               to="/products"
-              className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase hover:text-foreground transition-colors"
+              className="flex w-fit items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase hover:text-foreground transition-colors"
             >
               <ArrowRight className="h-3.5 w-3.5 rotate-180" /> Back to Products
             </Link>
-            <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-              {p.eyebrow}
-            </span>
+            <div className="mt-4 flex">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+                {p.eyebrow}
+              </span>
+            </div>
             <h1 className="mt-6 font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
               {p.name}
             </h1>
