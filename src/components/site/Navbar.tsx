@@ -617,3 +617,69 @@ function MobileGroup({
     </div>
   );
 }
+
+function MobileGroupWithSections({
+  label,
+  sections,
+  onNavigate,
+}: {
+  label: string;
+  sections: { label: string; items: { label: string; href: string }[] }[];
+  onNavigate: () => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="border-b border-border/60 last:border-b-0">
+      <button
+        onClick={() => setExpanded((v) => !v)}
+        className="w-full flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium"
+      >
+        {label}
+        <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} />
+      </button>
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="pl-4 pb-2 flex flex-col gap-4">
+              {sections.map((section) => (
+                <div key={section.label}>
+                  <p className="px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    {section.label}
+                  </p>
+                  <div className="flex flex-col">
+                    {section.items.map((i) =>
+                      i.href.startsWith("#") ? (
+                        <a
+                          key={i.label}
+                          href={i.href}
+                          onClick={onNavigate}
+                          className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
+                        >
+                          {i.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={i.label}
+                          to={i.href}
+                          onClick={onNavigate}
+                          className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
+                        >
+                          {i.label}
+                        </Link>
+                      )
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
