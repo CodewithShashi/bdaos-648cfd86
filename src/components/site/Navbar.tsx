@@ -13,7 +13,6 @@ const aboutLinks = [
   { label: "About BDA Technologies", href: "/about" },
   { label: "Team & Partners", href: "/team" },
   { label: "Careers", href: "/careers" },
-  { label: "Media and Recognition", href: "#cta" },
 ];
 
 const aboutFeatured = [
@@ -31,26 +30,29 @@ const aboutFeatured = [
   },
 ];
 
-const whatWeDoLinks = [
-  { label: "BDA OS Implementation", href: "/services/bda-os-implementation" },
-  { label: "Business Audit", href: "/services/business-audit" },
-  { label: "AI Training and Team Adoption", href: "/services/ai-training" },
-];
-
-const productsLinks = [
-  { label: "Products Overview", href: "/products" },
+const whatWeDoProducts = [
   { label: "LinkAssist", href: "/products/linkassist" },
   { label: "HireAssist", href: "/products/hireassist" },
-  { label: "QAAssist", href: "/products/qaassist" },
   { label: "TaskAssist", href: "/products/taskassist" },
-  { label: "Attribution", href: "/products/attribution" },
-  { label: "CoachAssist", href: "/products/coachassist" },
+  { label: "QAAssist", href: "/products/qaassist" },
+];
+
+const whatWeDoServices = [
+  { label: "Business OS", href: "/services/bda-os-implementation" },
+  { label: "Digital Transformation", href: "/services/business-audit" },
+  { label: "AI Training", href: "/services/ai-training" },
+];
+
+const whatWeDoBrands = [
+  { label: "Clients.co.in", href: "#" },
+  { label: "BrandingChef", href: "#" },
+  { label: "Automation School", href: "#" },
 ];
 
 const insightsLinks = [
   { label: "Articles", href: "#insights" },
   { label: "Case Studies", href: "#work" },
-  { label: "Guides and Playbooks", href: "#insights" },
+  { label: "Media & Recognition", href: "#insights" },
 ];
 
 const simpleLinks = [
@@ -63,7 +65,7 @@ const regions = [
   { code: "AE", label: "UAE", flag: "🇦🇪" },
 ];
 
-type MenuKey = null | "about" | "whatWeDo" | "products" | "insights";
+type MenuKey = null | "about" | "whatWeDo" | "insights";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
