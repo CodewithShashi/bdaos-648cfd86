@@ -1,20 +1,28 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Container } from "./Container";
-import thriveGlobal from "@/assets/thrive-global.png.asset.json";
-import nbt from "@/assets/nbt.png.asset.json";
-import newstrack from "@/assets/newstrack.png.asset.json";
-import disrupt from "@/assets/disrupt.png.asset.json";
-import midday from "@/assets/midday.png.asset.json";
-import dailyhunt from "@/assets/dailyhunt.png.asset.json";
+import staava from "@/assets/clients/client-5-1.png.asset.json";
+import bluespace from "@/assets/clients/client-16.png.asset.json";
+import bharatIct from "@/assets/clients/client-24.png.asset.json";
+import ebcc from "@/assets/clients/client-26.png.asset.json";
+import naks from "@/assets/clients/client-3-1.png.asset.json";
+import tataDigital from "@/assets/clients/client-1.png.asset.json";
+import iferp from "@/assets/clients/client-17.png.asset.json";
+import pritikaMoney from "@/assets/clients/client-7.png.asset.json";
+import pinkBlue from "@/assets/clients/client-11.png.asset.json";
+import finanzaPersonel from "@/assets/clients/client-BDA-Client-Logo-new-1.png.asset.json";
 
 const logos = [
-  { src: thriveGlobal.url, alt: "Thrive Global" },
-  { src: nbt.url, alt: "Navbharat Times" },
-  { src: newstrack.url, alt: "Newstrack" },
-  { src: disrupt.url, alt: "Disrupt" },
-  { src: midday.url, alt: "Mid-Day" },
-  { src: dailyhunt.url, alt: "Dailyhunt" },
+  { src: staava.url, alt: "Staava" },
+  { src: bluespace.url, alt: "Bluespace Healthcare" },
+  { src: bharatIct.url, alt: "Bharat ICT" },
+  { src: ebcc.url, alt: "EBCC" },
+  { src: naks.url, alt: "Naks & Associates" },
+  { src: tataDigital.url, alt: "Tata Digital" },
+  { src: iferp.url, alt: "IFERP" },
+  { src: pritikaMoney.url, alt: "Pritika Money" },
+  { src: pinkBlue.url, alt: "Pink & Blue Symbiotic Living" },
+  { src: finanzaPersonel.url, alt: "Finanza Personel" },
 ];
 
 const SLOTS = 6;
