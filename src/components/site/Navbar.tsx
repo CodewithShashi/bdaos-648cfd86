@@ -159,7 +159,7 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-2">
             <RegionSelector region={region} setRegion={setRegion} />
-            <AnimatedButton href="#business-audit">Business Audit Application</AnimatedButton>
+            <AnimatedButton href="/contact">Contact Sales</AnimatedButton>
           </div>
 
           <button
