@@ -202,17 +202,6 @@ export function Navbar() {
             className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
-              <MobileGroupWithSections
-                label="What We Do"
-                sections={[
-                  { label: "Products", items: whatWeDoProducts },
-                  { label: "Services", items: whatWeDoServices },
-                  { label: "Brands", items: whatWeDoBrands },
-                ]}
-                onNavigate={() => setOpen(false)}
-              />
-              <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
-              <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
               {simpleLinks.map((l) =>
                 l.href.startsWith("#") ? (
                   <a
@@ -234,6 +223,17 @@ export function Navbar() {
                   </Link>
                 )
               )}
+              <MobileGroupWithSections
+                label="What We Do"
+                sections={[
+                  { label: "Products", items: whatWeDoProducts },
+                  { label: "Services", items: whatWeDoServices },
+                  { label: "Brands", items: whatWeDoBrands },
+                ]}
+                onNavigate={() => setOpen(false)}
+              />
+              <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
+              <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
               <div className="px-4 py-3 border-b border-border/60">
                 <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
                   <Globe className="h-4 w-4" />
