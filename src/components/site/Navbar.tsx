@@ -108,6 +108,13 @@ export function Navbar() {
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
+            <Link
+              to="/"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
+            >
+              Home
+            </Link>
             <button
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
