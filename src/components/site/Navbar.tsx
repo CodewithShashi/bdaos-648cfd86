@@ -186,9 +186,8 @@ export function Navbar() {
               className="hidden lg:block mt-3"
             >
               <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
-                {menu === "about" && <AboutMega />}
+              {menu === "about" && <AboutMega />}
                 {menu === "whatWeDo" && <WhatWeDoMega />}
-                {menu === "products" && <ProductsMega />}
                 {menu === "insights" && <InsightsMega />}
               </div>
             </motion.div>
