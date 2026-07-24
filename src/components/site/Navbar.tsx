@@ -248,8 +248,8 @@ export function Navbar() {
                 </div>
               </div>
               <div className="pt-2">
-                <AnimatedButton href="#business-audit" className="w-full justify-between">
-                  Business Audit Application
+                <AnimatedButton href="/contact" className="w-full justify-between">
+                  Contact Sales
                 </AnimatedButton>
               </div>
             </div>
