@@ -55,7 +55,9 @@ const insightsLinks = [
   { label: "Media & Recognition", href: "#insights" },
 ];
 
-const simpleLinks: { href: string; label: string }[] = [];
+const simpleLinks = [
+  { href: "/", label: "Home" },
+];
 
 const regions = [
   { code: "IN", label: "India", flag: "🇮🇳" },
@@ -106,6 +108,13 @@ export function Navbar() {
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
+            <Link
+              to="/"
+              onMouseEnter={() => setMenu(null)}
+              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
+            >
+              Home
+            </Link>
             <button
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
@@ -204,6 +213,27 @@ export function Navbar() {
               />
               <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
+              {simpleLinks.map((l) =>
+                l.href.startsWith("#") ? (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={l.href}
+                    to={l.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
+                  >
+                    {l.label}
+                  </Link>
+                )
+              )}
               <div className="px-4 py-3 border-b border-border/60">
                 <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
                   <Globe className="h-4 w-4" />
