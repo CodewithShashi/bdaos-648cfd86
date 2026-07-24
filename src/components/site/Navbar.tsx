@@ -105,7 +105,7 @@ export function Navbar() {
             />
           </a>
 
-          <nav className="hidden xl:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             <Link
               to="/"
               onMouseEnter={() => setMenu(null)}
@@ -178,13 +178,13 @@ export function Navbar() {
             </Link>
           </nav>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2">
             <RegionSelector region={region} setRegion={setRegion} />
             <AnimatedButton href="#business-audit">Business Audit Application</AnimatedButton>
           </div>
 
           <button
-            className="xl:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
+            className="lg:hidden grid place-items-center h-10 w-10 rounded-full bg-secondary shrink-0"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -202,7 +202,7 @@ export function Navbar() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: [0.65, 0, 0.35, 1] }}
               onMouseEnter={() => setMenu(menu)}
-              className="hidden xl:block mt-3"
+              className="hidden lg:block mt-3"
             >
               <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
                 {menu === "about" && <AboutMega />}
@@ -219,7 +219,7 @@ export function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
+            className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
               <Link
