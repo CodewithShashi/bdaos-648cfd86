@@ -55,7 +55,9 @@ const insightsLinks = [
   { label: "Media & Recognition", href: "#insights" },
 ];
 
-const simpleLinks: { href: string; label: string }[] = [];
+const simpleLinks = [
+  { href: "/", label: "Home" },
+];
 
 const regions = [
   { code: "IN", label: "India", flag: "🇮🇳" },
