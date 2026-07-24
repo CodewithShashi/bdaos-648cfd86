@@ -108,13 +108,6 @@ export function Navbar() {
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              to="/"
-              onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
-            >
-              Home
-            </Link>
             <button
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
@@ -127,20 +120,6 @@ export function Navbar() {
               What We Do
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform ${menu === "whatWeDo" ? "rotate-180" : ""}`}
-              />
-            </button>
-            <button
-              onMouseEnter={() => setMenu("products")}
-              onFocus={() => setMenu("products")}
-              onClick={() => setMenu(menu === "products" ? null : "products")}
-              className={`relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm transition whitespace-nowrap ${
-                menu === "products" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-              }`}
-              aria-expanded={menu === "products"}
-            >
-              Products
-              <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform ${menu === "products" ? "rotate-180" : ""}`}
               />
             </button>
             <button
