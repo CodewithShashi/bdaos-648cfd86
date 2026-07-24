@@ -334,75 +334,45 @@ function RegionSelector({
 function WhatWeDoMega() {
   return (
     <div className="grid grid-cols-12 gap-0">
-      <div className="col-span-5 p-8 border-r border-border/60">
+      <div className="col-span-3 p-8 border-r border-border/60">
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          Intelligence, delivered.
+          Products
         </p>
         <div className="flex flex-col">
-          {whatWeDoLinks.map((l, i) => (
-            <motion.a
-              key={l.label}
-              href={l.href}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.25, delay: i * 0.03 }}
-              className="group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors"
-            >
-              <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </motion.a>
+          {whatWeDoProducts.map((l, i) => (
+            <MegaLink key={l.label} l={l} i={i} />
           ))}
         </div>
       </div>
 
-      <div className="col-span-7 p-8 bg-secondary/40">
-        <div className="max-w-md">
-          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
-            BDA OS Implementation
-          </p>
-          <h4 className="text-xl font-semibold text-foreground leading-snug">
-            The AI operating system for modern teams
-          </h4>
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-            We deploy agents, automate workflows, and train your teams to run AI at scale — with enterprise-grade security and governance.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProductsMega() {
-  return (
-    <div className="grid grid-cols-12 gap-0">
-      <div className="col-span-8 p-8 border-r border-border/60">
+      <div className="col-span-3 p-8 border-r border-border/60">
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          AI Assistants
+          Services
         </p>
         <div className="flex flex-col">
-          {productsLinks.map((l, i) => (
-            <motion.a
-              key={l.label}
-              href={l.href}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.25, delay: i * 0.03 }}
-              className="group flex items-center justify-between border-b border-border/60 py-3.5 text-sm text-foreground hover:text-primary transition-colors"
-            >
-              <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </motion.a>
+          {whatWeDoServices.map((l, i) => (
+            <MegaLink key={l.label} l={l} i={i} />
           ))}
         </div>
       </div>
 
-      <div className="col-span-4 p-8 bg-secondary/40">
+      <div className="col-span-3 p-8 border-r border-border/60">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
+          Brands
+        </p>
+        <div className="flex flex-col">
+          {whatWeDoBrands.map((l, i) => (
+            <MegaLink key={l.label} l={l} i={i} />
+          ))}
+        </div>
+      </div>
+
+      <div className="col-span-3 p-8 bg-secondary/40">
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
           Featured
         </p>
         <a href="#products" className="group block">
           <div className="relative overflow-hidden rounded-2xl aspect-[4/5] bg-muted">
-          
             <img
               src={productsFeaturedImg}
               alt="LinkAssist featured"
@@ -419,6 +389,33 @@ function ProductsMega() {
         </a>
       </div>
     </div>
+  );
+}
+
+function MegaLink({ l, i }: { l: { label: string; href: string }; i: number }) {
+  const isRoute = !l.href.startsWith("#");
+  const children = (
+    <>
+      <span>{l.label}</span>
+      <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+    </>
+  );
+  const className =
+    "group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors";
+  return isRoute ? (
+    <Link to={l.href} className={className}>
+      {children}
+    </Link>
+  ) : (
+    <motion.a
+      href={l.href}
+      initial={{ opacity: 0, x: -6 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.25, delay: i * 0.03 }}
+      className={className}
+    >
+      {children}
+    </motion.a>
   );
 }
 
