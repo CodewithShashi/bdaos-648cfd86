@@ -7,7 +7,7 @@ export function Hero() {
 
 
   return (
-    <section className="relative overflow-hidden pt-40 pb-28 md:pt-52 md:pb-36">
+    <section className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-20">
       <AnimatedHeroBackground />
 
       <Container className="relative">
