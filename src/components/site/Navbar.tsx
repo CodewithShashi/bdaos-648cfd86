@@ -178,7 +178,7 @@ export function Navbar() {
             </Link>
           </nav>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2">
             <RegionSelector region={region} setRegion={setRegion} />
             <AnimatedButton href="#business-audit">Business Audit Application</AnimatedButton>
           </div>
@@ -219,7 +219,7 @@ export function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
+            className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
           >
             <div className="flex flex-col">
               <Link
