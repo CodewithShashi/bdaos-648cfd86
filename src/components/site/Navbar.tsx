@@ -55,9 +55,7 @@ const insightsLinks = [
   { label: "Media & Recognition", href: "#insights" },
 ];
 
-const simpleLinks = [
-  { href: "/contact", label: "Contact" },
-];
+const simpleLinks: { href: string; label: string }[] = [];
 
 const regions = [
   { code: "IN", label: "India", flag: "🇮🇳" },
@@ -150,18 +148,11 @@ export function Navbar() {
                 className={`h-3.5 w-3.5 transition-transform ${menu === "insights" ? "rotate-180" : ""}`}
               />
             </button>
-            <Link
-              to="/contact"
-              onMouseEnter={() => setMenu(null)}
-              className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
-            >
-              Contact
-            </Link>
           </nav>
 
           <div className="hidden lg:flex items-center gap-2">
             <RegionSelector region={region} setRegion={setRegion} />
-            <AnimatedButton href="#business-audit">Business Audit Application</AnimatedButton>
+            <AnimatedButton href="/contact">Contact Sales</AnimatedButton>
           </div>
 
           <button
@@ -213,27 +204,6 @@ export function Navbar() {
               />
               <MobileGroup label="Who We Are" items={aboutLinks} onNavigate={() => setOpen(false)} />
               <MobileGroup label="Insights" items={insightsLinks} onNavigate={() => setOpen(false)} />
-              {simpleLinks.map((l) =>
-                l.href.startsWith("#") ? (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-                  >
-                    {l.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={l.href}
-                    to={l.href}
-                    onClick={() => setOpen(false)}
-                    className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
-                  >
-                    {l.label}
-                  </Link>
-                )
-              )}
               <div className="px-4 py-3 border-b border-border/60">
                 <p className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2">
                   <Globe className="h-4 w-4" />
@@ -257,8 +227,8 @@ export function Navbar() {
                 </div>
               </div>
               <div className="pt-2">
-                <AnimatedButton href="#business-audit" className="w-full justify-between">
-                  Business Audit Application
+                <AnimatedButton href="/contact" className="w-full justify-between">
+                  Contact Sales
                 </AnimatedButton>
               </div>
             </div>
@@ -331,43 +301,60 @@ function RegionSelector({
   );
 }
 
+const whatWeDoSections = [
+  { key: "products", label: "Products", items: whatWeDoProducts },
+  { key: "services", label: "Services", items: whatWeDoServices },
+  { key: "brands", label: "Brands", items: whatWeDoBrands },
+] as const;
+
 function WhatWeDoMega() {
+  const [active, setActive] = useState<(typeof whatWeDoSections)[number]["key"]>("products");
+  const activeSection = whatWeDoSections.find((s) => s.key === active) || whatWeDoSections[0];
+
   return (
     <div className="grid grid-cols-12 gap-0">
-      <div className="col-span-3 p-8 border-r border-border/60">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          Products
+      {/* Sidebar */}
+      <div className="col-span-3 p-6 bg-secondary/40 border-r border-border/60">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-4 px-3">
+          What We Do
         </p>
         <div className="flex flex-col">
-          {whatWeDoProducts.map((l, i) => (
+          {whatWeDoSections.map((section) => (
+            <button
+              key={section.key}
+              onMouseEnter={() => setActive(section.key)}
+              onClick={() => setActive(section.key)}
+              className={`group flex items-center justify-between gap-3 rounded-xl px-4 py-3.5 text-sm transition text-left ${
+                active === section.key
+                  ? "bg-background text-foreground shadow-soft"
+                  : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+              }`}
+            >
+              <span className="font-medium">{section.label}</span>
+              <ChevronRight
+                className={`h-4 w-4 transition-transform ${
+                  active === section.key ? "translate-x-0.5 text-primary" : "text-muted-foreground/60 group-hover:text-foreground"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Active section items */}
+      <div className="col-span-6 p-8 border-r border-border/60">
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
+          {activeSection.label}
+        </p>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-0">
+          {activeSection.items.map((l, i) => (
             <MegaLink key={l.label} l={l} i={i} />
           ))}
         </div>
       </div>
 
-      <div className="col-span-3 p-8 border-r border-border/60">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          Services
-        </p>
-        <div className="flex flex-col">
-          {whatWeDoServices.map((l, i) => (
-            <MegaLink key={l.label} l={l} i={i} />
-          ))}
-        </div>
-      </div>
-
-      <div className="col-span-3 p-8 border-r border-border/60">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          Brands
-        </p>
-        <div className="flex flex-col">
-          {whatWeDoBrands.map((l, i) => (
-            <MegaLink key={l.label} l={l} i={i} />
-          ))}
-        </div>
-      </div>
-
-      <div className="col-span-3 p-8 bg-secondary/40">
+      {/* Featured card */}
+      <div className="col-span-3 p-6">
         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
           Featured
         </p>
