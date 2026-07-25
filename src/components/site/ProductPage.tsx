@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, type ComponentType } from "react";
-import { Link } from "@tanstack/react-router";
-import { CheckCircle2, ArrowRight, Sparkles, type LucideIcon } from "lucide-react";
+import { CheckCircle2, Sparkles, type LucideIcon } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
