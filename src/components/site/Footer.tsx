@@ -6,34 +6,40 @@ import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 
 const linkGroups = [
   {
-    title: "Company",
+    title: "Who We Are",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Leadership", href: "#" },
-      { label: "Team", href: "/team" },
-      { label: "Partners", href: "#" },
+      { label: "About BDA Technologies", href: "/about" },
+      { label: "Team & Partners", href: "/team" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
     ],
   },
   {
-    title: "Services",
+    title: "Products",
     links: [
-      { label: "BDA OS", href: "/services/bda-os-implementation" },
-      { label: "Business Audit", href: "/services/business-audit" },
-      { label: "AI Training", href: "/services/ai-training" },
+      { label: "LinkAssist", href: "/products/linkassist" },
+      { label: "HireAssist", href: "/products/hireassist" },
+      { label: "TaskAssist", href: "/products/taskassist" },
+      { label: "QAAssist", href: "/products/qaassist" },
+      { label: "Attribution", href: "/products/attribution" },
+      { label: "CoachAssist", href: "/products/coachassist" },
     ],
   },
   {
-    title: "Products",
+    title: "Services",
     links: [
-      { label: "Product Overview", href: "/products" },
-      { label: "LinkAssist", href: "/products/linkassist" },
-      { label: "HireAssist", href: "/products/hireassist" },
-      { label: "QAAssist", href: "/products/qaassist" },
-      { label: "TaskAssist", href: "/products/taskassist" },
-      { label: "Attribution", href: "/products/attribution" },
-      { label: "CoachAssist", href: "/products/coachassist" },
+      { label: "Business OS", href: "/services/bda-os-implementation" },
+      { label: "Digital Transformation", href: "/services/business-audit" },
+      { label: "AI Training", href: "/services/ai-training" },
+      { label: "Pricing", href: "/pricing" },
+    ],
+  },
+  {
+    title: "Brands",
+    links: [
+      { label: "Clients.co.in", href: "#" },
+      { label: "BrandingChef", href: "#" },
+      { label: "Automation School", href: "#" },
     ],
   },
   {
@@ -41,15 +47,7 @@ const linkGroups = [
     links: [
       { label: "Articles", href: "#" },
       { label: "Case Studies", href: "#" },
-      { label: "Guides", href: "#" },
-    ],
-  },
-  {
-    title: "Regions",
-    links: [
-      { label: "India", href: "#" },
-      { label: "Global", href: "#" },
-      { label: "UAE", href: "#" },
+      { label: "Media & Recognition", href: "#" },
     ],
   },
   {
