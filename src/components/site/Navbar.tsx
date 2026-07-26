@@ -51,9 +51,9 @@ const whatWeDoBrands = [
 ];
 
 const insightsLinks = [
-  { label: "Articles", href: "#insights" },
-  { label: "Case Studies", href: "#work" },
-  { label: "Media & Recognition", href: "#insights" },
+  { label: "Articles", href: "/insights/articles" },
+  { label: "Case Studies", href: "/insights/case-studies" },
+  { label: "Media & Recognition", href: "/insights/media-recognition" },
 ];
 
 const simpleLinks = [
@@ -472,7 +472,7 @@ function AboutMega() {
         {aboutFeatured.map((f, i) => (
           <motion.a
             key={f.title}
-            href="#work"
+            href="/insights/media-recognition"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}
@@ -545,7 +545,7 @@ function InsightsMega() {
         {insightsFeatured.map((f, i) => (
           <motion.a
             key={f.title}
-            href="#work"
+            href="/insights/media-recognition"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}

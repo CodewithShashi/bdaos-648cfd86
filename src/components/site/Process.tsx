@@ -20,14 +20,6 @@ const products = [
     title: "TaskAssist",
     desc: "Task ownership, escalation, and reporting",
   },
-  {
-    title: "Attribution",
-    desc: "Marketing-to-business outcome tracking",
-  },
-  {
-    title: "CoachAssist",
-    desc: "Event and delivery operations for training businesses",
-  },
 ];
 
 export function Process() {
