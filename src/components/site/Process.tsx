@@ -26,9 +26,9 @@ export function Process() {
   return (
     <section id="products" className="relative py-28 md:py-36 bg-secondary/40">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
           {/* Left */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
+          <div className="lg:col-span-5">
             <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
               PRODUCTS BUILT BY BDA
             </span>
