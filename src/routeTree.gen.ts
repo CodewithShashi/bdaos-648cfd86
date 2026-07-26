@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as InRouteImport } from './routes/in'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
@@ -37,6 +38,11 @@ const TeamRoute = TeamRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InRoute = InRouteImport.update({
+  id: '/in',
+  path: '/in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/in'
     | '/pricing'
     | '/team'
     | '/brands/automation-school'
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/in'
     | '/pricing'
     | '/team'
     | '/brands/automation-school'
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/in'
     | '/pricing'
     | '/team'
     | '/brands/automation-school'
@@ -261,6 +273,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  InRoute: typeof InRoute
   PricingRoute: typeof PricingRoute
   TeamRoute: typeof TeamRoute
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/in': {
+      id: '/in'
+      path: '/in'
+      fullPath: '/in'
+      preLoaderRoute: typeof InRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -421,6 +441,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  InRoute: InRoute,
   PricingRoute: PricingRoute,
   TeamRoute: TeamRoute,
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
