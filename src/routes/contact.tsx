@@ -63,7 +63,7 @@ function ContactPage() {
       {/* Section 1 — Hero */}
       <section className="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
         <Container className="relative z-10">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
             <motion.span
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ function ContactPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="mt-5 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+              className="mt-5 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed"
             >
               Tell us what is slowing your business down. We will reply within two business days with a clear next step.
             </motion.p>
@@ -103,7 +103,7 @@ function ContactPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-5 flex flex-col gap-5"
+              className="lg:col-span-5 flex h-full flex-col gap-5"
             >
               {contactInfo.map((item, i) => (
                 <a
@@ -125,7 +125,7 @@ function ContactPage() {
                 </a>
               ))}
 
-              <div className="mt-4 rounded-2xl border border-border bg-secondary/40 p-6">
+              <div className="mt-auto flex flex-col justify-center rounded-2xl border border-border bg-secondary/40 p-6 lg:flex-1">
                 <p className="text-sm font-medium text-foreground">Prefer a scheduled call?</p>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Apply for a Business Audit Call and we will review your operations before we speak.
