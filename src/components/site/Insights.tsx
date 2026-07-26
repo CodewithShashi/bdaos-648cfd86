@@ -5,6 +5,8 @@ import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import { caseStudies as posts } from "@/data/insights";
 
+const MotionLink = motion(Link);
+
 export function Insights() {
   return (
     <section id="insights" className="relative py-28 md:py-36 bg-background">
@@ -92,7 +94,7 @@ export function Insights() {
                   {p.title}
                 </h3>
               </div>
-            </motion.a>
+            </MotionLink>
           ))}
         </motion.div>
       </Container>
