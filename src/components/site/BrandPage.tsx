@@ -69,8 +69,6 @@ function Hero(p: BrandPageProps) {
             </div>
           </motion.div>
         </div>
-
-        </div>
       </Container>
     </section>
   );
