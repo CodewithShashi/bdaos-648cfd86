@@ -183,7 +183,7 @@ function CareersPage() {
       {/* Hero */}
       <section className="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
         <Container className="relative z-10">
-          <div className="flex flex-col gap-8 max-w-5xl">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
               Careers
             </span>
@@ -197,14 +197,13 @@ function CareersPage() {
               <br />
               Behind Your <span className="italic text-primary">AI.</span>
             </motion.h1>
-            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end">
-              <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-                A small, senior team that designs, builds, and ships AI systems for
-                companies that want results, not slideware.
-              </p>
-              <AnimatedButton href="#openings" className="justify-self-start">Book A Call</AnimatedButton>
-            </div>
+            <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              A small, senior team that designs, builds, and ships AI systems for
+              companies that want results, not slideware.
+            </p>
+            <AnimatedButton href="#openings">Book A Call</AnimatedButton>
           </div>
+
         </Container>
       </section>
 
