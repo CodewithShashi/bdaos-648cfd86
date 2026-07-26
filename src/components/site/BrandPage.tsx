@@ -43,12 +43,12 @@ function Hero(p: BrandPageProps) {
         className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/20 blur-3xl animate-float-slow"
       />
       <Container className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-6 flex flex-col items-center text-center"
+            className="flex flex-col items-center text-center"
           >
             {p.logo && (
               <img src={p.logo} alt={`${p.name} logo`} className="mb-6 h-12 md:h-14 w-auto object-contain" />
@@ -59,7 +59,7 @@ function Hero(p: BrandPageProps) {
             <p className="mt-4 text-xl md:text-2xl text-foreground/80 font-display leading-snug">
               {p.tagline}
             </p>
-            <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
               {p.description}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -68,45 +68,8 @@ function Hero(p: BrandPageProps) {
               </AnimatedButton>
             </div>
           </motion.div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="lg:col-span-6 relative"
-          >
-            <div className="relative aspect-[5/4] w-full">
-              <div
-                aria-hidden
-                className="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-primary/20 via-transparent to-primary-glow/25 blur-2xl"
-              />
-              <div className="relative h-full w-full rounded-[2rem] border border-border bg-card shadow-elevated overflow-hidden">
-                <div className="flex items-center gap-1.5 border-b border-border px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <span className="ml-3 text-xs text-muted-foreground">{p.website ?? "bdatechnologies.com"}</span>
-                </div>
-                <div className="relative flex h-[calc(100%-2.75rem)] items-center justify-center p-8">
-                  <div aria-hidden className="absolute inset-0 opacity-40">
-                    <div className="absolute top-8 left-8 h-40 w-40 rounded-full bg-primary/25 blur-3xl" />
-                    <div className="absolute bottom-8 right-8 h-52 w-52 rounded-full bg-primary-glow/25 blur-3xl" />
-                  </div>
-                  <div className="relative flex flex-col items-center text-center">
-                    {p.logo ? (
-                      <img src={p.logo} alt={`${p.name} logo`} className="h-14 md:h-16 w-auto object-contain" />
-                    ) : (
-                      <span className="grid h-20 w-20 place-items-center rounded-3xl bg-primary/10 border border-primary/20 text-primary shadow-soft">
-                        <Icon className="h-10 w-10" />
-                      </span>
-                    )}
-                    {!p.logo && <h3 className="mt-6 font-display text-3xl text-foreground">{p.name}</h3>}
-                    <p className="mt-4 text-sm text-muted-foreground max-w-xs">{p.tagline}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </Container>
     </section>
