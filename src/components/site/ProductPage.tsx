@@ -50,8 +50,11 @@ function Hero(p: ProductPageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-6"
+            className="lg:col-span-6 flex flex-col items-center text-center"
           >
+            {p.logo && (
+              <img src={p.logo} alt={`${p.name} logo`} className="mb-6 h-12 md:h-14 w-auto object-contain" />
+            )}
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
               {p.name}
             </h1>
@@ -61,7 +64,7 @@ function Hero(p: ProductPageProps) {
             <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
               {p.description}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <AnimatedButton href="/products" variant="ghost">
                 Explore Products
               </AnimatedButton>
