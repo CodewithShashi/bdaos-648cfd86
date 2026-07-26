@@ -238,51 +238,52 @@ function AboutPage() {
       {/* Hero */}
       <section className="relative pt-36 pb-14 md:pt-44 md:pb-20 overflow-hidden">
         <Container className="relative z-10">
-          <div className="flex flex-col gap-8 max-w-5xl">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-              About BDA Technologies
-            </span>
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="text-4xl sm:text-5xl md:text-7xl font-normal tracking-tight leading-[1.02]"
-            >
-              We build the systems behind better execution.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
-            >
-              BDA Technologies helps growing service businesses improve how work is managed. We combine process design, dashboards, automation, custom software, and team training.
-            </motion.p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="flex flex-col gap-8">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium tracking-wider uppercase text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+                About BDA Technologies
+              </span>
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight leading-[1.03]"
+              >
+                We build the systems behind better execution.
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-lg text-muted-foreground leading-relaxed"
+              >
+                BDA Technologies helps growing service businesses improve how work is managed. We combine process design, dashboards, automation, custom software, and team training.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <AnimatedButton href="/#cta">Apply for a Business Audit Call</AnimatedButton>
+              </motion.div>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-2"
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="overflow-hidden rounded-[2rem] border border-border shadow-elevated aspect-[4/3] lg:aspect-[5/4]"
             >
-              <AnimatedButton href="/#cta">Apply for a Business Audit Call</AnimatedButton>
+              <img
+                src={aboutImg}
+                alt="BDA Technologies team collaborating on an operating system implementation"
+                className="h-full w-full object-cover"
+              />
             </motion.div>
           </div>
-
-          {/* Hero image */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="mt-12 md:mt-16 overflow-hidden rounded-[2rem] border border-border shadow-elevated aspect-[16/9]"
-          >
-            <img
-              src={aboutImg}
-              alt="BDA Technologies team collaborating on an operating system implementation"
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
         </Container>
+
       </section>
 
       {/* Stats */}
