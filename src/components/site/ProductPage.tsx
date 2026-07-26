@@ -36,7 +36,6 @@ export function ProductPage(p: ProductPageProps) {
 }
 
 function Hero(p: ProductPageProps) {
-  const Icon = p.icon;
   return (
     <section className="relative overflow-hidden pt-36 md:pt-44 pb-20 md:pb-28">
       <div aria-hidden className="absolute inset-0 bg-mesh opacity-70" />
