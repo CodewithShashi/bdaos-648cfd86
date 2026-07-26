@@ -53,7 +53,7 @@ export function Process() {
               whileInView="show"
               viewport={{ once: true, margin: "-80px" }}
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr"
             >
               {products.map((p, i) => (
                 <motion.div
