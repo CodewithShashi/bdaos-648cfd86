@@ -1,31 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
-import img1 from "@/assets/project-1.jpg";
-import img2 from "@/assets/hero-ai.jpg";
-import img3 from "@/assets/about.jpg";
+import { caseStudies as posts } from "@/data/insights";
 
-const posts = [
-  {
-    img: img1,
-    category: "Guides",
-    date: "Jun 24, 2026",
-    title: "Getting Your Data AI-Ready, Without the Big Project",
-  },
-  {
-    img: img2,
-    category: "AI Strategy",
-    date: "Jun 24, 2026",
-    title: "Buy, Build, or Wait: A Simpler Way to Decide",
-  },
-  {
-    img: img3,
-    category: "Automation",
-    date: "Jun 24, 2026",
-    title: "Your Tools Already Talk. You Don't Have To.",
-  },
-];
+const MotionLink = motion(Link);
 
 export function Insights() {
   return (
@@ -70,7 +50,7 @@ export function Insights() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <AnimatedButton href="#insights">View Case Studies</AnimatedButton>
+            <AnimatedButton href="/insights/case-studies">View Case Studies</AnimatedButton>
           </motion.div>
         </div>
 
@@ -81,10 +61,10 @@ export function Insights() {
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {posts.map((p, i) => (
-            <motion.a
-              key={i}
-              href="#"
+          {posts.map((p) => (
+            <MotionLink
+              key={p.slug}
+              to="/insights/case-studies"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -114,7 +94,7 @@ export function Insights() {
                   {p.title}
                 </h3>
               </div>
-            </motion.a>
+            </MotionLink>
           ))}
         </motion.div>
       </Container>

@@ -45,9 +45,9 @@ const linkGroups = [
   {
     title: "Insights",
     links: [
-      { label: "Articles", href: "#" },
-      { label: "Case Studies", href: "#" },
-      { label: "Media & Recognition", href: "#" },
+      { label: "Articles", href: "/insights/articles" },
+      { label: "Case Studies", href: "/insights/case-studies" },
+      { label: "Media & Recognition", href: "/insights/media-recognition" },
     ],
   },
   {
