@@ -26,6 +26,7 @@ import { Route as ProductsHireassistRouteImport } from './routes/products.hireas
 import { Route as ProductsCoachassistRouteImport } from './routes/products.coachassist'
 import { Route as ProductsAttributionRouteImport } from './routes/products.attribution'
 import { Route as BrandsClientsRouteImport } from './routes/brands.clients'
+import { Route as BrandsBrandingchefRouteImport } from './routes/brands.brandingchef'
 
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
@@ -113,6 +114,11 @@ const BrandsClientsRoute = BrandsClientsRouteImport.update({
   path: '/brands/clients',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandsBrandingchefRoute = BrandsBrandingchefRouteImport.update({
+  id: '/brands/brandingchef',
+  path: '/brands/brandingchef',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -121,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -140,6 +147,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pricing'
     | '/team'
+    | '/brands/brandingchef'
     | '/brands/clients'
     | '/products/attribution'
     | '/products/coachassist'
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pricing'
     | '/team'
+    | '/brands/brandingchef'
     | '/brands/clients'
     | '/products/attribution'
     | '/products/coachassist'
@@ -219,6 +230,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pricing'
     | '/team'
+    | '/brands/brandingchef'
     | '/brands/clients'
     | '/products/attribution'
     | '/products/coachassist'
@@ -239,6 +251,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   PricingRoute: typeof PricingRoute
   TeamRoute: typeof TeamRoute
+  BrandsBrandingchefRoute: typeof BrandsBrandingchefRoute
   BrandsClientsRoute: typeof BrandsClientsRoute
   ProductsAttributionRoute: typeof ProductsAttributionRoute
   ProductsCoachassistRoute: typeof ProductsCoachassistRoute
@@ -373,6 +386,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrandsClientsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brands/brandingchef': {
+      id: '/brands/brandingchef'
+      path: '/brands/brandingchef'
+      fullPath: '/brands/brandingchef'
+      preLoaderRoute: typeof BrandsBrandingchefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -383,6 +403,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   PricingRoute: PricingRoute,
   TeamRoute: TeamRoute,
+  BrandsBrandingchefRoute: BrandsBrandingchefRoute,
   BrandsClientsRoute: BrandsClientsRoute,
   ProductsAttributionRoute: ProductsAttributionRoute,
   ProductsCoachassistRoute: ProductsCoachassistRoute,
