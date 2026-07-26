@@ -5,28 +5,27 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
-import productsFeaturedImg from "@/assets/products-featured.jpg";
 
-export type ServicePageProps = {
+export type BrandPageProps = {
   name: string;
   tagline: string;
-  eyebrow: string;
-  heading: string;
   description: string;
   icon: LucideIcon | ComponentType<{ className?: string }>;
-  whatItIncludes: { title: string; body: string; icon: LucideIcon | ComponentType<{ className?: string }> }[];
-  process: { title: string; body: string }[];
+  logo?: string;
+  website?: string;
+  offerings: { title: string; body: string; icon: LucideIcon | ComponentType<{ className?: string }> }[];
+  approach: { title: string; body: string }[];
   outcomes: string[];
   bestFor: string;
 };
 
-export function ServicePage(p: ServicePageProps) {
+export function BrandPage(p: BrandPageProps) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero {...p} />
-      <WhatItIncludes {...p} />
-      <Process {...p} />
+      <Offerings {...p} />
+      <Approach {...p} />
       <Outcomes {...p} />
       <FinalCTA {...p} />
       <Footer />
@@ -34,7 +33,7 @@ export function ServicePage(p: ServicePageProps) {
   );
 }
 
-function Hero(p: ServicePageProps) {
+function Hero(p: BrandPageProps) {
   const Icon = p.icon;
   return (
     <section className="relative overflow-hidden pt-36 md:pt-44 pb-20 md:pb-28">
@@ -51,6 +50,9 @@ function Hero(p: ServicePageProps) {
             transition={{ duration: 0.7 }}
             className="lg:col-span-6 flex flex-col items-center text-center"
           >
+            {p.logo && (
+              <img src={p.logo} alt={`${p.name} logo`} className="mb-6 h-12 md:h-14 w-auto object-contain" />
+            )}
             <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
               {p.name}
             </h1>
@@ -83,7 +85,7 @@ function Hero(p: ServicePageProps) {
                   <span className="h-2.5 w-2.5 rounded-full bg-muted" />
                   <span className="h-2.5 w-2.5 rounded-full bg-muted" />
                   <span className="h-2.5 w-2.5 rounded-full bg-muted" />
-                  <span className="ml-3 text-xs text-muted-foreground">bdatechnologies.com</span>
+                  <span className="ml-3 text-xs text-muted-foreground">{p.website ?? "bdatechnologies.com"}</span>
                 </div>
                 <div className="relative flex h-[calc(100%-2.75rem)] items-center justify-center p-8">
                   <div aria-hidden className="absolute inset-0 opacity-40">
@@ -91,11 +93,15 @@ function Hero(p: ServicePageProps) {
                     <div className="absolute bottom-8 right-8 h-52 w-52 rounded-full bg-primary-glow/25 blur-3xl" />
                   </div>
                   <div className="relative flex flex-col items-center text-center">
-                    <span className="grid h-20 w-20 place-items-center rounded-3xl bg-primary/10 border border-primary/20 text-primary shadow-soft">
-                      <Icon className="h-10 w-10" />
-                    </span>
-                    <h3 className="mt-6 font-display text-3xl text-foreground">{p.name}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground max-w-xs">{p.tagline}</p>
+                    {p.logo ? (
+                      <img src={p.logo} alt={`${p.name} logo`} className="h-14 md:h-16 w-auto object-contain" />
+                    ) : (
+                      <span className="grid h-20 w-20 place-items-center rounded-3xl bg-primary/10 border border-primary/20 text-primary shadow-soft">
+                        <Icon className="h-10 w-10" />
+                      </span>
+                    )}
+                    {!p.logo && <h3 className="mt-6 font-display text-3xl text-foreground">{p.name}</h3>}
+                    <p className="mt-4 text-sm text-muted-foreground max-w-xs">{p.tagline}</p>
                   </div>
                 </div>
               </div>
@@ -107,24 +113,24 @@ function Hero(p: ServicePageProps) {
   );
 }
 
-function WhatItIncludes(p: ServicePageProps) {
+function Offerings(p: BrandPageProps) {
   return (
     <section className="relative py-24 md:py-32 bg-secondary/40">
       <Container>
         <div className="max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-            What It Includes
+            What We Offer
           </span>
           <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
-            {p.heading}
+            Focused capabilities under {p.name}.
           </h2>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            A practical engagement built for {p.bestFor.toLowerCase()}.
+            Built for {p.bestFor.toLowerCase()}.
           </p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {p.whatItIncludes.map((f, i) => (
+          {p.offerings.map((f, i) => (
             <motion.div
               key={f.title}
               initial={{ opacity: 0, y: 24 }}
@@ -148,25 +154,25 @@ function WhatItIncludes(p: ServicePageProps) {
   );
 }
 
-function Process(p: ServicePageProps) {
+function Approach(p: BrandPageProps) {
   return (
     <section className="relative py-24 md:py-32">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-32">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-              Our Process
+              How We Work
             </span>
             <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
-              A structured engagement from diagnosis to adoption.
+              A clear path from brief to delivery.
             </h2>
             <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-              Every phase has clear scope, owners, and deliverables so progress stays visible.
+              Every stage has clear scope, owners, and outcomes.
             </p>
           </div>
 
           <div className="lg:col-span-7 space-y-5">
-            {p.process.map((s, i) => (
+            {p.approach.map((s, i) => (
               <motion.div
                 key={s.title}
                 initial={{ opacity: 0, x: 24 }}
@@ -193,68 +199,38 @@ function Process(p: ServicePageProps) {
   );
 }
 
-function Outcomes(p: ServicePageProps) {
+function Outcomes(p: BrandPageProps) {
   return (
     <section className="relative py-24 md:py-32 bg-secondary/40">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-6"
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-              Outcomes
-            </span>
-            <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
-              What changes after {p.name}.
-            </h2>
-            <ul className="mt-8 space-y-4">
-              {p.outcomes.map((o) => (
-                <li key={o} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-primary" />
-                  <span className="text-foreground/85 leading-relaxed">{o}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 rounded-2xl border border-border bg-background p-5">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Best For
-              </p>
-              <p className="mt-1 text-foreground">{p.bestFor}</p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-6"
-          >
-            <div className="relative">
-              <div
-                aria-hidden
-                className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/20 via-transparent to-primary-glow/20 blur-2xl"
-              />
-              <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-elevated aspect-[16/12]">
-                <img
-                  src={productsFeaturedImg}
-                  alt={`${p.name} in action`}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </motion.div>
+        <div className="mx-auto max-w-3xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+            Outcomes
+          </span>
+          <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground">
+            What clients get from {p.name}.
+          </h2>
+          <ul className="mt-8 space-y-4">
+            {p.outcomes.map((o) => (
+              <li key={o} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-primary" />
+                <span className="text-foreground/85 leading-relaxed">{o}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 rounded-2xl border border-border bg-background p-5">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Best For
+            </p>
+            <p className="mt-1 text-foreground">{p.bestFor}</p>
+          </div>
         </div>
       </Container>
     </section>
   );
 }
 
-function FinalCTA(p: ServicePageProps) {
+function FinalCTA(p: BrandPageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
@@ -278,17 +254,16 @@ function FinalCTA(p: ServicePageProps) {
               Start with clarity
             </span>
             <h2 className="mt-6 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">
-              Start with the operational problem that matters most.
+              Let's build the right system for your business.
             </h2>
             <p className="mt-5 text-lg text-background/70 max-w-xl leading-relaxed">
-              Apply for a Business Audit Call and see how {p.name} fits into a wider operating system.
+              Talk to the {p.name} team and see how it fits into a wider operating system.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
+              <AnimatedButton href="/contact">Talk to Us</AnimatedButton>
               <AnimatedButton href="/" variant="ghost">
                 Back to Home
               </AnimatedButton>
-
             </div>
           </div>
         </motion.div>

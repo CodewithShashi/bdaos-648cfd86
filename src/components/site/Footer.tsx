@@ -37,9 +37,9 @@ const linkGroups = [
   {
     title: "Brands",
     links: [
-      { label: "Clients.co.in", href: "#" },
-      { label: "BrandingChef", href: "#" },
-      { label: "Automation School", href: "#" },
+      { label: "Clients.co.in", href: "/brands/clients" },
+      { label: "BrandingChef", href: "/brands/brandingchef" },
+      { label: "Automation School", href: "/brands/automation-school" },
     ],
   },
   {
