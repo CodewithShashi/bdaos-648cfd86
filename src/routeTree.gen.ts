@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UaeRouteImport } from './routes/uae'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as InRouteImport } from './routes/in'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
@@ -29,6 +31,11 @@ import { Route as BrandsClientsRouteImport } from './routes/brands.clients'
 import { Route as BrandsBrandingchefRouteImport } from './routes/brands.brandingchef'
 import { Route as BrandsAutomationSchoolRouteImport } from './routes/brands.automation-school'
 
+const UaeRoute = UaeRouteImport.update({
+  id: '/uae',
+  path: '/uae',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -37,6 +44,11 @@ const TeamRoute = TeamRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InRoute = InRouteImport.update({
+  id: '/in',
+  path: '/in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -131,8 +143,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -152,8 +166,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -174,8 +190,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -197,8 +215,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/in'
     | '/pricing'
     | '/team'
+    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -218,8 +238,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/in'
     | '/pricing'
     | '/team'
+    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -239,8 +261,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/careers'
     | '/contact'
+    | '/in'
     | '/pricing'
     | '/team'
+    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -261,8 +285,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  InRoute: typeof InRoute
   PricingRoute: typeof PricingRoute
   TeamRoute: typeof TeamRoute
+  UaeRoute: typeof UaeRoute
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
   BrandsBrandingchefRoute: typeof BrandsBrandingchefRoute
   BrandsClientsRoute: typeof BrandsClientsRoute
@@ -280,6 +306,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/uae': {
+      id: '/uae'
+      path: '/uae'
+      fullPath: '/uae'
+      preLoaderRoute: typeof UaeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -292,6 +325,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/in': {
+      id: '/in'
+      path: '/in'
+      fullPath: '/in'
+      preLoaderRoute: typeof InRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -421,8 +461,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  InRoute: InRoute,
   PricingRoute: PricingRoute,
   TeamRoute: TeamRoute,
+  UaeRoute: UaeRoute,
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
   BrandsBrandingchefRoute: BrandsBrandingchefRoute,
   BrandsClientsRoute: BrandsClientsRoute,
