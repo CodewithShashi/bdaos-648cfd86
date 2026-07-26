@@ -48,7 +48,7 @@ export function Insights() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <AnimatedButton href="#insights">View Case Studies</AnimatedButton>
+            <AnimatedButton href="/insights/case-studies">View Case Studies</AnimatedButton>
           </motion.div>
         </div>
 
@@ -59,10 +59,10 @@ export function Insights() {
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {posts.map((p, i) => (
-            <motion.a
-              key={i}
-              href="#"
+          {posts.map((p) => (
+            <MotionLink
+              key={p.slug}
+              to="/insights/case-studies"
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
