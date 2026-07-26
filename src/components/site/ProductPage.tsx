@@ -18,6 +18,7 @@ export type ProductPageProps = {
   howItWorks: { title: string; body: string }[];
   outcomes: string[];
   bestFor: string;
+  logo?: string;
 };
 
 export function ProductPage(p: ProductPageProps) {
