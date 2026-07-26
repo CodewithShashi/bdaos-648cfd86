@@ -103,7 +103,7 @@ function ContactPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-5 flex flex-col gap-5"
+              className="lg:col-span-5 flex h-full flex-col gap-5"
             >
               {contactInfo.map((item, i) => (
                 <a
