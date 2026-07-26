@@ -50,22 +50,9 @@ function Hero(p: ServicePageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-6"
+            className="lg:col-span-6 flex flex-col items-center text-center"
           >
-            <Link
-              to="/"
-              className="flex w-fit items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase hover:text-foreground transition-colors"
-            >
-              <ArrowRight className="h-3.5 w-3.5 rotate-180" /> Back to Home
-            </Link>
-
-            <div className="mt-4 flex">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-                {p.eyebrow}
-              </span>
-            </div>
-            <h1 className="mt-6 font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
               {p.name}
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-foreground/80 font-display leading-snug">
@@ -74,12 +61,10 @@ function Hero(p: ServicePageProps) {
             <p className="mt-6 text-lg text-muted-foreground max-w-xl leading-relaxed">
               {p.description}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <AnimatedButton href="/" variant="ghost">
                 Back to Home
               </AnimatedButton>
-
             </div>
           </motion.div>
 
