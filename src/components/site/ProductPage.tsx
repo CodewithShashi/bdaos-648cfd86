@@ -91,11 +91,15 @@ function Hero(p: ProductPageProps) {
                     <div className="absolute bottom-8 right-8 h-52 w-52 rounded-full bg-primary-glow/25 blur-3xl" />
                   </div>
                   <div className="relative flex flex-col items-center text-center">
-                    <span className="grid h-20 w-20 place-items-center rounded-3xl bg-primary/10 border border-primary/20 text-primary shadow-soft">
-                      <Icon className="h-10 w-10" />
-                    </span>
-                    <h3 className="mt-6 font-display text-3xl text-foreground">{p.name}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground max-w-xs">{p.tagline}</p>
+                    {p.logo ? (
+                      <img src={p.logo} alt={`${p.name} logo`} className="h-14 md:h-16 w-auto object-contain" />
+                    ) : (
+                      <span className="grid h-20 w-20 place-items-center rounded-3xl bg-primary/10 border border-primary/20 text-primary shadow-soft">
+                        <Icon className="h-10 w-10" />
+                      </span>
+                    )}
+                    {!p.logo && <h3 className="mt-6 font-display text-3xl text-foreground">{p.name}</h3>}
+                    <p className="mt-4 text-sm text-muted-foreground max-w-xs">{p.tagline}</p>
                   </div>
                 </div>
               </div>
