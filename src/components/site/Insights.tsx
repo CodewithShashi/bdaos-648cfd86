@@ -1,31 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
-import img1 from "@/assets/project-1.jpg";
-import img2 from "@/assets/hero-ai.jpg";
-import img3 from "@/assets/about.jpg";
-
-const posts = [
-  {
-    img: img1,
-    category: "Guides",
-    date: "Jun 24, 2026",
-    title: "Getting Your Data AI-Ready, Without the Big Project",
-  },
-  {
-    img: img2,
-    category: "AI Strategy",
-    date: "Jun 24, 2026",
-    title: "Buy, Build, or Wait: A Simpler Way to Decide",
-  },
-  {
-    img: img3,
-    category: "Automation",
-    date: "Jun 24, 2026",
-    title: "Your Tools Already Talk. You Don't Have To.",
-  },
-];
+import { caseStudies as posts } from "@/data/insights";
 
 export function Insights() {
   return (

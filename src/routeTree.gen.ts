@@ -27,6 +27,9 @@ import { Route as ProductsLinkassistRouteImport } from './routes/products.linkas
 import { Route as ProductsHireassistRouteImport } from './routes/products.hireassist'
 import { Route as ProductsCoachassistRouteImport } from './routes/products.coachassist'
 import { Route as ProductsAttributionRouteImport } from './routes/products.attribution'
+import { Route as InsightsMediaRecognitionRouteImport } from './routes/insights.media-recognition'
+import { Route as InsightsCaseStudiesRouteImport } from './routes/insights.case-studies'
+import { Route as InsightsArticlesRouteImport } from './routes/insights.articles'
 import { Route as BrandsClientsRouteImport } from './routes/brands.clients'
 import { Route as BrandsBrandingchefRouteImport } from './routes/brands.brandingchef'
 import { Route as BrandsAutomationSchoolRouteImport } from './routes/brands.automation-school'
@@ -122,6 +125,22 @@ const ProductsAttributionRoute = ProductsAttributionRouteImport.update({
   path: '/products/attribution',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsMediaRecognitionRoute =
+  InsightsMediaRecognitionRouteImport.update({
+    id: '/insights/media-recognition',
+    path: '/insights/media-recognition',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InsightsCaseStudiesRoute = InsightsCaseStudiesRouteImport.update({
+  id: '/insights/case-studies',
+  path: '/insights/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsArticlesRoute = InsightsArticlesRouteImport.update({
+  id: '/insights/articles',
+  path: '/insights/articles',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrandsClientsRoute = BrandsClientsRouteImport.update({
   id: '/brands/clients',
   path: '/brands/clients',
@@ -150,6 +169,9 @@ export interface FileRoutesByFullPath {
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
+  '/insights/articles': typeof InsightsArticlesRoute
+  '/insights/case-studies': typeof InsightsCaseStudiesRoute
+  '/insights/media-recognition': typeof InsightsMediaRecognitionRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
   '/products/hireassist': typeof ProductsHireassistRoute
@@ -173,6 +195,9 @@ export interface FileRoutesByTo {
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
+  '/insights/articles': typeof InsightsArticlesRoute
+  '/insights/case-studies': typeof InsightsCaseStudiesRoute
+  '/insights/media-recognition': typeof InsightsMediaRecognitionRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
   '/products/hireassist': typeof ProductsHireassistRoute
@@ -197,6 +222,9 @@ export interface FileRoutesById {
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
+  '/insights/articles': typeof InsightsArticlesRoute
+  '/insights/case-studies': typeof InsightsCaseStudiesRoute
+  '/insights/media-recognition': typeof InsightsMediaRecognitionRoute
   '/products/attribution': typeof ProductsAttributionRoute
   '/products/coachassist': typeof ProductsCoachassistRoute
   '/products/hireassist': typeof ProductsHireassistRoute
@@ -222,6 +250,9 @@ export interface FileRouteTypes {
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
+    | '/insights/articles'
+    | '/insights/case-studies'
+    | '/insights/media-recognition'
     | '/products/attribution'
     | '/products/coachassist'
     | '/products/hireassist'
@@ -245,6 +276,9 @@ export interface FileRouteTypes {
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
+    | '/insights/articles'
+    | '/insights/case-studies'
+    | '/insights/media-recognition'
     | '/products/attribution'
     | '/products/coachassist'
     | '/products/hireassist'
@@ -268,6 +302,9 @@ export interface FileRouteTypes {
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
+    | '/insights/articles'
+    | '/insights/case-studies'
+    | '/insights/media-recognition'
     | '/products/attribution'
     | '/products/coachassist'
     | '/products/hireassist'
@@ -292,6 +329,9 @@ export interface RootRouteChildren {
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
   BrandsBrandingchefRoute: typeof BrandsBrandingchefRoute
   BrandsClientsRoute: typeof BrandsClientsRoute
+  InsightsArticlesRoute: typeof InsightsArticlesRoute
+  InsightsCaseStudiesRoute: typeof InsightsCaseStudiesRoute
+  InsightsMediaRecognitionRoute: typeof InsightsMediaRecognitionRoute
   ProductsAttributionRoute: typeof ProductsAttributionRoute
   ProductsCoachassistRoute: typeof ProductsCoachassistRoute
   ProductsHireassistRoute: typeof ProductsHireassistRoute
@@ -432,6 +472,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsAttributionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/media-recognition': {
+      id: '/insights/media-recognition'
+      path: '/insights/media-recognition'
+      fullPath: '/insights/media-recognition'
+      preLoaderRoute: typeof InsightsMediaRecognitionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/case-studies': {
+      id: '/insights/case-studies'
+      path: '/insights/case-studies'
+      fullPath: '/insights/case-studies'
+      preLoaderRoute: typeof InsightsCaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/articles': {
+      id: '/insights/articles'
+      path: '/insights/articles'
+      fullPath: '/insights/articles'
+      preLoaderRoute: typeof InsightsArticlesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/brands/clients': {
       id: '/brands/clients'
       path: '/brands/clients'
@@ -468,6 +529,9 @@ const rootRouteChildren: RootRouteChildren = {
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
   BrandsBrandingchefRoute: BrandsBrandingchefRoute,
   BrandsClientsRoute: BrandsClientsRoute,
+  InsightsArticlesRoute: InsightsArticlesRoute,
+  InsightsCaseStudiesRoute: InsightsCaseStudiesRoute,
+  InsightsMediaRecognitionRoute: InsightsMediaRecognitionRoute,
   ProductsAttributionRoute: ProductsAttributionRoute,
   ProductsCoachassistRoute: ProductsCoachassistRoute,
   ProductsHireassistRoute: ProductsHireassistRoute,
