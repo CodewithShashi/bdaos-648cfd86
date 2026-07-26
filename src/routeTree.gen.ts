@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UaeRouteImport } from './routes/uae'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as InRouteImport } from './routes/in'
@@ -30,6 +31,11 @@ import { Route as BrandsClientsRouteImport } from './routes/brands.clients'
 import { Route as BrandsBrandingchefRouteImport } from './routes/brands.brandingchef'
 import { Route as BrandsAutomationSchoolRouteImport } from './routes/brands.automation-school'
 
+const UaeRoute = UaeRouteImport.update({
+  id: '/uae',
+  path: '/uae',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -140,6 +146,7 @@ export interface FileRoutesByFullPath {
   '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/in': typeof InRoute
   '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
+  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/in'
     | '/pricing'
     | '/team'
+    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/in'
     | '/pricing'
     | '/team'
+    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/in'
     | '/pricing'
     | '/team'
+    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -276,6 +288,7 @@ export interface RootRouteChildren {
   InRoute: typeof InRoute
   PricingRoute: typeof PricingRoute
   TeamRoute: typeof TeamRoute
+  UaeRoute: typeof UaeRoute
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
   BrandsBrandingchefRoute: typeof BrandsBrandingchefRoute
   BrandsClientsRoute: typeof BrandsClientsRoute
@@ -293,6 +306,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/uae': {
+      id: '/uae'
+      path: '/uae'
+      fullPath: '/uae'
+      preLoaderRoute: typeof UaeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -444,6 +464,7 @@ const rootRouteChildren: RootRouteChildren = {
   InRoute: InRoute,
   PricingRoute: PricingRoute,
   TeamRoute: TeamRoute,
+  UaeRoute: UaeRoute,
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
   BrandsBrandingchefRoute: BrandsBrandingchefRoute,
   BrandsClientsRoute: BrandsClientsRoute,

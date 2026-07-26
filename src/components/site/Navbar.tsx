@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
@@ -61,9 +61,9 @@ const simpleLinks = [
 ];
 
 const regions = [
-  { code: "IN", label: "India", flag: "🇮🇳" },
-  { code: "GL", label: "Global", flag: "🌐" },
-  { code: "AE", label: "UAE", flag: "🇦🇪" },
+  { code: "IN", label: "India", flag: "🇮🇳", path: "/in" },
+  { code: "GL", label: "Global", flag: "🌐", path: "/" },
+  { code: "AE", label: "UAE", flag: "🇦🇪", path: "/uae" },
 ];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
@@ -72,7 +72,10 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<MenuKey>(null);
-  const [region, setRegion] = useState(regions[0]);
+  const pathname = useRouterState({ select: (st) => st.location.pathname });
+  const region =
+    regions.find((r) => r.path !== "/" && (pathname === r.path || pathname.startsWith(r.path + "/"))) ??
+    regions[1];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -161,7 +164,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-2">
-            <RegionSelector region={region} setRegion={setRegion} />
+            <RegionSelector region={region} />
             <AnimatedButton href="/contact">Contact Sales</AnimatedButton>
           </div>
 
@@ -242,9 +245,10 @@ export function Navbar() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {regions.map((r) => (
-                    <button
+                    <Link
                       key={r.code}
-                      onClick={() => setRegion(r)}
+                      to={r.path}
+                      onClick={() => setOpen(false)}
                       className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition ${
                         r.code === region.code
                           ? "bg-primary text-primary-foreground"
@@ -253,7 +257,7 @@ export function Navbar() {
                     >
                       <span>{r.flag}</span>
                       <span>{r.label}</span>
-                    </button>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -270,13 +274,7 @@ export function Navbar() {
   );
 }
 
-function RegionSelector({
-  region,
-  setRegion,
-}: {
-  region: (typeof regions)[number];
-  setRegion: (r: (typeof regions)[number]) => void;
-}) {
+function RegionSelector({ region }: { region: (typeof regions)[number] }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -311,19 +309,17 @@ function RegionSelector({
             className="absolute right-0 mt-2 min-w-[140px] rounded-2xl bg-card shadow-soft border border-border p-1.5 z-50"
           >
             {regions.map((r) => (
-              <button
+              <Link
                 key={r.code}
-                onClick={() => {
-                  setRegion(r);
-                  setOpen(false);
-                }}
+                to={r.path}
+                onClick={() => setOpen(false)}
                 className={`w-full flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-left transition ${
                   r.code === region.code ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                 }`}
               >
                 <span>{r.flag}</span>
                 <span>{r.label}</span>
-              </button>
+              </Link>
             ))}
           </motion.div>
         )}
