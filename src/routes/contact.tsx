@@ -125,7 +125,7 @@ function ContactPage() {
                 </a>
               ))}
 
-              <div className="mt-4 rounded-2xl border border-border bg-secondary/40 p-6">
+              <div className="mt-auto flex flex-col justify-center rounded-2xl border border-border bg-secondary/40 p-6 lg:flex-1">
                 <p className="text-sm font-medium text-foreground">Prefer a scheduled call?</p>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Apply for a Business Audit Call and we will review your operations before we speak.
