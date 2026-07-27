@@ -170,6 +170,32 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="mt-16 border-t border-border pt-10">
+          <div className="text-sm font-semibold">Our Regions</div>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+            {officeRegions.map((r) => (
+              <div
+                key={r.country}
+                className="rounded-2xl border border-border bg-secondary/40 p-6 transition hover:bg-secondary/70"
+              >
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-card text-xl shadow-soft" aria-hidden>
+                  {r.flag}
+                </span>
+                <div className="mt-4 text-base font-medium text-foreground">{r.country}</div>
+                <address className="mt-3 not-italic text-sm leading-relaxed text-muted-foreground">
+                  {r.address.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </address>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
+
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-border pt-8">
           <div className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} BDA Technologies Private Limited. All rights reserved.
