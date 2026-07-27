@@ -1,42 +1,119 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { ComponentType } from "react";
-import { CheckCircle2, ArrowRight, type LucideIcon } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Check, X, ArrowRight, Plus, Minus, type LucideIcon } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
 
+type Icon = LucideIcon | ComponentType<{ className?: string }>;
+
 export type ServicePageProps = {
   name: string;
-  tagline: string;
-  eyebrow: string;
-  heading: string;
-  description: string;
-  icon: LucideIcon | ComponentType<{ className?: string }>;
-  whatItIncludes: { title: string; body: string; icon: LucideIcon | ComponentType<{ className?: string }> }[];
-  process: { title: string; body: string }[];
-  outcomes: string[];
-  bestFor: string;
+  hero: {
+    label: string;
+    headline: string;
+    text: string[];
+    ctaLabel: string;
+    ctaHref?: string;
+    smallText: string;
+  };
+  problem: {
+    label: string;
+    headline: string;
+    text: string[];
+    items: { title: string; body: string }[];
+    closing: string;
+  };
+  build: {
+    label: string;
+    heading: string;
+    body: string;
+    cards: { title: string; body: string; icon: Icon }[];
+  };
+  process: {
+    label: string;
+    headline: string;
+    text: string[];
+    steps: { title: string; body: string }[];
+  };
+  deliverables: {
+    label: string;
+    headline: string;
+    text: string;
+    items: string[];
+    closing: string;
+  };
+  beforeAfter: {
+    label: string;
+    headline: string;
+    rows: { before: string; after: string }[];
+  };
+  caseStudy: {
+    label: string;
+    headline: string;
+    problem: string;
+    built: string;
+    changed: string;
+  };
+  fit: {
+    label: string;
+    headline: string;
+    good: string[];
+    bad: string[];
+  };
+  faq: {
+    label: string;
+    headline: string;
+    items: { q: string; a: string }[];
+  };
+  finalCta: {
+    label: string;
+    headline: string;
+    text: string;
+    ctaLabel: string;
+    ctaHref?: string;
+    smallText: string;
+  };
 };
+
+function Label({ children, tone = "light" }: { children: React.ReactNode; tone?: "light" | "dark" }) {
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border px-3 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] ${
+        tone === "dark"
+          ? "border-background/25 bg-background/10 text-background/80"
+          : "border-border bg-secondary/60 text-muted-foreground"
+      }`}
+    >
+      {children}
+    </span>
+  );
+}
 
 export function ServicePage(p: ServicePageProps) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero {...p} />
-      <WhatItIncludes {...p} />
+      <Problem {...p} />
+      <Build {...p} />
       <Process {...p} />
-      <Outcomes {...p} />
+      <Deliverables {...p} />
+      <BeforeAfter {...p} />
+      <CaseStudy {...p} />
+      <Fit {...p} />
+      <Faq {...p} />
       <FinalCTA {...p} />
       <Footer />
     </main>
   );
 }
 
-function Hero(p: ServicePageProps) {
+function Hero({ hero }: ServicePageProps) {
   return (
-    <section className="relative overflow-hidden bg-foreground text-background pt-32 md:pt-44 pb-16 md:pb-24">
+    <section className="relative overflow-hidden bg-foreground text-background pt-28 sm:pt-32 md:pt-44 pb-16 md:pb-24">
       <div aria-hidden className="absolute inset-0">
         <div className="absolute -top-40 -left-32 h-[24rem] w-[24rem] rounded-full bg-primary/30 blur-3xl" />
         <div className="absolute -bottom-40 right-0 h-[26rem] w-[26rem] rounded-full bg-primary-glow/20 blur-3xl" />
@@ -48,85 +125,59 @@ function Hero(p: ServicePageProps) {
           transition={{ duration: 0.7 }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
-            {p.name}
+          <Label tone="dark">{hero.label}</Label>
+          <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.06] tracking-tight">
+            {hero.headline}
           </h1>
-          <p className="mt-5 text-lg md:text-2xl font-display leading-snug text-background/85">
-            {p.tagline}
-          </p>
-          <p className="mt-5 text-base md:text-lg text-background/60 leading-relaxed">
-            {p.description}
-          </p>
-        </motion.div>
-
-        <motion.dl
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4"
-        >
-          {[
-            { k: "Best for", v: p.bestFor },
-            { k: "Phases", v: `${p.process.length}-step engagement` },
-            { k: "Scope", v: `${p.whatItIncludes.length} core workstreams` },
-          ].map((s) => (
-            <div
-              key={s.k}
-              className="rounded-2xl border border-background/15 bg-background/5 backdrop-blur px-5 py-4 text-left"
-            >
-              <dt className="text-[11px] uppercase tracking-[0.16em] text-background/50">{s.k}</dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-background/90">{s.v}</dd>
-            </div>
+          {hero.text.map((t) => (
+            <p key={t} className="mt-5 text-base md:text-lg text-background/70 leading-relaxed">
+              {t}
+            </p>
           ))}
-        </motion.dl>
+          <div className="mt-9 flex justify-center">
+            <AnimatedButton href={hero.ctaHref ?? "/contact"}>{hero.ctaLabel}</AnimatedButton>
+          </div>
+          <p className="mt-5 text-xs sm:text-sm text-background/50">{hero.smallText}</p>
+        </motion.div>
       </Container>
     </section>
   );
 }
 
-function WhatItIncludes(p: ServicePageProps) {
+function Problem({ problem }: ServicePageProps) {
   return (
-    <section className="relative py-20 md:py-28">
+    <section className="py-20 md:py-28">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-4 lg:sticky lg:top-32">
-            <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-              What It Includes
-            </span>
-            <h2 className="mt-5 font-display text-3xl md:text-4xl leading-[1.08] tracking-tight">
-              {p.heading}
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <Label>{problem.label}</Label>
+            <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+              {problem.headline}
             </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              A practical engagement built for {p.bestFor.toLowerCase()}.
-            </p>
+            {problem.text.map((t) => (
+              <p key={t} className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                {t}
+              </p>
+            ))}
           </div>
 
-          <div className="lg:col-span-8 divide-y divide-border border-y border-border">
-            {p.whatItIncludes.map((f, i) => (
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {problem.items.map((it, i) => (
               <motion.div
-                key={f.title}
+                key={it.title}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.45, delay: i * 0.04 }}
-                className="group grid grid-cols-[auto_minmax(0,1fr)] gap-5 py-6 md:py-7 transition-colors hover:bg-secondary/40"
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-soft"
               >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <f.icon className="h-5 w-5" />
-                </span>
-                <div className="min-w-0">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-display text-xs text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="font-display text-xl md:text-2xl tracking-tight">{f.title}</h3>
-                  </div>
-                  <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                    {f.body}
-                  </p>
-                </div>
+                <h3 className="font-display text-lg tracking-tight">{it.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{it.body}</p>
               </motion.div>
             ))}
+            <div className="sm:col-span-2 rounded-2xl border border-dashed border-border bg-secondary/50 p-5 md:p-6">
+              <p className="font-display text-base md:text-lg tracking-tight">{problem.closing}</p>
+            </div>
           </div>
         </div>
       </Container>
@@ -134,34 +185,35 @@ function WhatItIncludes(p: ServicePageProps) {
   );
 }
 
-function Process(p: ServicePageProps) {
+function Build({ build }: ServicePageProps) {
   return (
-    <section className="relative py-20 md:py-28 bg-secondary/40">
+    <section className="py-20 md:py-28 bg-secondary/40">
       <Container>
         <div className="max-w-3xl">
-          <span className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-            Our Process
-          </span>
-          <h2 className="mt-5 font-display text-3xl md:text-4xl leading-[1.08] tracking-tight">
-            A structured engagement from diagnosis to adoption.
+          <Label>{build.label}</Label>
+          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+            {build.heading}
           </h2>
+          <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+            {build.body}
+          </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 auto-rows-fr">
-          {p.process.map((s, i) => (
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+          {build.cards.map((c, i) => (
             <motion.div
-              key={s.title}
+              key={c.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.45, delay: i * 0.05 }}
-              className="relative flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft"
+              className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-soft transition-colors hover:border-primary/40"
             >
-              <span className="font-display text-3xl text-primary">
-                {String(i + 1).padStart(2, "0")}
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                <c.icon className="h-5 w-5" />
               </span>
-              <h3 className="mt-4 font-display text-lg tracking-tight">{s.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.body}</p>
+              <h3 className="mt-5 font-display text-lg md:text-xl tracking-tight">{c.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
             </motion.div>
           ))}
         </div>
@@ -170,38 +222,81 @@ function Process(p: ServicePageProps) {
   );
 }
 
-function Outcomes(p: ServicePageProps) {
+function Process({ process }: ServicePageProps) {
   return (
-    <section className="relative py-20 md:py-28">
+    <section className="py-20 md:py-28">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-5">
-            <span className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-              Outcomes
-            </span>
-            <h2 className="mt-5 font-display text-3xl md:text-4xl leading-[1.08] tracking-tight">
-              What changes after {p.name}.
-            </h2>
-            <div className="mt-6 rounded-2xl border border-border bg-secondary/40 p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Best For
+        <div className="max-w-3xl">
+          <Label>{process.label}</Label>
+          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+            {process.headline}
+          </h2>
+          {process.text.map((t) => (
+            <p key={t} className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+              {t}
+            </p>
+          ))}
+        </div>
+
+        <div className="mt-12 border-t border-border">
+          {process.steps.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.45, delay: i * 0.04 }}
+              className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 border-b border-border py-6 md:py-8 transition-colors hover:bg-secondary/40"
+            >
+              <span className="md:col-span-2 font-display text-2xl md:text-3xl text-primary">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="md:col-span-4 font-display text-xl md:text-2xl tracking-tight">
+                {s.title}
+              </h3>
+              <p className="md:col-span-6 text-sm md:text-base text-muted-foreground leading-relaxed">
+                {s.body}
               </p>
-              <p className="mt-1.5 text-foreground">{p.bestFor}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function Deliverables({ deliverables }: ServicePageProps) {
+  return (
+    <section className="py-20 md:py-28 bg-secondary/40">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <Label>{deliverables.label}</Label>
+            <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+              {deliverables.headline}
+            </h2>
+            <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+              {deliverables.text}
+            </p>
+            <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-soft">
+              <p className="text-sm md:text-base text-foreground/85 leading-relaxed">
+                {deliverables.closing}
+              </p>
             </div>
           </div>
 
-          <ul className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {p.outcomes.map((o, i) => (
+          <ul className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {deliverables.items.map((d, i) => (
               <motion.li
-                key={o}
-                initial={{ opacity: 0, y: 16 }}
+                key={d}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5 shadow-soft"
+                transition={{ duration: 0.35, delay: i * 0.03 }}
+                className="flex items-start gap-3 rounded-xl border border-border bg-card px-4 py-3.5 shadow-soft"
               >
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <span className="text-foreground/85 leading-relaxed">{o}</span>
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span className="text-sm text-foreground/85 leading-relaxed">{d}</span>
               </motion.li>
             ))}
           </ul>
@@ -211,7 +306,194 @@ function Outcomes(p: ServicePageProps) {
   );
 }
 
-function FinalCTA(p: ServicePageProps) {
+function BeforeAfter({ beforeAfter }: ServicePageProps) {
+  return (
+    <section className="py-20 md:py-28">
+      <Container>
+        <div className="max-w-3xl">
+          <Label>{beforeAfter.label}</Label>
+          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+            {beforeAfter.headline}
+          </h2>
+        </div>
+
+        <div className="mt-10 space-y-3">
+          {beforeAfter.rows.map((r, i) => (
+            <motion.div
+              key={r.before}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.4, delay: i * 0.04 }}
+              className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-stretch gap-3 md:gap-4"
+            >
+              <div className="rounded-2xl border border-border bg-secondary/50 p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  Before
+                </p>
+                <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  {r.before}
+                </p>
+              </div>
+              <div className="hidden md:grid place-items-center">
+                <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-primary">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+              <div className="rounded-2xl border border-primary/25 bg-card p-5 shadow-soft">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">
+                  After
+                </p>
+                <p className="mt-2 text-sm md:text-base text-foreground/90 leading-relaxed">
+                  {r.after}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function CaseStudy({ caseStudy }: ServicePageProps) {
+  const blocks = [
+    { k: "The problem", v: caseStudy.problem },
+    { k: "What we built", v: caseStudy.built },
+    { k: "What changed", v: caseStudy.changed },
+  ];
+  return (
+    <section className="py-20 md:py-28 bg-foreground text-background">
+      <Container>
+        <div className="max-w-3xl">
+          <Label tone="dark">{caseStudy.label}</Label>
+          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+            {caseStudy.headline}
+          </h2>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {blocks.map((b, i) => (
+            <motion.div
+              key={b.k}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.45, delay: i * 0.06 }}
+              className="rounded-2xl border border-background/15 bg-background/5 backdrop-blur p-6"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                {b.k}
+              </p>
+              <p className="mt-3 text-sm md:text-base text-background/85 leading-relaxed">{b.v}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function Fit({ fit }: ServicePageProps) {
+  return (
+    <section className="py-20 md:py-28">
+      <Container>
+        <div className="max-w-3xl">
+          <Label>{fit.label}</Label>
+          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+            {fit.headline}
+          </h2>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+          <div className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-soft">
+            <h3 className="font-display text-lg md:text-xl tracking-tight">This may be right for you if:</h3>
+            <ul className="mt-5 space-y-3">
+              {fit.good.map((g) => (
+                <li key={g} className="flex items-start gap-3">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-sm md:text-base text-foreground/85 leading-relaxed">{g}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-3xl border border-dashed border-border bg-secondary/50 p-6 md:p-8">
+            <h3 className="font-display text-lg md:text-xl tracking-tight">It may not be right for you if:</h3>
+            <ul className="mt-5 space-y-3">
+              {fit.bad.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <X className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                  <span className="text-sm md:text-base text-muted-foreground leading-relaxed">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function Faq({ faq }: ServicePageProps) {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="py-20 md:py-28 bg-secondary/40">
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="lg:sticky lg:top-32">
+            <Label>{faq.label}</Label>
+            <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+              {faq.headline}
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            {faq.items.map((f, i) => {
+              const isOpen = open === i;
+              return (
+                <div
+                  key={f.q}
+                  className={`rounded-2xl border border-border bg-card transition-colors ${
+                    isOpen ? "shadow-soft" : ""
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center justify-between gap-5 px-5 py-5 md:px-6 text-left"
+                  >
+                    <span className="font-display text-base md:text-lg tracking-tight">{f.q}</span>
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-foreground text-background">
+                      {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-5 md:px-6 pb-6 text-sm md:text-base text-muted-foreground leading-relaxed">
+                          {f.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function FinalCTA({ finalCta }: ServicePageProps) {
   return (
     <section id="cta" className="relative py-20 md:py-28">
       <Container>
@@ -227,23 +509,19 @@ function FinalCTA(p: ServicePageProps) {
             <div className="absolute -bottom-40 -right-40 h-[26rem] w-[26rem] rounded-full bg-primary-glow/40 blur-3xl animate-float" />
           </div>
           <div className="relative max-w-3xl">
-            <h2 className="font-display text-3xl md:text-5xl leading-[1.06] tracking-tight">
-              Start with the operational problem that matters most.
+            <Label tone="dark">{finalCta.label}</Label>
+            <h2 className="mt-6 font-display text-2xl sm:text-3xl md:text-5xl leading-[1.08] tracking-tight">
+              {finalCta.headline}
             </h2>
             <p className="mt-5 text-base md:text-lg text-background/70 max-w-xl leading-relaxed">
-              Apply for a Business Audit Call and see how {p.name} fits into a wider operating
-              system.
+              {finalCta.text}
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <AnimatedButton href="/contact">Apply for a Business Audit Call</AnimatedButton>
-              <Link
-                to="/pricing"
-                className="group inline-flex items-center gap-2 rounded-full border border-background/25 px-6 py-3 text-sm font-medium text-background/90 transition hover:bg-background/10"
-              >
-                See pricing
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+            <div className="mt-8">
+              <AnimatedButton href={finalCta.ctaHref ?? "/contact"}>
+                {finalCta.ctaLabel}
+              </AnimatedButton>
             </div>
+            <p className="mt-5 text-xs sm:text-sm text-background/50">{finalCta.smallText}</p>
           </div>
         </motion.div>
       </Container>
