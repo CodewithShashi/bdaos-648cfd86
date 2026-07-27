@@ -217,7 +217,7 @@ function ContactPage() {
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
                     >
                       <option value="">Select an option</option>
-                      <option value="business-audit">Business Audit</option>
+                      <option value="digital-transformation">Digital Transformation</option>
                       <option value="bda-os">BDA OS Implementation</option>
                       <option value="ai-training">AI Training and Team Adoption</option>
                       <option value="product">One of your products</option>
