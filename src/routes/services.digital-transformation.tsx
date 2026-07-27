@@ -62,7 +62,7 @@ export const Route = createFileRoute("/services/digital-transformation")({
           "We speak to the people doing the work and look at real tasks, real reports and real delays.",
         ],
         steps: [
-          { title: "Kickoff", body: "Align on business context, current pain points and audit scope." },
+          { title: "Kickoff", body: "Align on business context, current pain points and review scope." },
           { title: "Discovery", body: "Structured interviews and reviews across functions and tools." },
           { title: "Analysis", body: "Synthesise findings across workflows, reporting and ownership." },
           { title: "Findings and Plan", body: "Present the gap report and prioritised roadmap to leadership." },
@@ -85,7 +85,7 @@ export const Route = createFileRoute("/services/digital-transformation")({
           "Leadership presentation",
         ],
         closing:
-          "You should finish the audit knowing what to fix first, who owns it and what change to expect.",
+          "You should finish the engagement knowing what to fix first, who owns it and what change to expect.",
       }}
       beforeAfter={{
         label: "Before and After",
