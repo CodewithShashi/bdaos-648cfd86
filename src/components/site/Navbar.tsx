@@ -440,7 +440,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && (
-        <div className="col-span-12 lg:col-span-4 xl:col-span-5">
+        <div className="col-span-12 lg:col-span-5">
           <div className="rounded-2xl border border-border bg-secondary/40 p-4">
             <div className="text-sm font-semibold text-foreground">{featured.eyebrow}</div>
             <Link to={featured.href} className="group mt-3 block">
