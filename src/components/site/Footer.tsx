@@ -178,8 +178,13 @@ export function Footer() {
                 key={r.country}
                 className="rounded-2xl border border-border bg-secondary/40 p-6 transition hover:bg-secondary/70"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-card text-xl shadow-soft" aria-hidden>
-                  {r.flag}
+                <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full bg-card shadow-soft" aria-hidden>
+                  <img
+                    src={r.flag}
+                    alt=""
+                    loading="lazy"
+                    className="h-10 w-10 object-cover"
+                  />
                 </span>
                 <div className="mt-4 text-base font-medium text-foreground">{r.country}</div>
                 <address className="mt-3 not-italic text-sm leading-relaxed text-muted-foreground">
