@@ -446,79 +446,111 @@ function MegaPanel({ config }: { config: MegaConfig }) {
         </Link>
       </div>
 
-      {multi && (
-        <div className="col-span-12 min-w-0 lg:col-span-4">
-          {config.sections.map((section) => (
-            <button
-              key={section.key}
-              onMouseEnter={() => setActive(section.key)}
-              onFocus={() => setActive(section.key)}
-              onClick={() => setActive(section.key)}
-              className={`group flex w-full items-center justify-between gap-3 border-b border-border px-4 py-3.5 text-left text-[0.95rem] transition ${
-                active === section.key
-                  ? "bg-menu-active text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+      <div className={`col-span-12 min-w-0 ${featured ? "lg:col-span-3" : "lg:col-span-4"}`}>
+        {config.sections.map((section) => (
+          <button
+            key={section.key}
+            onMouseEnter={() => setActive(section.key)}
+            onFocus={() => setActive(section.key)}
+            onClick={() => setActive(section.key)}
+            className={`group flex w-full items-center justify-between gap-3 border-b border-border px-4 py-3.5 text-left text-[0.95rem] transition ${
+              active === section.key
+                ? "bg-menu-active text-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <span className="truncate">{section.label}</span>
+            <ChevronRight
+              className={`h-4 w-4 shrink-0 transition-transform ${
+                active === section.key ? "translate-x-0.5 text-foreground" : "text-muted-foreground/60"
               }`}
-            >
-              <span className="truncate">{section.label}</span>
-              <ChevronRight
-                className={`h-4 w-4 shrink-0 transition-transform ${
-                  active === section.key ? "translate-x-0.5 text-foreground" : "text-muted-foreground/60"
-                }`}
-              />
-            </button>
-          ))}
-        </div>
-      )}
+            />
+          </button>
+        ))}
+      </div>
 
-      <div
-        className={`col-span-12 min-w-0 ${
-          multi ? "lg:col-span-5" : featured ? "lg:col-span-4" : "lg:col-span-9"
-        }`}
-      >
+      <div className={`col-span-12 min-w-0 ${featured ? "lg:col-span-2" : "lg:col-span-5"}`}>
         <motion.div
           key={activeSection.key}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`grid gap-x-8 ${multi ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"}`}
+          className={`grid gap-x-8 ${featured ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}
         >
-
           {activeSection.items.map((l) => (
             <Link
               key={l.label}
               to={l.href}
               className="group flex items-center justify-between gap-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
             >
-              <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+              <span className="min-w-0">{l.label}</span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
             </Link>
           ))}
         </motion.div>
       </div>
 
-      {featured && (
-        <div className="col-span-12 lg:col-span-5">
-          <div className="rounded-2xl border border-border bg-secondary/40 p-4">
-            <div className="text-sm font-semibold text-foreground">{featured.eyebrow}</div>
-            <Link to={featured.href} className="group mt-3 block">
-              <div className="overflow-hidden rounded-xl">
-                <img
-                  src={featured.img}
-                  alt={featured.title}
-                  loading="lazy"
-                  className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <p className="mt-3 text-sm text-foreground leading-snug">{featured.title}</p>
-              <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
-                {featured.linkLabel}
-                <ArrowUpRight className="h-4 w-4" />
+      {featured && featured.variant === "overlay" && (
+        <div className="col-span-12 min-w-0 lg:col-span-4">
+          <Link to={featured.href} className="group block max-w-sm">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-secondary/40">
+              <img
+                src={featured.img}
+                alt={featured.title}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <span className="absolute left-3 top-3 rounded-full bg-card/95 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.12em] text-foreground">
+                {featured.eyebrow}
               </span>
-            </Link>
-          </div>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/90 via-foreground/60 to-transparent p-4 pt-10">
+                <p className="line-clamp-2 text-sm font-medium leading-snug text-background">
+                  {featured.title}
+                </p>
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-background/90">
+                  {featured.linkLabel}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </div>
+          </Link>
         </div>
       )}
+
+      {featured && featured.variant === "editorial" && (
+        <div className="col-span-12 min-w-0 lg:col-span-4">
+          <Link to={featured.href} className="group block max-w-sm">
+            <div className="relative overflow-hidden rounded-2xl">
+              <img
+                src={featured.img}
+                alt={featured.title}
+                loading="lazy"
+                className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <span className="absolute left-3 top-3 rounded-md bg-card/95 px-2.5 py-1 text-[0.7rem] font-medium text-foreground">
+                {featured.eyebrow}
+              </span>
+            </div>
+            <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+              <span className="truncate">{featured.meta}</span>
+              <span className="shrink-0">{featured.date}</span>
+            </div>
+            <p className="mt-2 line-clamp-2 text-[0.95rem] font-medium leading-snug text-foreground">
+              {featured.title}
+            </p>
+            {featured.excerpt && (
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                {featured.excerpt}
+              </p>
+            )}
+            <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
+              {featured.linkLabel}
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </Link>
+        </div>
+      )}
+
     </div>
   );
 }
