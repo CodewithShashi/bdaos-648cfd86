@@ -174,7 +174,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu(menu)}
               className="hidden lg:block mt-3"
             >
-              <div className="bg-card text-foreground rounded-3xl shadow-elevated border border-border overflow-hidden">
+              <div className="bg-card text-foreground rounded-3xl shadow-elevated border border-border overflow-hidden max-h-[calc(100vh-8rem)] overflow-y-auto">
                 <MegaPanel config={megaMenus[menu]} />
               </div>
             </motion.div>
@@ -186,7 +186,7 @@ export function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
+            className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border max-h-[calc(100vh-7rem)] overflow-y-auto"
           >
             <div className="flex flex-col">
               {simpleLinks.map((l) =>
@@ -373,15 +373,15 @@ function MegaPanel({ config }: { config: MegaConfig }) {
   const featured = config.featured;
 
   return (
-    <div className="grid grid-cols-12 gap-x-10 gap-y-8 p-10 xl:p-12">
-      <div className="col-span-12 lg:col-span-4 xl:col-span-3">
-        <h3 className="font-display text-2xl xl:text-3xl leading-tight tracking-tight text-foreground">
+    <div className="grid grid-cols-12 items-start gap-x-8 gap-y-8 p-6 lg:p-8 xl:p-10">
+      <div className="col-span-12 lg:col-span-3">
+        <h3 className="font-display text-xl leading-tight tracking-tight text-foreground lg:text-2xl xl:text-[1.75rem]">
           {config.title}
         </h3>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{config.body}</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{config.body}</p>
         <Link
           to={config.ctaHref}
-          className="group mt-7 inline-flex items-center gap-2 text-sm font-medium text-foreground"
+          className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-foreground"
         >
           {config.ctaLabel}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -389,22 +389,22 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {multi && (
-        <div className="col-span-12 lg:col-span-4 xl:col-span-4">
+        <div className="col-span-12 min-w-0 lg:col-span-4">
           {config.sections.map((section) => (
             <button
               key={section.key}
               onMouseEnter={() => setActive(section.key)}
               onFocus={() => setActive(section.key)}
               onClick={() => setActive(section.key)}
-              className={`group flex w-full items-center justify-between gap-3 border-b border-border px-4 py-4 text-left text-base transition ${
+              className={`group flex w-full items-center justify-between gap-3 border-b border-border px-4 py-3.5 text-left text-[0.95rem] transition ${
                 active === section.key
                   ? "bg-menu-active text-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <span>{section.label}</span>
+              <span className="truncate">{section.label}</span>
               <ChevronRight
-                className={`h-4 w-4 transition-transform ${
+                className={`h-4 w-4 shrink-0 transition-transform ${
                   active === section.key ? "translate-x-0.5 text-foreground" : "text-muted-foreground/60"
                 }`}
               />
@@ -414,8 +414,8 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       )}
 
       <div
-        className={`col-span-12 ${
-          multi ? "lg:col-span-4 xl:col-span-5" : featured ? "lg:col-span-4 xl:col-span-4" : "lg:col-span-8"
+        className={`col-span-12 min-w-0 ${
+          multi ? "lg:col-span-5" : featured ? "lg:col-span-4" : "lg:col-span-9"
         }`}
       >
         <motion.div
@@ -423,8 +423,9 @@ function MegaPanel({ config }: { config: MegaConfig }) {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`grid gap-x-10 ${multi ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-1"}`}
+          className={`grid gap-x-8 ${multi ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"}`}
         >
+
           {activeSection.items.map((l) => (
             <Link
               key={l.label}
@@ -439,7 +440,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && (
-        <div className="col-span-12 lg:col-span-4 xl:col-span-5">
+        <div className="col-span-12 lg:col-span-5">
           <div className="rounded-2xl border border-border bg-secondary/40 p-4">
             <div className="text-sm font-semibold text-foreground">{featured.eyebrow}</div>
             <Link to={featured.href} className="group mt-3 block">
