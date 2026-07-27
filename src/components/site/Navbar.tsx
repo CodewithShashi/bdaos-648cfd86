@@ -51,6 +51,23 @@ const regions = [
   { code: "AE", label: "UAE", flag: "https://flagcdn.com/ae.svg", path: "/uae" },
 ];
 
+function RegionFlag({ region }: { region: (typeof regions)[number] }) {
+  if (!region.flag) {
+    return <Globe className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />;
+  }
+  return (
+    <img
+      src={region.flag}
+      alt=""
+      loading="lazy"
+      aria-hidden
+      className="h-4 w-5 shrink-0 rounded-[3px] object-cover"
+    />
+  );
+}
+
+
+
 type MenuKey = null | "about" | "whatWeDo" | "insights";
 
 export function Navbar() {
