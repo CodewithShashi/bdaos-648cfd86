@@ -329,13 +329,24 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
 }
 
 type MegaSection = { key: string; label: string; items: { label: string; href: string }[] };
+type MegaFeatured = {
+  variant: "overlay" | "editorial";
+  eyebrow: string;
+  title: string;
+  href: string;
+  img: string;
+  linkLabel: string;
+  meta?: string;
+  date?: string;
+  excerpt?: string;
+};
 type MegaConfig = {
   title: string;
   body: string;
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
-  featured?: { eyebrow: string; title: string; href: string; img: string; linkLabel: string };
+  featured?: MegaFeatured;
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
@@ -357,8 +368,19 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       "A team of operators, engineers, and trainers helping founder-led service businesses build the systems they need to grow.",
     ctaLabel: "About BDA Technologies",
     ctaHref: "/about",
-    sections: [{ key: "company", label: "Company", items: aboutLinks }],
+    sections: [
+      {
+        key: "company",
+        label: "Company",
+        items: [
+          { label: "About BDA Technologies", href: "/about" },
+          { label: "Team & Partners", href: "/team" },
+        ],
+      },
+      { key: "careers", label: "Careers", items: [{ label: "Careers", href: "/careers" }] },
+    ],
     featured: {
+      variant: "overlay",
       eyebrow: "Featured",
       title: "Inside BDA Technologies: how we build and implement systems",
       href: "/about",
@@ -372,16 +394,35 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       "Articles, case studies, and recognition — practical thinking on visibility, execution, and control inside growing businesses.",
     ctaLabel: "Start reading now",
     ctaHref: "/insights/articles",
-    sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
+    sections: [
+      {
+        key: "reading",
+        label: "Insights",
+        items: [
+          { label: "Articles", href: "/insights/articles" },
+          { label: "Case Studies", href: "/insights/case-studies" },
+        ],
+      },
+      {
+        key: "recognition",
+        label: "Media & Recognition",
+        items: [{ label: "Media & Recognition", href: "/insights/media-recognition" }],
+      },
+    ],
     featured: {
-      eyebrow: "Featured Insight",
+      variant: "editorial",
+      eyebrow: "Case Study",
       title: caseStudies[0].title,
       href: "/insights/case-studies",
       img: caseStudies[0].img,
       linkLabel: "Read Full Article",
+      meta: "BDA Technologies",
+      date: caseStudies[0].date,
+      excerpt: caseStudies[0].excerpt,
     },
   },
 };
+
 
 function MegaPanel({ config }: { config: MegaConfig }) {
   const [active, setActive] = useState(config.sections[0].key);
