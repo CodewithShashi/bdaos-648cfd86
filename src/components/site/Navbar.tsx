@@ -469,7 +469,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
         ))}
       </div>
 
-      <div className={`col-span-12 min-w-0 ${featured ? "lg:col-span-2" : "lg:col-span-5"}`}>
+      <div className={`col-span-12 min-w-0 ${featured ? "lg:col-span-3" : "lg:col-span-5"}`}>
         <motion.div
           key={activeSection.key}
           initial={{ opacity: 0, y: 6 }}
