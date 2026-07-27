@@ -491,7 +491,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && featured.variant === "overlay" && (
-        <div className="col-span-12 min-w-0 lg:col-span-4">
+        <div className="col-span-12 min-w-0 lg:col-span-3">
           <Link to={featured.href} className="group block max-w-sm">
             <div className="relative overflow-hidden rounded-2xl border border-border bg-secondary/40">
               <img
@@ -518,7 +518,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       )}
 
       {featured && featured.variant === "editorial" && (
-        <div className="col-span-12 min-w-0 lg:col-span-4">
+        <div className="col-span-12 min-w-0 lg:col-span-3">
           <Link to={featured.href} className="group block max-w-sm">
             <div className="relative overflow-hidden rounded-2xl">
               <img
