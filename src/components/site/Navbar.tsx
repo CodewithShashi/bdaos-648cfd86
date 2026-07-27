@@ -328,252 +328,118 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
   );
 }
 
-const whatWeDoSections = [
-  { key: "products", label: "Products", items: whatWeDoProducts },
-  { key: "services", label: "Services", items: whatWeDoServices },
-  { key: "brands", label: "Brands", items: whatWeDoBrands },
-] as const;
+type MegaSection = { key: string; label: string; items: { label: string; href: string }[] };
+type MegaConfig = {
+  title: string;
+  body: string;
+  ctaLabel: string;
+  ctaHref: string;
+  sections: MegaSection[];
+};
 
-function WhatWeDoMega() {
-  const [active, setActive] = useState<(typeof whatWeDoSections)[number]["key"]>("products");
-  const activeSection = whatWeDoSections.find((s) => s.key === active) || whatWeDoSections[0];
+const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
+  whatWeDo: {
+    title: "Systems that make execution predictable",
+    body:
+      "BDA Technologies works from diagnosis to launch, training, and adoption — products, services, and brands built around how your team actually works.",
+    ctaLabel: "Explore what we do",
+    ctaHref: "/services/bda-os-implementation",
+    sections: [
+      { key: "products", label: "Products", items: whatWeDoProducts },
+      { key: "services", label: "Services", items: whatWeDoServices },
+      { key: "brands", label: "Brands", items: whatWeDoBrands },
+    ],
+  },
+  about: {
+    title: "Who we are",
+    body:
+      "A team of operators, engineers, and trainers helping founder-led service businesses build the systems they need to grow.",
+    ctaLabel: "About BDA Technologies",
+    ctaHref: "/about",
+    sections: [{ key: "company", label: "Company", items: aboutLinks }],
+  },
+  insights: {
+    title: "BDA Insights",
+    body:
+      "Articles, case studies, and recognition — practical thinking on visibility, execution, and control inside growing businesses.",
+    ctaLabel: "Start reading now",
+    ctaHref: "/insights/articles",
+    sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
+  },
+};
+
+function MegaPanel({ config }: { config: MegaConfig }) {
+  const [active, setActive] = useState(config.sections[0].key);
+  const activeSection = config.sections.find((s) => s.key === active) ?? config.sections[0];
+  const multi = config.sections.length > 1;
 
   return (
-    <div className="grid grid-cols-12 gap-0">
-      {/* Sidebar */}
-      <div className="col-span-3 p-6 bg-secondary/40 border-r border-border/60">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-4 px-3">
-          What We Do
-        </p>
-        <div className="flex flex-col">
-          {whatWeDoSections.map((section) => (
+    <div className="grid grid-cols-12 gap-x-10 gap-y-8 p-10 xl:p-12">
+      <div className="col-span-12 lg:col-span-4 xl:col-span-3">
+        <h3 className="font-display text-2xl xl:text-3xl leading-tight tracking-tight text-background">
+          {config.title}
+        </h3>
+        <p className="mt-4 text-sm leading-relaxed text-background/60">{config.body}</p>
+        <Link
+          to={config.ctaHref}
+          className="group mt-7 inline-flex items-center gap-2 text-sm font-medium text-background"
+        >
+          {config.ctaLabel}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
+      </div>
+
+      {multi && (
+        <div className="col-span-12 lg:col-span-4 xl:col-span-4">
+          {config.sections.map((section) => (
             <button
               key={section.key}
               onMouseEnter={() => setActive(section.key)}
+              onFocus={() => setActive(section.key)}
               onClick={() => setActive(section.key)}
-              className={`group flex items-center justify-between gap-3 rounded-xl px-4 py-3.5 text-sm transition text-left ${
+              className={`group flex w-full items-center justify-between gap-3 border-b border-background/15 px-4 py-4 text-left text-base transition ${
                 active === section.key
-                  ? "bg-background text-foreground shadow-soft"
-                  : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                  ? "bg-background/10 text-background"
+                  : "text-background/70 hover:text-background"
               }`}
             >
-              <span className="font-medium">{section.label}</span>
+              <span>{section.label}</span>
               <ChevronRight
                 className={`h-4 w-4 transition-transform ${
-                  active === section.key ? "translate-x-0.5 text-primary" : "text-muted-foreground/60 group-hover:text-foreground"
+                  active === section.key ? "translate-x-0.5 text-background" : "text-background/40"
                 }`}
               />
             </button>
           ))}
         </div>
-      </div>
+      )}
 
-      {/* Active section items */}
-      <div className="col-span-6 p-8 border-r border-border/60">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          {activeSection.label}
-        </p>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-0">
-          {activeSection.items.map((l, i) => (
-            <MegaLink key={l.label} l={l} i={i} />
-          ))}
-        </div>
-      </div>
-
-      {/* Featured card */}
-      <div className="col-span-3 p-6">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
-          Featured
-        </p>
-        <a href="#products" className="group block">
-          <div className="relative overflow-hidden rounded-2xl aspect-[4/5] bg-muted">
-            <img
-              src={productsFeaturedImg}
-              alt="LinkAssist featured"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4">
-              <h4 className="text-lg font-semibold text-white leading-snug">LinkAssist</h4>
-              <p className="mt-1 text-sm text-white/85 leading-relaxed">
-                AI-powered link building and digital PR assistant.
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function MegaLink({ l, i }: { l: { label: string; href: string }; i: number }) {
-  const isRoute = !l.href.startsWith("#");
-  const children = (
-    <>
-      <span>{l.label}</span>
-      <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-    </>
-  );
-  const className =
-    "group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors";
-  return isRoute ? (
-    <Link to={l.href} className={className}>
-      {children}
-    </Link>
-  ) : (
-    <motion.a
-      href={l.href}
-      initial={{ opacity: 0, x: -6 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.25, delay: i * 0.03 }}
-      className={className}
-    >
-      {children}
-    </motion.a>
-  );
-}
-
-function AboutMega() {
-  return (
-    <div className="grid grid-cols-12 gap-0">
-      <div className="col-span-4 p-8">
-        <div className="flex flex-col">
-          {aboutLinks.map((l, i) => {
-            const isRoute = !l.href.startsWith("#");
-            const className =
-              "group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors";
-            const children = (
-              <>
-                <span>{l.label}</span>
-                <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-              </>
-            );
-            return isRoute ? (
-              <Link key={l.label} to={l.href} className={className}>
-                {children}
-              </Link>
-            ) : (
-              <motion.a
-                key={l.label}
-                href={l.href}
-                initial={{ opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.25, delay: i * 0.03 }}
-                className={className}
-              >
-                {children}
-              </motion.a>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="col-span-8 p-8 grid grid-cols-2 gap-6 bg-secondary/40">
-        {aboutFeatured.map((f, i) => (
-          <motion.a
-            key={f.title}
-            href="/insights/media-recognition"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}
-            className="group block"
-          >
-            <div className="relative overflow-hidden rounded-2xl aspect-[16/10] bg-muted">
-              <img
-                src={f.img}
-                alt={f.title}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <span className="absolute top-3 left-3 rounded-md bg-white px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
-                {f.tag}
-              </span>
-            </div>
-            <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-              <span className="text-primary font-medium">BDA AI</span>
-              <span>{f.date}</span>
-            </div>
-            <h4 className="mt-1.5 text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
-              {f.title}
-            </h4>
-          </motion.a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-const insightsFeatured = [
-  {
-    tag: "Media Coverage",
-    title: "AI-infused engineering makes us a true One team.",
-    date: "June 30, 2026",
-    img: aboutImg,
-  },
-  {
-    tag: "Recognitions",
-    title: "BDA AI wins Gold at the Future Skills Awards 2026.",
-    date: "June 30, 2026",
-    img: heroImg,
-  },
-];
-
-function InsightsMega() {
-  return (
-    <div className="grid grid-cols-12 gap-0">
-      <div className="col-span-4 p-8">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-5">
-          Perspectives & proof
-        </p>
-        <div className="flex flex-col">
-          {insightsLinks.map((l, i) => (
-            <motion.a
+      <div
+        className={`col-span-12 ${multi ? "lg:col-span-4 xl:col-span-5" : "lg:col-span-8"}`}
+      >
+        <motion.div
+          key={activeSection.key}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`grid gap-x-10 ${multi ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-2"}`}
+        >
+          {activeSection.items.map((l) => (
+            <Link
               key={l.label}
-              href={l.href}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.25, delay: i * 0.03 }}
-              className="group flex items-center justify-between border-t border-border py-3.5 text-sm text-foreground hover:text-primary transition-colors"
+              to={l.href}
+              className="group flex items-center justify-between gap-3 py-3 text-sm text-background/70 transition hover:text-background"
             >
               <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </motion.a>
+              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+            </Link>
           ))}
-        </div>
-      </div>
-
-      <div className="col-span-8 p-8 grid grid-cols-2 gap-6 bg-secondary/40">
-        {insightsFeatured.map((f, i) => (
-          <motion.a
-            key={f.title}
-            href="/insights/media-recognition"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}
-            className="group block"
-          >
-            <div className="relative overflow-hidden rounded-2xl aspect-[16/10] bg-muted">
-              <img
-                src={f.img}
-                alt={f.title}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <span className="absolute top-3 left-3 rounded-md bg-white px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
-                {f.tag}
-              </span>
-            </div>
-            <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-              <span className="text-primary font-medium">BDA AI</span>
-              <span>{f.date}</span>
-            </div>
-            <h4 className="mt-1.5 text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
-              {f.title}
-            </h4>
-          </motion.a>
-        ))}
+        </motion.div>
       </div>
     </div>
   );
 }
+
 
 function MobileGroup({
   label,
