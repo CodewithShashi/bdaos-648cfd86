@@ -46,9 +46,9 @@ const simpleLinks = [
 ];
 
 const regions = [
-  { code: "IN", label: "India", flag: "🇮🇳", path: "/in" },
-  { code: "GL", label: "Global", flag: "🌐", path: "/" },
-  { code: "AE", label: "UAE", flag: "🇦🇪", path: "/uae" },
+  { code: "IN", label: "India", flag: "https://flagcdn.com/in.svg", path: "/in" },
+  { code: "GL", label: "Global", flag: null, path: "/" },
+  { code: "AE", label: "UAE", flag: "https://flagcdn.com/ae.svg", path: "/uae" },
 ];
 
 type MenuKey = null | "about" | "whatWeDo" | "insights";
@@ -238,7 +238,7 @@ export function Navbar() {
                           : "bg-secondary text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      <span>{r.flag}</span>
+                      <RegionFlag region={r} />
                       <span>{r.label}</span>
                     </Link>
                   ))}
@@ -279,7 +279,7 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
       >
         <Globe className="h-4 w-4" />
         <span>{region.label}</span>
-        <span aria-hidden>{region.flag}</span>
+        
         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       <AnimatePresence>
@@ -300,7 +300,7 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
                   r.code === region.code ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                 }`}
               >
-                <span>{r.flag}</span>
+                <RegionFlag region={r} />
                 <span>{r.label}</span>
               </Link>
             ))}
