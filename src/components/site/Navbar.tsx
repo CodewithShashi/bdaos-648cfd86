@@ -335,7 +335,16 @@ type MegaConfig = {
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
-  featured?: { eyebrow: string; title: string; href: string; img: string; linkLabel: string };
+  featured?: {
+    eyebrow: string;
+    title: string;
+    href: string;
+    img: string;
+    linkLabel: string;
+    source?: string;
+    date?: string;
+    excerpt?: string;
+  };
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
