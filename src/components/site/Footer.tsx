@@ -178,12 +178,12 @@ export function Footer() {
                 key={r.country}
                 className="rounded-2xl border border-border bg-secondary/40 p-6 transition hover:bg-secondary/70"
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full bg-card shadow-soft" aria-hidden>
+                <span className="inline-flex h-8 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-card shadow-soft" aria-hidden>
                   <img
                     src={r.flag}
                     alt=""
                     loading="lazy"
-                    className="h-10 w-10 object-cover"
+                    className="h-full w-full object-cover"
                   />
                 </span>
                 <div className="mt-4 text-base font-medium text-foreground">{r.country}</div>
