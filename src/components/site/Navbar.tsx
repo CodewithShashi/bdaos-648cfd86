@@ -186,7 +186,7 @@ export function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border"
+            className="lg:hidden mt-3 bg-background rounded-3xl p-4 shadow-soft border border-border max-h-[calc(100vh-7rem)] overflow-y-auto"
           >
             <div className="flex flex-col">
               {simpleLinks.map((l) =>
