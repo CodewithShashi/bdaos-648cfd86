@@ -427,7 +427,7 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
 function MegaPanel({ config }: { config: MegaConfig }) {
   const [active, setActive] = useState(config.sections[0].key);
   const activeSection = config.sections.find((s) => s.key === active) ?? config.sections[0];
-  const multi = config.sections.length > 1;
+  
   const featured = config.featured;
 
   return (
