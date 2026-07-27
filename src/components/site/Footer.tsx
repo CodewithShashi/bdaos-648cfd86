@@ -21,8 +21,6 @@ const linkGroups = [
       { label: "HireAssist", href: "/products/hireassist" },
       { label: "TaskAssist", href: "/products/taskassist" },
       { label: "QAAssist", href: "/products/qaassist" },
-      { label: "Attribution", href: "/products/attribution" },
-      { label: "CoachAssist", href: "/products/coachassist" },
     ],
   },
   {
