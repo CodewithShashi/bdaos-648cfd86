@@ -21,8 +21,6 @@ const linkGroups = [
       { label: "HireAssist", href: "/products/hireassist" },
       { label: "TaskAssist", href: "/products/taskassist" },
       { label: "QAAssist", href: "/products/qaassist" },
-      { label: "Attribution", href: "/products/attribution" },
-      { label: "CoachAssist", href: "/products/coachassist" },
     ],
   },
   {
@@ -68,6 +66,19 @@ const socials = [
   { icon: Twitter, label: "X" },
 ];
 
+const officeRegions = [
+  {
+    flag: "🇮🇳",
+    country: "India",
+    address: ["Plot Number 3, Sector 135,", "Noida – 201304,", "Delhi–NCR, India"],
+  },
+  {
+    flag: "🇦🇪",
+    country: "UAE",
+    address: ["Meydan Grand Stand,", "6th floor, Meydan road,", "Nad Al Sheba, Dubai"],
+  },
+];
+
 export function Footer() {
   return (
     <motion.footer
@@ -80,13 +91,13 @@ export function Footer() {
       <Container className="py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <a href="#" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <img
                 src={logoAsset.url}
                 alt="BDA Technologies"
-                className="h-8 w-auto object-contain"
+                className="h-8 w-auto object-contain -ml-1"
               />
-            </a>
+            </Link>
 
             <div className="mt-6 space-y-3">
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -158,6 +169,32 @@ export function Footer() {
             ))}
           </div>
         </div>
+
+        <div className="mt-16 border-t border-border pt-10">
+          <div className="text-sm font-semibold">Our Regions</div>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+            {officeRegions.map((r) => (
+              <div
+                key={r.country}
+                className="rounded-2xl border border-border bg-secondary/40 p-6 transition hover:bg-secondary/70"
+              >
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-card text-xl shadow-soft" aria-hidden>
+                  {r.flag}
+                </span>
+                <div className="mt-4 text-base font-medium text-foreground">{r.country}</div>
+                <address className="mt-3 not-italic text-sm leading-relaxed text-muted-foreground">
+                  {r.address.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </address>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
 
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-t border-border pt-8">
           <div className="text-sm text-muted-foreground">

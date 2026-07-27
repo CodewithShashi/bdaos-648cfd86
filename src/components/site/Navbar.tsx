@@ -6,6 +6,7 @@ import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import { caseStudies } from "@/data/insights";
+import aboutImg from "@/assets/about.jpg";
 
 
 const aboutLinks = [
@@ -340,6 +341,13 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaLabel: "About BDA Technologies",
     ctaHref: "/about",
     sections: [{ key: "company", label: "Company", items: aboutLinks }],
+    featured: {
+      eyebrow: "Featured",
+      title: "Inside BDA Technologies: how we build and implement systems",
+      href: "/about",
+      img: aboutImg,
+      linkLabel: "Read More",
+    },
   },
   insights: {
     title: "BDA Insights",
