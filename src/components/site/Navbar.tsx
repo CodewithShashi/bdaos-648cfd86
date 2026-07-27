@@ -315,6 +315,7 @@ type MegaConfig = {
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
+  featured?: { eyebrow: string; title: string; href: string; img: string; linkLabel: string };
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
@@ -345,6 +346,13 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaLabel: "Start reading now",
     ctaHref: "/insights/articles",
     sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
+    featured: {
+      eyebrow: "Featured Insight",
+      title: caseStudies[0].title,
+      href: "/insights/case-studies",
+      img: caseStudies[0].img,
+      linkLabel: "Read Full Article",
+    },
   },
 };
 
@@ -352,6 +360,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
   const [active, setActive] = useState(config.sections[0].key);
   const activeSection = config.sections.find((s) => s.key === active) ?? config.sections[0];
   const multi = config.sections.length > 1;
+  const featured = config.featured;
 
   return (
     <div className="grid grid-cols-12 gap-x-10 gap-y-8 p-10 xl:p-12">
@@ -395,14 +404,16 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       )}
 
       <div
-        className={`col-span-12 ${multi ? "lg:col-span-4 xl:col-span-5" : "lg:col-span-8"}`}
+        className={`col-span-12 ${
+          multi ? "lg:col-span-4 xl:col-span-5" : featured ? "lg:col-span-4 xl:col-span-4" : "lg:col-span-8"
+        }`}
       >
         <motion.div
           key={activeSection.key}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`grid gap-x-10 ${multi ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-2"}`}
+          className={`grid gap-x-10 ${multi ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-1"}`}
         >
           {activeSection.items.map((l) => (
             <Link
@@ -416,9 +427,33 @@ function MegaPanel({ config }: { config: MegaConfig }) {
           ))}
         </motion.div>
       </div>
+
+      {featured && (
+        <div className="col-span-12 lg:col-span-4 xl:col-span-5">
+          <div className="rounded-2xl border border-border bg-secondary/40 p-4">
+            <div className="text-sm font-semibold text-foreground">{featured.eyebrow}</div>
+            <Link to={featured.href} className="group mt-3 block">
+              <div className="overflow-hidden rounded-xl">
+                <img
+                  src={featured.img}
+                  alt={featured.title}
+                  loading="lazy"
+                  className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <p className="mt-3 text-sm text-foreground leading-snug">{featured.title}</p>
+              <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
+                {featured.linkLabel}
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
 
 
 function MobileGroup({
