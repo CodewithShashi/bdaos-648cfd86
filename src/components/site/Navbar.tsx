@@ -340,6 +340,13 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaLabel: "About BDA Technologies",
     ctaHref: "/about",
     sections: [{ key: "company", label: "Company", items: aboutLinks }],
+    featured: {
+      eyebrow: "Featured",
+      title: "Inside BDA Technologies: how we build and implement systems",
+      href: "/about",
+      img: aboutImg,
+      linkLabel: "Read More",
+    },
   },
   insights: {
     title: "BDA Insights",
