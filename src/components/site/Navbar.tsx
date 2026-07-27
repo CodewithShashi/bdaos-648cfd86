@@ -5,6 +5,8 @@ import { Menu, X, ChevronDown, ArrowUpRight, ArrowRight, ChevronRight, Globe } f
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
+import { caseStudies } from "@/data/insights";
+
 
 const aboutLinks = [
   { label: "About BDA Technologies", href: "/about" },
