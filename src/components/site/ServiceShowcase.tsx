@@ -149,7 +149,7 @@ const services = [
   },
   {
     num: "02",
-    title: "Business Audit",
+    title: "Digital Transformation",
     desc: "Find process gaps, reporting issues, and founder dependency.",
     visual: <IntegrationsVisual />,
   },
