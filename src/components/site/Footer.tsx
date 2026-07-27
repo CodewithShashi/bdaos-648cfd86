@@ -66,6 +66,19 @@ const socials = [
   { icon: Twitter, label: "X" },
 ];
 
+const officeRegions = [
+  {
+    flag: "🇮🇳",
+    country: "India",
+    address: ["Plot Number 3, Sector 135,", "Noida – 201304,", "Delhi–NCR, India"],
+  },
+  {
+    flag: "🇦🇪",
+    country: "UAE",
+    address: ["Meydan Grand Stand,", "6th floor, Meydan road,", "Nad Al Sheba, Dubai"],
+  },
+];
+
 export function Footer() {
   return (
     <motion.footer
