@@ -456,42 +456,69 @@ function MegaPanel({ config }: { config: MegaConfig }) {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`grid gap-x-8 ${multi ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"}`}
+          className={multi ? "grid grid-cols-1 gap-x-8 sm:grid-cols-2" : "flex flex-col"}
         >
-
-          {activeSection.items.map((l) => (
-            <Link
-              key={l.label}
-              to={l.href}
-              className="group flex items-center justify-between gap-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
-            >
-              <span>{l.label}</span>
-              <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
-            </Link>
-          ))}
+          {activeSection.items.map((l, i) =>
+            multi ? (
+              <Link
+                key={l.label}
+                to={l.href}
+                className="group flex items-center justify-between gap-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
+              >
+                <span>{l.label}</span>
+                <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+              </Link>
+            ) : (
+              <Link
+                key={l.label}
+                to={l.href}
+                onMouseEnter={() => setHovered(i)}
+                onFocus={() => setHovered(i)}
+                className={`group flex w-full items-center justify-between gap-3 border-b border-border px-4 py-3.5 text-left text-[0.95rem] transition ${
+                  hovered === i ? "bg-menu-active text-foreground" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <span className="truncate">{l.label}</span>
+                <ChevronRight
+                  className={`h-4 w-4 shrink-0 transition-transform ${
+                    hovered === i ? "translate-x-0.5 text-foreground" : "text-muted-foreground/60"
+                  }`}
+                />
+              </Link>
+            )
+          )}
         </motion.div>
       </div>
 
       {featured && (
         <div className="col-span-12 lg:col-span-5">
-          <div className="rounded-2xl border border-border bg-secondary/40 p-4">
-            <div className="text-sm font-semibold text-foreground">{featured.eyebrow}</div>
-            <Link to={featured.href} className="group mt-3 block">
-              <div className="overflow-hidden rounded-xl">
-                <img
-                  src={featured.img}
-                  alt={featured.title}
-                  loading="lazy"
-                  className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <p className="mt-3 text-sm text-foreground leading-snug">{featured.title}</p>
-              <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
-                {featured.linkLabel}
-                <ArrowUpRight className="h-4 w-4" />
+          <Link to={featured.href} className="group block">
+            <div className="relative overflow-hidden rounded-xl">
+              <img
+                src={featured.img}
+                alt={featured.title}
+                loading="lazy"
+                className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
+                {featured.eyebrow}
               </span>
-            </Link>
-          </div>
+            </div>
+            <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+              <span>{featured.source}</span>
+              <span>{featured.date}</span>
+            </div>
+            <p className="mt-2 font-display text-base leading-snug text-foreground">{featured.title}</p>
+            {featured.excerpt && (
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                {featured.excerpt}
+              </p>
+            )}
+            <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
+              {featured.linkLabel}
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </Link>
         </div>
       )}
     </div>
