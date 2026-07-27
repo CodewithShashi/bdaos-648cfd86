@@ -68,12 +68,12 @@ const socials = [
 
 const officeRegions = [
   {
-    flag: "🇮🇳",
+    flag: "https://flagcdn.com/in.svg",
     country: "India",
     address: ["Plot Number 3, Sector 135,", "Noida – 201304,", "Delhi–NCR, India"],
   },
   {
-    flag: "🇦🇪",
+    flag: "https://flagcdn.com/ae.svg",
     country: "UAE",
     address: ["Meydan Grand Stand,", "6th floor, Meydan road,", "Nad Al Sheba, Dubai"],
   },
@@ -178,8 +178,13 @@ export function Footer() {
                 key={r.country}
                 className="rounded-2xl border border-border bg-secondary/40 p-6 transition hover:bg-secondary/70"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-card text-xl shadow-soft" aria-hidden>
-                  {r.flag}
+                <span className="inline-flex h-8 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-card shadow-soft" aria-hidden>
+                  <img
+                    src={r.flag}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                 </span>
                 <div className="mt-4 text-base font-medium text-foreground">{r.country}</div>
                 <address className="mt-3 not-italic text-sm leading-relaxed text-muted-foreground">
