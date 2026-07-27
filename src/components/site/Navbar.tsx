@@ -1,33 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, ChevronDown, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowUpRight, ArrowRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
-import heroImg from "@/assets/hero-ai.jpg";
-import aboutImg from "@/assets/about.jpg";
-import productsFeaturedImg from "@/assets/products-featured.jpg";
 
 const aboutLinks = [
   { label: "About BDA Technologies", href: "/about" },
   { label: "Team & Partners", href: "/team" },
   { label: "Careers", href: "/careers" },
-];
-
-const aboutFeatured = [
-  {
-    tag: "Media Coverage",
-    title: "AI-infused engineering makes us a true One team.",
-    date: "June 30, 2026",
-    img: aboutImg,
-  },
-  {
-    tag: "Recognitions",
-    title: "BDA AI wins Gold at the Future Skills Awards 2026.",
-    date: "June 30, 2026",
-    img: heroImg,
-  },
 ];
 
 const whatWeDoProducts = [
@@ -189,10 +171,8 @@ export function Navbar() {
               onMouseEnter={() => setMenu(menu)}
               className="hidden lg:block mt-3"
             >
-              <div className="bg-background rounded-3xl shadow-elevated border border-border/60 overflow-hidden">
-              {menu === "about" && <AboutMega />}
-                {menu === "whatWeDo" && <WhatWeDoMega />}
-                {menu === "insights" && <InsightsMega />}
+              <div className="bg-foreground text-background rounded-3xl shadow-elevated border border-border/20 overflow-hidden">
+                <MegaPanel config={megaMenus[menu]} />
               </div>
             </motion.div>
           )}
