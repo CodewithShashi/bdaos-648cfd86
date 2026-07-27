@@ -368,11 +368,15 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaHref: "/about",
     sections: [{ key: "company", label: "Company", items: aboutLinks }],
     featured: {
-      eyebrow: "Featured",
+      eyebrow: "Company",
       title: "Inside BDA Technologies: how we build and implement systems",
       href: "/about",
       img: aboutImg,
       linkLabel: "Read More",
+      source: "BDA Technologies",
+      date: "Jul 2026",
+      excerpt:
+        "Operators, engineers, and trainers working from diagnosis to adoption — here is how the work actually gets done.",
     },
   },
   insights: {
@@ -383,11 +387,14 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaHref: "/insights/articles",
     sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
     featured: {
-      eyebrow: "Featured Insight",
+      eyebrow: caseStudies[0].category,
       title: caseStudies[0].title,
       href: "/insights/case-studies",
       img: caseStudies[0].img,
       linkLabel: "Read Full Article",
+      source: "BDA Technologies",
+      date: caseStudies[0].date,
+      excerpt: caseStudies[0].excerpt,
     },
   },
 };
