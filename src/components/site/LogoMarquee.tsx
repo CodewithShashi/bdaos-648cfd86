@@ -37,7 +37,7 @@ export function LogoMarquee() {
   }, []);
 
   return (
-    <section className="relative w-full bg-background">
+    <section className="relative w-full bg-card">
       <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-b border-border">
         {Array.from({ length: SLOTS }).map((_, slot) => {
           const logo = logos[(slot + tick) % logos.length];

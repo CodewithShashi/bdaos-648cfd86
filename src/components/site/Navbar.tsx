@@ -171,7 +171,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu(menu)}
               className="hidden lg:block mt-3"
             >
-              <div className="bg-foreground text-background rounded-3xl shadow-elevated border border-border/20 overflow-hidden">
+              <div className="bg-card text-foreground rounded-3xl shadow-elevated border border-border overflow-hidden">
                 <MegaPanel config={megaMenus[menu]} />
               </div>
             </motion.div>
@@ -356,13 +356,13 @@ function MegaPanel({ config }: { config: MegaConfig }) {
   return (
     <div className="grid grid-cols-12 gap-x-10 gap-y-8 p-10 xl:p-12">
       <div className="col-span-12 lg:col-span-4 xl:col-span-3">
-        <h3 className="font-display text-2xl xl:text-3xl leading-tight tracking-tight text-background">
+        <h3 className="font-display text-2xl xl:text-3xl leading-tight tracking-tight text-foreground">
           {config.title}
         </h3>
-        <p className="mt-4 text-sm leading-relaxed text-background/60">{config.body}</p>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{config.body}</p>
         <Link
           to={config.ctaHref}
-          className="group mt-7 inline-flex items-center gap-2 text-sm font-medium text-background"
+          className="group mt-7 inline-flex items-center gap-2 text-sm font-medium text-foreground"
         >
           {config.ctaLabel}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -377,16 +377,16 @@ function MegaPanel({ config }: { config: MegaConfig }) {
               onMouseEnter={() => setActive(section.key)}
               onFocus={() => setActive(section.key)}
               onClick={() => setActive(section.key)}
-              className={`group flex w-full items-center justify-between gap-3 border-b border-background/15 px-4 py-4 text-left text-base transition ${
+              className={`group flex w-full items-center justify-between gap-3 border-b border-border px-4 py-4 text-left text-base transition ${
                 active === section.key
-                  ? "bg-background/10 text-background"
-                  : "text-background/70 hover:text-background"
+                  ? "bg-menu-active text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               <span>{section.label}</span>
               <ChevronRight
                 className={`h-4 w-4 transition-transform ${
-                  active === section.key ? "translate-x-0.5 text-background" : "text-background/40"
+                  active === section.key ? "translate-x-0.5 text-foreground" : "text-muted-foreground/60"
                 }`}
               />
             </button>
@@ -408,7 +408,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
             <Link
               key={l.label}
               to={l.href}
-              className="group flex items-center justify-between gap-3 py-3 text-sm text-background/70 transition hover:text-background"
+              className="group flex items-center justify-between gap-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
             >
               <span>{l.label}</span>
               <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
