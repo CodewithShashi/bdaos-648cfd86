@@ -174,7 +174,7 @@ export function Navbar() {
               onMouseEnter={() => setMenu(menu)}
               className="hidden lg:block mt-3"
             >
-              <div className="bg-card text-foreground rounded-3xl shadow-elevated border border-border overflow-hidden">
+              <div className="bg-card text-foreground rounded-3xl shadow-elevated border border-border overflow-hidden max-h-[calc(100vh-8rem)] overflow-y-auto">
                 <MegaPanel config={megaMenus[menu]} />
               </div>
             </motion.div>
