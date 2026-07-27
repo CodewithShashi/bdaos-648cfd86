@@ -68,12 +68,12 @@ const socials = [
 
 const officeRegions = [
   {
-    flag: "🇮🇳",
+    flag: "https://flagcdn.com/in.svg",
     country: "India",
     address: ["Plot Number 3, Sector 135,", "Noida – 201304,", "Delhi–NCR, India"],
   },
   {
-    flag: "🇦🇪",
+    flag: "https://flagcdn.com/ae.svg",
     country: "UAE",
     address: ["Meydan Grand Stand,", "6th floor, Meydan road,", "Nad Al Sheba, Dubai"],
   },
