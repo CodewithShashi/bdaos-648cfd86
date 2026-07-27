@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Search, LineChart, Users, AlertTriangle, ClipboardList, Map } from "lucide-react";
 import { ServicePage } from "@/components/site/ServicePage";
 
-export const Route = createFileRoute("/services/business-audit")({
+export const Route = createFileRoute("/services/digital-transformation")({
   head: () => ({
     meta: [
       { title: "Digital Transformation — BDA Technologies" },
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/services/business-audit")({
           "We study how work moves today, how it gets reported and where it keeps breaking.",
           "You get an honest picture of your operations and a clear plan for what to fix first.",
         ],
-        ctaLabel: "Apply for a Business Audit",
+        ctaLabel: "Apply for a Discovery Call",
         smallText: "For founders who feel operations are heavier than they should be.",
       }}
       problem={{
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/services/business-audit")({
           { title: "Ownership is unclear", body: "Work sits between two people and no one is clearly responsible for the outcome." },
           { title: "Tools do not talk to each other", body: "The same information is entered again in different places and gets out of date." },
         ],
-        closing: "A Business Audit replaces opinion with evidence.",
+        closing: "A digital transformation review replaces opinion with evidence.",
       }}
       build={{
         label: "What We Review",
@@ -62,7 +62,7 @@ export const Route = createFileRoute("/services/business-audit")({
           "We speak to the people doing the work and look at real tasks, real reports and real delays.",
         ],
         steps: [
-          { title: "Kickoff", body: "Align on business context, current pain points and audit scope." },
+          { title: "Kickoff", body: "Align on business context, current pain points and review scope." },
           { title: "Discovery", body: "Structured interviews and reviews across functions and tools." },
           { title: "Analysis", body: "Synthesise findings across workflows, reporting and ownership." },
           { title: "Findings and Plan", body: "Present the gap report and prioritised roadmap to leadership." },
@@ -71,7 +71,7 @@ export const Route = createFileRoute("/services/business-audit")({
       deliverables={{
         label: "Deliverables",
         headline: "You get evidence and a plan, not a slide deck of theory.",
-        text: "The final work depends on your business. A Business Audit may include:",
+        text: "The final work depends on your business. A transformation review may include:",
         items: [
           "Current-state workflow maps",
           "Gap and bottleneck report",
@@ -85,7 +85,7 @@ export const Route = createFileRoute("/services/business-audit")({
           "Leadership presentation",
         ],
         closing:
-          "You should finish the audit knowing what to fix first, who owns it and what change to expect.",
+          "You should finish the engagement knowing what to fix first, who owns it and what change to expect.",
       }}
       beforeAfter={{
         label: "Before and After",
@@ -99,7 +99,7 @@ export const Route = createFileRoute("/services/business-audit")({
         ],
       }}
       caseStudy={{
-        label: "Audit in Action",
+        label: "Transformation in Action",
         headline: "Finding the real reason delivery kept slipping.",
         problem:
           "A services business believed it needed more people. Projects were late and the team was constantly busy.",
@@ -130,18 +130,18 @@ export const Route = createFileRoute("/services/business-audit")({
         label: "Common Questions",
         headline: "What business owners usually ask us",
         items: [
-          { q: "How long does the audit take?", a: "Most audits take two to four weeks, depending on the number of teams and tools involved." },
+          { q: "How long does the review take?", a: "Most reviews take two to four weeks, depending on the number of teams and tools involved." },
           { q: "How much of my team's time is needed?", a: "Usually a few short interviews per function, plus access to existing reports and tools." },
-          { q: "Do we have to work with BDA after the audit?", a: "No. The findings and roadmap are yours. You can implement them internally or with us." },
-          { q: "Will you tell us things we do not want to hear?", a: "Yes. The value of an audit is an honest picture, shared plainly and backed with evidence." },
-          { q: "Does the audit include new tools?", a: "The audit recommends changes. Building and rolling them out happens in a Business OS project." },
+          { q: "Do we have to work with BDA after the review?", a: "No. The findings and roadmap are yours. You can implement them internally or with us." },
+          { q: "Will you tell us things we do not want to hear?", a: "Yes. The value of an honest review is a clear picture, shared plainly and backed with evidence." },
+          { q: "Does the review include new tools?", a: "The review recommends changes. Building and rolling them out happens in a Business OS project." },
         ],
       }}
       finalCta={{
         label: "Start with Clarity",
         headline: "Start with the part of your business that worries you most.",
         text: "We will study how work is happening today, where it is getting stuck and what should change first.",
-        ctaLabel: "Apply for a Business Audit",
+        ctaLabel: "Apply for a Discovery Call",
         smallText: "A focused business discussion. No software sales pitch.",
       }}
     />

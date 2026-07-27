@@ -24,7 +24,7 @@ const whatWeDoProducts = [
 
 const whatWeDoServices = [
   { label: "Business OS", href: "/services/bda-os-implementation" },
-  { label: "Digital Transformation", href: "/services/business-audit" },
+  { label: "Digital Transformation", href: "/services/digital-transformation" },
   { label: "AI Training", href: "/services/ai-training" },
   { label: "Pricing", href: "/pricing" },
 ];

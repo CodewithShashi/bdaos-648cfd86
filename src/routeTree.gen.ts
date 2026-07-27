@@ -18,7 +18,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
-import { Route as ServicesBusinessAuditRouteImport } from './routes/services.business-audit'
+import { Route as ServicesDigitalTransformationRouteImport } from './routes/services.digital-transformation'
 import { Route as ServicesBdaOsImplementationRouteImport } from './routes/services.bda-os-implementation'
 import { Route as ServicesAiTrainingRouteImport } from './routes/services.ai-training'
 import { Route as ProductsTaskassistRouteImport } from './routes/products.taskassist'
@@ -79,11 +79,12 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesBusinessAuditRoute = ServicesBusinessAuditRouteImport.update({
-  id: '/services/business-audit',
-  path: '/services/business-audit',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const ServicesDigitalTransformationRoute =
+  ServicesDigitalTransformationRouteImport.update({
+    id: '/services/digital-transformation',
+    path: '/services/digital-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesBdaOsImplementationRoute =
   ServicesBdaOsImplementationRouteImport.update({
     id: '/services/bda-os-implementation',
@@ -180,7 +181,7 @@ export interface FileRoutesByFullPath {
   '/products/taskassist': typeof ProductsTaskassistRoute
   '/services/ai-training': typeof ServicesAiTrainingRoute
   '/services/bda-os-implementation': typeof ServicesBdaOsImplementationRoute
-  '/services/business-audit': typeof ServicesBusinessAuditRoute
+  '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -206,7 +207,7 @@ export interface FileRoutesByTo {
   '/products/taskassist': typeof ProductsTaskassistRoute
   '/services/ai-training': typeof ServicesAiTrainingRoute
   '/services/bda-os-implementation': typeof ServicesBdaOsImplementationRoute
-  '/services/business-audit': typeof ServicesBusinessAuditRoute
+  '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
@@ -233,7 +234,7 @@ export interface FileRoutesById {
   '/products/taskassist': typeof ProductsTaskassistRoute
   '/services/ai-training': typeof ServicesAiTrainingRoute
   '/services/bda-os-implementation': typeof ServicesBdaOsImplementationRoute
-  '/services/business-audit': typeof ServicesBusinessAuditRoute
+  '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
@@ -261,7 +262,7 @@ export interface FileRouteTypes {
     | '/products/taskassist'
     | '/services/ai-training'
     | '/services/bda-os-implementation'
-    | '/services/business-audit'
+    | '/services/digital-transformation'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -287,7 +288,7 @@ export interface FileRouteTypes {
     | '/products/taskassist'
     | '/services/ai-training'
     | '/services/bda-os-implementation'
-    | '/services/business-audit'
+    | '/services/digital-transformation'
     | '/products'
   id:
     | '__root__'
@@ -313,7 +314,7 @@ export interface FileRouteTypes {
     | '/products/taskassist'
     | '/services/ai-training'
     | '/services/bda-os-implementation'
-    | '/services/business-audit'
+    | '/services/digital-transformation'
     | '/products/'
   fileRoutesById: FileRoutesById
 }
@@ -340,7 +341,7 @@ export interface RootRouteChildren {
   ProductsTaskassistRoute: typeof ProductsTaskassistRoute
   ServicesAiTrainingRoute: typeof ServicesAiTrainingRoute
   ServicesBdaOsImplementationRoute: typeof ServicesBdaOsImplementationRoute
-  ServicesBusinessAuditRoute: typeof ServicesBusinessAuditRoute
+  ServicesDigitalTransformationRoute: typeof ServicesDigitalTransformationRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
@@ -409,11 +410,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/business-audit': {
-      id: '/services/business-audit'
-      path: '/services/business-audit'
-      fullPath: '/services/business-audit'
-      preLoaderRoute: typeof ServicesBusinessAuditRouteImport
+    '/services/digital-transformation': {
+      id: '/services/digital-transformation'
+      path: '/services/digital-transformation'
+      fullPath: '/services/digital-transformation'
+      preLoaderRoute: typeof ServicesDigitalTransformationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/bda-os-implementation': {
@@ -540,7 +541,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsTaskassistRoute: ProductsTaskassistRoute,
   ServicesAiTrainingRoute: ServicesAiTrainingRoute,
   ServicesBdaOsImplementationRoute: ServicesBdaOsImplementationRoute,
-  ServicesBusinessAuditRoute: ServicesBusinessAuditRoute,
+  ServicesDigitalTransformationRoute: ServicesDigitalTransformationRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
