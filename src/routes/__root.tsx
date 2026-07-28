@@ -122,6 +122,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useOpenLinksInNewTab();
+
 
   return (
     <QueryClientProvider client={queryClient}>
