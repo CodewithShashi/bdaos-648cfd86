@@ -506,7 +506,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && (
-        <div className="col-span-12 lg:col-span-5">
+        <div className={`col-span-12 ${multi ? "lg:col-span-4" : "lg:col-span-5"}`}>
           <Link to={featured.href} className="group block">
             <div className="relative overflow-hidden rounded-xl">
               <img
