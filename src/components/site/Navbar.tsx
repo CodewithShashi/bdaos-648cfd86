@@ -7,6 +7,8 @@ import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import { caseStudies } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
+import productsFeatured from "@/assets/products-featured.jpg";
+
 
 
 const aboutLinks = [
