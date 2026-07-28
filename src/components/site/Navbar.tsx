@@ -471,7 +471,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={multi ? "grid grid-cols-1 gap-x-8 sm:grid-cols-2" : "flex flex-col"}
+          className={multi ? "flex flex-col" : "flex flex-col"}
         >
           {activeSection.items.map((l, i) =>
             multi ? (
