@@ -238,28 +238,52 @@ function Process({ process }: ServicePageProps) {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-border">
-          {process.steps.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.04 }}
-              className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 border-b border-border py-6 md:py-8 transition-colors hover:bg-secondary/40"
-            >
-              <span className="md:col-span-2 font-display text-2xl md:text-3xl text-primary">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="md:col-span-4 font-display text-xl md:text-2xl tracking-tight">
-                {s.title}
-              </h3>
-              <p className="md:col-span-6 text-sm md:text-base text-muted-foreground leading-relaxed">
-                {s.body}
-              </p>
-            </motion.div>
-          ))}
+        <div className="relative mt-14">
+          <div
+            aria-hidden
+            className="absolute left-[15px] top-2 bottom-2 w-px bg-border md:left-1/2 md:-translate-x-1/2"
+          />
+          <div className="space-y-8 md:space-y-0">
+            {process.steps.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.45, delay: i * 0.05 }}
+                className="relative grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-4 md:grid-cols-2 md:gap-16 md:pb-12"
+              >
+                <span
+                  className={`z-10 grid h-8 w-8 place-items-center rounded-full border-2 border-primary bg-background text-xs font-semibold text-primary md:absolute md:left-1/2 md:top-1 md:-translate-x-1/2 ${
+                    i % 2 === 0 ? "" : ""
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                <div
+                  className={
+                    i % 2 === 0
+                      ? "md:col-start-1 md:pr-12 md:text-right"
+                      : "md:col-start-2 md:pl-12 md:row-start-1"
+                  }
+                >
+                  <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-soft transition hover:shadow-elevated">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      Step {String(i + 1).padStart(2, "0")}
+                      {i < process.steps.length - 1 ? "" : " · Handover"}
+                    </p>
+                    <h3 className="mt-2 font-display text-xl md:text-2xl tracking-tight">{s.title}</h3>
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+                      {s.body}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
       </Container>
     </section>
   );
