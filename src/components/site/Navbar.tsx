@@ -359,7 +359,19 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       { key: "services", label: "Services", items: whatWeDoServices },
       { key: "brands", label: "Brands", items: whatWeDoBrands },
     ],
+    featured: {
+      eyebrow: "Product",
+      title: "LinkAssist: turn every link into measurable pipeline",
+      href: "/products/linkassist",
+      img: productsFeatured,
+      linkLabel: "Explore LinkAssist",
+      source: "BDA Products",
+      date: "Featured",
+      excerpt:
+        "Our flagship product for teams that need attribution, follow-up, and conversion visibility in one place.",
+    },
   },
+
   about: {
     title: "Who we are",
     body:
