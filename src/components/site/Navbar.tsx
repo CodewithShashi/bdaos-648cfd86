@@ -437,7 +437,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {multi && (
-        <div className="col-span-12 min-w-0 lg:col-span-4">
+        <div className="col-span-12 min-w-0 lg:col-span-3">
           {config.sections.map((section) => (
             <button
               key={section.key}
