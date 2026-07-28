@@ -11,13 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as UaeRouteImport } from './routes/uae'
 import { Route as TeamRouteImport } from './routes/team'
-import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as InRouteImport } from './routes/in'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as ServicesPricingRouteImport } from './routes/services.pricing'
 import { Route as ServicesDigitalTransformationRouteImport } from './routes/services.digital-transformation'
 import { Route as ServicesBdaOsImplementationRouteImport } from './routes/services.bda-os-implementation'
 import { Route as ServicesAiTrainingRouteImport } from './routes/services.ai-training'
@@ -42,11 +42,6 @@ const UaeRoute = UaeRouteImport.update({
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InRoute = InRouteImport.update({
@@ -77,6 +72,11 @@ const IndexRoute = IndexRouteImport.update({
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesPricingRoute = ServicesPricingRouteImport.update({
+  id: '/services/pricing',
+  path: '/services/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesDigitalTransformationRoute =
@@ -164,7 +164,6 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/in': typeof InRoute
-  '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
@@ -182,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/services/ai-training': typeof ServicesAiTrainingRoute
   '/services/bda-os-implementation': typeof ServicesBdaOsImplementationRoute
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/pricing': typeof ServicesPricingRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -190,7 +190,6 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/in': typeof InRoute
-  '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
@@ -208,6 +207,7 @@ export interface FileRoutesByTo {
   '/services/ai-training': typeof ServicesAiTrainingRoute
   '/services/bda-os-implementation': typeof ServicesBdaOsImplementationRoute
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/pricing': typeof ServicesPricingRoute
   '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
@@ -217,7 +217,6 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/in': typeof InRoute
-  '/pricing': typeof PricingRoute
   '/team': typeof TeamRoute
   '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
@@ -235,6 +234,7 @@ export interface FileRoutesById {
   '/services/ai-training': typeof ServicesAiTrainingRoute
   '/services/bda-os-implementation': typeof ServicesBdaOsImplementationRoute
   '/services/digital-transformation': typeof ServicesDigitalTransformationRoute
+  '/services/pricing': typeof ServicesPricingRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
@@ -245,7 +245,6 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/in'
-    | '/pricing'
     | '/team'
     | '/uae'
     | '/brands/automation-school'
@@ -263,6 +262,7 @@ export interface FileRouteTypes {
     | '/services/ai-training'
     | '/services/bda-os-implementation'
     | '/services/digital-transformation'
+    | '/services/pricing'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -271,7 +271,6 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/in'
-    | '/pricing'
     | '/team'
     | '/uae'
     | '/brands/automation-school'
@@ -289,6 +288,7 @@ export interface FileRouteTypes {
     | '/services/ai-training'
     | '/services/bda-os-implementation'
     | '/services/digital-transformation'
+    | '/services/pricing'
     | '/products'
   id:
     | '__root__'
@@ -297,7 +297,6 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/in'
-    | '/pricing'
     | '/team'
     | '/uae'
     | '/brands/automation-school'
@@ -315,6 +314,7 @@ export interface FileRouteTypes {
     | '/services/ai-training'
     | '/services/bda-os-implementation'
     | '/services/digital-transformation'
+    | '/services/pricing'
     | '/products/'
   fileRoutesById: FileRoutesById
 }
@@ -324,7 +324,6 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   InRoute: typeof InRoute
-  PricingRoute: typeof PricingRoute
   TeamRoute: typeof TeamRoute
   UaeRoute: typeof UaeRoute
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
@@ -342,6 +341,7 @@ export interface RootRouteChildren {
   ServicesAiTrainingRoute: typeof ServicesAiTrainingRoute
   ServicesBdaOsImplementationRoute: typeof ServicesBdaOsImplementationRoute
   ServicesDigitalTransformationRoute: typeof ServicesDigitalTransformationRoute
+  ServicesPricingRoute: typeof ServicesPricingRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
@@ -359,13 +359,6 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/in': {
@@ -408,6 +401,13 @@ declare module '@tanstack/react-router' {
       path: '/products'
       fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/pricing': {
+      id: '/services/pricing'
+      path: '/services/pricing'
+      fullPath: '/services/pricing'
+      preLoaderRoute: typeof ServicesPricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/digital-transformation': {
@@ -524,7 +524,6 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   InRoute: InRoute,
-  PricingRoute: PricingRoute,
   TeamRoute: TeamRoute,
   UaeRoute: UaeRoute,
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
@@ -542,6 +541,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiTrainingRoute: ServicesAiTrainingRoute,
   ServicesBdaOsImplementationRoute: ServicesBdaOsImplementationRoute,
   ServicesDigitalTransformationRoute: ServicesDigitalTransformationRoute,
+  ServicesPricingRoute: ServicesPricingRoute,
   ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
