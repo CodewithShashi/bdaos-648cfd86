@@ -397,12 +397,14 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
             </h2>
             <div className="mt-8 rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur">
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
-                Client snapshot
+                Case study
               </p>
               <p className="mt-3 text-sm md:text-base text-background/80 leading-relaxed">
-                {caseStudy.problem}
+                A real implementation — from the problem we found, to the system we built, to the
+                change it created for the team.
               </p>
             </div>
+
           </div>
 
           <div className="lg:col-span-7">
