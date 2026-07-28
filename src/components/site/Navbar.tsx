@@ -7,6 +7,8 @@ import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import { caseStudies } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
+import productsFeatured from "@/assets/products-featured.jpg";
+
 
 
 const aboutLinks = [
@@ -359,7 +361,19 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       { key: "services", label: "Services", items: whatWeDoServices },
       { key: "brands", label: "Brands", items: whatWeDoBrands },
     ],
+    featured: {
+      eyebrow: "Product",
+      title: "LinkAssist: turn every link into measurable pipeline",
+      href: "/products/linkassist",
+      img: productsFeatured,
+      linkLabel: "Explore LinkAssist",
+      source: "BDA Products",
+      date: "Featured",
+      excerpt:
+        "Our flagship product for teams that need attribution, follow-up, and conversion visibility in one place.",
+    },
   },
+
   about: {
     title: "Who we are",
     body:
@@ -423,7 +437,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {multi && (
-        <div className="col-span-12 min-w-0 lg:col-span-4">
+        <div className="col-span-12 min-w-0 lg:col-span-3">
           {config.sections.map((section) => (
             <button
               key={section.key}
@@ -449,7 +463,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
 
       <div
         className={`col-span-12 min-w-0 ${
-          multi ? "lg:col-span-5" : featured ? "lg:col-span-4" : "lg:col-span-9"
+          multi ? (featured ? "lg:col-span-2" : "lg:col-span-5") : featured ? "lg:col-span-4" : "lg:col-span-9"
         }`}
       >
         <motion.div
@@ -457,7 +471,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={multi ? "grid grid-cols-1 gap-x-8 sm:grid-cols-2" : "flex flex-col"}
+          className={multi ? "flex flex-col" : "flex flex-col"}
         >
           {activeSection.items.map((l, i) =>
             multi ? (
@@ -492,7 +506,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && (
-        <div className="col-span-12 lg:col-span-5">
+        <div className={`col-span-12 ${multi ? "lg:col-span-4" : "lg:col-span-5"}`}>
           <Link to={featured.href} className="group block">
             <div className="relative overflow-hidden rounded-xl">
               <img

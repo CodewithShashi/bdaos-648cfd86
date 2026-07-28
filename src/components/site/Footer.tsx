@@ -66,18 +66,6 @@ const socials = [
   { icon: Twitter, label: "X" },
 ];
 
-const officeRegions = [
-  {
-    flag: "https://flagcdn.com/in.svg",
-    country: "India",
-    address: ["Plot Number 3, Sector 135,", "Noida – 201304,", "Delhi–NCR, India"],
-  },
-  {
-    flag: "https://flagcdn.com/ae.svg",
-    country: "UAE",
-    address: ["Meydan Grand Stand,", "6th floor, Meydan road,", "Nad Al Sheba, Dubai"],
-  },
-];
 
 export function Footer() {
   return (
@@ -170,34 +158,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-border pt-10">
-          <div className="text-sm font-semibold">Our Regions</div>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-            {officeRegions.map((r) => (
-              <div
-                key={r.country}
-                className="rounded-2xl border border-border bg-secondary/40 p-6 transition hover:bg-secondary/70"
-              >
-                <span className="inline-flex h-8 w-12 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-card shadow-soft" aria-hidden>
-                  <img
-                    src={r.flag}
-                    alt=""
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                  />
-                </span>
-                <div className="mt-4 text-base font-medium text-foreground">{r.country}</div>
-                <address className="mt-3 not-italic text-sm leading-relaxed text-muted-foreground">
-                  {r.address.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </address>
-              </div>
-            ))}
-          </div>
-        </div>
+
+
 
 
 

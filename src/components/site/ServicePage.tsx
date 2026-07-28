@@ -238,28 +238,52 @@ function Process({ process }: ServicePageProps) {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-border">
-          {process.steps.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.04 }}
-              className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 border-b border-border py-6 md:py-8 transition-colors hover:bg-secondary/40"
-            >
-              <span className="md:col-span-2 font-display text-2xl md:text-3xl text-primary">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="md:col-span-4 font-display text-xl md:text-2xl tracking-tight">
-                {s.title}
-              </h3>
-              <p className="md:col-span-6 text-sm md:text-base text-muted-foreground leading-relaxed">
-                {s.body}
-              </p>
-            </motion.div>
-          ))}
+        <div className="relative mt-14">
+          <div
+            aria-hidden
+            className="absolute left-[15px] top-2 bottom-2 w-px bg-border md:left-1/2 md:-translate-x-1/2"
+          />
+          <div className="space-y-8 md:space-y-0">
+            {process.steps.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.45, delay: i * 0.05 }}
+                className="relative grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-4 md:grid-cols-2 md:gap-16 md:pb-12"
+              >
+                <span
+                  className={`z-10 grid h-8 w-8 place-items-center rounded-full border-2 border-primary bg-background text-xs font-semibold text-primary md:absolute md:left-1/2 md:top-1 md:-translate-x-1/2 ${
+                    i % 2 === 0 ? "" : ""
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                <div
+                  className={
+                    i % 2 === 0
+                      ? "md:col-start-1 md:pr-12 md:text-right"
+                      : "md:col-start-2 md:pl-12 md:row-start-1"
+                  }
+                >
+                  <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-soft transition hover:shadow-elevated">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      Step {String(i + 1).padStart(2, "0")}
+                      {i < process.steps.length - 1 ? "" : " · Handover"}
+                    </p>
+                    <h3 className="mt-2 font-display text-xl md:text-2xl tracking-tight">{s.title}</h3>
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+                      {s.body}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
       </Container>
     </section>
   );
@@ -365,33 +389,56 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
   return (
     <section className="py-20 md:py-28 bg-foreground text-background">
       <Container>
-        <div className="max-w-3xl">
-          <Label tone="dark">{caseStudy.label}</Label>
-          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
-            {caseStudy.headline}
-          </h2>
-        </div>
-
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-          {blocks.map((b, i) => (
-            <motion.div
-              key={b.k}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="rounded-2xl border border-background/15 bg-background/5 backdrop-blur p-6"
-            >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <Label tone="dark">{caseStudy.label}</Label>
+            <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+              {caseStudy.headline}
+            </h2>
+            <div className="mt-8 rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur">
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
-                {b.k}
+                Case study
               </p>
-              <p className="mt-3 text-sm md:text-base text-background/85 leading-relaxed">{b.v}</p>
-            </motion.div>
-          ))}
+              <p className="mt-3 text-sm md:text-base text-background/80 leading-relaxed">
+                A real implementation — from the problem we found, to the system we built, to the
+                change it created for the team.
+              </p>
+            </div>
+
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="relative border-l border-background/20 pl-8 md:pl-10">
+              {blocks.map((b, i) => (
+                <motion.div
+                  key={b.k}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  className="relative pb-10 last:pb-0"
+                >
+                  <span
+                    aria-hidden
+                    className="absolute -left-[calc(2rem+1px)] top-1.5 grid h-4 w-4 -translate-x-1/2 place-items-center rounded-full bg-primary md:-left-[calc(2.5rem+1px)]"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
+                  </span>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                    {b.k}
+                  </p>
+                  <p className="mt-3 font-display text-lg md:text-2xl leading-snug tracking-tight text-background">
+                    {b.v}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
+
 }
 
 function Fit({ fit }: ServicePageProps) {
