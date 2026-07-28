@@ -389,33 +389,54 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
   return (
     <section className="py-20 md:py-28 bg-foreground text-background">
       <Container>
-        <div className="max-w-3xl">
-          <Label tone="dark">{caseStudy.label}</Label>
-          <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
-            {caseStudy.headline}
-          </h2>
-        </div>
-
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-          {blocks.map((b, i) => (
-            <motion.div
-              key={b.k}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="rounded-2xl border border-background/15 bg-background/5 backdrop-blur p-6"
-            >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <Label tone="dark">{caseStudy.label}</Label>
+            <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
+              {caseStudy.headline}
+            </h2>
+            <div className="mt-8 rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur">
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
-                {b.k}
+                Client snapshot
               </p>
-              <p className="mt-3 text-sm md:text-base text-background/85 leading-relaxed">{b.v}</p>
-            </motion.div>
-          ))}
+              <p className="mt-3 text-sm md:text-base text-background/80 leading-relaxed">
+                {caseStudy.problem}
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="relative border-l border-background/20 pl-8 md:pl-10">
+              {blocks.map((b, i) => (
+                <motion.div
+                  key={b.k}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  className="relative pb-10 last:pb-0"
+                >
+                  <span
+                    aria-hidden
+                    className="absolute -left-[calc(2rem+1px)] top-1.5 grid h-4 w-4 -translate-x-1/2 place-items-center rounded-full bg-primary md:-left-[calc(2.5rem+1px)]"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
+                  </span>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                    {b.k}
+                  </p>
+                  <p className="mt-3 font-display text-lg md:text-2xl leading-snug tracking-tight text-background">
+                    {b.v}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
+
 }
 
 function Fit({ fit }: ServicePageProps) {
