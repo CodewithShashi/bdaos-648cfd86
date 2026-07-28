@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import logoAsset from "../assets/BDA-Logo.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { useOpenLinksInNewTab } from "../lib/open-links-in-new-tab";
+
 
 function NotFoundComponent() {
   return (
@@ -122,6 +124,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useOpenLinksInNewTab();
+
 
   return (
     <QueryClientProvider client={queryClient}>

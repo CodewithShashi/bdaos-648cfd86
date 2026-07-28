@@ -7,7 +7,7 @@ import { WhyUs } from "@/components/site/WhyUs";
 import { Pricing } from "@/components/site/Pricing";
 import { CTA } from "@/components/site/CTA";
 
-export const Route = createFileRoute("/pricing")({
+export const Route = createFileRoute("/services/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — Plans That Scale With You | BDA Technologies" },
