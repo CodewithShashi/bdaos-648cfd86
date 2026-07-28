@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import logoAsset from "../assets/BDA-Logo.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { useOpenLinksInNewTab } from "../lib/open-links-in-new-tab";
+
 
 function NotFoundComponent() {
   return (
