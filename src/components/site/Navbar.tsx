@@ -549,15 +549,22 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && (
-        <div className={`col-span-12 ${multi ? "lg:col-span-4" : "lg:col-span-5"}`}>
+        <motion.div
+          key={featured.href + featured.title}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`col-span-12 ${multi ? "lg:col-span-3" : "lg:col-span-5"}`}
+        >
           <Link to={featured.href} className="group block">
             <div className="relative overflow-hidden rounded-xl">
               <img
                 src={featured.img}
                 alt={featured.title}
                 loading="lazy"
-                className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
+
               <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
                 {featured.eyebrow}
               </span>
