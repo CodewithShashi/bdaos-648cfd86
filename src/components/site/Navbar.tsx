@@ -7,6 +7,8 @@ import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import { caseStudies } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
+import founderHero from "@/assets/founder-hero.jpg";
+import careersImg from "@/assets/project-1.jpg";
 import productsFeatured from "@/assets/products-featured.jpg";
 
 
