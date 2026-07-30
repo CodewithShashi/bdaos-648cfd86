@@ -459,7 +459,9 @@ function MegaPanel({ config }: { config: MegaConfig }) {
   const [hovered, setHovered] = useState(0);
   const activeSection = config.sections.find((s) => s.key === active) ?? config.sections[0];
   const multi = config.sections.length > 1;
-  const featured = config.featured;
+  const hoveredItem = activeSection.items[hovered];
+  const featured =
+    (!multi && hoveredItem && config.featuredByItem?.[hoveredItem.label]) || config.featured;
 
   return (
     <div className="grid grid-cols-12 items-start gap-x-8 gap-y-8 p-6 lg:p-8 xl:p-10">
