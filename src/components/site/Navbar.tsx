@@ -523,7 +523,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
                 to={l.href}
                 className="group flex items-center justify-between gap-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
               >
-                <span>{l.label}</span>
+                <span className="whitespace-nowrap">{l.label}</span>
                 <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </Link>
             ) : (
