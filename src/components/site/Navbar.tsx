@@ -332,27 +332,29 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
 }
 
 type MegaSection = { key: string; label: string; items: { label: string; href: string }[] };
+type MegaFeatured = {
+  eyebrow: string;
+  title: string;
+  href: string;
+  img: string;
+  linkLabel: string;
+  source?: string;
+  date?: string;
+  excerpt?: string;
+};
 type MegaConfig = {
   title: string;
   body: string;
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
-  featured?: {
-    eyebrow: string;
-    title: string;
-    href: string;
-    img: string;
-    linkLabel: string;
-    source?: string;
-    date?: string;
-    excerpt?: string;
-  };
+  featured?: MegaFeatured;
+  featuredByItem?: Record<string, MegaFeatured>;
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
   whatWeDo: {
-    title: "Systems that make execution predictable",
+    title: "What we do",
     body:
       "BDA Technologies works from diagnosis to launch, training, and adoption — products, services, and brands built around how your team actually works.",
     ctaLabel: "Explore what we do",
@@ -363,7 +365,7 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       { key: "brands", label: "Brands", items: whatWeDoBrands },
     ],
     featured: {
-      eyebrow: "Product",
+      eyebrow: "Feature",
       title: "LinkAssist: turn every link into measurable pipeline",
       href: "/products/linkassist",
       img: productsFeatured,
@@ -383,7 +385,7 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaHref: "/about",
     sections: [{ key: "company", label: "Company", items: aboutLinks }],
     featured: {
-      eyebrow: "Company",
+      eyebrow: "Feature",
       title: "Inside BDA Technologies: how we build and implement systems",
       href: "/about",
       img: aboutImg,
@@ -393,16 +395,51 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       excerpt:
         "Operators, engineers, and trainers working from diagnosis to adoption — here is how the work actually gets done.",
     },
+    featuredByItem: {
+      "About BDA Technologies": {
+        eyebrow: "Feature",
+        title: "Inside BDA Technologies: how we build and implement systems",
+        href: "/about",
+        img: aboutImg,
+        linkLabel: "Read More",
+        source: "BDA Technologies",
+        date: "Jul 2026",
+        excerpt:
+          "Operators, engineers, and trainers working from diagnosis to adoption — here is how the work actually gets done.",
+      },
+      "Team & Partners": {
+        eyebrow: "Feature",
+        title: "The people and partners behind every implementation",
+        href: "/team",
+        img: founderHero,
+        linkLabel: "Meet the team",
+        source: "BDA Technologies",
+        date: "Team",
+        excerpt:
+          "Operators, engineers, and trainers who stay with your team from first audit through adoption.",
+      },
+      Careers: {
+        eyebrow: "Feature",
+        title: "Build systems that change how businesses run",
+        href: "/careers",
+        img: careersImg,
+        linkLabel: "See open roles",
+        source: "BDA Technologies",
+        date: "Careers",
+        excerpt:
+          "We hire people who care about clear scope, honest delivery, and work that actually gets used.",
+      },
+    },
   },
   insights: {
-    title: "BDA Insights",
+    title: "Insights",
     body:
       "Articles, case studies, and recognition — practical thinking on visibility, execution, and control inside growing businesses.",
     ctaLabel: "Start reading now",
     ctaHref: "/insights/articles",
     sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
     featured: {
-      eyebrow: caseStudies[0].category,
+      eyebrow: "Feature",
       title: caseStudies[0].title,
       href: "/insights/case-studies",
       img: caseStudies[0].img,
@@ -413,6 +450,7 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     },
   },
 };
+
 
 function MegaPanel({ config }: { config: MegaConfig }) {
   const [active, setActive] = useState(config.sections[0].key);
