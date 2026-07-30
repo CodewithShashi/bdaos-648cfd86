@@ -387,7 +387,7 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
     { k: "What changed", v: caseStudy.changed },
   ];
   return (
-    <section className="relative py-24 md:py-32 bg-background">
+    <section className="relative py-28 md:py-36 bg-background">
       <Container>
         <div className="flex flex-col gap-8">
           <motion.span
@@ -395,10 +395,10 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground"
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-            Real systems. Real business problems.
+            REAL SYSTEMS. REAL BUSINESS PROBLEMS.
           </motion.span>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
@@ -407,7 +407,7 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-8 font-display text-3xl md:text-5xl font-normal tracking-tight leading-[1.08] text-foreground"
+              className="lg:col-span-8 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-foreground"
             >
               {caseStudy.headline}
             </motion.h2>
@@ -421,36 +421,49 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
               Each case study shows the problem, the system built, and the change created.
             </motion.p>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <AnimatedButton href="/insights/case-studies">View Case Studies</AnimatedButton>
+          </motion.div>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+          className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
           {blocks.map((b, i) => (
             <motion.article
               key={b.k}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-7 md:p-8 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-elevated"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-secondary/50 p-6 md:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-elevated"
             >
-              <div className="flex items-center gap-3">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {b.k}
-                </span>
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <span className="h-1 w-1 rounded-full bg-primary" />
+                <span>{b.k}</span>
               </div>
-              <p className="mt-5 font-display text-lg md:text-xl leading-snug tracking-tight text-foreground">
+              <p className="mt-4 text-xl md:text-2xl font-normal tracking-tight text-foreground leading-snug">
                 {b.v}
               </p>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
 }
+
 
 function Fit({ fit }: ServicePageProps) {
   return (
