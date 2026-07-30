@@ -387,77 +387,59 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
     { k: "What changed", v: caseStudy.changed },
   ];
   return (
-    <section className="relative py-24 md:py-32 bg-background">
+    <section className="py-20 md:py-28 bg-foreground text-background">
       <Container>
-        <div className="flex flex-col gap-8">
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-            {caseStudy.label}
-          </motion.span>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-8 font-display text-3xl md:text-4xl lg:text-5xl leading-[1.08] tracking-tight text-foreground"
-            >
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <Label tone="dark">{caseStudy.label}</Label>
+            <h2 className="mt-5 font-display text-2xl sm:text-3xl md:text-4xl leading-[1.1] tracking-tight">
               {caseStudy.headline}
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-4 text-base text-muted-foreground leading-relaxed"
-            >
-              A real implementation — from the problem we found, to the system we built, to the
-              change it created for the team.
-            </motion.p>
+            </h2>
+            <div className="mt-8 rounded-3xl border border-background/15 bg-background/5 p-6 backdrop-blur">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                Case study
+              </p>
+              <p className="mt-3 text-sm md:text-base text-background/80 leading-relaxed">
+                A real implementation — from the problem we found, to the system we built, to the
+                change it created for the team.
+              </p>
+            </div>
+
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="relative border-l border-background/20 pl-8 md:pl-10">
+              {blocks.map((b, i) => (
+                <motion.div
+                  key={b.k}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  className="relative pb-10 last:pb-0"
+                >
+                  <span
+                    aria-hidden
+                    className="absolute -left-[calc(2rem+1px)] top-1.5 grid h-4 w-4 -translate-x-1/2 place-items-center rounded-full bg-primary md:-left-[calc(2.5rem+1px)]"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
+                  </span>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                    {b.k}
+                  </p>
+                  <p className="mt-3 font-display text-lg md:text-2xl leading-snug tracking-tight text-background">
+                    {b.v}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-          className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
-          {blocks.map((b, i) => (
-            <motion.article
-              key={b.k}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-              }}
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-secondary/50 p-7 md:p-8 transition-all duration-500 hover:shadow-elevated hover:-translate-y-1"
-            >
-              <span className="text-xs font-semibold tracking-[0.2em] text-primary">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="mt-4 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                <span>{b.k}</span>
-                <span className="h-1 w-1 rounded-full bg-primary" />
-              </div>
-              <p className="mt-4 font-display text-xl md:text-2xl leading-snug tracking-tight text-foreground">
-                {b.v}
-              </p>
-            </motion.article>
-          ))}
-        </motion.div>
       </Container>
     </section>
   );
-}
 
+}
 
 function Fit({ fit }: ServicePageProps) {
   return (

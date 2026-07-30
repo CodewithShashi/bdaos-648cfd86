@@ -315,7 +315,7 @@ function AboutPage() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {values.map((v, i) => (
               <motion.article
                 key={v.title}
@@ -323,34 +323,30 @@ function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-elevated hover:border-primary/40"
+                className="relative flex flex-col h-full bg-card p-8 md:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)] transition-shadow duration-300 hover:shadow-[0_2px_4px_rgba(15,23,42,0.06),0_20px_40px_-16px_rgba(15,23,42,0.18)]"
+                style={{
+                  clipPath:
+                    "polygon(32px 0, calc(100% - 32px) 0, 100% 32px, 100% calc(100% - 32px), calc(100% - 32px) 100%, 32px 100%, 0 calc(100% - 32px), 0 32px)",
+                }}
               >
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full bg-primary/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                />
-                <div className="relative flex items-center gap-3">
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    {v.eyebrow}
-                  </span>
+                <div className="text-primary text-xl md:text-2xl font-bold tracking-tight">
+                  {v.eyebrow
+                    .toLowerCase()
+                    .replace(/\b\w/g, (c) => c.toUpperCase())}
                 </div>
-                <h3 className="relative mt-5 font-display text-2xl md:text-[28px] tracking-tight leading-[1.15] text-foreground">
+                <h3 className="mt-1 text-2xl md:text-[28px] font-bold tracking-tight leading-[1.15] text-foreground">
                   {v.title}
                 </h3>
                 {v.description && (
-                  <p className="relative mt-4 text-[15px] md:text-base text-muted-foreground leading-relaxed">
+                  <p className="mt-6 text-[15px] md:text-base text-foreground/90 leading-relaxed">
                     {v.description}
                   </p>
                 )}
-                <div aria-hidden className="relative my-6 h-px w-full bg-border" />
-                <ul className="relative mt-auto space-y-3 text-[15px] text-foreground/85">
+                <ul className="mt-6 space-y-3 text-[15px] md:text-base text-foreground">
                   {v.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-3">
                       <CircleCheck
-                        className="mt-0.5 h-[18px] w-[18px] shrink-0 fill-primary text-background"
+                        className="mt-0.5 h-5 w-5 shrink-0 fill-primary text-background"
                         strokeWidth={2.25}
                       />
                       <span className="leading-relaxed">{bullet}</span>
@@ -360,7 +356,6 @@ function AboutPage() {
               </motion.article>
             ))}
           </div>
-
         </Container>
       </section>
 
