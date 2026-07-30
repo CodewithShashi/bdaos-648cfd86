@@ -7,6 +7,8 @@ import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
 import { caseStudies } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
+import founderHero from "@/assets/founder-hero.jpg";
+import careersImg from "@/assets/project-1.jpg";
 import productsFeatured from "@/assets/products-featured.jpg";
 
 
@@ -25,11 +27,12 @@ const whatWeDoProducts = [
 ];
 
 const whatWeDoServices = [
-  { label: "Business OS", href: "/services/bda-os-implementation" },
+  { label: "Operating System", href: "/services/bda-os-implementation" },
   { label: "Digital Transformation", href: "/services/digital-transformation" },
   { label: "AI Training", href: "/services/ai-training" },
   { label: "Pricing", href: "/services/pricing" },
 ];
+
 
 const whatWeDoBrands = [
   { label: "Clients.co.in", href: "/brands/clients" },
@@ -331,27 +334,29 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
 }
 
 type MegaSection = { key: string; label: string; items: { label: string; href: string }[] };
+type MegaFeatured = {
+  eyebrow: string;
+  title: string;
+  href: string;
+  img: string;
+  linkLabel: string;
+  source?: string;
+  date?: string;
+  excerpt?: string;
+};
 type MegaConfig = {
   title: string;
   body: string;
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
-  featured?: {
-    eyebrow: string;
-    title: string;
-    href: string;
-    img: string;
-    linkLabel: string;
-    source?: string;
-    date?: string;
-    excerpt?: string;
-  };
+  featured?: MegaFeatured;
+  featuredByItem?: Record<string, MegaFeatured>;
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
   whatWeDo: {
-    title: "Systems that make execution predictable",
+    title: "What we do",
     body:
       "BDA Technologies works from diagnosis to launch, training, and adoption — products, services, and brands built around how your team actually works.",
     ctaLabel: "Explore what we do",
@@ -362,7 +367,7 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       { key: "brands", label: "Brands", items: whatWeDoBrands },
     ],
     featured: {
-      eyebrow: "Product",
+      eyebrow: "Feature",
       title: "LinkAssist: turn every link into measurable pipeline",
       href: "/products/linkassist",
       img: productsFeatured,
@@ -382,7 +387,7 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaHref: "/about",
     sections: [{ key: "company", label: "Company", items: aboutLinks }],
     featured: {
-      eyebrow: "Company",
+      eyebrow: "Feature",
       title: "Inside BDA Technologies: how we build and implement systems",
       href: "/about",
       img: aboutImg,
@@ -392,16 +397,51 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
       excerpt:
         "Operators, engineers, and trainers working from diagnosis to adoption — here is how the work actually gets done.",
     },
+    featuredByItem: {
+      "About BDA Technologies": {
+        eyebrow: "Feature",
+        title: "Inside BDA Technologies: how we build and implement systems",
+        href: "/about",
+        img: aboutImg,
+        linkLabel: "Read More",
+        source: "BDA Technologies",
+        date: "Jul 2026",
+        excerpt:
+          "Operators, engineers, and trainers working from diagnosis to adoption — here is how the work actually gets done.",
+      },
+      "Team & Partners": {
+        eyebrow: "Feature",
+        title: "The people and partners behind every implementation",
+        href: "/team",
+        img: founderHero,
+        linkLabel: "Meet the team",
+        source: "BDA Technologies",
+        date: "Team",
+        excerpt:
+          "Operators, engineers, and trainers who stay with your team from first audit through adoption.",
+      },
+      Careers: {
+        eyebrow: "Feature",
+        title: "Build systems that change how businesses run",
+        href: "/careers",
+        img: careersImg,
+        linkLabel: "See open roles",
+        source: "BDA Technologies",
+        date: "Careers",
+        excerpt:
+          "We hire people who care about clear scope, honest delivery, and work that actually gets used.",
+      },
+    },
   },
   insights: {
-    title: "BDA Insights",
+    title: "Insights",
     body:
       "Articles, case studies, and recognition — practical thinking on visibility, execution, and control inside growing businesses.",
     ctaLabel: "Start reading now",
     ctaHref: "/insights/articles",
     sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
     featured: {
-      eyebrow: caseStudies[0].category,
+      eyebrow: "Feature",
       title: caseStudies[0].title,
       href: "/insights/case-studies",
       img: caseStudies[0].img,
@@ -413,12 +453,15 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
   },
 };
 
+
 function MegaPanel({ config }: { config: MegaConfig }) {
   const [active, setActive] = useState(config.sections[0].key);
   const [hovered, setHovered] = useState(0);
   const activeSection = config.sections.find((s) => s.key === active) ?? config.sections[0];
   const multi = config.sections.length > 1;
-  const featured = config.featured;
+  const hoveredItem = activeSection.items[hovered];
+  const featured =
+    (!multi && hoveredItem && config.featuredByItem?.[hoveredItem.label]) || config.featured;
 
   return (
     <div className="grid grid-cols-12 items-start gap-x-8 gap-y-8 p-6 lg:p-8 xl:p-10">
@@ -463,7 +506,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
 
       <div
         className={`col-span-12 min-w-0 ${
-          multi ? (featured ? "lg:col-span-2" : "lg:col-span-5") : featured ? "lg:col-span-4" : "lg:col-span-9"
+          multi ? (featured ? "lg:col-span-3" : "lg:col-span-5") : featured ? "lg:col-span-4" : "lg:col-span-9"
         }`}
       >
         <motion.div
@@ -480,7 +523,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
                 to={l.href}
                 className="group flex items-center justify-between gap-3 py-3 text-sm text-muted-foreground transition hover:text-foreground"
               >
-                <span>{l.label}</span>
+                <span className="whitespace-nowrap">{l.label}</span>
                 <ArrowUpRight className="h-4 w-4 opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
               </Link>
             ) : (
@@ -506,15 +549,22 @@ function MegaPanel({ config }: { config: MegaConfig }) {
       </div>
 
       {featured && (
-        <div className={`col-span-12 ${multi ? "lg:col-span-4" : "lg:col-span-5"}`}>
+        <motion.div
+          key={featured.href + featured.title}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`col-span-12 ${multi ? "lg:col-span-3" : "lg:col-span-5"}`}
+        >
           <Link to={featured.href} className="group block">
             <div className="relative overflow-hidden rounded-xl">
               <img
                 src={featured.img}
                 alt={featured.title}
                 loading="lazy"
-                className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
+
               <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
                 {featured.eyebrow}
               </span>
@@ -534,7 +584,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
               <ArrowUpRight className="h-4 w-4" />
             </span>
           </Link>
-        </div>
+        </motion.div>
       )}
     </div>
   );

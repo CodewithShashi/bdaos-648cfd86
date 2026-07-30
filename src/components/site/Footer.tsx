@@ -26,7 +26,7 @@ const linkGroups = [
   {
     title: "Services",
     links: [
-      { label: "Business OS", href: "/services/bda-os-implementation" },
+      { label: "Operating System", href: "/services/bda-os-implementation" },
       { label: "Digital Transformation", href: "/services/digital-transformation" },
       { label: "AI Training", href: "/services/ai-training" },
       { label: "Pricing", href: "/services/pricing" },
