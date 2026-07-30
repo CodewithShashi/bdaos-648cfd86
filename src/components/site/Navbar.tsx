@@ -584,7 +584,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
               <ArrowUpRight className="h-4 w-4" />
             </span>
           </Link>
-        </div>
+        </motion.div>
       )}
     </div>
   );
