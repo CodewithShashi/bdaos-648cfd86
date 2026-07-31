@@ -31,7 +31,7 @@ const services = [
 ];
 
 export function ServiceShowcase() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState<number | null>(null);
 
   return (
     <section id="services-showcase" className="relative scroll-mt-32 pt-24 pb-20 md:pt-36 md:pb-28">
@@ -51,7 +51,9 @@ export function ServiceShowcase() {
                 key={s.num}
                 href={s.href}
                 onMouseEnter={() => setActive(i)}
+                onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(i)}
+                onBlur={() => setActive(null)}
                 className="group relative flex min-h-[360px] flex-col justify-end overflow-hidden rounded-3xl border border-border shadow-soft transition-[flex-grow] duration-700 ease-out sm:min-h-[420px] lg:min-h-0"
                 style={{ flexGrow: isActive ? 2.4 : 1, flexBasis: 0 }}
               >
