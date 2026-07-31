@@ -7,10 +7,10 @@ type Props = {
   imageAlt: string;
   badge: string;
   flag?: string;
-  trustMarks: string[];
+  trustMarks?: string[];
 };
 
-export function RegionHero({ image, imageAlt, badge, flag, trustMarks }: Props) {
+export function RegionHero({ image, imageAlt, badge, flag }: Props) {
   return (
     <section className="relative overflow-hidden min-h-[88vh] flex items-center pt-32 pb-16 md:pt-40 md:pb-24 text-background">
       <img
