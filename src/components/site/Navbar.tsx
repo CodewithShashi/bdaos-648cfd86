@@ -507,7 +507,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
 
       <div
         className={`col-span-12 min-w-0 ${
-          multi ? (featured ? "lg:col-span-3" : "lg:col-span-5") : featured ? "lg:col-span-4" : "lg:col-span-9"
+          multi ? (featuredList.length > 0 ? "lg:col-span-3" : "lg:col-span-5") : featuredList.length > 0 ? "lg:col-span-4" : "lg:col-span-9"
         }`}
       >
         <motion.div
