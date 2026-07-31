@@ -5,7 +5,7 @@ import { Menu, X, ChevronDown, ArrowUpRight, ArrowRight, ChevronRight, Globe } f
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
-import { caseStudies } from "@/data/insights";
+import { caseStudies, articles } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
 import founderHero from "@/assets/founder-hero.jpg";
 import careersImg from "@/assets/project-1.jpg";
@@ -350,8 +350,8 @@ type MegaConfig = {
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
-  featured?: MegaFeatured;
-  featuredByItem?: Record<string, MegaFeatured>;
+  featured?: MegaFeatured | MegaFeatured[];
+  featuredByItem?: Record<string, MegaFeatured | MegaFeatured[]>;
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
@@ -440,16 +440,28 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaLabel: "Start reading now",
     ctaHref: "/insights/articles",
     sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
-    featured: {
-      eyebrow: "Feature",
-      title: caseStudies[0].title,
-      href: "/insights/case-studies",
-      img: caseStudies[0].img,
-      linkLabel: "Read Full Article",
-      source: "BDA Technologies",
-      date: caseStudies[0].date,
-      excerpt: caseStudies[0].excerpt,
-    },
+    featured: [
+      {
+        eyebrow: "Case Study",
+        title: caseStudies[0].title,
+        href: "/insights/case-studies",
+        img: caseStudies[0].img,
+        linkLabel: "Read Case Study",
+        source: "BDA Insights",
+        date: caseStudies[0].date,
+        excerpt: caseStudies[0].excerpt,
+      },
+      {
+        eyebrow: "Article",
+        title: articles[0].title,
+        href: "/insights/articles",
+        img: articles[0].img,
+        linkLabel: "Read Article",
+        source: "BDA Insights",
+        date: articles[0].date,
+        excerpt: articles[0].excerpt,
+      },
+    ],
   },
 };
 
@@ -460,8 +472,9 @@ function MegaPanel({ config }: { config: MegaConfig }) {
   const activeSection = config.sections.find((s) => s.key === active) ?? config.sections[0];
   const multi = config.sections.length > 1;
   const hoveredItem = activeSection.items[hovered];
-  const featured =
+  const rawFeatured =
     (!multi && hoveredItem && config.featuredByItem?.[hoveredItem.label]) || config.featured;
+  const featuredList = Array.isArray(rawFeatured) ? rawFeatured : rawFeatured ? [rawFeatured] : [];
 
   return (
     <div className="grid grid-cols-12 items-start gap-x-8 gap-y-8 p-6 lg:p-8 xl:p-10">
@@ -506,7 +519,7 @@ function MegaPanel({ config }: { config: MegaConfig }) {
 
       <div
         className={`col-span-12 min-w-0 ${
-          multi ? (featured ? "lg:col-span-3" : "lg:col-span-5") : featured ? "lg:col-span-4" : "lg:col-span-9"
+          multi ? (featuredList.length > 0 ? "lg:col-span-3" : "lg:col-span-5") : featuredList.length > 0 ? "lg:col-span-4" : "lg:col-span-9"
         }`}
       >
         <motion.div
@@ -548,42 +561,46 @@ function MegaPanel({ config }: { config: MegaConfig }) {
         </motion.div>
       </div>
 
-      {featured && (
+      {featuredList.length > 0 && (
         <motion.div
-          key={featured.href + featured.title}
+          key={featuredList.map((f) => f.href + f.title).join("-")}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
           className={`col-span-12 ${multi ? "lg:col-span-3" : "lg:col-span-5"}`}
         >
-          <Link to={featured.href} className="group block">
-            <div className="relative overflow-hidden rounded-xl">
-              <img
-                src={featured.img}
-                alt={featured.title}
-                loading="lazy"
-                className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className={featuredList.length > 1 ? "flex flex-col gap-5" : ""}>
+            {featuredList.map((featured) => (
+              <Link to={featured.href} className="group block" key={featured.href + featured.title}>
+                <div className="relative overflow-hidden rounded-xl">
+                  <img
+                    src={featured.img}
+                    alt={featured.title}
+                    loading="lazy"
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
 
-              <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
-                {featured.eyebrow}
-              </span>
-            </div>
-            <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
-              <span>{featured.source}</span>
-              <span>{featured.date}</span>
-            </div>
-            <p className="mt-2 font-display text-base leading-snug text-foreground">{featured.title}</p>
-            {featured.excerpt && (
-              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                {featured.excerpt}
-              </p>
-            )}
-            <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
-              {featured.linkLabel}
-              <ArrowUpRight className="h-4 w-4" />
-            </span>
-          </Link>
+                  <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
+                    {featured.eyebrow}
+                  </span>
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+                  <span>{featured.source}</span>
+                  <span>{featured.date}</span>
+                </div>
+                <p className="mt-2 font-display text-base leading-snug text-foreground">{featured.title}</p>
+                {featured.excerpt && (
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                    {featured.excerpt}
+                  </p>
+                )}
+                <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
+                  {featured.linkLabel}
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
         </motion.div>
       )}
     </div>
