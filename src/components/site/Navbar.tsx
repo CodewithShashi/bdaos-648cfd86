@@ -575,9 +575,11 @@ function MegaPanel({ config }: { config: MegaConfig }) {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`col-span-12 ${multi ? "lg:col-span-3" : "lg:col-span-5"}`}
+          className={`col-span-12 ${
+            multi ? "lg:col-span-3" : featuredList.length > 1 ? "lg:col-span-6" : "lg:col-span-5"
+          }`}
         >
-          <div className={featuredList.length > 1 ? "flex flex-col gap-5" : ""}>
+          <div className={featuredList.length > 1 ? "grid grid-cols-1 gap-5 sm:grid-cols-2" : "flex flex-col gap-5"}>
             {featuredList.map((featured) => (
               <Link to={featured.href} className="group block" key={featured.href + featured.title}>
                 <div className="relative overflow-hidden rounded-xl">
@@ -585,7 +587,9 @@ function MegaPanel({ config }: { config: MegaConfig }) {
                     src={featured.img}
                     alt={featured.title}
                     loading="lazy"
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+                      featuredList.length > 1 ? "aspect-[16/10]" : "aspect-[16/10]"
+                    }`}
                   />
 
                   <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
@@ -596,9 +600,11 @@ function MegaPanel({ config }: { config: MegaConfig }) {
                   <span>{featured.source}</span>
                   <span>{featured.date}</span>
                 </div>
-                <p className="mt-2 font-display text-base leading-snug text-foreground">{featured.title}</p>
+                <p className={`mt-2 font-display leading-snug text-foreground ${featuredList.length > 1 ? "text-sm" : "text-base"}`}>
+                  {featured.title}
+                </p>
                 {featured.excerpt && (
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                  <p className={`mt-2 line-clamp-2 leading-relaxed text-muted-foreground ${featuredList.length > 1 ? "text-xs" : "text-sm"}`}>
                     {featured.excerpt}
                   </p>
                 )}
