@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
-import { SectionHeading } from "./SectionHeading";
 import osImg from "@/assets/service-os.jpg";
 import transformationImg from "@/assets/service-transformation.jpg";
 import trainingImg from "@/assets/service-ai-training.jpg";
@@ -9,7 +8,7 @@ import trainingImg from "@/assets/service-ai-training.jpg";
 const services = [
   {
     num: "01",
-    title: "BDA OS Implementation",
+    title: "Operating System",
     desc: "Design and build a company-wide operating system.",
     image: osImg,
     href: "/services/bda-os-implementation",
@@ -23,7 +22,7 @@ const services = [
   },
   {
     num: "03",
-    title: "AI Training and Team Adoption",
+    title: "AI Training",
     desc: "Help teams use AI and new systems in daily work.",
     image: trainingImg,
     href: "/services/ai-training",
@@ -36,12 +35,23 @@ export function ServiceShowcase() {
   return (
     <section id="services-showcase" className="relative scroll-mt-32 pt-24 pb-20 md:pt-36 md:pb-28">
       <Container>
-        <SectionHeading
-          align="left"
-          eyebrow="WHAT WE DO"
-          title="Advice is useful. Implementation creates change."
-          description="BDA Technologies works from diagnosis to launch, training, and adoption."
-        />
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1 text-xs font-medium text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              WHAT WE DO
+            </span>
+            <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
+              Advice is useful. Implementation creates change.
+            </h2>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+              BDA Technologies works from diagnosis to launch, training, and adoption.
+            </p>
+          </div>
+        </div>
+
 
         <div className="mt-12 flex flex-col gap-4 md:mt-16 lg:h-[520px] lg:flex-row">
           {services.map((s, i) => {
