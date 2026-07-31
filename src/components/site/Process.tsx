@@ -2,29 +2,36 @@ import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
+import linkassistLogo from "@/assets/linkassist-logo.png.asset.json";
+import hireassistLogo from "@/assets/hireassist-logo.png.asset.json";
 
 const products = [
   {
     title: "LinkAssist",
     desc: "LinkedIn content and relationship workflow",
     href: "/products/linkassist",
+    logo: linkassistLogo.url,
   },
   {
     title: "HireAssist",
     desc: "Hiring workflow and candidate management",
     href: "/products/hireassist",
+    logo: hireassistLogo.url,
   },
   {
     title: "QAAssist",
     desc: "Quality assurance and release tracking",
     href: "/products/qaassist",
+    logo: null,
   },
   {
     title: "TaskAssist",
     desc: "Task ownership, escalation, and reporting",
     href: "/products/taskassist",
+    logo: null,
   },
 ];
+
 
 export function Process() {
   return (
