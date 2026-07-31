@@ -25,5 +25,6 @@ export const Route = createFileRoute("/in")({
 });
 
 function IndiaHome() {
-  return <HomePage />;
+  return <HomePage hero={<IndiaHero />} />;
 }
+
