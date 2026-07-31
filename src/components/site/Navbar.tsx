@@ -350,8 +350,8 @@ type MegaConfig = {
   ctaLabel: string;
   ctaHref: string;
   sections: MegaSection[];
-  featured?: MegaFeatured;
-  featuredByItem?: Record<string, MegaFeatured>;
+  featured?: MegaFeatured | MegaFeatured[];
+  featuredByItem?: Record<string, MegaFeatured | MegaFeatured[]>;
 };
 
 const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
