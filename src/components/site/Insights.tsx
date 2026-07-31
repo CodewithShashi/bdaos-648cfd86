@@ -23,13 +23,13 @@ export function Insights() {
             REAL SYSTEMS. REAL BUSINESS PROBLEMS.
           </motion.span>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-8 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-foreground"
+              className="lg:col-span-7 text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-foreground"
             >
               See how we improve visibility, execution, and control.
             </motion.h2>
@@ -38,14 +38,17 @@ export function Insights() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-4 flex flex-col gap-6 lg:items-end"
+              className="lg:col-span-5 flex flex-col gap-6 items-start"
             >
-              <p className="text-base text-muted-foreground leading-relaxed lg:text-right">
+              <p className="max-w-md text-base text-muted-foreground leading-relaxed">
                 Each case study should show the problem, the system built, and the change created.
               </p>
-              <AnimatedButton href="/insights/case-studies">View Case Studies</AnimatedButton>
+              <AnimatedButton href="/insights/case-studies" className="max-w-full">
+                View Case Studies
+              </AnimatedButton>
             </motion.div>
           </div>
+
 
         </div>
 
