@@ -195,16 +195,18 @@ const ScrollStack = ({
 
     if (useWindowScroll) {
       const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        duration: 1.1,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
         touchMultiplier: 2,
         wheelMultiplier: 1,
-        lerp: 0.1,
+        lerp: 0.12,
+        syncTouch: true,
+        syncTouchLerp: 0.075,
       });
-      lenis.on("scroll", handleScroll);
       const raf = (time: number) => {
         lenis.raf(time);
+        updateCardTransforms();
         animationFrameRef.current = requestAnimationFrame(raf);
       };
       animationFrameRef.current = requestAnimationFrame(raf);
