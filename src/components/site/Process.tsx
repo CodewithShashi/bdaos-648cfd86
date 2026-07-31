@@ -79,6 +79,14 @@ export function Process() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
+                    {p.logo ? (
+                      <img
+                        src={p.logo}
+                        alt={`${p.title} logo`}
+                        loading="lazy"
+                        className="mb-5 h-9 w-auto object-contain md:h-11"
+                      />
+                    ) : null}
                     <h3 className="font-display text-3xl tracking-tight text-foreground md:text-4xl">
                       {p.title}
                     </h3>
@@ -86,6 +94,7 @@ export function Process() {
                       {p.desc}
                     </p>
                   </div>
+
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-secondary text-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                     <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
