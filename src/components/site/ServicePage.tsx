@@ -411,25 +411,20 @@ function CaseStudy({ caseStudy }: ServicePageProps) {
             >
               {caseStudy.headline}
             </motion.h2>
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-4 text-base text-muted-foreground leading-relaxed"
+              className="lg:col-span-4 flex flex-col gap-6 lg:items-end"
             >
-              Each case study shows the problem, the system built, and the change created.
-            </motion.p>
+              <p className="text-base text-muted-foreground leading-relaxed lg:text-right">
+                Each case study shows the problem, the system built, and the change created.
+              </p>
+              <AnimatedButton href="/insights/case-studies">View Case Studies</AnimatedButton>
+            </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <AnimatedButton href="/insights/case-studies">View Case Studies</AnimatedButton>
-          </motion.div>
         </div>
 
         <motion.div

@@ -707,38 +707,17 @@ function MobileGroupWithSections({
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="pl-4 pb-2 flex flex-col gap-4">
+            <div className="pl-2 pb-2 flex flex-col">
               {sections.map((section) => (
-                <div key={section.label}>
-                  <p className="px-4 py-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {section.label}
-                  </p>
-                  <div className="flex flex-col">
-                    {section.items.map((i) =>
-                      i.href.startsWith("#") ? (
-                        <a
-                          key={i.label}
-                          href={i.href}
-                          onClick={onNavigate}
-                          className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
-                        >
-                          {i.label}
-                        </a>
-                      ) : (
-                        <Link
-                          key={i.label}
-                          to={i.href}
-                          onClick={onNavigate}
-                          className="rounded-xl px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary"
-                        >
-                          {i.label}
-                        </Link>
-                      )
-                    )}
-                  </div>
-                </div>
+                <MobileGroup
+                  key={section.label}
+                  label={section.label}
+                  items={section.items}
+                  onNavigate={onNavigate}
+                />
               ))}
             </div>
+
           </motion.div>
         )}
       </AnimatePresence>
