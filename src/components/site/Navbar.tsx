@@ -440,16 +440,28 @@ const megaMenus: Record<"whatWeDo" | "about" | "insights", MegaConfig> = {
     ctaLabel: "Start reading now",
     ctaHref: "/insights/articles",
     sections: [{ key: "insights", label: "Insights", items: insightsLinks }],
-    featured: {
-      eyebrow: "Feature",
-      title: caseStudies[0].title,
-      href: "/insights/case-studies",
-      img: caseStudies[0].img,
-      linkLabel: "Read Full Article",
-      source: "BDA Technologies",
-      date: caseStudies[0].date,
-      excerpt: caseStudies[0].excerpt,
-    },
+    featured: [
+      {
+        eyebrow: "Case Study",
+        title: caseStudies[0].title,
+        href: "/insights/case-studies",
+        img: caseStudies[0].img,
+        linkLabel: "Read Case Study",
+        source: "BDA Insights",
+        date: caseStudies[0].date,
+        excerpt: caseStudies[0].excerpt,
+      },
+      {
+        eyebrow: "Article",
+        title: articles[0].title,
+        href: "/insights/articles",
+        img: articles[0].img,
+        linkLabel: "Read Article",
+        source: "BDA Insights",
+        date: articles[0].date,
+        excerpt: articles[0].excerpt,
+      },
+    ],
   },
 };
 
