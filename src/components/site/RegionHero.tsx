@@ -62,7 +62,7 @@ export function RegionHero({ image, imageAlt, badge, flag, trustMarks }: Props) 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-9 hidden sm:flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
+            className="mt-9 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
           >
             <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
             <a
