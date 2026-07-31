@@ -32,11 +32,17 @@ export function Process() {
       <Container>
         {/* Header: body + CTA on the left, heading on the right */}
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-7">
             <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground">
               PRODUCTS BUILT BY BDA
             </span>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+            <h2 className="mt-6 font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
+              We build products when a repeated business problem needs a better system.
+            </h2>
+          </div>
+
+          <div className="lg:col-span-5">
+            <p className="max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
               Our product portfolio shows how we turn real operating problems into practical
               software. Some products are available to the public. Others are used inside client
               systems.
@@ -44,12 +50,6 @@ export function Process() {
             <div className="mt-8">
               <AnimatedButton href="/products">Explore Our Products</AnimatedButton>
             </div>
-          </div>
-
-          <div className="lg:col-span-7">
-            <h2 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl lg:text-right">
-              We build products when a repeated business problem needs a better system.
-            </h2>
           </div>
         </div>
       </Container>
