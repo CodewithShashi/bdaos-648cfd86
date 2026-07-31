@@ -62,30 +62,18 @@ export function RegionHero({ image, imageAlt, badge, flag, trustMarks }: Props) 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-9 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
+            className="mt-9 flex flex-col items-start sm:flex-row sm:flex-wrap sm:items-center gap-3"
           >
-            <AnimatedButton href="#cta">Apply for a Business Audit Call</AnimatedButton>
+            <AnimatedButton href="#cta" className="w-fit max-w-full">
+              Apply for a Business Audit Call
+            </AnimatedButton>
             <a
               href="#services-showcase"
-              className="inline-flex items-center justify-center rounded-full border border-background/25 px-6 py-3 text-sm font-medium text-background/90 transition hover:bg-background/10"
+              className="inline-flex w-fit max-w-full items-center justify-center rounded-full border border-background/25 px-6 py-3 text-sm font-medium text-background/90 transition hover:bg-background/10"
             >
               Explore BDA OS
             </a>
           </motion.div>
-
-          <motion.ul
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-xs uppercase tracking-[0.16em] text-background/60"
-          >
-            {trustMarks.map((m) => (
-              <li key={m} className="flex items-center gap-2">
-                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary-glow" />
-                {m}
-              </li>
-            ))}
-          </motion.ul>
         </div>
       </Container>
     </section>
