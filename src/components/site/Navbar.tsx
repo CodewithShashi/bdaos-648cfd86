@@ -5,7 +5,7 @@ import { Menu, X, ChevronDown, ArrowUpRight, ArrowRight, ChevronRight, Globe } f
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import logoAsset from "@/assets/BDA-Logo.png.asset.json";
-import { caseStudies } from "@/data/insights";
+import { caseStudies, articles } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
 import founderHero from "@/assets/founder-hero.jpg";
 import careersImg from "@/assets/project-1.jpg";
