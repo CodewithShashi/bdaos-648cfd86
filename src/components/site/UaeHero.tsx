@@ -1,88 +1,14 @@
-import { motion } from "framer-motion";
-import { Container } from "./Container";
-import { AnimatedButton } from "./AnimatedButton";
+import { RegionHero } from "./RegionHero";
 import uaeHero from "@/assets/uae-hero.jpg";
-
-const trustMarks = ["Dubai", "Abu Dhabi", "Sharjah", "GCC delivery"];
 
 export function UaeHero() {
   return (
-    <section className="relative overflow-hidden min-h-[88vh] flex items-center pt-32 pb-16 md:pt-40 md:pb-24 text-background">
-      <img
-        src={uaeHero}
-        alt="Dubai skyline at dusk"
-        width={1920}
-        height={1088}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/85 to-foreground/40"
-      />
-      <div aria-hidden className="absolute inset-0 bg-foreground/30" />
-
-      <Container className="relative">
-        <div className="max-w-3xl">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-background/25 bg-background/10 backdrop-blur px-4 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-background/85"
-          >
-            <span aria-hidden>🇦🇪</span>
-            BDA Technologies — UAE
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-6 font-display font-bold text-[2.1rem] sm:text-[3rem] md:text-[4rem] leading-[1.04] tracking-[-0.02em]"
-          >
-            Business Operating Systems Company in Dubai, UAE
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 max-w-2xl text-base md:text-lg text-background/75 leading-relaxed"
-          >
-            We help UAE founder-led service businesses replace scattered tools with one connected
-            system — dashboards, workflows, follow-ups, and team accountability, implemented in
-            weeks with local support.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-9 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3"
-          >
-            <AnimatedButton href="/contact">Connect With Our Dubai Experts</AnimatedButton>
-            <a
-              href="#services-showcase"
-              className="inline-flex items-center justify-center rounded-full border border-background/25 px-6 py-3 text-sm font-medium text-background/90 transition hover:bg-background/10"
-            >
-              Explore BDA OS
-            </a>
-          </motion.div>
-
-          <motion.ul
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-xs uppercase tracking-[0.16em] text-background/60"
-          >
-            {trustMarks.map((m) => (
-              <li key={m} className="flex items-center gap-2">
-                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-primary-glow" />
-                {m}
-              </li>
-            ))}
-          </motion.ul>
-        </div>
-      </Container>
-    </section>
+    <RegionHero
+      image={uaeHero}
+      imageAlt="Dubai skyline at dusk"
+      badge="BDA Technologies — UAE"
+      flag="🇦🇪"
+      trustMarks={["Dubai", "Abu Dhabi", "Sharjah", "GCC delivery"]}
+    />
   );
 }

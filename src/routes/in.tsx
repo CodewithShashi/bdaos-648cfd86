@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HomePage } from "@/components/site/HomePage";
+import { IndiaHero } from "@/components/site/IndiaHero";
+
 
 export const Route = createFileRoute("/in")({
   head: () => ({
@@ -23,5 +25,6 @@ export const Route = createFileRoute("/in")({
 });
 
 function IndiaHome() {
-  return <HomePage />;
+  return <HomePage hero={<IndiaHero />} />;
 }
+
