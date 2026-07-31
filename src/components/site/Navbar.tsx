@@ -549,42 +549,46 @@ function MegaPanel({ config }: { config: MegaConfig }) {
         </motion.div>
       </div>
 
-      {featured && (
+      {featuredList.length > 0 && (
         <motion.div
-          key={featured.href + featured.title}
+          key={featuredList.map((f) => f.href + f.title).join("-")}
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
           className={`col-span-12 ${multi ? "lg:col-span-3" : "lg:col-span-5"}`}
         >
-          <Link to={featured.href} className="group block">
-            <div className="relative overflow-hidden rounded-xl">
-              <img
-                src={featured.img}
-                alt={featured.title}
-                loading="lazy"
-                className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+          <div className={featuredList.length > 1 ? "flex flex-col gap-5" : ""}>
+            {featuredList.map((featured) => (
+              <Link to={featured.href} className="group block" key={featured.href + featured.title}>
+                <div className="relative overflow-hidden rounded-xl">
+                  <img
+                    src={featured.img}
+                    alt={featured.title}
+                    loading="lazy"
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
 
-              <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
-                {featured.eyebrow}
-              </span>
-            </div>
-            <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
-              <span>{featured.source}</span>
-              <span>{featured.date}</span>
-            </div>
-            <p className="mt-2 font-display text-base leading-snug text-foreground">{featured.title}</p>
-            {featured.excerpt && (
-              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                {featured.excerpt}
-              </p>
-            )}
-            <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
-              {featured.linkLabel}
-              <ArrowUpRight className="h-4 w-4" />
-            </span>
-          </Link>
+                  <span className="absolute left-3 top-3 rounded-md bg-card px-2.5 py-1 text-xs font-medium text-foreground shadow-soft">
+                    {featured.eyebrow}
+                  </span>
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+                  <span>{featured.source}</span>
+                  <span>{featured.date}</span>
+                </div>
+                <p className="mt-2 font-display text-base leading-snug text-foreground">{featured.title}</p>
+                {featured.excerpt && (
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                    {featured.excerpt}
+                  </p>
+                )}
+                <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary underline underline-offset-4">
+                  {featured.linkLabel}
+                  <ArrowUpRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
         </motion.div>
       )}
     </div>
