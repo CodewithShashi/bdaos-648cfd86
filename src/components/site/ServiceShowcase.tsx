@@ -87,13 +87,7 @@ export function ServiceShowcase() {
                   >
                     {s.title}
                   </h3>
-                  <p
-                    className={`max-w-sm text-sm leading-relaxed text-background/80 transition-all duration-500 md:text-base ${
-                      isActive
-                        ? "mt-3 max-h-32 opacity-100"
-                        : "mt-0 max-h-0 overflow-hidden opacity-0 lg:mt-0"
-                    }`}
-                  >
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-background/80 transition-all duration-500 md:text-base">
                     {s.desc}
                   </p>
                   <div className="mt-6 flex items-center gap-3 text-sm font-medium text-background">
