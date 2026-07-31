@@ -91,11 +91,7 @@ export function ServiceShowcase() {
                     {s.desc}
                   </p>
                   <div className="mt-6 flex items-center gap-3 text-sm font-medium text-background">
-                    <span
-                      className={`transition-opacity duration-500 ${
-                        isActive ? "opacity-100" : "opacity-0 lg:opacity-0"
-                      }`}
-                    >
+                    <span className="transition-opacity duration-500">
                       Explore Service
                     </span>
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-45">
