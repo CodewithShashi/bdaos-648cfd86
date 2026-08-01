@@ -34,34 +34,30 @@ function PricingPage() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="relative overflow-hidden pt-36 md:pt-44 pb-16 md:pb-20">
-        <div aria-hidden className="absolute inset-0 bg-mesh opacity-70" />
-        <div
-          aria-hidden
-          className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/20 blur-3xl animate-float-slow"
-        />
+      <section className="relative overflow-hidden bg-foreground text-background pt-28 sm:pt-32 md:pt-44 pb-16 md:pb-24">
+        <div aria-hidden className="absolute inset-0">
+          <div className="absolute -top-40 -left-32 h-[24rem] w-[24rem] rounded-full bg-primary/30 blur-3xl" />
+          <div className="absolute -bottom-40 right-0 h-[26rem] w-[26rem] rounded-full bg-primary-glow/20 blur-3xl" />
+        </div>
         <Container className="relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="mx-auto max-w-4xl flex flex-col items-center text-center"
+            className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.03] tracking-tight text-foreground">
+            <span className="inline-flex items-center rounded-full border border-background/25 bg-background/10 px-3 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-background/80">
               Pricing
-            </h1>
-            <p className="mt-4 text-xl md:text-2xl text-foreground/80 font-display leading-snug">
+            </span>
+            <h1 className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.06] tracking-tight">
               Plans that scale with your business.
-            </p>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            </h1>
+            <p className="mt-5 text-base md:text-lg text-background/70 leading-relaxed">
               Start with a focused pilot and grow into an embedded partnership — clear
               scope, clear ownership, and systems that keep working after handover.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-9 flex justify-center">
               <AnimatedButton href="/contact">Book a Call</AnimatedButton>
-              <AnimatedButton href="/services" variant="ghost">
-                Explore Services
-              </AnimatedButton>
             </div>
           </motion.div>
         </Container>
