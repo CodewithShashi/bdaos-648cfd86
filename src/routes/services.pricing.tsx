@@ -6,6 +6,7 @@ import { Footer } from "@/components/site/Footer";
 import { WhyUs } from "@/components/site/WhyUs";
 import { Pricing } from "@/components/site/Pricing";
 import { CTA } from "@/components/site/CTA";
+import { AnimatedButton } from "@/components/site/AnimatedButton";
 
 export const Route = createFileRoute("/services/pricing")({
   head: () => ({
