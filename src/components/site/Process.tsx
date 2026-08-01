@@ -2,21 +2,21 @@ import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
-import linkassistLogo from "@/assets/linkassist-logo.png.asset.json";
-import hireassistLogo from "@/assets/hireassist-logo.png.asset.json";
+import linkassistLogo from "@/assets/linkassist-logo.png";
+import hireassistLogo from "@/assets/hireassist-logo.png";
 
 const products = [
   {
     title: "LinkAssist",
     desc: "LinkedIn content and relationship workflow",
     href: "/products/linkassist",
-    logo: linkassistLogo.url,
+    logo: linkassistLogo,
   },
   {
     title: "HireAssist",
     desc: "Hiring workflow and candidate management",
     href: "/products/hireassist",
-    logo: hireassistLogo.url,
+    logo: hireassistLogo,
   },
   {
     title: "QAAssist",

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ChefHat, Palette, PenTool, Layout, Sparkles, Megaphone } from "lucide-react";
 import { BrandPage } from "@/components/site/BrandPage";
-import brandingchefLogo from "@/assets/brandingchef-logo.png.asset.json";
+import brandingchefLogo from "@/assets/brandingchef-logo.png";
 
 export const Route = createFileRoute("/brands/brandingchef")({
   head: () => ({
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/brands/brandingchef")({
       tagline="Redefining the art of branding."
       description="BrandingChef is the creative studio inside BDA Technologies. We build brand identity, design systems, and messaging that make growing businesses look and sound credible."
       icon={ChefHat}
-      logo={brandingchefLogo.url}
+      logo={brandingchefLogo}
       website="brandingchef.com"
       bestFor="Businesses that need a credible, consistent brand presence"
       offerings={[

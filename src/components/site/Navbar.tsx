@@ -4,7 +4,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, ChevronDown, ArrowUpRight, ArrowRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
-import logoAsset from "@/assets/BDA-Logo.png.asset.json";
+import logoAsset from "@/assets/BDA-Logo.png";
 import { caseStudies, articles } from "@/data/insights";
 import aboutImg from "@/assets/about.jpg";
 import founderHero from "@/assets/founder-hero.jpg";
@@ -112,7 +112,7 @@ export function Navbar() {
           
           <a href="#" className="flex items-center gap-2 shrink-0">
             <img
-              src={logoAsset.url}
+              src={logoAsset}
               alt="BDA Technologies"
               className="h-8 w-auto object-contain"
             />

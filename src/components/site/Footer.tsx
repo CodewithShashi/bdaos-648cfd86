@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Linkedin, Instagram, Youtube, Twitter } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Container } from "./Container";
-import logoAsset from "@/assets/BDA-Logo.png.asset.json";
+import logoAsset from "@/assets/BDA-Logo.png";
 
 const linkGroups = [
   {
@@ -81,7 +81,7 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Link to="/" className="flex items-center gap-2">
               <img
-                src={logoAsset.url}
+                src={logoAsset}
                 alt="BDA Technologies"
                 className="h-8 w-auto object-contain -ml-1"
               />
