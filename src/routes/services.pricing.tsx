@@ -57,6 +57,12 @@ function PricingPage() {
               Start with a focused pilot and grow into an embedded partnership — clear
               scope, clear ownership, and systems that keep working after handover.
             </p>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <AnimatedButton href="/contact">Book a Call</AnimatedButton>
+              <AnimatedButton href="/services" variant="ghost">
+                Explore Services
+              </AnimatedButton>
+            </div>
           </motion.div>
         </Container>
       </section>
