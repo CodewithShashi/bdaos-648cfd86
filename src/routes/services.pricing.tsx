@@ -60,8 +60,8 @@ function PricingPage() {
         </Container>
       </section>
 
-      <Pricing />
       <WhyUs />
+      <Pricing />
       <CTA />
       <Footer />
     </main>
