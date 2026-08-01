@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { UserRound, ClipboardList, MessageSquare, FileCheck2, Users, LineChart } from "lucide-react";
 import { ProductPage } from "@/components/site/ProductPage";
-import hireassistLogo from "@/assets/hireassist-logo.png.asset.json";
+import hireassistLogo from "@/assets/hireassist-logo.png";
 
 export const Route = createFileRoute("/products/hireassist")({
   head: () => ({
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/products/hireassist")({
       tagline="Close roles faster with clear ownership."
       heading="A hiring workflow that keeps every role moving."
       description="HireAssist gives hiring managers, recruiters, and interviewers a shared system for pipelines, scorecards, and offers."
-      logo={hireassistLogo.url}
+      logo={hireassistLogo}
       icon={UserRound}
       bestFor="Growing teams hiring 3+ roles at once"
       features={[

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PenLine, Users, Handshake, CalendarClock, Send, LineChart } from "lucide-react";
 import { ProductPage } from "@/components/site/ProductPage";
-import linkassistLogo from "@/assets/linkassist-logo.png.asset.json";
+import linkassistLogo from "@/assets/linkassist-logo.png";
 
 export const Route = createFileRoute("/products/linkassist")({
   head: () => ({
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/products/linkassist")({
       tagline="Turn LinkedIn into a repeatable growth channel."
       heading="Content, outreach, and relationships in one guided workflow."
       description="LinkAssist gives founders and sales teams a structured cadence for LinkedIn — so posting, connecting, and following up stop depending on memory."
-      logo={linkassistLogo.url}
+      logo={linkassistLogo}
       icon={PenLine}
       bestFor="Founders and sales teams who want a repeatable LinkedIn pipeline"
       features={[
