@@ -194,7 +194,7 @@ function ContactPage() {
                 </p>
 
                 <form
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleSubmit}
                   className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5"
                 >
                   <div className="sm:col-span-2">
@@ -203,6 +203,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
                       required
                       placeholder="John Doe"
@@ -216,6 +217,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       required
                       placeholder="you@company.com"
@@ -229,6 +231,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="+91 98765 43210"
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
@@ -241,6 +244,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="company"
+                      name="company"
                       type="text"
                       placeholder="Acme Services"
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
@@ -253,6 +257,7 @@ function ContactPage() {
                     </label>
                     <select
                       id="interest"
+                      name="interest"
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
                     >
                       <option value="">Select an option</option>
@@ -271,6 +276,7 @@ function ContactPage() {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       rows={4}
                       required
                       placeholder="Tell us about the operational problem you want to solve..."
