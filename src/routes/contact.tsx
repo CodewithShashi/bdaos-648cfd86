@@ -287,11 +287,17 @@ function ContactPage() {
                   <div className="sm:col-span-2">
                     <button
                       type="submit"
-                      className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-glow hover:shadow-elevated transition"
+                      disabled={submitting}
+                      className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-glow hover:shadow-elevated transition disabled:opacity-60"
                     >
-                      Send message
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      {submitting ? "Sending..." : "Send message"}
+                      {submitting ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      )}
                     </button>
+
                   </div>
                 </form>
               </div>
