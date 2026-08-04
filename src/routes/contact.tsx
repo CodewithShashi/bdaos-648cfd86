@@ -1,10 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowUpRight, Clock } from "lucide-react";
+import { toast } from "sonner";
+import { Mail, Phone, MapPin, ArrowUpRight, Clock, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
+import { Toaster } from "@/components/ui/sonner";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -56,9 +61,43 @@ const contactInfo = [
 ];
 
 function ContactPage() {
+  const send = useServerFn(sendContactMessage);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get("name") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
+      company: String(fd.get("company") ?? ""),
+      interest: String(fd.get("interest") ?? ""),
+      message: String(fd.get("message") ?? ""),
+    };
+
+    setSubmitting(true);
+    try {
+      const result = await send({ data: payload });
+      if (result.ok) {
+        toast.success("Message sent. We will get back to you shortly.");
+        form.reset();
+      } else {
+        toast.error(result.error);
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <Toaster />
       <Navbar />
+
 
       {/* Section 1 — Hero */}
       <section className="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
@@ -155,7 +194,7 @@ function ContactPage() {
                 </p>
 
                 <form
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleSubmit}
                   className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5"
                 >
                   <div className="sm:col-span-2">
@@ -164,6 +203,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
                       required
                       placeholder="John Doe"
@@ -177,6 +217,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
                       required
                       placeholder="you@company.com"
@@ -190,6 +231,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="+91 98765 43210"
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
@@ -202,6 +244,7 @@ function ContactPage() {
                     </label>
                     <input
                       id="company"
+                      name="company"
                       type="text"
                       placeholder="Acme Services"
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
@@ -214,6 +257,7 @@ function ContactPage() {
                     </label>
                     <select
                       id="interest"
+                      name="interest"
                       className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring transition"
                     >
                       <option value="">Select an option</option>
@@ -232,6 +276,7 @@ function ContactPage() {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       rows={4}
                       required
                       placeholder="Tell us about the operational problem you want to solve..."
@@ -242,11 +287,17 @@ function ContactPage() {
                   <div className="sm:col-span-2">
                     <button
                       type="submit"
-                      className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-glow hover:shadow-elevated transition"
+                      disabled={submitting}
+                      className="group inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-glow hover:shadow-elevated transition disabled:opacity-60"
                     >
-                      Send message
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      {submitting ? "Sending..." : "Send message"}
+                      {submitting ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      )}
                     </button>
+
                   </div>
                 </form>
               </div>
