@@ -61,9 +61,43 @@ const contactInfo = [
 ];
 
 function ContactPage() {
+  const send = useServerFn(sendContactMessage);
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const payload = {
+      name: String(fd.get("name") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
+      company: String(fd.get("company") ?? ""),
+      interest: String(fd.get("interest") ?? ""),
+      message: String(fd.get("message") ?? ""),
+    };
+
+    setSubmitting(true);
+    try {
+      const result = await send({ data: payload });
+      if (result.ok) {
+        toast.success("Message sent. We will get back to you shortly.");
+        form.reset();
+      } else {
+        toast.error(result.error);
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <Toaster />
       <Navbar />
+
 
       {/* Section 1 — Hero */}
       <section className="relative pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden">
