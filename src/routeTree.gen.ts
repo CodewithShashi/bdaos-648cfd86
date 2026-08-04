@@ -9,11 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UaeRouteImport } from './routes/uae'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as InRouteImport } from './routes/in'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as AeRouteImport } from './routes/ae'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
@@ -34,11 +34,6 @@ import { Route as BrandsClientsRouteImport } from './routes/brands.clients'
 import { Route as BrandsBrandingchefRouteImport } from './routes/brands.brandingchef'
 import { Route as BrandsAutomationSchoolRouteImport } from './routes/brands.automation-school'
 
-const UaeRoute = UaeRouteImport.update({
-  id: '/uae',
-  path: '/uae',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -57,6 +52,11 @@ const ContactRoute = ContactRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AeRoute = AeRouteImport.update({
+  id: '/ae',
+  path: '/ae',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -161,11 +161,11 @@ const BrandsAutomationSchoolRoute = BrandsAutomationSchoolRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ae': typeof AeRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/in': typeof InRoute
   '/team': typeof TeamRoute
-  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -187,11 +187,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ae': typeof AeRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/in': typeof InRoute
   '/team': typeof TeamRoute
-  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -214,11 +214,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ae': typeof AeRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/in': typeof InRoute
   '/team': typeof TeamRoute
-  '/uae': typeof UaeRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
   '/brands/clients': typeof BrandsClientsRoute
@@ -242,11 +242,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/ae'
     | '/careers'
     | '/contact'
     | '/in'
     | '/team'
-    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -268,11 +268,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/ae'
     | '/careers'
     | '/contact'
     | '/in'
     | '/team'
-    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -294,11 +294,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/ae'
     | '/careers'
     | '/contact'
     | '/in'
     | '/team'
-    | '/uae'
     | '/brands/automation-school'
     | '/brands/brandingchef'
     | '/brands/clients'
@@ -321,11 +321,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AeRoute: typeof AeRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   InRoute: typeof InRoute
   TeamRoute: typeof TeamRoute
-  UaeRoute: typeof UaeRoute
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
   BrandsBrandingchefRoute: typeof BrandsBrandingchefRoute
   BrandsClientsRoute: typeof BrandsClientsRoute
@@ -347,13 +347,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/uae': {
-      id: '/uae'
-      path: '/uae'
-      fullPath: '/uae'
-      preLoaderRoute: typeof UaeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -380,6 +373,13 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ae': {
+      id: '/ae'
+      path: '/ae'
+      fullPath: '/ae'
+      preLoaderRoute: typeof AeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -521,11 +521,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AeRoute: AeRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   InRoute: InRoute,
   TeamRoute: TeamRoute,
-  UaeRoute: UaeRoute,
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
   BrandsBrandingchefRoute: BrandsBrandingchefRoute,
   BrandsClientsRoute: BrandsClientsRoute,

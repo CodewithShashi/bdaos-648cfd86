@@ -79,13 +79,14 @@ export function Footer() {
       <Container className="py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <Link to="/" className="flex items-center gap-2">
+            <a href="/" data-same-tab className="flex items-center gap-2">
               <img
                 src={logoAsset}
                 alt="BDA Technologies"
                 className="h-8 w-auto object-contain -ml-1"
               />
-            </Link>
+            </a>
+
 
             <div className="mt-6 space-y-3">
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">

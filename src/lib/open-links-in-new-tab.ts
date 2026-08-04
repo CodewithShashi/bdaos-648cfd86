@@ -17,6 +17,8 @@ export function useOpenLinksInNewTab() {
       const raw = anchor.getAttribute("href");
       if (!raw) return;
       if (anchor.target === "_blank") return;
+      if (anchor.hasAttribute("data-same-tab")) return;
+
       if (anchor.hasAttribute("download")) return;
       if (raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:")) return;
 

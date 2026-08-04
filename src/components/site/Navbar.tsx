@@ -53,7 +53,7 @@ const simpleLinks = [
 const regions = [
   { code: "IN", label: "India", flag: "https://flagcdn.com/in.svg", path: "/in" },
   { code: "GL", label: "Global", flag: null, path: "/" },
-  { code: "AE", label: "UAE", flag: "https://flagcdn.com/ae.svg", path: "/uae" },
+  { code: "AE", label: "UAE", flag: "https://flagcdn.com/ae.svg", path: "/ae" },
 ];
 
 function RegionFlag({ region }: { region: (typeof regions)[number] }) {
@@ -110,7 +110,7 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between px-8 py-2.5 rounded-full transition-all duration-300 bg-card shadow-soft">
           
-          <a href="#" className="flex items-center gap-2 shrink-0">
+          <a href="/" data-same-tab className="flex items-center gap-2 shrink-0">
             <img
               src={logoAsset}
               alt="BDA Technologies"
@@ -119,13 +119,15 @@ export function Navbar() {
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              to="/"
+            <a
+              href="/"
+              data-same-tab
               onMouseEnter={() => setMenu(null)}
               className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
             >
               Home
-            </Link>
+            </a>
+
             <button
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
@@ -222,15 +224,17 @@ export function Navbar() {
                     {l.label}
                   </a>
                 ) : (
-                  <Link
+                  <a
                     key={l.href}
-                    to={l.href}
+                    href={l.href}
+                    data-same-tab
                     onClick={() => setOpen(false)}
                     className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
                   >
                     {l.label}
-                  </Link>
+                  </a>
                 )
+
               )}
               <MobileGroupWithSections
                 label="What We Do"
