@@ -224,15 +224,17 @@ export function Navbar() {
                     {l.label}
                   </a>
                 ) : (
-                  <Link
+                  <a
                     key={l.href}
-                    to={l.href}
+                    href={l.href}
+                    data-same-tab
                     onClick={() => setOpen(false)}
                     className="rounded-2xl px-4 py-3 text-sm hover:bg-secondary"
                   >
                     {l.label}
-                  </Link>
+                  </a>
                 )
+
               )}
               <MobileGroupWithSections
                 label="What We Do"
