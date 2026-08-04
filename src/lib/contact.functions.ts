@@ -12,7 +12,8 @@ const contactSchema = z.object({
 
 export type ContactInput = z.infer<typeof contactSchema>;
 
-const RECIPIENT = "codewithshashi9@gmail.com";
+// Resend test mode only delivers to the account owner address until a domain is verified.
+const RECIPIENT = "shashishekharp41@gmail.com";
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
 
 function escapeHtml(value: string) {
@@ -75,7 +76,14 @@ export const sendContactMessage = createServerFn({ method: "POST" })
     if (!response.ok) {
       const body = await response.text();
       console.error(`Resend request failed [${response.status}]: ${body}`);
-      return { ok: false as const, error: "Could not send your message. Please try again." };
+      let detail = "";
+      try {
+        const parsed = JSON.parse(body) as { message?: string };
+        detail = parsed.message ? ` (${parsed.message})` : "";
+      } catch {
+        detail = "";
+      }
+      return { ok: false as const, error: `Could not send your message.${detail}` };
     }
 
     return { ok: true as const };
