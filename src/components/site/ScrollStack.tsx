@@ -224,7 +224,7 @@ const ScrollStack = ({
       window.clearTimeout(t);
       ro.disconnect();
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", onWindowResize);
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
