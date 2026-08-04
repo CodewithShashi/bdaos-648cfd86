@@ -110,7 +110,7 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between px-8 py-2.5 rounded-full transition-all duration-300 bg-card shadow-soft">
           
-          <a href="#" className="flex items-center gap-2 shrink-0">
+          <a href="/" data-same-tab className="flex items-center gap-2 shrink-0">
             <img
               src={logoAsset}
               alt="BDA Technologies"
@@ -119,13 +119,15 @@ export function Navbar() {
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              to="/"
+            <a
+              href="/"
+              data-same-tab
               onMouseEnter={() => setMenu(null)}
               className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
             >
               Home
-            </Link>
+            </a>
+
             <button
               onMouseEnter={() => setMenu("whatWeDo")}
               onFocus={() => setMenu("whatWeDo")}
