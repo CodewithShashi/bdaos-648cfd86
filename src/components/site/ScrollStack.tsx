@@ -171,12 +171,13 @@ const ScrollStack = ({
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
 
-    // On touch/small screens the pinning maths fights the browser's URL-bar
-    // resizing and produces visible jitter. Render a simple stacked list instead.
+    // Touch browsers resize their visual viewport while the address bar moves,
+    // which makes JS pinning jitter. Use native CSS sticky stacking there so the
+    // cards still stack while scrolling without frame-by-frame transforms.
     const mq = window.matchMedia("(max-width: 1023px), (pointer: coarse)");
     if (mq.matches) {
-      cards.forEach((card, i) => {
-        if (i < cards.length - 1) card.style.marginBottom = `${Math.min(itemDistance, 24)}px`;
+      cards.forEach((card) => {
+        card.style.marginBottom = "";
         card.style.transform = "";
         card.style.filter = "";
         card.style.willChange = "auto";
