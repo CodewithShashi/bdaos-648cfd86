@@ -53,7 +53,7 @@ const simpleLinks = [
 const regions = [
   { code: "IN", label: "India", flag: "https://flagcdn.com/in.svg", path: "/in" },
   { code: "GL", label: "Global", flag: null, path: "/" },
-  { code: "AE", label: "UAE", flag: "https://flagcdn.com/ae.svg", path: "/uae" },
+  { code: "AE", label: "UAE", flag: "https://flagcdn.com/ae.svg", path: "/ae" },
 ];
 
 function RegionFlag({ region }: { region: (typeof regions)[number] }) {

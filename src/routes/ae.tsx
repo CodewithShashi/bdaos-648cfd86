@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { HomePage } from "@/components/site/HomePage";
 import { UaeHero } from "@/components/site/UaeHero";
 
-export const Route = createFileRoute("/uae")({
+export const Route = createFileRoute("/ae")({
   head: () => ({
     meta: [
       { title: "BDA Technologies UAE — Business operating systems for the Gulf" },
