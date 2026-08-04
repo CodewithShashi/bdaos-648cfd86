@@ -19,7 +19,7 @@
 
 @media (max-width: 1023px), (pointer: coarse) {
   .scroll-stack-inner {
-    padding: 0 0 2rem;
+    padding: 2rem 0 35vh;
   }
 
   .scroll-stack-card {
@@ -27,6 +27,33 @@
     filter: none !important;
     will-change: auto;
     transform-style: flat;
+    position: sticky;
+    top: 5.5rem;
+    margin-bottom: 24vh;
+    contain: paint;
+  }
+
+  .scroll-stack-card:nth-child(2) {
+    top: 6.25rem;
+  }
+
+  .scroll-stack-card:nth-child(3) {
+    top: 7rem;
+  }
+
+  .scroll-stack-card:nth-child(4) {
+    top: 7.75rem;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-stack-inner {
+    padding-top: 1.25rem;
+  }
+
+  .scroll-stack-card {
+    margin-bottom: 20vh;
   }
 }
 
