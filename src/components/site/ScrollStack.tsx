@@ -171,6 +171,22 @@ const ScrollStack = ({
     cardsRef.current = cards;
     const transformsCache = lastTransformsRef.current;
 
+    // On touch/small screens the pinning maths fights the browser's URL-bar
+    // resizing and produces visible jitter. Render a simple stacked list instead.
+    const mq = window.matchMedia("(max-width: 1023px), (pointer: coarse)");
+    if (mq.matches) {
+      cards.forEach((card, i) => {
+        if (i < cards.length - 1) card.style.marginBottom = `${Math.min(itemDistance, 24)}px`;
+        card.style.transform = "";
+        card.style.filter = "";
+        card.style.willChange = "auto";
+      });
+      return () => {
+        cardsRef.current = [];
+        transformsCache.clear();
+      };
+    }
+
     cards.forEach((card, i) => {
       if (i < cards.length - 1) card.style.marginBottom = `${itemDistance}px`;
       card.style.willChange = "transform";
@@ -178,17 +194,24 @@ const ScrollStack = ({
       card.style.backfaceVisibility = "hidden";
     });
 
+    let lastWidth = window.innerWidth;
     const onResize = () => {
       transformsCache.clear();
       measure();
       update();
+    };
+    const onWindowResize = () => {
+      // Ignore height-only resizes (mobile browser chrome show/hide).
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      onResize();
     };
 
     measure();
     update();
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", onWindowResize);
 
     const ro = new ResizeObserver(onResize);
     ro.observe(scroller);
@@ -201,7 +224,7 @@ const ScrollStack = ({
       window.clearTimeout(t);
       ro.disconnect();
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", onWindowResize);
       stackCompletedRef.current = false;
       cardsRef.current = [];
       transformsCache.clear();
