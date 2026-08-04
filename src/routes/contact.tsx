@@ -1,10 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowUpRight, Clock } from "lucide-react";
+import { toast } from "sonner";
+import { Mail, Phone, MapPin, ArrowUpRight, Clock, Loader2 } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/site/Container";
 import { AnimatedButton } from "@/components/site/AnimatedButton";
+import { Toaster } from "@/components/ui/sonner";
+import { sendContactMessage } from "@/lib/contact.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
