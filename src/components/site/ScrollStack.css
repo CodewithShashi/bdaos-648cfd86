@@ -19,7 +19,7 @@
 
 @media (max-width: 1023px), (pointer: coarse) {
   .scroll-stack-inner {
-    padding: 2rem 0 35vh;
+    padding: 2rem 0 10vh;
   }
 
   .scroll-stack-card {
@@ -29,7 +29,7 @@
     transform-style: flat;
     position: sticky;
     top: 5.5rem;
-    margin-bottom: 24vh;
+    margin-bottom: 1.5rem;
     contain: paint;
   }
 
@@ -49,11 +49,11 @@
 
 @media (max-width: 480px) {
   .scroll-stack-inner {
-    padding-top: 1.25rem;
+    padding: 1.25rem 0 8vh;
   }
 
   .scroll-stack-card {
-    margin-bottom: 20vh;
+    margin-bottom: 1rem;
   }
 }
 
