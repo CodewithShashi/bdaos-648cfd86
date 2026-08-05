@@ -17,12 +17,12 @@ export function LogoReveal() {
   const scale = useTransform(p, [0, 0.55, 1], [0.55, 1, 1.25]);
   const opacity = useTransform(p, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const blur = useTransform(p, [0, 0.3], ["12px", "0px"]);
-  const y = useTransform(p, [0, 0.5], ["-55%", "0%"]);
+  const y = useTransform(p, [0, 0.5], ["-70%", "0%"]);
   const lineWidth = useTransform(p, [0.25, 0.7], ["0%", "100%"]);
   const captionOpacity = useTransform(p, [0.45, 0.7, 0.95], [0, 1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[130vh]">
+    <section ref={ref} className="relative h-[90vh] sm:h-[110vh] lg:h-[130vh]">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-foreground">
         <div
           aria-hidden
