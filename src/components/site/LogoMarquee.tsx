@@ -62,7 +62,7 @@ export function LogoMarquee() {
   const c = [...logos.slice(7), ...logos.slice(0, 7)];
 
   return (
-    <section className="relative isolate w-full overflow-hidden bg-white py-16 md:py-24">
+    <section className="relative isolate w-full overflow-hidden bg-card py-16 md:py-24">
       <style>{`
         @keyframes bda-logo-scroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-33.3333%,0,0); } }
         @keyframes bda-logo-scroll-rev { from { transform: translate3d(-33.3333%,0,0); } to { transform: translate3d(0,0,0); } }
@@ -83,9 +83,20 @@ export function LogoMarquee() {
         </div>
       </div>
 
+      {/* Centered headline overlay, Groww-style */}
+      <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_50%,var(--card)_35%,color-mix(in_oklab,var(--card)_85%,transparent)_55%,transparent_100%)]" />
+        <p className="relative text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground sm:text-xs">
+          Our Clients
+        </p>
+        <h2 className="relative mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+          Trusted by teams that value better systems
+        </h2>
+      </div>
+
       {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-white to-transparent sm:w-28" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-white to-transparent sm:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-card to-transparent sm:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-card to-transparent sm:w-28" />
     </section>
   );
 }
