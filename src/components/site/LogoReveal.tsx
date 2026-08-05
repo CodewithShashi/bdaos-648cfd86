@@ -22,8 +22,8 @@ export function LogoReveal() {
   const captionOpacity = useTransform(p, [0.45, 0.7, 0.95], [0, 1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[90vh] sm:h-[110vh] lg:h-[130vh]">
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-foreground">
+    <section ref={ref} className="relative h-[85vh] sm:h-[100vh] lg:h-[130vh]">
+      <div className="sticky top-0 flex h-[85vh] sm:h-screen items-center justify-center overflow-hidden bg-foreground">
         <div
           aria-hidden
           className="absolute inset-0 opacity-60"
