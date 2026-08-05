@@ -14,22 +14,23 @@ export function LogoReveal() {
     mass: 0.4,
   });
 
-  const scale = useTransform(p, [0, 0.55, 1], [0.55, 1, 1.25]);
-  const opacity = useTransform(p, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const blur = useTransform(p, [0, 0.3], ["12px", "0px"]);
-  const y = useTransform(p, [0, 0.5], ["-70%", "0%"]);
-  const lineWidth = useTransform(p, [0.25, 0.7], ["0%", "100%"]);
-  const captionOpacity = useTransform(p, [0.45, 0.7, 0.95], [0, 1, 0]);
+  const scale = useTransform(p, [0, 0.55, 1], [0.65, 1, 1.15]);
+  const opacity = useTransform(p, [0, 0.1, 0.8, 1], [0.9, 1, 1, 0]);
+  const blur = useTransform(p, [0, 0.3], ["3px", "0px"]);
+  // Logo starts from the top of the viewport and settles center
+  const y = useTransform(p, [0, 0.5], ["-30%", "0%"]);
+  const lineWidth = useTransform(p, [0.1, 0.5], ["0%", "100%"]);
+  const captionOpacity = useTransform(p, [0.2, 0.5, 0.95], [0, 1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[85vh] sm:h-[100vh] lg:h-[130vh]">
-      <div className="sticky top-0 flex h-[85vh] sm:h-screen items-center justify-center overflow-hidden bg-foreground">
+    <section ref={ref} className="relative h-[35vh] sm:h-[80vh] lg:h-[130vh]">
+      <div className="sticky top-0 flex h-[35vh] sm:h-[80vh] lg:h-screen items-center justify-center overflow-hidden bg-foreground">
         <div
           aria-hidden
           className="absolute inset-0 opacity-60"
         >
-          <div className="absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-primary/40 blur-3xl" />
-          <div className="absolute -bottom-32 right-1/4 h-[26rem] w-[26rem] rounded-full bg-primary-glow/30 blur-3xl" />
+          <div className="absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-primary/50 blur-3xl" />
+          <div className="absolute -bottom-32 right-1/4 h-[26rem] w-[26rem] rounded-full bg-primary-glow/40 blur-3xl" />
         </div>
 
         <motion.div
@@ -39,15 +40,15 @@ export function LogoReveal() {
           <img
             src={bdaLogo}
             alt="BDA Technologies"
-            className="h-14 w-auto object-contain sm:h-24 lg:h-28"
+            className="h-36 w-auto object-contain brightness-125 contrast-125 drop-shadow-[0_0_24px_rgba(132,204,22,0.55)] sm:h-28 lg:h-32"
           />
           <motion.span
             style={{ width: lineWidth }}
-            className="mt-4 block h-px max-w-md bg-background/30 sm:mt-8"
+            className="mt-1 block h-px max-w-xs bg-background/30 sm:mt-3 sm:max-w-md"
           />
           <motion.p
             style={{ opacity: captionOpacity }}
-            className="mt-4 max-w-xl text-base leading-relaxed text-background/70 sm:mt-8 sm:text-xl"
+            className="mt-1 max-w-lg text-xs leading-relaxed text-background/70 sm:mt-3 sm:text-lg lg:text-xl"
           >
             One operating system. Built for founder-led service businesses.
           </motion.p>
