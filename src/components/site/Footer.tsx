@@ -69,6 +69,7 @@ const socials = [
 
 
 export function Footer() {
+  const prefix = useRegionPrefix();
   return (
     <motion.footer
       initial={{ opacity: 0, y: 30 }}
