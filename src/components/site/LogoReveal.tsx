@@ -17,14 +17,14 @@ export function LogoReveal() {
   const scale = useTransform(p, [0, 0.55, 1], [0.65, 1, 1.15]);
   const opacity = useTransform(p, [0, 0.1, 0.8, 1], [0.9, 1, 1, 0]);
   const blur = useTransform(p, [0, 0.3], ["3px", "0px"]);
-  // Logo starts from the top of the viewport and settles center
-  const y = useTransform(p, [0, 0.5], ["-30%", "0%"]);
+  // Logo drops in from above and settles at center
+  const y = useTransform(p, [0, 0.5], ["-45%", "0%"]);
   const lineWidth = useTransform(p, [0.1, 0.5], ["0%", "100%"]);
   const captionOpacity = useTransform(p, [0.2, 0.5, 0.95], [0, 1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[35vh] sm:h-[80vh] lg:h-[130vh]">
-      <div className="sticky top-0 flex h-[35vh] sm:h-[80vh] lg:h-screen items-center justify-center overflow-hidden bg-foreground">
+    <section ref={ref} className="relative h-[25vh] sm:h-[80vh] lg:h-[130vh]">
+      <div className="sticky top-0 flex h-[25vh] sm:h-[80vh] lg:h-screen items-center justify-center overflow-hidden bg-foreground">
         <div
           aria-hidden
           className="absolute inset-0 opacity-60"
@@ -40,7 +40,7 @@ export function LogoReveal() {
           <img
             src={bdaLogo}
             alt="BDA Technologies"
-            className="h-36 w-auto object-contain brightness-125 contrast-125 drop-shadow-[0_0_24px_rgba(132,204,22,0.55)] sm:h-28 lg:h-32"
+            className="h-24 w-auto object-contain brightness-125 contrast-125 drop-shadow-[0_0_24px_rgba(132,204,22,0.55)] sm:h-28 lg:h-32"
           />
           <motion.span
             style={{ width: lineWidth }}
