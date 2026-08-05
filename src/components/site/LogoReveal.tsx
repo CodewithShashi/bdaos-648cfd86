@@ -39,15 +39,15 @@ export function LogoReveal() {
           <img
             src={bdaLogo}
             alt="BDA Technologies"
-            className="h-16 w-auto object-contain sm:h-24 lg:h-28"
+            className="h-14 w-auto object-contain sm:h-24 lg:h-28"
           />
           <motion.span
             style={{ width: lineWidth }}
-            className="mt-8 block h-px max-w-md bg-background/30"
+            className="mt-4 block h-px max-w-md bg-background/30 sm:mt-8"
           />
           <motion.p
             style={{ opacity: captionOpacity }}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-background/70 sm:text-xl"
+            className="mt-4 max-w-xl text-base leading-relaxed text-background/70 sm:mt-8 sm:text-xl"
           >
             One operating system. Built for founder-led service businesses.
           </motion.p>
