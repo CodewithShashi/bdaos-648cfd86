@@ -69,11 +69,13 @@ const ScrollStack = ({
     endOffsetRef.current = end ? end.getBoundingClientRect().top + scrollY : 0;
   }, []);
 
-  const update = useCallback(() => {
+  const smoothScrollRef = useRef<number | null>(null);
+
+  const update = useCallback((scrollTop: number) => {
     const cards = cardsRef.current;
     if (!cards.length) return;
 
-    const scrollTop = window.scrollY;
+
     const containerHeight = window.innerHeight;
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
