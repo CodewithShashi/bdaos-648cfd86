@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
+import { useRegionPrefix, regionHref } from "@/lib/region";
 import { Menu, X, ChevronDown, ArrowUpRight, ArrowRight, ChevronRight, Globe } from "lucide-react";
 import { Container } from "./Container";
 import { AnimatedButton } from "./AnimatedButton";
@@ -79,10 +80,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<MenuKey>(null);
-  const pathname = useRouterState({ select: (st) => st.location.pathname });
-  const region =
-    regions.find((r) => r.path !== "/" && (pathname === r.path || pathname.startsWith(r.path + "/"))) ??
-    regions[1];
+  const prefix = useRegionPrefix();
+  const region = regions.find((r) => r.path === (prefix || "/")) ?? regions[1];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -110,7 +109,7 @@ export function Navbar() {
       <Container>
         <div className="flex items-center justify-between px-8 py-2.5 rounded-full transition-all duration-300 bg-card shadow-soft">
           
-          <a href="/" data-same-tab className="flex items-center gap-2 shrink-0">
+          <a href={regionHref(prefix, "/")} data-same-tab className="flex items-center gap-2 shrink-0">
             <img
               src={logoAsset}
               alt="BDA Technologies"
@@ -120,7 +119,7 @@ export function Navbar() {
 
           <nav className="hidden lg:flex items-center gap-1">
             <a
-              href="/"
+              href={regionHref(prefix, "/")}
               data-same-tab
               onMouseEnter={() => setMenu(null)}
               className="relative rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground whitespace-nowrap"
@@ -254,9 +253,10 @@ export function Navbar() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {regions.map((r) => (
-                    <Link
+                    <a
                       key={r.code}
-                      to={r.path}
+                      href={r.path}
+                      data-same-tab
                       onClick={() => setOpen(false)}
                       className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-sm transition ${
                         r.code === region.code
@@ -266,7 +266,7 @@ export function Navbar() {
                     >
                       <RegionFlag region={r} />
                       <span>{r.label}</span>
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -318,9 +318,10 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
             className="absolute right-0 mt-2 min-w-[140px] rounded-2xl bg-card shadow-soft border border-border p-1.5 z-50"
           >
             {regions.map((r) => (
-              <Link
+              <a
                 key={r.code}
-                to={r.path}
+                href={r.path}
+                data-same-tab
                 onClick={() => setOpen(false)}
                 className={`w-full flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-left transition ${
                   r.code === region.code ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
@@ -328,7 +329,7 @@ function RegionSelector({ region }: { region: (typeof regions)[number] }) {
               >
                 <RegionFlag region={r} />
                 <span>{r.label}</span>
-              </Link>
+              </a>
             ))}
           </motion.div>
         )}
