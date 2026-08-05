@@ -156,14 +156,30 @@ const ScrollStack = ({
     stackPosition,
   ]);
 
+  // Ease the scroll value the transforms are derived from. This decouples the
+  // animation from raw (sometimes chunky) wheel deltas, so stacking glides.
+  const tick = useCallback(() => {
+    const target = window.scrollY;
+    const current = smoothScrollRef.current ?? target;
+    const next = current + (target - current) * 0.16;
+    const settled = Math.abs(target - next) < 0.3;
+    smoothScrollRef.current = settled ? target : next;
+    update(smoothScrollRef.current);
+
+    if (settled) {
+      tickingRef.current = false;
+      rafRef.current = null;
+      return;
+    }
+    rafRef.current = requestAnimationFrame(tick);
+  }, [update]);
+
   const onScroll = useCallback(() => {
     if (tickingRef.current) return;
     tickingRef.current = true;
-    rafRef.current = requestAnimationFrame(() => {
-      tickingRef.current = false;
-      update();
-    });
-  }, [update]);
+    rafRef.current = requestAnimationFrame(tick);
+  }, [tick]);
+
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
