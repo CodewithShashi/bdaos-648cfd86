@@ -17,6 +17,7 @@ export function LogoReveal() {
   const scale = useTransform(p, [0, 0.55, 1], [0.55, 1, 1.25]);
   const opacity = useTransform(p, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const blur = useTransform(p, [0, 0.3], ["12px", "0px"]);
+  const y = useTransform(p, [0, 0.5], ["-55%", "0%"]);
   const lineWidth = useTransform(p, [0.25, 0.7], ["0%", "100%"]);
   const captionOpacity = useTransform(p, [0.45, 0.7, 0.95], [0, 1, 0]);
 
@@ -32,7 +33,7 @@ export function LogoReveal() {
         </div>
 
         <motion.div
-          style={{ scale, opacity, filter: blur }}
+          style={{ scale, opacity, filter: blur, y }}
           className="relative z-10 flex flex-col items-center px-6 text-center"
         >
           <img
