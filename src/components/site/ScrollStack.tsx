@@ -69,13 +69,11 @@ const ScrollStack = ({
     endOffsetRef.current = end ? end.getBoundingClientRect().top + scrollY : 0;
   }, []);
 
-  const smoothScrollRef = useRef<number | null>(null);
-
-  const update = useCallback((scrollTop: number) => {
+  const update = useCallback(() => {
     const cards = cardsRef.current;
     if (!cards.length) return;
 
-
+    const scrollTop = window.scrollY;
     const containerHeight = window.innerHeight;
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
@@ -156,30 +154,14 @@ const ScrollStack = ({
     stackPosition,
   ]);
 
-  // Ease the scroll value the transforms are derived from. This decouples the
-  // animation from raw (sometimes chunky) wheel deltas, so stacking glides.
-  const tick = useCallback(() => {
-    const target = window.scrollY;
-    const current = smoothScrollRef.current ?? target;
-    const next = current + (target - current) * 0.16;
-    const settled = Math.abs(target - next) < 0.3;
-    smoothScrollRef.current = settled ? target : next;
-    update(smoothScrollRef.current);
-
-    if (settled) {
-      tickingRef.current = false;
-      rafRef.current = null;
-      return;
-    }
-    rafRef.current = requestAnimationFrame(tick);
-  }, [update]);
-
   const onScroll = useCallback(() => {
     if (tickingRef.current) return;
     tickingRef.current = true;
-    rafRef.current = requestAnimationFrame(tick);
-  }, [tick]);
-
+    rafRef.current = requestAnimationFrame(() => {
+      tickingRef.current = false;
+      update();
+    });
+  }, [update]);
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -217,8 +199,7 @@ const ScrollStack = ({
     const onResize = () => {
       transformsCache.clear();
       measure();
-      smoothScrollRef.current = window.scrollY;
-      update(window.scrollY);
+      update();
     };
     const onWindowResize = () => {
       // Ignore height-only resizes (mobile browser chrome show/hide).
@@ -228,8 +209,7 @@ const ScrollStack = ({
     };
 
     measure();
-    smoothScrollRef.current = window.scrollY;
-    update(window.scrollY);
+    update();
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onWindowResize);
