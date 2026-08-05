@@ -22,8 +22,8 @@ export function LogoReveal() {
   const captionOpacity = useTransform(p, [0.45, 0.7, 0.95], [0, 1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[90vh] sm:h-[110vh] lg:h-[130vh]">
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-foreground">
+    <section ref={ref} className="relative h-[85vh] sm:h-[100vh] lg:h-[130vh]">
+      <div className="sticky top-0 flex h-[85vh] sm:h-screen items-center justify-center overflow-hidden bg-foreground">
         <div
           aria-hidden
           className="absolute inset-0 opacity-60"
@@ -39,15 +39,15 @@ export function LogoReveal() {
           <img
             src={bdaLogo}
             alt="BDA Technologies"
-            className="h-16 w-auto object-contain sm:h-24 lg:h-28"
+            className="h-14 w-auto object-contain sm:h-24 lg:h-28"
           />
           <motion.span
             style={{ width: lineWidth }}
-            className="mt-8 block h-px max-w-md bg-background/30"
+            className="mt-4 block h-px max-w-md bg-background/30 sm:mt-8"
           />
           <motion.p
             style={{ opacity: captionOpacity }}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-background/70 sm:text-xl"
+            className="mt-4 max-w-xl text-base leading-relaxed text-background/70 sm:mt-8 sm:text-xl"
           >
             One operating system. Built for founder-led service businesses.
           </motion.p>
