@@ -1,4 +1,11 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import bdaLogo from "@/assets/BDA-Logo.png";
 
 type Review = {
