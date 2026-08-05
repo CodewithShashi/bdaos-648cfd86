@@ -33,7 +33,7 @@ export function LogoReveal() {
         </div>
 
         <motion.div
-          style={{ scale, opacity, filter: blur }}
+          style={{ scale, opacity, filter: blur, y }}
           className="relative z-10 flex flex-col items-center px-6 text-center"
         >
           <img
