@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
-import { Star, Quote, Twitter } from "lucide-react";
-import { Container } from "./Container";
+import bdaLogo from "@/assets/BDA-Logo.png";
 
 type Review = {
   quote: string;
   name: string;
   role: string;
-  initials: string;
 };
 
 const rowOne: Review[] = [
@@ -14,29 +12,25 @@ const rowOne: Review[] = [
     quote:
       "Our team now runs the playbooks on their own. That's the kind of partner that builds capability, not dependency.",
     name: "Emma Collins",
-    role: "HEAD OF CONTENT",
-    initials: "EC",
+    role: "Head of Content",
   },
   {
     quote:
-      "BDA AI killed two of our pet projects and saved us a fortune. Honest advice we couldn't get internally.",
+      "BDA killed two of our pet projects and saved us a fortune. Honest advice we couldn't get internally.",
     name: "Lucas Bennett",
-    role: "CEO & FOUNDER",
-    initials: "LB",
+    role: "CEO & Founder",
   },
   {
     quote:
       "Every recommendation tied back to a real number on the P&L. Strategic, reliable, and genuinely tailored to us.",
     name: "Benjamin Daul",
-    role: "HEAD OF ENGINEERING",
-    initials: "BD",
+    role: "Head of Engineering",
   },
   {
     quote:
       "They rewired how we ship. Weekly experiments, clear metrics, and zero fluff — a rare kind of partner.",
     name: "Sofia Marín",
-    role: "VP GROWTH",
-    initials: "SM",
+    role: "VP Growth",
   },
 ];
 
@@ -45,94 +39,135 @@ const rowTwo: Review[] = [
     quote:
       "The pilot was live and measurable before we expected a proposal. Fast, focused, and refreshingly free of buzzwords.",
     name: "Amy Louise",
-    role: "CUSTOMER SUCCESS MANAGER",
-    initials: "AL",
+    role: "Customer Success Manager",
   },
   {
     quote:
-      "We had a roadmap in weeks, not months of meetings. Finally an AI partner that thinks in outcomes.",
+      "We had a roadmap in weeks, not months of meetings. Finally a partner that thinks in outcomes.",
     name: "Michael Torres",
-    role: "HEAD OF OPERATIONS",
-    initials: "MT",
+    role: "Head of Operations",
   },
   {
     quote:
-      "They showed us where AI actually fit our workflow, not just where it sounded impressive. Clear, practical, worth every cent.",
+      "They showed us where systems actually fit our workflow, not just where it sounded impressive. Clear and practical.",
     name: "Olivia Reed",
-    role: "MARKETING DIRECTOR",
-    initials: "OR",
+    role: "Marketing Director",
   },
   {
     quote:
       "Craft you can feel. Every review round moved us forward instead of sideways — a genuine force multiplier.",
     name: "Jonas Weber",
-    role: "FOUNDER",
-    initials: "JW",
+    role: "Founder",
   },
 ];
 
-function Card({ r }: { r: Review }) {
-  return (
-    <figure className="group relative flex w-[380px] shrink-0 flex-col justify-between rounded-3xl border border-border bg-secondary/40 p-7 transition hover:bg-secondary/70 hover:shadow-elevated">
-      <div>
-        <div className="flex items-start justify-between">
-          <div className="flex gap-1 text-primary">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="h-4 w-4 fill-current" />
-            ))}
-          </div>
-          <Quote className="h-6 w-6 text-primary" strokeWidth={2.25} />
-        </div>
-        <blockquote className="mt-8 font-display text-xl leading-[1.35] tracking-[-0.01em] text-foreground">
-          "{r.quote}"
-        </blockquote>
-      </div>
+const rowThree: Review[] = [
+  {
+    quote:
+      "Dashboards our managers actually open every morning. Nothing slips through the cracks anymore.",
+    name: "Rahul Menon",
+    role: "COO",
+  },
+  {
+    quote:
+      "Follow-ups stopped depending on memory. The system carries the process now.",
+    name: "Priya Nair",
+    role: "Sales Lead",
+  },
+  {
+    quote:
+      "Reporting that used to take two days now takes two minutes. That alone paid for the project.",
+    name: "Daniel Okafor",
+    role: "Finance Director",
+  },
+  {
+    quote:
+      "Onboarding a new hire is finally a checklist, not a scramble. Huge difference for us.",
+    name: "Hannah Meyer",
+    role: "People Lead",
+  },
+];
 
-      <figcaption className="mt-10 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br from-primary to-primary-glow text-primary-foreground text-sm font-semibold">
-            {r.initials}
+const rowFour: Review[] = [
+  {
+    quote:
+      "Clear ownership on every task. Escalations happen before things burn, not after.",
+    name: "Arjun Shah",
+    role: "Delivery Manager",
+  },
+  {
+    quote:
+      "They trained our team properly. Adoption stuck long after the engagement ended.",
+    name: "Clara Fontaine",
+    role: "Transformation Lead",
+  },
+  {
+    quote:
+      "Straightforward, senior people who care about the outcome more than the invoice.",
+    name: "Tom Whitaker",
+    role: "Managing Partner",
+  },
+  {
+    quote:
+      "One operating system replaced five tools and a lot of guesswork.",
+    name: "Meera Iyer",
+    role: "Founder",
+  },
+];
+
+function Card({ r, muted = false }: { r: Review; muted?: boolean }) {
+  return (
+    <figure
+      className={`w-[19rem] shrink-0 rounded-2xl border border-border bg-card p-5 shadow-soft sm:w-[23rem] ${
+        muted ? "opacity-60" : ""
+      }`}
+    >
+      <p className="text-sm leading-relaxed text-foreground/80 sm:text-[0.95rem]">
+        {r.quote}
+      </p>
+      <figcaption className="mt-4 flex items-center gap-3">
+        <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-full bg-foreground">
+          <img
+            src={bdaLogo}
+            alt="BDA Technologies"
+            className="h-5 w-auto object-contain"
+            loading="lazy"
+          />
+        </span>
+        <span className="min-w-0">
+          <span className="block truncate text-sm font-medium text-foreground">
+            {r.name}
           </span>
-          <div>
-            <div className="font-medium text-foreground leading-tight">
-              {r.name}
-            </div>
-            <div className="text-[11px] tracking-wider text-muted-foreground uppercase">
-              {r.role}
-            </div>
-          </div>
-        </div>
-        <a
-          href="#"
-          aria-label={`${r.name} on X`}
-          className="grid h-9 w-9 place-items-center rounded-full border border-border bg-background text-muted-foreground transition hover:text-primary hover:border-primary"
-        >
-          <Twitter className="h-3.5 w-3.5" />
-        </a>
+          <span className="block truncate text-xs text-muted-foreground">
+            {r.role}
+          </span>
+        </span>
       </figcaption>
     </figure>
   );
 }
 
-function Marquee({
+function Row({
   items,
   direction = "left",
   duration = 60,
+  muted = false,
 }: {
   items: Review[];
   direction?: "left" | "right";
   duration?: number;
+  muted?: boolean;
 }) {
   const loop = [...items, ...items];
   return (
-    <div className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+    <div className="overflow-hidden">
       <motion.div
-        className="flex gap-6 w-max"
+        className="flex w-max gap-4 sm:gap-5"
         animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
         transition={{ duration, ease: "linear", repeat: Infinity }}
       >
         {loop.map((r, i) => (
-          <Card key={`${r.name}-${i}`} r={r} />
+          <Card key={`${r.name}-${i}`} r={r} muted={muted} />
         ))}
       </motion.div>
     </div>
@@ -141,25 +176,31 @@ function Marquee({
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="relative py-24 md:py-32">
-      <Container>
-        <motion.span
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center rounded-full border border-border bg-secondary/60 px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground"
-        >
-          OUR CLIENTS
-        </motion.span>
+    <section
+      id="testimonials"
+      className="relative overflow-hidden bg-secondary/30 py-20 md:py-28"
+    >
+      <div className="relative space-y-4 sm:space-y-5 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+        <Row items={rowOne} direction="left" duration={70} muted />
+        <Row items={rowTwo} direction="right" duration={85} />
 
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        {/* Centered headline sits between the drifting rows */}
+        <div className="relative z-10 py-8 text-center md:py-12">
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground"
+          >
+            OUR CLIENTS
+          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-8 text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-foreground"
+            className="mx-auto mt-5 max-w-4xl px-4 text-4xl font-normal tracking-tight text-foreground sm:text-5xl lg:text-6xl"
           >
             What Our Clients Say.
           </motion.h2>
@@ -168,17 +209,15 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-4 text-base text-muted-foreground leading-relaxed"
+            className="mx-auto mt-4 max-w-xl px-4 text-base leading-relaxed text-muted-foreground"
           >
-            Real stories from teams that use BDA AI to scale faster and achieve
-            measurable results.
+            Real stories from teams that use BDA Technologies to scale faster
+            and achieve measurable results.
           </motion.p>
         </div>
-      </Container>
 
-      <div className="mt-14 space-y-6">
-        <Marquee items={rowOne} direction="left" duration={60} />
-        <Marquee items={rowTwo} direction="right" duration={70} />
+        <Row items={rowThree} direction="left" duration={80} />
+        <Row items={rowFour} direction="right" duration={95} muted />
       </div>
     </section>
   );
