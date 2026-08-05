@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
+import { useRegionPrefix, regionHref } from "@/lib/region";
 import osImg from "@/assets/service-os.jpg";
 import transformationImg from "@/assets/service-transformation.jpg";
 import trainingImg from "@/assets/service-ai-training.jpg";
@@ -31,6 +32,7 @@ const services = [
 
 export function ServiceShowcase() {
   const [active, setActive] = useState<number | null>(null);
+  const prefix = useRegionPrefix();
 
   return (
     <section id="services-showcase" className="relative scroll-mt-32 pt-24 pb-20 md:pt-36 md:pb-28">
@@ -59,7 +61,7 @@ export function ServiceShowcase() {
             return (
               <a
                 key={s.num}
-                href={s.href}
+                href={regionHref(prefix, s.href)}
                 onMouseEnter={() => setActive(i)}
                 onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(i)}

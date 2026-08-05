@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import logoAsset from "../assets/BDA-Logo.png";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useOpenLinksInNewTab } from "../lib/open-links-in-new-tab";
+import type { RegionRef } from "../lib/region";
 
 
 function NotFoundComponent() {
@@ -75,7 +76,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+  region: RegionRef;
+}>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },

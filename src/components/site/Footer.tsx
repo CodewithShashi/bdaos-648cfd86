@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Linkedin, Instagram, Youtube, Twitter } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Container } from "./Container";
+import { useRegionPrefix, regionHref } from "@/lib/region";
 import logoAsset from "@/assets/BDA-Logo.png";
 
 const linkGroups = [
@@ -68,6 +69,7 @@ const socials = [
 
 
 export function Footer() {
+  const prefix = useRegionPrefix();
   return (
     <motion.footer
       initial={{ opacity: 0, y: 30 }}
@@ -79,7 +81,7 @@ export function Footer() {
       <Container className="py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <a href="/" data-same-tab className="flex items-center gap-2">
+            <a href={regionHref(prefix, "/")} data-same-tab className="flex items-center gap-2">
               <img
                 src={logoAsset}
                 alt="BDA Technologies"

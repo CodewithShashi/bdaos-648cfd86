@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./Container";
+import { useRegionPrefix, regionHref } from "@/lib/region";
 import { AnimatedButton } from "./AnimatedButton";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
 import linkassistLogo from "@/assets/linkassist-logo.png";
@@ -34,6 +35,7 @@ const products = [
 
 
 export function Process() {
+  const prefix = useRegionPrefix();
   return (
     <section id="products" className="relative bg-secondary/40 py-20 md:py-28">
       <Container>
@@ -74,7 +76,7 @@ export function Process() {
           {products.map((p, i) => (
             <ScrollStackItem key={p.title}>
               <a
-                href={p.href}
+                href={regionHref(prefix, p.href)}
                 className="group relative mx-auto flex min-h-[260px] w-full max-w-6xl flex-col justify-between overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-soft transition-shadow duration-300 hover:shadow-elevated md:min-h-[320px] md:p-12"
               >
                 <div className="flex items-start justify-between gap-4">

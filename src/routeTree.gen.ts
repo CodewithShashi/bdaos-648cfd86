@@ -10,10 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TeamRouteImport } from './routes/team'
-import { Route as InRouteImport } from './routes/in'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
-import { Route as AeRouteImport } from './routes/ae'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
@@ -39,11 +37,6 @@ const TeamRoute = TeamRouteImport.update({
   path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InRoute = InRouteImport.update({
-  id: '/in',
-  path: '/in',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -52,11 +45,6 @@ const ContactRoute = ContactRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AeRoute = AeRouteImport.update({
-  id: '/ae',
-  path: '/ae',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -161,10 +149,8 @@ const BrandsAutomationSchoolRoute = BrandsAutomationSchoolRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/ae': typeof AeRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
-  '/in': typeof InRoute
   '/team': typeof TeamRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
@@ -187,10 +173,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/ae': typeof AeRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
-  '/in': typeof InRoute
   '/team': typeof TeamRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
@@ -214,10 +198,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/ae': typeof AeRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
-  '/in': typeof InRoute
   '/team': typeof TeamRoute
   '/brands/automation-school': typeof BrandsAutomationSchoolRoute
   '/brands/brandingchef': typeof BrandsBrandingchefRoute
@@ -242,10 +224,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/ae'
     | '/careers'
     | '/contact'
-    | '/in'
     | '/team'
     | '/brands/automation-school'
     | '/brands/brandingchef'
@@ -268,10 +248,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/ae'
     | '/careers'
     | '/contact'
-    | '/in'
     | '/team'
     | '/brands/automation-school'
     | '/brands/brandingchef'
@@ -294,10 +272,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
-    | '/ae'
     | '/careers'
     | '/contact'
-    | '/in'
     | '/team'
     | '/brands/automation-school'
     | '/brands/brandingchef'
@@ -321,10 +297,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AeRoute: typeof AeRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
-  InRoute: typeof InRoute
   TeamRoute: typeof TeamRoute
   BrandsAutomationSchoolRoute: typeof BrandsAutomationSchoolRoute
   BrandsBrandingchefRoute: typeof BrandsBrandingchefRoute
@@ -354,13 +328,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/in': {
-      id: '/in'
-      path: '/in'
-      fullPath: '/in'
-      preLoaderRoute: typeof InRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -373,13 +340,6 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ae': {
-      id: '/ae'
-      path: '/ae'
-      fullPath: '/ae'
-      preLoaderRoute: typeof AeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -521,10 +481,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AeRoute: AeRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
-  InRoute: InRoute,
   TeamRoute: TeamRoute,
   BrandsAutomationSchoolRoute: BrandsAutomationSchoolRoute,
   BrandsBrandingchefRoute: BrandsBrandingchefRoute,
@@ -547,13 +505,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

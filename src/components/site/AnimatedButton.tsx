@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { useRegionPrefix, regionHref } from "@/lib/region";
 
 type Props = {
   children: ReactNode;
@@ -21,6 +22,8 @@ export function AnimatedButton({
   onClick,
 }: Props) {
   const isPrimary = variant === "primary";
+  const prefix = useRegionPrefix();
+  const resolvedHref = href ? regionHref(prefix, href) : undefined;
 
   const base =
     "group relative inline-flex items-center gap-3 rounded-full font-medium transition-colors duration-300 will-change-transform overflow-hidden";
@@ -33,7 +36,7 @@ export function AnimatedButton({
 
   return (
     <Tag
-      href={href}
+      href={resolvedHref}
       onClick={onClick}
       whileHover="hover"
       initial="rest"
