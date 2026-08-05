@@ -149,23 +149,17 @@ function Card({ r, muted = false }: { r: Review; muted?: boolean }) {
 
 function Row({
   items,
-  direction = "left",
-  duration = 60,
+  x,
   muted = false,
 }: {
   items: Review[];
-  direction?: "left" | "right";
-  duration?: number;
+  x: MotionValue<string>;
   muted?: boolean;
 }) {
-  const loop = [...items, ...items];
+  const loop = [...items, ...items, ...items];
   return (
     <div className="overflow-hidden">
-      <motion.div
-        className="flex w-max gap-4 sm:gap-5"
-        animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
-        transition={{ duration, ease: "linear", repeat: Infinity }}
-      >
+      <motion.div className="flex w-max gap-4 sm:gap-5" style={{ x }}>
         {loop.map((r, i) => (
           <Card key={`${r.name}-${i}`} r={r} muted={muted} />
         ))}
@@ -175,49 +169,62 @@ function Row({
 }
 
 export function Testimonials() {
-  return (
-    <section
-      id="testimonials"
-      className="relative overflow-hidden bg-secondary/30 py-20 md:py-28"
-    >
-      <div className="relative space-y-4 sm:space-y-5 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
-        <Row items={rowOne} direction="left" duration={70} muted />
-        <Row items={rowTwo} direction="right" duration={85} />
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
 
-        {/* Centered headline sits between the drifting rows */}
-        <div className="relative z-10 py-8 text-center md:py-12">
-          <motion.span
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground"
-          >
+  const p = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 24,
+    mass: 0.4,
+  });
+
+  // Cards drift horizontally as you scroll through the pinned section
+  const xA = useTransform(p, [0, 1], ["-4%", "-26%"]);
+  const xB = useTransform(p, [0, 1], ["-30%", "-4%"]);
+  const xC = useTransform(p, [0, 1], ["-6%", "-30%"]);
+  const xD = useTransform(p, [0, 1], ["-28%", "-2%"]);
+
+  // Whole card field zooms out slightly and settles
+  const fieldScale = useTransform(p, [0, 0.6, 1], [1.18, 1, 1]);
+  const fieldOpacity = useTransform(p, [0, 0.12, 0.85, 1], [0, 1, 1, 0.35]);
+
+  // Headline grows into place in the middle of the field
+  const headScale = useTransform(p, [0, 0.45, 1], [0.72, 1, 1.04]);
+  const headOpacity = useTransform(p, [0, 0.2, 0.9, 1], [0, 1, 1, 0.6]);
+
+  return (
+    <section id="testimonials" ref={ref} className="relative h-[280vh]">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden bg-secondary/30">
+        <motion.div
+          style={{ scale: fieldScale, opacity: fieldOpacity }}
+          className="relative w-full space-y-4 sm:space-y-5 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]"
+        >
+          <Row items={rowOne} x={xA} muted />
+          <Row items={rowTwo} x={xB} />
+          <div className="h-[13rem] sm:h-[15rem]" />
+          <Row items={rowThree} x={xC} />
+          <Row items={rowFour} x={xD} muted />
+        </motion.div>
+
+        {/* Centered headline pinned over the drifting field */}
+        <motion.div
+          style={{ scale: headScale, opacity: headOpacity }}
+          className="pointer-events-none absolute inset-x-0 top-1/2 z-10 -translate-y-1/2 px-4 text-center"
+        >
+          <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground">
             OUR CLIENTS
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="mx-auto mt-5 max-w-4xl px-4 text-4xl font-normal tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-          >
+          </span>
+          <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-normal tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             What Our Clients Say.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mx-auto mt-4 max-w-xl px-4 text-base leading-relaxed text-muted-foreground"
-          >
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
             Real stories from teams that use BDA Technologies to scale faster
             and achieve measurable results.
-          </motion.p>
-        </div>
-
-        <Row items={rowThree} direction="left" duration={80} />
-        <Row items={rowFour} direction="right" duration={95} muted />
+          </p>
+        </motion.div>
       </div>
     </section>
   );
