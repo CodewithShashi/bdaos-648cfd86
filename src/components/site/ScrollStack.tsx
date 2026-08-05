@@ -217,7 +217,8 @@ const ScrollStack = ({
     const onResize = () => {
       transformsCache.clear();
       measure();
-      update();
+      smoothScrollRef.current = window.scrollY;
+      update(window.scrollY);
     };
     const onWindowResize = () => {
       // Ignore height-only resizes (mobile browser chrome show/hide).
@@ -227,7 +228,8 @@ const ScrollStack = ({
     };
 
     measure();
-    update();
+    smoothScrollRef.current = window.scrollY;
+    update(window.scrollY);
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onWindowResize);
