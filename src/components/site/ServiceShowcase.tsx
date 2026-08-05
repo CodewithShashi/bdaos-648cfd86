@@ -32,6 +32,7 @@ const services = [
 
 export function ServiceShowcase() {
   const [active, setActive] = useState<number | null>(null);
+  const prefix = useRegionPrefix();
 
   return (
     <section id="services-showcase" className="relative scroll-mt-32 pt-24 pb-20 md:pt-36 md:pb-28">

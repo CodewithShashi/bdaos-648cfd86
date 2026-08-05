@@ -35,6 +35,7 @@ const products = [
 
 
 export function Process() {
+  const prefix = useRegionPrefix();
   return (
     <section id="products" className="relative bg-secondary/40 py-20 md:py-28">
       <Container>
