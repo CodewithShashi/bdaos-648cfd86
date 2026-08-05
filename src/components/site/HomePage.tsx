@@ -23,6 +23,7 @@ export function HomePage({ hero }: { hero?: ReactNode }) {
       <Process />
       <Insights />
       <Testimonials />
+      <LogoReveal />
       <CTA />
       <FAQ />
       <Footer />
